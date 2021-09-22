@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 
 import {
   Column,
@@ -10,35 +11,17 @@ import {
   Title,
 } from "../../components/Table";
 
-const boardData = [
-  {
-    postId: 1,
-    postTitle: "Title",
-    postDate: "2021-08-1",
-    postAuthor: "관리자",
-  },
-  {
-    postId: 2,
-    postTitle: "Title",
-    postDate: "2021-08-2",
-    postAuthor: "관리자",
-  },
-  {
-    postId: 3,
-    postTitle: "Title",
-    postDate: "2021-08-3",
-    postAuthor: "관리자",
-  },
-  {
-    postId: 4,
-    postTitle: "Title",
-    postDate: "2021-08-4",
-    postAuthor: "관리자",
-  },
-];
-
 const Board = ({ section }) => {
   const heroHeight = Math.min(window.innerWidth / 2, 400);
+
+  const [boardData, setBoardData] = useState([])
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/post")
+    .then((response) => {
+      setBoardData(response.data)
+     })
+  }, [])
 
   return (
       <ContainerB>
