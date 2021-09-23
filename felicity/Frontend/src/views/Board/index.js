@@ -29,7 +29,8 @@ const Board = ({ section }) => {
         <Table>
           <colgroup>
             <col style={{ width: "10%" }} />
-            <col style={{ width: "60%" }} />
+            <col style={{ width: "40%" }} />
+            <col style={{ width: "20%" }} />
             <col style={{ width: "15%" }} />
             <col style={{ width: "15%" }} />
           </colgroup>
@@ -37,6 +38,7 @@ const Board = ({ section }) => {
             <HeaderRow>
               <HeaderColumn>번호</HeaderColumn>
               <HeaderColumn>제목</HeaderColumn>
+              <HeaderColumn>증상</HeaderColumn>
               <HeaderColumn>날짜</HeaderColumn>
               <HeaderColumn>작성자</HeaderColumn>
             </HeaderRow>
@@ -46,6 +48,7 @@ const Board = ({ section }) => {
               <Row key={data.postId}>
                 <Column>{data.postId}</Column>
                 <Column>{data.postTitle}</Column>
+                <Column>{data.postSymptom}</Column>
                 <Column>{data.postDate}</Column>
                 <Column>{data.postAuthor}</Column>
               </Row>
