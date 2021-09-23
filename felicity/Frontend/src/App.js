@@ -1,17 +1,20 @@
 import './App.css';
 import { Layout } from './components/Layout';
+import { LayoutOuter } from './components/LayoutOuter';
 import  Header  from './components/Header/Header' ;
-// import { Table } from './components/Table';
 import Board from './views/Board';
-
+import Calen from './components/Calendar2';
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Header/>
-        <Board/>
-      </Layout>
+      <Header/>
+      <LayoutOuter>
+          <Layout>
+            <Board/>
+            <Calen/>
+          </Layout>
+      </LayoutOuter>
     </div>
   );
 }
