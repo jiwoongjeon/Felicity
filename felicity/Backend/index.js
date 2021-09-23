@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "",
+    password: "wonseok3",
     database: "felicity"
 });
 db.connect((err) => {
@@ -26,7 +26,7 @@ db.connect((err) => {
 app.get("/post", (req, res) => {
     // res.send("Main Route");
     const tableSql = 
-        "SELECT post.id as postId, post.title as postTitle FROM felicity.post " +
+        "SELECT post.id as postId, post.title as postTitle, symptom as postSymptom, date_format((postdate), '%m-%d-%Y') as postDate, username as postAuthor FROM felicity.post " +
         "join user on user_id = user.id;";
     
     db.query(tableSql, (err, result) => {
