@@ -6,10 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const pw = require('./pw.js')
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "",
+    password: `${pw}`,
     database: "felicity"
 });
 db.connect((err) => {
