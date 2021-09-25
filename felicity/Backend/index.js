@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const pw = require('./pw.js')
+const pw = require('./pw.js');
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 });
 db.connect((err) => {
     if (err) throw err;
-    console.log("Connected")
+    console.log("Connected");
 });
 
 // 게시글 업로드
@@ -26,15 +26,15 @@ db.connect((err) => {
 // 게시글 보기
 app.get("/post", (req, res) => {
     // res.send("Main Route");
-    const tableSql = 
+    const tableSql =
         "SELECT post.id as postId, post.title as postTitle, symptom as postSymptom, date_format((postdate), '%m-%d-%Y') as postDate, username as postAuthor FROM felicity.post " +
         "join user on user_id = user.id;";
-    
+
     db.query(tableSql, (err, result) => {
         if (err) console.log(err);
 
-        console.log(result)
-        
+        console.log(result);
+
         res.send(result);
     });
 });
