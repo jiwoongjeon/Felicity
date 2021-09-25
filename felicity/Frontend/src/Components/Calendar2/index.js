@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { format } from 'date-fns'
-import { enGB } from 'date-fns/locale'
-import { DatePickerCalendar } from 'react-nice-dates'
-import 'react-nice-dates/build/style.css'
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 export const Calen = () => {
-const [date, setDate] = useState()
+  const [value, onChange] = useState(new Date());
+
   return (
     <div>
-      <p>
-        Selected date: {date ? format(date, 'dd MMM yyyy', { locale: enGB }) : 'none'}.
-      </p>
-      <DatePickerCalendar date={date} onDateChange={setDate} locale={enGB} />
+      
+      <Calendar
+        onChange={onChange}
+        value={value}
+      />
     </div>
-  )
+  );
 }
-
 export default Calen
+
