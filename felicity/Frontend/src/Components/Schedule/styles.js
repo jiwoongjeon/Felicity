@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const ScheduleContainer = styled.div`
+  margin-left:40px;
   width: 558px;
-  height: 472px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px;
-//   background: green;
+  padding: 10px;
+  background: white;
   border-radius: 8px;
 `;
 
@@ -19,7 +20,7 @@ export const Header = styled.p`
 
 export const AppointmentContainer = styled.div`
   width: 478px;
-  height: 92px;
+  height: 62px;
   margin: 20px 20px 0px;
   padding: 20px;
   border: 3px;
