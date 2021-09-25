@@ -9,8 +9,9 @@ import Calen from './components/Calendar2';
 function App() {
   return (
     <div className="App">
-      <Header/>
+
       <LayoutOuter>
+      <Header/>
         <Layout>
           <Calen/>
         </Layout>
