@@ -41,32 +41,25 @@ const Header = () => {
           <SidebarHeader>
           <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "Felicity"}</p>
+              <p>{"Felicity"}</p>
             </div>
-            <div className="closemenu" onClick={menuIconClick}>
-                {/* changing menu collapse icon on click */}
-              {menuCollapse ? (
-                <FiArrowRightCircle/>
-              ) : (
-                <FiArrowLeftCircle/>
-              )}
-            </div>
+
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
               <MenuItem active={true} icon={<FiHome />}>
-                Home
+                See your patient
               </MenuItem>
-              <MenuItem icon={<FaList />}>Category</MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
+              <MenuItem icon={<FaList />}>Home</MenuItem>
+              <MenuItem icon={<FaRegHeart />}>Status</MenuItem>
+              <MenuItem icon={<RiPencilLine />}>My Checklist</MenuItem>
+              <MenuItem icon={<BiCog />}>Profile</MenuItem>
             </Menu>
           </SidebarContent>
           <SidebarFooter>
-            <Menu iconShape="square">
+            {/* <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
-            </Menu>
+            </Menu> */}
           </SidebarFooter>
         </ProSidebar>
       </div>
