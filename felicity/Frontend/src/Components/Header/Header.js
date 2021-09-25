@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import needhelp from '../assets/needhelp.png'
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -57,6 +57,7 @@ const Header = () => {
             </Menu>
           </SidebarContent>
           <SidebarFooter>
+          <img  src={needhelp} alt=""/>
             {/* <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
             </Menu> */}
