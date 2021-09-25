@@ -10,23 +10,13 @@ import { Layout4Board } from './components/Layout4Board';
 function App() {
   return (
     <div className="App">
-      <LayoutOuter>
-        <Layout>
-          <Layout4Cal>
-            <Calen/>
-          </Layout4Cal>
-          <Layout4Board>
-            <Board/>
-          </Layout4Board>
-            
-        </Layout>
-        
 
-        <Layout>
-          <Board/>
-          <Board/>
-        </Layout>
-      </LayoutOuter>
+
+        
+      <Layout>
+        <Calen/>
+      </Layout>
+      
     </div>
   );
 }
