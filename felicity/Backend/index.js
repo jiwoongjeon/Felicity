@@ -25,9 +25,10 @@ db.connect((err) => {
 
 // 게시글 보기
 app.get("/post", (req, res) => {
-    // res.send("Main Route");
+
     const tableSql =
-        "SELECT post.id as postId, post.title as postTitle, symptom as postSymptom, date_format((postdate), '%m-%d-%Y') as postDate, username as postAuthor FROM felicity.post " +
+        "SELECT post.id as postId, post.title as postTitle, symptom as postSymptom, " +
+        "date_format((postdate), '%m-%d-%Y') as postDate, username as postAuthor FROM felicity.post " +
         "join user on user_id = user.id;";
 
     db.query(tableSql, (err, result) => {
@@ -38,6 +39,23 @@ app.get("/post", (req, res) => {
         res.send(result);
     });
 });
+
+app.get("/schedule", (req, res) => {
+
+    const scheduleSql =
+        "SELECT schedule.id, date_format((appointment_time), '%m-%d-%Y') as date, " +
+        "date_format((appointment_time), '%l:%i %p') as time, user.username as doctor, " +
+        "user.email FROM felicity.schedule join user on doctor_id = user.id and patient_id=2;";
+
+    db.query(scheduleSql, (err, result) => {
+        if (err) console.log(err);
+
+        console.log(result);
+
+        res.send(result);
+    });
+
+})
 
 const port = 3001;
 const server = app.listen(port, () => {

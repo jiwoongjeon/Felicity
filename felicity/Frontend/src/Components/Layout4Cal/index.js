@@ -5,4 +5,5 @@ export const Layout4Cal = styled.div`
   height: 500px;
   display: flex;
   flex-direction: row;
+  border-radius: 8px;
 `;
