@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ScheduleContainer = styled.div`
-  margin-left:40px;
-  width: 558px;
-  height: 400px;
+  margin-right: 30px;
+  width: 40%;
+  height: 412px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -13,16 +13,17 @@ export const ScheduleContainer = styled.div`
 `;
 
 export const Header = styled.p`
-  margin: 20px 20px 0px;
+  margin: 10px 20px 0px;
   font-weight: bold;
   font-size: 18px;
 `;
 
 export const AppointmentContainer = styled.div`
-  width: 478px;
-  height: 62px;
-  margin: 20px 20px 0px;
-  padding: 20px;
+  width: 90%;
+  height: 15%;
+  margin-top: 20px;
+  margin-left: 10px;
+  padding: 15px;
   border: 3px;
   display: flex;
   flex-direction: column;
