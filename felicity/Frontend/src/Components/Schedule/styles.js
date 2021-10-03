@@ -7,7 +7,7 @@ export const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
+  padding: 15px;
   background: white;
   border-radius: 8px;
 `;
@@ -22,7 +22,8 @@ export const AppointmentContainer = styled.div`
   width: 90%;
   height: 15%;
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 15px;
   border: 3px;
   display: flex;
