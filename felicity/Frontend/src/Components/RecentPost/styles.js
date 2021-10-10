@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-  width: 60%;
-  height:40%;
-  margin-top: 50px;
-  margin-left: 50px;
-  display: grid;
-  orientation: vertical;
-  padding: 10px;
-  padding-left: 20px;
-  padding-right: 30px;
-  background: white;
-  border-radius: 20px;
+width: 60%;
+height: 500px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+margin-top: 30px;
+margin-left: 50px;
+padding: 10px;
+padding-left: 20px;
+padding-right: 30px;
+background: white;
+border-radius: 20px;
 `;
 
 export const Header = styled.p`
@@ -23,11 +24,13 @@ export const Header = styled.p`
 
 export const PostElementContainer = styled.div`
 width: 100%;
-height: 100%%;
+height: 100%;
 display: flex;
 flex-direction: column;
-margin-top: 20px;
-margin-bottom: 5%;
+overflow-y: auto;
+&::-webkit-scrollbar {
+  width: 10px;
+}
 `;
 
 export const PostElement = styled.div`
@@ -36,6 +39,7 @@ export const PostElement = styled.div`
 `;
 
 export const Column = styled.div`
+  width:100%;
   display: flex;
   flex-direction: row;
   verticalAlign:center;
@@ -55,6 +59,7 @@ export const CategoryContainer = styled.div`
   flex-direction: row;
   verticalAlign:center;
   padding-left: 20px;
+  margin-bottom: 20px;
 `;
 
 export const CategoryBubble = styled.div`

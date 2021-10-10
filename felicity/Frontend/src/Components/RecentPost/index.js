@@ -17,17 +17,15 @@ export const RecentPost = () => {
                 <Edit>edit</Edit>
             </CategoryContainer>
 
-            <PostElementContainer>
-            
-                <Column>
+            <Column>
                     <NoLabel>NO</NoLabel>
                     <Patient></Patient>
                     <SymptomsLabel>SYMPTOMS</SymptomsLabel>
                     <DateLabel>DATE</DateLabel>
-                </Column>
+            </Column>
 
-                <Divider></Divider>
-
+            <PostElementContainer>
+                <Divider />
                 {POST_DATA.map((data, i) => (
                     <PostElement>
                         <Column>
