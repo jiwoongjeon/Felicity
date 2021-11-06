@@ -12,16 +12,19 @@ const videoConstraints = {
 
 export const VideoComponent = () => {
     return (
-        <>
-        <Webcam
-        audio={false}
-        height={720}
-        ref={React.useRef(null)}
-        screenshotFormat="image/jpeg"
-        width={1280}
-        videoConstraints={videoConstraints}
-        />
-        </>
+        <CameraContainer>
+            <>
+            <Webcam
+            audio={false}
+            height={720}
+            ref={React.useRef(null)}
+            screenshotFormat="image/jpeg"
+            width={1280}
+            videoConstraints={videoConstraints}
+            />
+            </>
+        </CameraContainer>
+        
     );
 }
 export default VideoComponent;
