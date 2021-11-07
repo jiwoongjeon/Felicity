@@ -11,3 +11,9 @@ export const CameraContainer = styled.div`
   overflow-y:hidden;
   overflow-x:hidden;
 `;
+
+export const Caption = styled.p`
+  margin-top: -20px;
+  font-weight: bold;
+  color: white;
+`;

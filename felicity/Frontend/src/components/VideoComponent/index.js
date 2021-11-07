@@ -1,7 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 
-const { CameraContainer } = require ("./styles");
+const { CameraContainer, Caption } = require ("./styles");
 
 const videoConstraints = {
     height: 720,
@@ -20,6 +20,7 @@ export const VideoComponent = () => {
             width={1280}
             ref={React.useRef(null)}
             videoConstraints={videoConstraints}/>
+            <Caption>"Test"</Caption>
         </CameraContainer>
     );
 }
