@@ -1,5 +1,6 @@
 import React from "react";
 import Webcam from "react-webcam";
+import { caption } from "./tempData";
 
 const { CameraContainer, Caption } = require ("./styles");
 
@@ -16,11 +17,13 @@ export const VideoComponent = () => {
             <Webcam
             audio={true}
             mirrored={true}
-            height={720}
-            width={1280}
+            height={576}
+            width={1024}
             ref={React.useRef(null)}
             videoConstraints={videoConstraints}/>
-            <Caption>"Test"</Caption>
+            {caption.map((data) => (
+                <Caption>{data.text}</Caption>
+            ))};
         </CameraContainer>
     );
 }
