@@ -4,8 +4,8 @@ import Webcam from "react-webcam";
 const { CameraContainer } = require ("./styles");
 
 const videoConstraints = {
-    width: 1280,
     height: 720,
+    width: 1280,
     facingMode: "user"
   };
   
@@ -13,18 +13,14 @@ const videoConstraints = {
 export const VideoComponent = () => {
     return (
         <CameraContainer>
-            <>
             <Webcam
-            audio={false}
+            audio={true}
+            mirrored={true}
             height={720}
-            ref={React.useRef(null)}
-            screenshotFormat="image/jpeg"
             width={1280}
-            videoConstraints={videoConstraints}
-            />
-            </>
+            ref={React.useRef(null)}
+            videoConstraints={videoConstraints}/>
         </CameraContainer>
-        
     );
 }
 export default VideoComponent;
