@@ -3,15 +3,18 @@ const speech = require('@google-cloud/speech');
 const { Translate } = require('@google-cloud/translate').v2;
 const fs = require('fs')
 
-async function transcribe() {
+async function transcribe(audioFile) {
     //instantiates a client and locate test file
     const client = new speech.SpeechClient();
     const filename = 'today_it_s_raining.wav';
     const file = fs.readFileSync(filename);
     const audioBytes = file.toString('base64');
 
+    // const audio = {
+    //     content: audioBytes
+    // };
     const audio = {
-        content: audioBytes
+        content: audioFile
     };
 
     const config = {
@@ -28,7 +31,9 @@ async function transcribe() {
     const transcription = response.results.map(result =>
         result.alternatives[0].transcript).join('\n');
 
-    translateText(transcription);
+    const result = await translateText(transcription);
+
+    return result
 }
 
 
@@ -44,6 +49,8 @@ async function translateText(transcription) {
     console.log(`Transcription: ${transcription}`);
     console.log(`Translation: ${translation}`);
 
+    return [{ transcription: transcription + "\n" + translation}]
+
     /* Otherwise would have to run? 
     translations = Array.isArray(translations) ? translations : [translations];
     console.log('Translations:');
@@ -53,6 +60,9 @@ async function translateText(transcription) {
     */
 }
 
-transcribe().catch(console.error);
+// transcribe().catch(console.error);
+
+module.exports = transcribe;
+// exports.transcribe = transcribe;
 
 //when returning outside of transcribe function transcription becomes a Promise object which then we have to apply .then() 
