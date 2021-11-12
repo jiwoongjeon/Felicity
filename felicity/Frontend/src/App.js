@@ -9,6 +9,10 @@ import { Layoutouter } from './components/Layouting';
 import Header from './components/Header/Header';
 import Calen from './components/Calendar2';
 import Schedule from './components/Schedule';
+import VideoComponent from './components/VideoComponent';
+
+import RecentPost from './components/RecentPost';
+import PatientsList from './components/PatientsList';
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
 
@@ -19,23 +23,15 @@ function App() {
         <Header />
           <Layoutouter>
             {/* 1st column */}
-
+            <VideoComponent />
             {/* 2nd column */}
-            <Layout>
-              <Calen />
-              <Schedule />
-            </Layout>
             {/* 3rd column */}
             <Mostouter>
-              <img src = {pc} alt='' />
-              {/* <img src = {rc} alt='' /> */}
             </Mostouter>
 
             </Layoutouter>
 
         </Mostouter>
-
-
     </div>
   );
 }
