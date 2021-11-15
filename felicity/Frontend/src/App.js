@@ -13,6 +13,7 @@ import VideoComponent from './components/VideoComponent';
 
 import RecentPost from './components/RecentPost';
 import PatientsList from './components/PatientsList';
+import Infos from './components/Infos'
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
 
@@ -25,6 +26,7 @@ function App() {
             {/* 1st column */}
             <VideoComponent />
             {/* 2nd column */}
+            <Infos/>
             {/* 3rd column */}
             <Mostouter>
             </Mostouter>
