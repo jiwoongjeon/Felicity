@@ -1,0 +1,63 @@
+.acc {
+    width: 300px;
+}
+
+.patient-info {
+    width: 300px;
+    margin-left: -10px;
+}
+
+.today {
+    padding: 5px;
+    width: 280px;
+    text-align: left;
+    border: 1px solid black;
+}
+
+.past-medical-records {
+    text-align: left;
+}
+
+.past-medical-records-table {
+    margin-top: 10px;
+    padding: 5px;
+    width: 280px;
+    text-align: left;
+    border: 1px solid black;    
+}
+
+.doctor-info {
+    width: 300px;
+    margin-left: -10px;
+}
+
+.doctor-info-table {
+    padding: 5px;
+    width: 280px;
+    text-align: left;
+    border: 1px solid black;    
+}
+
+.chat {
+    width: 200px;
+    height: 250px;
+    margin-left: -10px;
+}
+
+.type-box {
+    margin-left: -10px;
+    margin-bottom: -25px;
+    width: 280px;
+    height: 60px;
+}
+
+#type {
+    width: 220px;
+    height: 40px;
+    float: left;
+}
+
+.send {
+    height: 40px;
+    float: right;
+}
