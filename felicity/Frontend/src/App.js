@@ -1,39 +1,41 @@
 import './App.css';
 
-import pc from './components/assets/pc.png'
-import rc from './components/assets/rc.png'
 
-import { Mostouter } from './components/mostouter';
-import { Layout } from './components/Layout2nd';
-import { Layoutouter } from './components/Layouting';
-import Header from './components/Header/Header';
-import Calen from './components/Calendar2';
-import Schedule from './components/Schedule';
-import VideoComponent from './components/VideoComponent';
+import Header from './Components/Header/Header';
+import {Mostouter, Directory, User, Cat, Title , Chat,Video, Empty} from './Components/mostouter';
+import Layout from './Components/Layout';
+import Path from './Components/Path';
+import Login from './Components/Login';
 
-import RecentPost from './components/RecentPost';
-import PatientsList from './components/PatientsList';
-import Infos from './components/Infos'
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
 
 function App() {
   return (
     <div className="App">
-      <Mostouter>
-        <Header />
-          <Layoutouter>
-            {/* 1st column */}
-            <VideoComponent />
-            {/* 2nd column */}
-            <Infos/>
-            {/* 3rd column */}
-            <Mostouter>
-            </Mostouter>
+    <Mostouter>
 
-            </Layoutouter>
+    <Cat>
+         <Header />
+    </Cat>
 
-        </Mostouter>
+    <Directory>
+        <Path />
+    </Directory>
+
+    <User>
+        <Login />
+    </User>
+
+
+    <Video>
+        <Layout />
+    </Video>
+
+
+    </Mostouter>
+
+
     </div>
   );
 }
