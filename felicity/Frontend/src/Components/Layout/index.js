@@ -2,6 +2,10 @@ import React from "react";
 import Video from '../Video';
 import Title from '../Title';
 import Information from '../Information';
+import Infos from '../Infos';
+import Timer from '../Timer';
+
+
 import {
     ContentLayout,
     Empty,
@@ -19,13 +23,16 @@ const Layout = () => {
         <Video />
     </VideoBox>
 
-    <Empty />
+    <Empty>
+        <Timer />
+    </Empty>
+
     <TitleBox>
         <Title />
     </TitleBox>
 
     <InfoBox>
-    <Information />
+    <Infos />
     </InfoBox>
 
     </ContentLayout>

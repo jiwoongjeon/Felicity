@@ -1,10 +1,13 @@
 .acc {
     width: 300px;
+
 }
 
 .patient-info {
     width: 300px;
     margin-left: -10px;
+    height: 320px;
+    overflow-y: scroll;
 }
 
 .today {

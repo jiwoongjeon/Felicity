@@ -12,9 +12,6 @@ const Title = () => {
     <TitleContext>
     Dr. Daniel Thomas’s room with Mark Wilson
     </TitleContext>
-    <TitleContext>
-    Time left - 12:28
-    </TitleContext>
 
 
     </Container>
