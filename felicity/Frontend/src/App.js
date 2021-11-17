@@ -6,6 +6,7 @@ import {Mostouter, Directory, User, Cat, Title , Chat,Video, Empty} from './Comp
 import Layout from './Components/Layout';
 import Path from './Components/Path';
 import Login from './Components/Login';
+import PatientsList from './Components/PatientsList';
 
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
@@ -29,7 +30,7 @@ function App() {
 
 
     <Video>
-        <Layout />
+        <PatientsList />
     </Video>
 
 
