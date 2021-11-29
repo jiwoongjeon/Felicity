@@ -101,7 +101,7 @@ export const Setting = styled.div`
     border-radius: 10px;
     border-color: white;
     margin-top: 25%;
-    margin-left: ;
+    margin-left: 30%;
     display:flex;
     flex-direction: row;
     jusfity-content: space-around;
