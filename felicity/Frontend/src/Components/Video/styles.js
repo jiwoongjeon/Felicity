@@ -37,7 +37,7 @@ export const Block = styled.div`
     justify-content: center;
     background-color: white;
     border-radius: 15px;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
     font-size: 15px;
@@ -64,8 +64,8 @@ export const Button = styled.button`
 
 
 export const Patient = styled.div`
-    width: 217.5px;
-    height: 354.59px;
+    width: 25%;
+    height: 50%;
     background-image : url(${temp_image2});
     background-size:cover;
     margin-left:auto;
@@ -94,35 +94,34 @@ export const Name = styled.div`
 `;
 
 export const Setting = styled.div`
-    width: 50%;
+    width: 400px;
     height: 70px;
     background-color: rgba(255, 255, 255, 0.82);
     border: 4px solid;
     border-radius: 10px;
     border-color: white;
-    margin-top:140px;
-    margin-left: 25%;
-    padding-left: 10px;
+    margin-top: 25%;
+    margin-left: ;
     display:flex;
     flex-direction: row;
     jusfity-content: space-around;
 `;
 
 export const IconBox = styled.div`
-    margin: 10px 0px 0px 25px;
+    margin: 5px 0px 0px 25px;
     width: 52px;
     height: 52px;
     border-radius: 50%;
 background: #959595;
-line-height: 70px;
+line-height: 50px;
 `;
 
 export const Phone = styled.div`
-    margin: 10px 0px 0px 20px;
+    margin: 5px 0px 0px 20px;
     width: 52px;
     height: 52px;
     border-radius: 50%;
     background-color: #CF4942;
-    line-height: 70px;
+    line-height: 50px;
 `;
 

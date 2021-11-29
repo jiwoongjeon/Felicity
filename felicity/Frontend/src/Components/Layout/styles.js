@@ -7,14 +7,16 @@ export const ContentLayout = styled.div`
     height: 100%;
     display: grid;
 
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr 8fr;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 5vh 10vh 70vh;
     grid-template-areas:
         "title empty"
         "video empty"
         "video info";
     background-color : #F8F9FA;
     gap: 10px;
+    padding-right: 10px;
+    //border:1px solid;
 `;
 
 export const Empty = styled.div`
@@ -35,6 +37,7 @@ export const InfoBox = styled.div`
 
 export const VideoBox = styled.div`
     grid-area: video;
+
 `;
 
 
