@@ -32,7 +32,7 @@ const Layout = () => {
     </TitleBox>
 
     <InfoBox>
-    <Infos />
+        <Infos />
     </InfoBox>
 
     </ContentLayout>
