@@ -116,6 +116,11 @@ export const Btn = styled(Link)`
   width: 100%;
   height: 50px;
   background: #0075ff;
+  border-radius: 10px;
+  font-weight: 550;
   color: white;
   text-decoration:none;
+   &:hover {
+      color: white;
+    }
 `;

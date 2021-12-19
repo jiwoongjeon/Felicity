@@ -1,6 +1,5 @@
-import { useState } from "react";
+import react from "react";
 import { PATIENT_DATA } from "./tempData";
-import Calen from "../Calendar2"
 import { Switch, Route, Link } from "react-router-dom";
 
 const { PatientContainer, PatientElementContainer, Container, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn} = require("./styles");

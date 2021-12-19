@@ -13,9 +13,9 @@ import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 
 
-function App() {
+function Doctor() {
   return (
-    <div className="App">
+
     <Mostouter>
 
     <Cat>
@@ -47,8 +47,7 @@ function App() {
     </Mostouter>
 
 
-    </div>
   );
 }
 
-export default App;
+export default Doctor;

@@ -41,7 +41,7 @@ export const SearchContent = styled.input.attrs({
     font-size: 14px;
     border: none;
     outline: none;
-`
+`;
 
 export const Account = styled.div`
     width: 90px;
