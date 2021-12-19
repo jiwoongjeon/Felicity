@@ -3,10 +3,12 @@ import { Route, Switch } from "react-router-dom";
 
 import Doctor from "./views/Doctor";
 import Videocall from "./views/Videocall";
+import Login from "./views/Login";
 
 const ROUTES = [
-  { path: "/", key: "ROOT", exact: true, component: () => <Doctor /> },
+  { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/videocall", key: "video", component: () => <Videocall /> },
+  { path: "/Doctor", key: "video", component: () => <Doctor /> },
 ];
 
 export default ROUTES;

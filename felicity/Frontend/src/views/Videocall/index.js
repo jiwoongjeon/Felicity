@@ -8,9 +8,8 @@ import Login from '../../Components/Login';
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
 
-function App() {
+function Videocall() {
   return (
-    <div className="App">
     <Mostouter>
 
     <Cat>
@@ -34,8 +33,7 @@ function App() {
     </Mostouter>
 
 
-    </div>
   );
 }
 
-export default App;
+export default Videocall;

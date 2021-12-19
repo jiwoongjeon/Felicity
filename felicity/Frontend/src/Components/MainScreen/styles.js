@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import temp_image from '../assets/MaskGroup.png';
-import temp_image2 from '../assets/patient.png';
 
 export const MainContainer = styled.div`
     width: 100%;
