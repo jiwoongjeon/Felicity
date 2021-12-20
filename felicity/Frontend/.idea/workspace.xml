@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ccb356f-f5fb-4928-a40e-65189e40ceee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/LoginPage/Checkbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LoginPage/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/LoginPage/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/Login/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/Patient/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/CV/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CV/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/CV/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CV/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Login/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainScreen/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Doctor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Doctor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Videocall/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Videocall/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/LoginPage/Checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LoginPage/Checkbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/LoginPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LoginPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/LoginPage/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/LoginPage/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Timer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Timer/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

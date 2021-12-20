@@ -18,6 +18,7 @@ const Label = styled.label`
   font-style: normal;
   font-weight: 550;
   text-align: left;
+
 `;
 
 const rotate = keyframes`

@@ -20,17 +20,23 @@ const renderTime = ({ remainingTime }) => {
     <div className="timer">
 
       <div className="value">{formatRemainingTime(remainingTime)}</div>
-      <div className="text">seconds</div>
     </div>
   );
 };
+
 
 const Timer = () => {
     const [duration, setDuration] = useState(0);
     const [key, setKey] = useState(0);
     const [disable, setDisable] = useState(false);
-    const handleComplete = (time) => {
-        setDuration(duration+time);
+
+
+    const handleStart = (add) => {
+        setDuration(add);
+        setKey(key + 1);
+    };
+    const handleComplete = (add) => {
+        setDuration(global.time + add);
         setKey(key + 1);
     };
   return (
@@ -43,14 +49,19 @@ const Timer = () => {
           colors={[["#0075FF"]]}
           size={140}
         >
-          {renderTime}
+         {(timerProps) => {
+        global.time= timerProps.remainingTime; // here you save the remainigTime to the ref
+        return renderTime(timerProps);
+        }}
         </CountdownCircleTimer>
       </div>
+
       <div className="button_container">
-        <button className="time" disabled={disable} onClick={() => {handleComplete(50); setDisable(true)}}>Start Timer</button>
-        <button className="time" onClick={() => handleComplete(40)}>Extends +50sec</button>
+        <button className="time" disabled={disable} onClick={() => {handleStart(50); setDisable(true)}}>Start Timer</button>
+        <button className="time" onClick={() => handleComplete(50)}>Extends +50sec</button>
         </div>
       </div>
+
   );
 };
 export default Timer;

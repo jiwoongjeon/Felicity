@@ -40,6 +40,14 @@ export const RadioWrapper = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 24px;
+    padding-left: 5px;
+`;
+
+export const CheckboxWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 7px;
 `;
 
 export const RadioButton =  styled.input.attrs(({ type }) => ({
@@ -68,7 +76,7 @@ export const LoginInput =  styled.input.attrs(({ type }) => ({
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    color: #A0AEC0;
+    color: black;
 `;
 
 
@@ -85,7 +93,7 @@ export const PwInput = styled.input.attrs(({ type }) => ({
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    color: #A0AEC0;
+    color: black;
 `;
 
 export const Rowbox = styled.div`
@@ -149,6 +157,7 @@ export const SubmitButton = styled(Link)`
     background-color: #0075FF;
     border-radius: 20px;
     margin-top: 43px;
+    padding-top: 5px;
     border: 0;
     outline: 0;
     color: white;
@@ -159,6 +168,11 @@ export const SubmitButton = styled(Link)`
     text-decoration:none;
     &:hover {
       color: white;
+      background-color: #3D7EFF;
+    }
+    &:active {
+      color: white;
+      background-color: #004FEB;
     }
 `;
 
@@ -182,18 +196,6 @@ export const SignupLink = styled.a`
     color: rgba(0, 0, 0, 0.5);
 `;
 
-export const PwBox = styled.div`
-    width: 100%;
-    height: 25px;
-    border: 0.5px solid #E2E8F0;
-    box-sizing: border-box;
-    border-radius:15px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    background-color: white;
-`;
-
 export const Icon = styled.div`
     width: 37.5px;
     border: none;
@@ -201,7 +203,7 @@ export const Icon = styled.div`
     padding-left: 10px;
 `;
 
-export const IdBox = styled.div`
+export const InputBox = styled.div`
     width: 100%;
     height: 40px;
     padding-top: 5px;
