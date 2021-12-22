@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use(require("./patientLogin/router"));
 app.use(require("./posts/router"));
 app.use(require("./schedules/router"));
 
