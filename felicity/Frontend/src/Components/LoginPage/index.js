@@ -87,11 +87,17 @@ function LoginPage() {
              />
              </CheckboxWrapper>
 
-
-            <SubmitButton to={`/Doctor`}>
+            {radioValue &&
+              <SubmitButton to={`/MHT1`}>
                 Sign In
-            </SubmitButton>
-
+              </SubmitButton>
+            }
+            
+            {!radioValue &&
+              <SubmitButton to={`/Doctor`}>
+                Sign In
+              </SubmitButton>
+            }
 
             <Signup>
                 Don’t have an Account? <SignupLink> Sign Up </SignupLink>

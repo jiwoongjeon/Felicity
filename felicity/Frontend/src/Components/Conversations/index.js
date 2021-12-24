@@ -3,11 +3,13 @@ import { Container, ConversationContainer, Header, IconArea, InfoArea, PhotoArea
 const Data = [
   {
     id: 1,
+    img: "https://i.imgur.com/mNJWYVi.png",
     username: "Dr.Lee",
     preview: "Hi! I need more\ninformations...",
   },
   {
     id: 2,
+    img: "https://i.imgur.com/mNJWYVi.png",
     username: "Dr.Esra",
     preview: "Can you change...",
   },
@@ -19,7 +21,7 @@ export const Conversations = () => {
       <Header>Conversations</Header>
       {Data.map((data) => (
         <ConversationContainer>
-          <PhotoArea></PhotoArea>
+          <PhotoArea img = {data.img}/>
           <InfoArea>
             <Username>{data.username}</Username>
             <Preview>{data.preview}</Preview>

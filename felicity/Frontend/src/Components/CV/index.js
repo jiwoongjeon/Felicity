@@ -2,37 +2,45 @@ import react from "react";
 import { PATIENT_DATA } from "./tempData";
 import { Switch, Route, Link } from "react-router-dom";
 
-const { PatientContainer, PatientElementContainer, Container, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn} = require("./styles");
+const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail} = require("./styles");
 
 export const CV = () => {
     return (
         <PatientContainer>
-            <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" alt=""/>
-                <Container>
-                    <Title>Name</Title>
-                    <Time>Biography</Time>
-                </Container>
-                <Divider />
+            {PATIENT_DATA.map((data, i) => (
+                <Column>
+                    <PatientImage img = {data.img} />
+                    <Row>
+                        <Patient>{data.name}</Patient>
+                        <Bio>{data.sex}, {data.age}</Bio>
+                    </Row>
 
-            <PatientElementContainer>
-                {PATIENT_DATA.map((data, i) => (
+                    <Divider />
+
                     <Column>
-                        <PatientElement>
-                            <PatientImage img = {data.img} />
-                            <Column>
-                                <PatientInfoContainer>
-                                    <Patient>Detailed description</Patient>
-                                    <Patient>{data.date}</Patient>
-                                    <Patient>{data.symptom}</Patient>
-                                    <Patient>{data.request}</Patient>
-                                    
-                                </PatientInfoContainer>
-                            </Column>
-                        </PatientElement>
+                        <Patient>Detailed description</Patient>
+                        <Row>
+                            <DetailLabel>Appointment Date: </DetailLabel>
+                            <Detail>{data.date}</Detail>
+                        </Row>
+                        
+                        <Row>
+                            <DetailLabel>Symptoms: </DetailLabel>
+                            {PATIENT_DATA[i].symptoms.map((symptom) => (
+                                <Detail>{symptom.id},</Detail>
+                            ))}
+                        </Row>
 
+                        <Row>
+                            <DetailLabel>Patient's request: </DetailLabel>
+                            <Detail>{data.request}</Detail>
+                        </Row>
+                        
                     </Column>
-                    ))}
-            </PatientElementContainer>
+
+                </Column>  
+            ))}
+            
             <Divider />
             <Btn to={`/videocall`}>See your patient now</Btn>
         </PatientContainer>

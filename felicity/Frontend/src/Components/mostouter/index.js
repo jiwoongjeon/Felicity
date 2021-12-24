@@ -4,6 +4,7 @@ export const Mostouter = styled.div`
     width : 100%;
     height: 100vh;
     display: grid;
+    overflow: auto;
 
     grid-template-columns: 0.5fr 2fr 1fr;
     grid-template-rows: 1fr 1fr 7fr 2fr;
@@ -42,5 +43,4 @@ export const Video = styled.div`
     grid-area: video;
     margin-left: 20px;
     margin-right: 10px;
-
 `;

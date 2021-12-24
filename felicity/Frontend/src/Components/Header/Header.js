@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import needhelp from '../assets/needhelp.png'
+import needhelp from '../assets/needhelp_highres.png'
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -20,6 +20,8 @@ import { BiCog } from "react-icons/bi";
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
+
+const { HelpContainer, ActiveButton } = require("./styles");
 
 
 const Header = () => {
@@ -55,9 +57,13 @@ const Header = () => {
               <MenuItem icon={<RiPencilLine />}>My Checklist</MenuItem>
               <MenuItem icon={<BiCog />}>Profile</MenuItem>
             </Menu>
+            
           </SidebarContent>
           <SidebarFooter>
-          <img  src={needhelp} alt=""/>
+            <HelpContainer img = {needhelp}>
+              <ActiveButton>Active</ActiveButton>
+            </HelpContainer>
+            {/*<img  src={needhelp} alt=""/>*/}
             {/* <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
             </Menu> */}
