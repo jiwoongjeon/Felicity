@@ -20,7 +20,7 @@ const Path = () => {
         </CurrentDirectory>
     </Directory>
     <Title>
-        Meeting with your Doctor
+        Meeting with your Patient
     </Title>
   </MainContainer>
 

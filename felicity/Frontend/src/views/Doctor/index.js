@@ -7,10 +7,12 @@ import Login from '../../Components/Login';
 import {
     ContentLayout,
     PatientBox,
-    InfoBox
+    InfoBox,
+    Post
 } from "./layout";
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
+import RecentPost from '../../Components/RecentPost';
 
 
 function Doctor() {
@@ -40,8 +42,14 @@ function Doctor() {
             <InfoBox>
                 <CV />
             </InfoBox>
+            
+            <Post>
+                <RecentPost/>
+            </Post>
+
         </ContentLayout>
     </Video>
+
 
 
     </Mostouter>

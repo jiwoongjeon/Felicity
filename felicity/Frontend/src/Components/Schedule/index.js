@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const { ScheduleContainer, Header, AppointmentContainer, FstColumn, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail } = require("./styles");
+const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail } = require("./styles");
 
 const DATA = [
     {
@@ -17,6 +17,20 @@ const DATA = [
         time: "8:00 AM",
         doctor: "Dr. Oliver",
         email: "oliver@burrito.com"
+    },
+    {
+        id: 2,
+        date: "9/3",
+        time: "8:00 AM",
+        doctor: "Dr. Oliver",
+        email: "oliver@burrito.com"
+    },
+    {
+        id: 2,
+        date: "9/3",
+        time: "8:00 AM",
+        doctor: "Dr. Oliver",
+        email: "oliver@burrito.com"
     }
 ];
 
@@ -25,6 +39,7 @@ export const Schedule = () => {
     return (
         <ScheduleContainer>
             <Header>My Schedule</Header>
+            <AppointmentList>
             {DATA.map((data) => (
                 <AppointmentContainer>
                     <FstColumn>
@@ -45,8 +60,8 @@ export const Schedule = () => {
                         <TimeEmail>{data.email}</TimeEmail>
                     </Column>
                 </AppointmentContainer>
-
-            ))}
+        ))}
+        </AppointmentList>
         </ScheduleContainer>
     );
 }

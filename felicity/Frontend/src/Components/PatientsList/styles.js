@@ -1,4 +1,3 @@
-import { parseWithOptions } from "date-fns/fp";
 import styled from "styled-components";
 
 export const PatientContainer = styled.div`
