@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-width: 60%;
+width: 100%;
 height: 500px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-margin-top: 30px;
-margin-left: 50px;
 padding: 10px;
 padding-left: 20px;
 padding-right: 30px;
@@ -20,6 +18,7 @@ export const Header = styled.p`
   font-weight: bold;
   font-size: 18px;
   text-align: left;
+  margin-top:20px;
 `;
 
 export const PostElementContainer = styled.div`
@@ -67,8 +66,8 @@ height:100%;
 display: flex;
 background: #ff8011;
 border-radius: 20px;
-padding-top: 2px;
-padding-bottom: 2px;
+padding-top: 4px;
+padding-bottom: 4px;
 padding-left: 10px;
 padding-right: 10px;
 margin-right: 10px;

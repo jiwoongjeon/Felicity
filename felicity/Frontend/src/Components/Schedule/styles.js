@@ -2,50 +2,59 @@ import styled from "styled-components";
 
 export const ScheduleContainer = styled.div`
   margin-right: 30px;
-  width: 40%;
-  height: 412px;
+  width: 100%;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
   background: white;
-  border-radius: 8px;
+  border-radius: 20px;
 `;
 
 export const Header = styled.p`
-  margin: 10px 20px 0px;
+  margin: 20px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 export const AppointmentContainer = styled.div`
   width: 90%;
-  height: 15%;
-  margin-top: 20px;
-  margin-left: 10px;
-  padding: 15px;
+  height: 200px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  padding: 20px;
   border: 3px;
   display: flex;
   flex-direction: column;
   background: #F8F9FA;
-  border-radius: 4px;
+  border-radius: 10px;
+`;
+
+export const AppointmentList = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+&::-webkit-scrollbar {
+  width: 10px;
+}
 `;
 
 export const FstColumn = styled.div`
-  flex: 2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 5px;
 `;
 
 export const Column = styled.div`
-  flex: 2;
   display: flex;
   flex-direction: row;
 `;
 
 export const Group = styled.div`
-  margin: 0px;
   display: flex;
   flex-direction: row;
 `;

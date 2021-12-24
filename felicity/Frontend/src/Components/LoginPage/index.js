@@ -10,8 +10,7 @@ Label,
 LoginInput,
 PwInput,
 Icon,
-PwBox,
-IdBox,
+InputBox,
 UrlLink,
 Rowbox,
 PwLabel,
@@ -19,7 +18,8 @@ TextLink,
 Rowbox2,
 SubmitButton,
 Signup,
-SignupLink
+SignupLink,
+CheckboxWrapper
 } from "./styles";
 
 //https://codesandbox.io/s/custom-checkbox-and-radiobutton-with-react-and-styled-components-6h3st?from-embed=&file=/src/index.js:236-283
@@ -62,33 +62,42 @@ function LoginPage() {
             </RadioWrapper>
 
             <Label> USER ID </Label>
-            <IdBox>
+            <InputBox>
                 <Icon> <BsFillPersonFill /> </Icon>
                 <LoginInput />
-            </IdBox>
+            </InputBox>
 
             <Rowbox>
                 <PwLabel> PASSWORD </PwLabel>
                 <UrlLink>Forget your Password? </UrlLink>
             </Rowbox>
-            <PwBox>
+            <InputBox>
                 <Icon> <HiLockClosed /> </Icon>
                 <PwInput />
-            </PwBox>
+            </InputBox>
 
             <Label> By signing up, you agree to our <TextLink>privacy policy, Telepossible terms.</TextLink></Label>
 
+            <CheckboxWrapper>
             <Checkbox
               label="Stay Sign In"
               value={value}
               checked={value}
               onChange={({ target }) => setCheckbox(!value)}
              />
+             </CheckboxWrapper>
 
-            <SubmitButton to={`/Doctor`}>
+            {radioValue &&
+              <SubmitButton to={`/MHT1`}>
                 Sign In
-            </SubmitButton>
-
+              </SubmitButton>
+            }
+            
+            {!radioValue &&
+              <SubmitButton to={`/Doctor`}>
+                Sign In
+              </SubmitButton>
+            }
 
             <Signup>
                 Don’t have an Account? <SignupLink> Sign Up </SignupLink>
