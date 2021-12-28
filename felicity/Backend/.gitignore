@@ -4,7 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-pw.js
+/app/pw.js
+.env
+igneous-equinox-329304-228453fa1d50.json
 
 # testing
 /coverage
