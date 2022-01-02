@@ -11,6 +11,7 @@ import MHT3 from "./views/MHT/index3";
 import MHT4 from "./views/MHT/index4";
 import MHT5 from "./views/MHT/index5";
 import MHT6 from "./views/MHT/index6";
+import StatusPatient from "./views/Status/patient";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
@@ -22,7 +23,8 @@ const ROUTES = [
   { path: "/MHT3", key: "video", component: () => <MHT3 /> },
   { path: "/MHT4", key: "video", component: () => <MHT4 /> },
   { path: "/MHT5", key: "video", component: () => <MHT5 /> },
-  { path: "/MHT6", key: "video", component: () => <MHT6 /> }
+  { path: "/MHT6", key: "video", component: () => <MHT6 /> },
+  { path: "/StatusPatient", key: "PS", component: () => <StatusPatient /> }
 ];
 
 export default ROUTES;
