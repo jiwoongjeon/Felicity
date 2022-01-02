@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HelpContainer = styled.div`
 width: 80%;
@@ -25,4 +26,14 @@ padding-top: 10px;
 font-weight: bold;
 text-align: center;
 color: black;
+`;
+
+export const MenuButton = styled(Link)`
+    width: 100%;
+    height: 100%;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 18px;
+    text-decoration:none;
+    color:black;
 `;
