@@ -94,7 +94,7 @@ function LoginPage() {
             }
             
             {!radioValue &&
-              <SubmitButton to={`/Doctor`}>
+              <SubmitButton to={`/Doctor/Home`}>
                 Sign In
               </SubmitButton>
             }
