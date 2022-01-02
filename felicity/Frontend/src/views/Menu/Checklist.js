@@ -6,16 +6,11 @@ import Login from '../../Components/Login';
 
 import {
     ContentLayout,
-    PatientBox,
-    InfoBox,
-    Post
 } from "./layout";
-import PatientList from '../../Components/PatientsList';
-import CV from '../../Components/CV';
-import RecentPost from '../../Components/RecentPost';
+import RecentPost from "../../Components/RecentPost";
+import Checklists from "../../Components/Checklists";
 
-
-function Doctor() {
+function Checklist() {
   return (
 
     <Mostouter>
@@ -35,23 +30,13 @@ function Doctor() {
 
     <Video>
         <ContentLayout>
-            <PatientBox>
-                <PatientList />
-            </PatientBox>
-
-            <InfoBox>
-                <CV />
-            </InfoBox>
-
+          <Checklists />
         </ContentLayout>
     </Video>
 
-
-
     </Mostouter>
-
 
   );
 }
 
-export default Doctor;
+export default Checklist;

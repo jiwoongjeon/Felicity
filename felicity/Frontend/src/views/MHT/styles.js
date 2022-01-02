@@ -77,6 +77,36 @@ export const SubmitButton = styled(Link)`
     }
 `;
 
+export const Row = styled.div`
+    width:100%
+    flex-align:row;
+`
+
+export const MoveButton = styled(Link)`
+    width:40%;
+    height: 40px;
+    background-color: #0075FF;
+    border-radius: 20px;
+    margin-top: 43px;
+    margin-left:5%;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration:none;
+    &:hover {
+      color: white;
+      background-color: #3D7EFF;
+    }
+    &:active {
+      color: white;
+      background-color: #004FEB;
+    }
+`;
 
 export const InputBox = styled.div`
     width: 100%;

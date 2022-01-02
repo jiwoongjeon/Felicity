@@ -59,6 +59,54 @@ export const POST_DATA = [
         ],
         date: "2021-09-20"
     },
+    {
+        no: 156,
+        patient: "Mark Wilson",
+        symptoms: [
+            {id:"Headache"}
+        ],
+        date: "2021-09-20"
+    },
+    {
+        no: 156,
+        patient: "Mark Wilson",
+        symptoms: [
+            {id:"Headache"}
+        ],
+        date: "2021-09-20"
+    },
+    {
+        no: 156,
+        patient: "Mark Wilson",
+        symptoms: [
+            {id:"Headache"}
+        ],
+        date: "2021-09-20"
+    },
+    {
+        no: 156,
+        patient: "Mark Wilson",
+        symptoms: [
+            {id:"Headache"}
+        ],
+        date: "2021-09-20"
+    },
+    {
+        no: 156,
+        patient: "Mark Wilson",
+        symptoms: [
+            {id:"Headache"}
+        ],
+        date: "2021-09-20"
+    },
+    {
+        no: 156,
+        patient: "Mark Wilson",
+        symptoms: [
+            {id:"Headache"}
+        ],
+        date: "2021-09-20"
+    },
     
 ];
 

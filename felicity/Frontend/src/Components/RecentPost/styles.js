@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PostContainer = styled.div`
 width: 100%;
-height: 500px;
+height: 100%;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
