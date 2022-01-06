@@ -12,8 +12,11 @@ import MHT4 from "./views/MHT/index4";
 import MHT5 from "./views/MHT/index5";
 import MHT6 from "./views/MHT/index6";
 import MHT7 from "./views/MHT/index7";
+
+import StatusPatient from "./views/Status/patient";
 import StatusDoctor from "./views/Menu/StatusDoctor";
 import Checklist from "./views/Menu/Checklist";
+
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
@@ -31,6 +34,7 @@ const ROUTES = [
 
   { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor /> },
   { path: "/Doctor/Checklist", key: "video", component: () => <Checklist /> },
+  { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
   { path: "/Patient/Checklist", key: "video", component: () => <Checklist /> },
 ];
 
