@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const PostContainer = styled.div`
 width: 100%;
 height: 100%;
@@ -35,13 +34,23 @@ overflow-y: auto;
 export const PostElement = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100px;
 `;
 
-export const Column = styled.div`
+export const HeaderColumn = styled.div`
   width:100%;
   display: flex;
   flex-direction: row;
-  verticalAlign:center;
+  vertical-align:center;
+  padding: 5px;
+`;
+
+export const BodyColumn = styled.div`
+  width:100%;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  vertical-align:center;
   padding: 5px;
 `;
 
@@ -53,72 +62,47 @@ export const Divider = styled.div`
   border-radius: 2px;
 `;
 
-export const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  verticalAlign:center;
-  padding-left: 20px;
-  margin-bottom: 20px;
-`;
-
-export const CategoryBubble = styled.div`
-height:100%;
-display: flex;
-background: #ff8011;
-border-radius: 20px;
-padding-top: 4px;
-padding-bottom: 4px;
-padding-left: 10px;
-padding-right: 10px;
-margin-right: 10px;
-font-weight: bold;
-color: white;
-`;
-
-export const Edit = styled.div`
-height:100%;
-display: flex;
-background: #c1c1c1;
-border-radius: 20px;
-padding-top: 2px;
-padding-bottom: 2px;
-padding-left: 15px;
-padding-right: 15px;
-margin-right: 10px;
-font-weight: bold;
-color: white;
-`;
-
 export const NoLabel = styled.p`
   flex: 1;
   font-weight: bold;
   font-size: 12px;
   color: #a0aec0;
 `;
-export const SymptomsLabel = styled.p`
+export const PhotoLabel = styled.p`
+  flex: 3;
+  font-weight: bold;
+  font-size: 12px;
+  color: #a0aec0;
+  text-align: center;
+`;
+
+export const DepartLabel = styled.p`
   flex: 7;
   text-align: left;
   font-weight: bold;
   font-size: 12px;
   color: #a0aec0;
 `;
-export const DateLabel = styled.p`
+export const AvailLabel = styled.p`
   flex: 3;
   font-weight: bold;
   font-size: 12px;
   color: #a0aec0;
 `;
 
-export const SymptomsContainer = styled.div`
-flex: 7;
+export const AvailContainer = styled.div`
+flex: 3;
 display: flex;
 flex-direction: row;
+justify-content: center;
+align-items: center;
 `;
 
-export const SymptomsBubble = styled.div`
-height:70%;
+export const AvailBubble = styled.button`
+
+height: 70%;
 display: flex;
-background: #0075ff;
+background-color: #0075ff;
 border-radius: 8px;
 padding-top: 2px;
 padding-bottom: 2px;
@@ -127,23 +111,59 @@ padding-right: 15px;
 margin-right: 10px;
 font-weight: bold;
 color: white;
+line-height: 45px;
+border: none;
+   &:hover {
+      background-color: #268aff;
+    }
+`;
+export const UnavailableBubble = styled.div`
+
+height:70%;
+display: flex;
+background-color: #a0aec0;
+border-radius: 8px;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 15px;
+padding-right: 15px;
+margin-right: 10px;
+font-weight: bold;
+color: white;
+line-height: 45px;
+
 `;
 
 export const No = styled.p`
   flex: 1;
+  line-height: 70px;
+  text-align: center;
   margin-top: 4px;
   color: gray;
 `;
-export const Patient = styled.p`
+export const Photo = styled.img`
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 20px;
+    margin: 0 20px;
+`;
+export const Doctor = styled.p`
   flex: 12;
-  margin-top: 4px;
-  margin-left: 40px;
+  margin-top: 2px;
+  margin-left: 10px;
   text-align: left;
   font-weight: bold;
 `;
-export const Date = styled.p`
-  flex: 3;
-  margin-top: 2px;
-  margin-top: 4px;
+export const Department = styled.p`
+
+
   font-weight: bold;
+  text-align: left;
+  color: grey;
+`;
+export const Name = styled.p`
+  margin-top: 2px;
+  font-weight: bold;
+  text-align: left;
 `;

@@ -46,7 +46,7 @@ function MHT6() {
               </InputBox>
              </CheckboxBox>
 
-            <SubmitButton to={`/Patient`}>
+            <SubmitButton to={`/MHT7`}>
                 Finish</SubmitButton>
         </QuestionContainer>
     </MainContainer>

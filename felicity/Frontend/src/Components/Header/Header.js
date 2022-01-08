@@ -21,7 +21,7 @@ import { BiCog } from "react-icons/bi";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 
-const { HelpContainer, ActiveButton } = require("./styles");
+const { HelpContainer, ActiveButton, MenuButton} = require("./styles");
 
 
 const Header = () => {
@@ -52,9 +52,14 @@ const Header = () => {
               <MenuItem active={true} icon={<FiHome />}>
                 See your patient
               </MenuItem>
-              <MenuItem icon={<FaList />}>Home</MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Status</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>My Checklist</MenuItem>
+              <MenuItem icon={<FaList />}>Home
+                <MenuButton to={`./Home`}></MenuButton>
+              </MenuItem>
+              <MenuItem icon={<FaRegHeart />}>Status
+                <MenuButton  to={`./Status`}></MenuButton>
+              </MenuItem>
+              <MenuItem icon={<RiPencilLine />}>My Checklist
+              <MenuButton  to={`./Checklist`}></MenuButton></MenuItem>
               <MenuItem icon={<BiCog />}>Profile</MenuItem>
             </Menu>
             

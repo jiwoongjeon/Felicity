@@ -11,18 +11,31 @@ import MHT3 from "./views/MHT/index3";
 import MHT4 from "./views/MHT/index4";
 import MHT5 from "./views/MHT/index5";
 import MHT6 from "./views/MHT/index6";
+import MHT7 from "./views/MHT/index7";
+
+import StatusPatient from "./views/Status/patient";
+import StatusDoctor from "./views/Menu/StatusDoctor";
+import Checklist from "./views/Menu/Checklist";
+
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/videocall", key: "video", component: () => <Videocall /> },
-  { path: "/Doctor", key: "video", component: () => <Doctor /> },
-  { path: "/Patient", key: "video", component: () => <Patient /> },
+  { path: "/Doctor/Home", key: "video", component: () => <Doctor /> },
+  { path: "/Patient/Home", key: "video", component: () => <Patient /> },
+
   { path: "/MHT1", key: "video", component: () => <MHT1 /> },
   { path: "/MHT2", key: "video", component: () => <MHT2 /> },
   { path: "/MHT3", key: "video", component: () => <MHT3 /> },
   { path: "/MHT4", key: "video", component: () => <MHT4 /> },
   { path: "/MHT5", key: "video", component: () => <MHT5 /> },
-  { path: "/MHT6", key: "video", component: () => <MHT6 /> }
+  { path: "/MHT6", key: "video", component: () => <MHT6 /> },
+  { path: "/MHT7", key: "video", component: () => <MHT7 /> },
+
+  { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor /> },
+  { path: "/Doctor/Checklist", key: "video", component: () => <Checklist /> },
+  { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
+  { path: "/Patient/Checklist", key: "video", component: () => <Checklist /> },
 ];
 
 export default ROUTES;
