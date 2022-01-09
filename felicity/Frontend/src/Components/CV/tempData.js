@@ -1,6 +1,6 @@
 export const PATIENT_DATA = [ 
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/T3tayIx.jpg",
         name: "Esthera Jackson",
         sex: "Female",
         age: 24,
