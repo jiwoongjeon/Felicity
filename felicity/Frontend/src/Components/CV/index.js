@@ -1,15 +1,19 @@
-import react from "react";
+import react, { useContext } from "react";
 import { PATIENT_DATA } from "./tempData";
 import { Switch, Route, Link } from "react-router-dom";
 
-const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail} = require("./styles");
+import { SocketContext } from "../../api/video";
+
+const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail } = require("./styles");
 
 export const CV = () => {
+    const { id, startCall } = useContext(SocketContext);
+
     return (
         <PatientContainer>
             {PATIENT_DATA.map((data, i) => (
                 <Column>
-                    <PatientImage img = {data.img} />
+                    <PatientImage img={data.img} />
                     <Row>
                         <Patient>{data.name}</Patient>
                         <Bio>{data.sex}, {data.age}</Bio>
@@ -23,7 +27,7 @@ export const CV = () => {
                             <DetailLabel>Appointment Date: </DetailLabel>
                             <Detail>{data.date}</Detail>
                         </Row>
-                        
+
                         <Row>
                             <DetailLabel>Symptoms: </DetailLabel>
                             {PATIENT_DATA[i].symptoms.map((symptom) => (
@@ -35,14 +39,14 @@ export const CV = () => {
                             <DetailLabel>Patient's request: </DetailLabel>
                             <Detail>{data.request}</Detail>
                         </Row>
-                        
+
                     </Column>
 
-                </Column>  
+                </Column>
             ))}
-            
+
             <Divider />
-            <Btn to={`/videocall`}>See your patient now</Btn>
+            <Btn to={`/videocall`} onClick={startCall} >See your patient now</Btn>
         </PatientContainer>
     );
 }

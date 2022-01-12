@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import needhelp from '../assets/needhelp_highres.png'
 //import react pro sidebar components
 import {
@@ -21,27 +21,31 @@ import { BiCog } from "react-icons/bi";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 
-const { HelpContainer, ActiveButton, MenuButton} = require("./styles");
+import { SocketContext } from "../../api/video";
+
+const { HelpContainer, ActiveButton, MenuButton } = require("./styles");
 
 
 const Header = () => {
-  
-    //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(false)
 
-    //create a custom function that will change menucollapse state from false to true and true to false
+  //create initial menuCollapse state using useState hook
+  const [menuCollapse, setMenuCollapse] = useState(false)
+
+  //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
     //condition checking to change state from true to false and vice versa
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+  const { startCall } = useContext(SocketContext);
+
   return (
     <>
       <div id="header">
-          {/* collapsed props to change menu size using menucollapse state */}
+        {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
-          <div className="logotext">
+            <div className="logotext">
               {/* small and big change using menucollapse state */}
               <p>{"Felicity"}</p>
             </div>
@@ -49,23 +53,25 @@ const Header = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
-                See your patient
+              <MenuItem active={true} icon={<FiHome />} >
+                <MenuButton to={`/videocall`} onClick={startCall}>
+                  See your patient
+                </MenuButton>
               </MenuItem>
               <MenuItem icon={<FaList />}>Home
                 <MenuButton to={`./Home`}></MenuButton>
               </MenuItem>
               <MenuItem icon={<FaRegHeart />}>Status
-                <MenuButton  to={`./Status`}></MenuButton>
+                <MenuButton to={`./Status`}></MenuButton>
               </MenuItem>
               <MenuItem icon={<RiPencilLine />}>My Checklist
-              <MenuButton  to={`./Checklist`}></MenuButton></MenuItem>
+                <MenuButton to={`./Checklist`}></MenuButton></MenuItem>
               <MenuItem icon={<BiCog />}>Profile</MenuItem>
             </Menu>
-            
+
           </SidebarContent>
           <SidebarFooter>
-            <HelpContainer img = {needhelp}>
+            <HelpContainer img={needhelp}>
               <ActiveButton>Active</ActiveButton>
             </HelpContainer>
             {/*<img  src={needhelp} alt=""/>*/}

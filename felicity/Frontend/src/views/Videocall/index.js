@@ -1,33 +1,35 @@
-import React from "react"
+import React, { useContext } from "react"
 import Header from '../../Components/Header/Header';
-import {Mostouter, Directory, User, Cat, Title , Chat,Video, Empty} from '../../Components/mostouter';
+import { Mostouter, Directory, User, Cat, Title, Chat, Video, Empty } from '../../Components/mostouter';
 import Layout from '../../Components/Layout';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
 // import { LayoutOuter } from './components/LayoutOuter copy';
+import { SocketContext } from "../../api/video";
 
 
 function Videocall() {
+  const { myVideo } = useContext(SocketContext);
   return (
     <Mostouter>
 
-    <Cat>
-         <Header />
-    </Cat>
+      <Cat>
+        <Header />
+      </Cat>
 
-    <Directory>
+      <Directory>
         <Path />
-    </Directory>
+      </Directory>
 
-    <User>
+      <User>
         <Login />
-    </User>
+      </User>
 
 
-    <Video>
-        <Layout />
-    </Video>
+      <Video>
+        <Layout myVideo={myVideo} />
+      </Video>
 
 
     </Mostouter>
