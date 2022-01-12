@@ -1,6 +1,6 @@
 export const PATIENT_DATA = [ 
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/T3tayIx.jpg",
         name: "Esthera Jackson",
         sex: "Female",
         age: 24,
@@ -12,7 +12,7 @@ export const PATIENT_DATA = [
         ]
     },
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/WiodOh4.jpg",
         name: "Alexa Liras",
         sex: "Female",
         age: 31,
@@ -22,7 +22,7 @@ export const PATIENT_DATA = [
         ]
     },
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/CK4gqz3.jpg",
         name: "Laurent Michael",
         sex: "Male",
         age: 28,
@@ -34,7 +34,7 @@ export const PATIENT_DATA = [
         ]
     },
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/Qu3CdOt.jpg",
         name: "Freduardo Hill",
         sex: "Male",
         age: 33,
@@ -46,7 +46,7 @@ export const PATIENT_DATA = [
         ]
     },
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/T3tayIx.jpg",
         name: "Daniel Thomas",
         sex: "Male",
         age: 17,
@@ -58,7 +58,7 @@ export const PATIENT_DATA = [
         ]
     },
     {
-        img: "https://i.imgur.com/oDUfOX6.png",
+        img: "https://i.imgur.com/T3tayIx.jpg",
         name: "Mark Wilson",
         sex: "Male",
         age: 36,
