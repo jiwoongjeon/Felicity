@@ -26,10 +26,6 @@ width: 100%;
 height: 100%;
 display: flex;
 flex-direction: column;
-overflow-y: auto;
-&::-webkit-scrollbar {
-  width: 10px;
-}
 `;
 
 export const Answers =  styled.div`
@@ -58,13 +54,15 @@ export const Divider = styled.div`
 `;
 
 export const SymptomsContainer = styled.div`
-flex: 7;
+width: 95%;
+height: 10%;
 display: flex;
 flex-direction: row;
+flex-wrap: wrap;
 `;
 
 export const SymptomsBubble = styled.div`
-height:70%;
+height:30px;
 display: flex;
 background: #0075ff;
 border-radius: 8px;
