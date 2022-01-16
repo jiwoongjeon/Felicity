@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 
 import { IoMdVideocam } from "react-icons/io";
@@ -20,24 +20,48 @@ import {
 import { SocketContext } from "../../api/video";
 
 const Video = ({ myVideo }) => {
+    const { role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call } = useContext(SocketContext);
 
-    const { role, callUser, answerCall, userVideo } = useContext(SocketContext);
+    useEffect(() => startCall(), []);
 
     return (
         <MainContainer>
-            <video playsInline muted ref={myVideo} autoPlay />
+            {stream && (
+                <video playsInline muted ref={myVideo} autoPlay />
+            )}
             <Container>
-                <Block>
+                {(role) ? (
+                    call.isReceivedCall && !callAccepted && (
+                        <Block>
+                            Are you ready to meet your doctor?
+                            {console.log(role)}
+                            <Button onClick={answerCall}>
+                                Let's start!
+                            </Button>
+                        </Block>
+                    )
+                ) : (
+                    <Block>
+                        Call your patient!
+                        {console.log(role)}
+                        <Button onClick={callUser}>
+                            Let's start!
+                        </Button>
+                    </Block>
+                )}
+                {/* <Block>
                     Are you ready to meet your doctor?
                     {console.log(role)}
                     <Button onClick={(role) ? (answerCall) : (callUser)}>
                         Let's start!
                     </Button>
-                </Block>
+                </Block> */}
 
             </Container>
             <Patient>
-                <video playsInline ref={userVideo} autoPlay />
+                {callAccepted && !callEnded && (
+                    <video playsInline ref={userVideo} autoPlay />
+                )}
                 <Name>
                     Mark Wilson
                 </Name>

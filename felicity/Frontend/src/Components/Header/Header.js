@@ -54,7 +54,7 @@ const Header = () => {
           <SidebarContent>
             <Menu iconShape="square">
               <MenuItem active={true} icon={<FiHome />} >
-                <MenuButton to={`/videocall`} onClick={startCall}>
+                <MenuButton to={`/videocall`}>
                   See your patient
                 </MenuButton>
               </MenuItem>

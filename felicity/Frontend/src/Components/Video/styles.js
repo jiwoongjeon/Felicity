@@ -66,7 +66,7 @@ export const Button = styled.button`
 export const Patient = styled.div`
     width: 25%;
     height: 50%;
-    background-image : url(${temp_image2});
+    // background-image : url(${temp_image2});
     background-size:cover;
     margin-left:auto;
     margin-right: 18.5px;

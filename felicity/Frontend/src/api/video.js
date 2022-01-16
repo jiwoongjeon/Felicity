@@ -67,6 +67,8 @@ const ContextProvider = ({ children }) => {
 
         socket.emit("start", [id, role], () => {
             socket.on("me", ({ socketId, otherUserId, otherSocketId }) => {
+                console.log(otherSocketId);
+                console.log(otherUserId);
                 setMe(socketId);
                 setUserToCall(otherSocketId);
             });
@@ -74,6 +76,7 @@ const ContextProvider = ({ children }) => {
 
 
         socket.on("calluser", ({ from, someName: callerName, signal }) => {
+            console.log("calling")
             setCall({ isRecievedCall: true, from, someName: callerName, signal });
         });
     }
@@ -102,6 +105,7 @@ const ContextProvider = ({ children }) => {
     const callUser = () => {
 
         console.log("call user");
+        console.log(userToCall);
 
         const peer = new Peer({ initiator: true, trickle: false, stream });
 

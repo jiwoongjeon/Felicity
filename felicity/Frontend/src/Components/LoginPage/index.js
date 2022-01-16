@@ -99,7 +99,7 @@ function LoginPage() {
         </CheckboxWrapper>
 
         {radioValue &&
-          <SubmitButton to={`/MHT1`} onClick={postPatientLogin({ email, password })}>
+          <SubmitButton to={`/Patient/Home`} onClick={postPatientLogin({ email, password })}>
             Sign In
           </SubmitButton>
         }

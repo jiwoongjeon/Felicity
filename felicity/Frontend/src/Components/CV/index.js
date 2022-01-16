@@ -46,7 +46,7 @@ export const CV = () => {
             ))}
 
             <Divider />
-            <Btn to={`/videocall`} onClick={startCall} >See your patient now</Btn>
+            <Btn to={`/videocall`} >See your patient now</Btn>
         </PatientContainer>
     );
 }
