@@ -13,9 +13,9 @@ import MHT5 from "./views/MHT/index5";
 import MHT6 from "./views/MHT/index6";
 import MHT7 from "./views/MHT/index7";
 
+import StatusDoctor from "./views/Status/doctor";
 import StatusPatient from "./views/Status/patient";
-import StatusDoctor from "./views/Menu/StatusDoctor";
-import Checklist from "./views/Menu/Checklist";
+import Checklist from "./views/Checklist/Checklist";
 
 
 const ROUTES = [

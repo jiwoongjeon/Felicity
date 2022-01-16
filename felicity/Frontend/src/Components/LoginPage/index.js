@@ -30,9 +30,14 @@ import LogoImg from '../assets/Logo.png';
 import {BsFillPersonFill} from "react-icons/bs";
 import {HiLockClosed} from "react-icons/hi";
 
+import loginPost from "../../API/login";
+
 function LoginPage() {
     const [radioValue, setRadio] = useState(true);
     const [value, setCheckbox] = useState(true);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
   return (
     <MainContainer>
@@ -64,7 +69,7 @@ function LoginPage() {
             <Label> USER ID </Label>
             <InputBox>
                 <Icon> <BsFillPersonFill /> </Icon>
-                <LoginInput />
+                <LoginInput onChange={(e) => setEmail(e.target.value)}/>
             </InputBox>
 
             <Rowbox>
@@ -73,7 +78,7 @@ function LoginPage() {
             </Rowbox>
             <InputBox>
                 <Icon> <HiLockClosed /> </Icon>
-                <PwInput />
+                <PwInput onChange={(e) => setPassword(e.target.value)}/>
             </InputBox>
 
             <Label> By signing up, you agree to our <TextLink>privacy policy, Telepossible terms.</TextLink></Label>
