@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 
 import { IoMdVideocam } from "react-icons/io";
@@ -17,20 +17,27 @@ import {
     IconBox,
 } from "./styles";
 
+import { SocketContext } from "../../api/video";
+
 const Video = ({ myVideo }) => {
+
+    const { role, callUser, answerCall, userVideo } = useContext(SocketContext);
+
     return (
         <MainContainer>
             <video playsInline muted ref={myVideo} autoPlay />
             <Container>
                 <Block>
                     Are you ready to meet your doctor?
-                    <Button>
+                    {console.log(role)}
+                    <Button onClick={(role) ? (answerCall) : (callUser)}>
                         Let's start!
                     </Button>
                 </Block>
 
             </Container>
             <Patient>
+                <video playsInline ref={userVideo} autoPlay />
                 <Name>
                     Mark Wilson
                 </Name>

@@ -37,7 +37,7 @@ const Header = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
-  const { startCall } = useContext(SocketContext);
+  const { startCall, answerCall } = useContext(SocketContext);
 
   return (
     <>

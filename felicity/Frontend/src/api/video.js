@@ -10,6 +10,7 @@ const socket = io("http://localhost:3001");
 const ContextProvider = ({ children }) => {
     const [id, setId] = useState(0);
     const [role, setRole] = useState(true); // true: p, false: d
+    const [userToCall, setUserToCall] = useState("");
 
     const [stream, setStream] = useState(null);
     const [me, setMe] = useState("");
@@ -32,6 +33,7 @@ const ContextProvider = ({ children }) => {
                 console.log(response.data[0].user_id);
                 setId(response.data[0].user_id);
                 setRole(true);
+                socket.emit("login", [response.data[0].user_id, true]);
             });
         } catch (e) {
             console.log(e);
@@ -48,6 +50,7 @@ const ContextProvider = ({ children }) => {
                 console.log(response.data[0].doctor_id);
                 setId(response.data[0].doctor_id);
                 setRole(false);
+                socket.emit("login", [response.data[0].doctor_id, false]);
             });
         } catch (e) {
             console.log(e);
@@ -63,7 +66,10 @@ const ContextProvider = ({ children }) => {
             });
 
         socket.emit("start", [id, role], () => {
-            socket.on("me", (id) => setMe(id));
+            socket.on("me", ({ socketId, otherUserId, otherSocketId }) => {
+                setMe(socketId);
+                setUserToCall(otherSocketId);
+            });
         });
 
 
@@ -73,6 +79,9 @@ const ContextProvider = ({ children }) => {
     }
 
     const answerCall = () => {
+
+        console.log("answer call");
+
         setCallAccepted(true);
 
         const peer = new Peer({ initiator: false, trickle: false, stream });
@@ -90,11 +99,14 @@ const ContextProvider = ({ children }) => {
         connectionRef.current = peer;
     }
 
-    const callUser = (id) => {
+    const callUser = () => {
+
+        console.log("call user");
+
         const peer = new Peer({ initiator: true, trickle: false, stream });
 
         peer.on('signal', (data) => {
-            socket.emit('calluser', { userToCall: id, signalData: data, from: me, someName });
+            socket.emit('calluser', { userToCall: userToCall, signalData: data, from: me, someName });
         });
 
         peer.on('stream', (currentStream) => {
@@ -119,7 +131,7 @@ const ContextProvider = ({ children }) => {
     }
 
     return (
-        <SocketContext.Provider value={{ postPatientLogin, postDoctorLogin, id, startCall, call, callAccepted, myVideo, userVideo, stream, someName, setSomeName, callEnded, me, callUser, leaveCall, answerCall }}>
+        <SocketContext.Provider value={{ userToCall, setUserToCall, role, setRole, postPatientLogin, postDoctorLogin, id, startCall, call, callAccepted, myVideo, userVideo, stream, someName, setSomeName, callEnded, me, callUser, leaveCall, answerCall }}>
             {children}
         </SocketContext.Provider>
     );
