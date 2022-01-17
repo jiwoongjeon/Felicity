@@ -29,6 +29,9 @@ const Video = ({ myVideo }) => {
             {stream && (
                 <video playsInline muted ref={myVideo} autoPlay />
             )}
+            {callAccepted && !callEnded && (
+                <video playsInline ref={userVideo} autoPlay />
+            )}
             <Container>
                 {(role) ? (
                     call.isReceivedCall && !callAccepted && (
@@ -57,11 +60,9 @@ const Video = ({ myVideo }) => {
                     </Button>
                 </Block> */}
 
+
             </Container>
             <Patient>
-                {callAccepted && !callEnded && (
-                    <video playsInline ref={userVideo} autoPlay />
-                )}
                 <Name>
                     Mark Wilson
                 </Name>

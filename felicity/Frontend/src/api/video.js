@@ -65,19 +65,20 @@ const ContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.emit("start", [id, role], () => {
-            socket.on("me", ({ socketId, otherUserId, otherSocketId }) => {
-                console.log(otherSocketId);
-                console.log(otherUserId);
-                setMe(socketId);
-                setUserToCall(otherSocketId);
-            });
+        socket.emit("start", { id, role });
+
+        socket.on("me", ({ socketid, otherUserId, otherSocketId }) => {
+            console.log("other socket id: %s", otherSocketId);
+            console.log("other user id: %d", otherUserId);
+            console.log("my socket id: %s", socketid);
+            setMe(socketid);
+            setUserToCall(otherSocketId);
         });
 
 
         socket.on("calluser", ({ from, someName: callerName, signal }) => {
             console.log("calling")
-            setCall({ isRecievedCall: true, from, someName: callerName, signal });
+            setCall({ isReceivedCall: true, from, someName: callerName, signal });
         });
     }
 
@@ -94,6 +95,7 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on('stream', (currentStream) => {
+            console.log("set userVideo")
             userVideo.current.srcObject = currentStream;
         });
 
@@ -105,7 +107,8 @@ const ContextProvider = ({ children }) => {
     const callUser = () => {
 
         console.log("call user");
-        console.log(userToCall);
+        console.log("user to call : %s", userToCall);
+        console.log("my socket id: %s", me);
 
         const peer = new Peer({ initiator: true, trickle: false, stream });
 
@@ -114,10 +117,12 @@ const ContextProvider = ({ children }) => {
         });
 
         peer.on('stream', (currentStream) => {
+            console.log("set userVideo")
             userVideo.current.srcObject = currentStream;
         });
 
         socket.on('callaccepted', (signal) => {
+            console.log("call accepted");
             setCallAccepted(true);
 
             peer.signal(signal);
