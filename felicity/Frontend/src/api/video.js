@@ -1,7 +1,8 @@
-import React, { createContext, useState, useRef } from "react";
+import React, { createContext, useState, useRef, useEffect } from "react";
 import { connect, io } from "socket.io-client";
 import Peer from "simple-peer";
 import Axios from "axios";
+import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
 const SocketContext = createContext();
 
@@ -18,6 +19,15 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [someName, setSomeName] = useState("");
+
+    let recordAudio;
+    const [isClicked, setIsClicked] = useState(false);
+    const [text, setText] = useState([
+        {
+            transcription: "",
+            translation: ""
+        }
+    ])
 
     const myVideo = useRef();
     const userVideo = useRef();
@@ -131,6 +141,66 @@ const ContextProvider = ({ children }) => {
         })
     }
 
+    const getAudio = () => {
+        setIsClicked(true);
+        recordAudio = RecordRTC(stream, {
+            type: "audio",
+            mimeType: "audio/webm", //필요한가?
+            // sampleRate: "16000",
+            sampleRate: "44100",
+
+            recorderType: StereoAudioRecorder, //필요한가?
+
+            numberOfAudioChannels: 1,
+
+            timeSlice: 4000,
+            // desiredSampRate: 16000
+            desiredSampRate: 44100
+        });
+
+        recordAudio.startRecording();
+
+        // navigator.getUserMedia({
+        //     audio: true
+        // }, (stream) => {
+        //     console.log("succeed getting stream")
+        //     recordAudio = RecordRTC(stream, {
+        //         type: "audio",
+        //         mimeType: "audio/webm", //필요한가?
+        //         // sampleRate: "16000",
+        //         sampleRate: "44100",
+
+        //         recorderType: StereoAudioRecorder, //필요한가?
+
+        //         numberOfAudioChannels: 1,
+
+        //         timeSlice: 4000,
+        //         // desiredSampRate: 16000
+        //         desiredSampRate: 44100
+        //     });
+
+        //     recordAudio.startRecording();
+        //     console.log(isClicked)
+        // }, (err) => console.log(err))
+    }
+    const stopAudio = () => {
+        setIsClicked(false)
+        console.log(recordAudio);
+        recordAudio.stopRecording(() => {
+            recordAudio.getDataURL((audioDataURL) => {
+                var files = {
+                    audio: {
+                        type: recordAudio.getBlob().type || "audio/wav",
+                        dataURL: audioDataURL
+                    }
+                };
+                socket.emit("message-transcribe", files)
+                console.log(isClicked)
+            })
+        })
+    }
+
+
     const leaveCall = () => {
         setCallEnded(true);
 
@@ -139,8 +209,15 @@ const ContextProvider = ({ children }) => {
         window.location.reload();
     }
 
+    useEffect(() => {
+        socket.on("result", (result) => {
+            setText(result)
+            console.log(result)
+        })
+    })
+
     return (
-        <SocketContext.Provider value={{ userToCall, setUserToCall, role, setRole, postPatientLogin, postDoctorLogin, id, startCall, call, callAccepted, myVideo, userVideo, stream, someName, setSomeName, callEnded, me, callUser, leaveCall, answerCall }}>
+        <SocketContext.Provider value={{ userToCall, setUserToCall, role, setRole, postPatientLogin, postDoctorLogin, id, startCall, call, callAccepted, myVideo, userVideo, stream, someName, setSomeName, callEnded, me, callUser, leaveCall, answerCall, isClicked, getAudio, stopAudio, text }}>
             {children}
         </SocketContext.Provider>
     );

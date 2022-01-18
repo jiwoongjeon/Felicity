@@ -20,17 +20,21 @@ import {
 import { SocketContext } from "../../api/video";
 
 const Video = ({ myVideo }) => {
-    const { role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call } = useContext(SocketContext);
+    const { role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = useContext(SocketContext);
 
     useEffect(() => startCall(), []);
 
     return (
         <MainContainer>
             {stream && (
-                <video playsInline muted ref={myVideo} autoPlay />
+                <video playsInline muted ref={myVideo} autoPlay onClick={(!isClicked) ? (getAudio) : (stopAudio)} />
             )}
             {callAccepted && !callEnded && (
-                <video playsInline ref={userVideo} autoPlay />
+                <div>
+                    <video playsInline ref={userVideo} autoPlay />
+                    <textarea>{text[0].transcription}</textarea>
+                    <textarea>{text[0].translation}</textarea>
+                </div>
             )}
             <Container>
                 {(role) ? (
