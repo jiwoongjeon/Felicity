@@ -5,7 +5,9 @@ import temp_image2 from '../assets/patient.png';
 
 export const MainContainer = styled.div`
     width: 100%;
+    min-width: 300px;
     height: 100%;
+    min-height: 600px;
     position: relative;
     background-image : url(${temp_image});
     background-size:cover;

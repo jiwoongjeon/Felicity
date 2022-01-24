@@ -60,7 +60,7 @@ const Timer = () => {
         <button className="time" disabled={disable} onClick={() => {handleStart(50); setDisable(true)}}>Start Timer</button>
         <button className="time" onClick={() => handleComplete(50)}>Extends +50sec</button>
         </div>
-      </div>
+  </div>
 
   );
 };

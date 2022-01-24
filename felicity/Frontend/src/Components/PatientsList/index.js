@@ -2,12 +2,14 @@ import { useState } from "react";
 import { PATIENT_DATA } from "./tempData";
 import Calen from "../Calendar2"
 
-const { PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title} = require("./styles");
+const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title} = require("./styles");
 
 export const PatientsList = () => {
     return (
         <PatientContainer>
-            <Calen/>
+            <CalenderBox>
+                <Calen/>
+            </CalenderBox>
             <Title>Upcoming Patients</Title>
             <Divider />
             <PatientElementContainer>

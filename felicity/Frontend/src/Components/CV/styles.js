@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const PatientContainer = styled.div`
-  width: 900px;
+  width: 100%;
+  min-width: 300px;
   height: 95%;
   display: flex;
   flex-direction: column;
