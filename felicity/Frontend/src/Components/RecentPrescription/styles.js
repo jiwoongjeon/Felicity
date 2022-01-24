@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const PrescriptionContainer = styled.div`
-width: 987px;
-height: 100%;
-display: flex;
+width:100%;
+height:600px;
 flex-direction: column;
 align-items: flex-start;
 padding: 10px;
@@ -12,7 +11,7 @@ border-radius: 20px;
 `;
 
 export const Header = styled.div`
-width: 92%;
+width: 95%;
 margin:20px;
 display: flex;
 flex-direction: row;
@@ -42,27 +41,27 @@ text-align:right;
 `;
 
 export const PrescriptionList = styled.div`
-width: 100%;
-height: 100%;
-display: flex;
-padding-left: 40px;
-flex-direction: row;
-overflow-x: auto;
+width: 95%;
+height: 500px;
+display:flex;
+flex-direction:row;
+margin-left: 40px;
+overflow-x:auto;
 `;
 
 export const PrescriptionElement = styled.div`
-  width: 300px;
+  width: 250px;
   height: 100%;
   display: flex;
   padding: 10px;
   border: 3px;
-  margin-right: 20px;
+  margin-right: 5px;
   flex-direction: column;
 `;
 
 export const Image_Medicine = styled.div`
-  width: 100%;
-  height: 50%;
+  width: 230px;
+  height: 230px;
   border-radius: 10px;
   background-image: url(${props => props.img});
   background-position: center;
@@ -78,15 +77,16 @@ color: rgba(156, 163, 175);
 
 export const Id = styled.div`
 text-align:left;
-margin-top:10px;
+margin-top:5px;
 font-weight:bold;
 font-size:20px;
 `
 export const Detail = styled.div`
 height:20%;
 text-align:left;
-margin-top:10px;
+margin-bottom:5px;
 color: rgba(156, 163, 175);
+overflow-y: hidden;
 `
 
 export const Doctor = styled.div`

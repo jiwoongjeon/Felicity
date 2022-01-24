@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const RecordContainer = styled.div`
 width: 100%;
-height: 400px;
+height: 100%;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -47,11 +47,11 @@ overflow-y: auto;
 
 export const Column = styled.div`
 flex-direction: column;
-flex:1;
+width:80%
 `
 
 export const RecordElement = styled.div`
-  width: 90%;
+  width: 92%;
   height: 150px;
   margin-left: 40px;
   margin-bottom: 10px;
@@ -75,7 +75,7 @@ color: rgba(156, 163, 175);
 `
 
 export const Detail = styled.div`
-flex:1;
+width:20%;
 margin-top:15px;
 font-weight:bold;
 text-align:right;
