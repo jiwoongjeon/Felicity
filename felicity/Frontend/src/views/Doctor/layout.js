@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const ContentLayout = styled.div`
     width : 100%;
+    min-width: 900px;
     height: 100%;
+    min-height: 700px;
     display: grid;
 
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr 8fr;
     grid-template-areas:
         "list info"
@@ -18,6 +20,8 @@ export const ContentLayout = styled.div`
 `;
 
 export const InfoBox = styled.div`
+width: 100%;
+min-width: 300px;
     grid-area:info;
 `;
 

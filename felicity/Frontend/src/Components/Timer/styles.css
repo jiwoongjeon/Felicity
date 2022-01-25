@@ -9,6 +9,8 @@ h1 {
     flex-direction: row;
     justify-content: center;
     position: relative;
+    height:60%;
+    min-height: 150px;
 }
 
 .button_container{

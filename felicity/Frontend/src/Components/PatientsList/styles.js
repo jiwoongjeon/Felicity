@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PatientContainer = styled.div`
-  width: 590px;
+  width: 100%;
   height: 95%;
   display: flex;
   flex-direction: column;
@@ -14,9 +14,22 @@ export const PatientContainer = styled.div`
   justify-content: center;
 `;
 
+
+export const CalenderBox = styled.div`
+width: 100%;
+height: 100%;
+overflow-y:auto;
+&::-webkit-scrollbar {
+  width: 10px;
+}
+`;
+
+
+
 export const Column = styled.div`
   flex:9;
   height:100%;
+
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -85,6 +98,7 @@ color: white;
 
 export const PatientImage = styled.div`
   flex: 1.5;
+  min-width: 70px;
   border-radius: 8px;
   background-image:  url(${props => props.img});
   background-position: center;
@@ -98,6 +112,7 @@ export const Patient = styled.p`
   text-align: left;
   font-weight: bold;
   margin-top: 0px;
+  font-size: 100%;
 `;
 
 export const Bio = styled.p`
@@ -105,6 +120,7 @@ export const Bio = styled.p`
   color: #a0aec0;
   margin-top:0px;
   margin-left: 10px;
+  font-size: 15px;
 `;
 
 export const Time = styled.p`
@@ -112,6 +128,7 @@ export const Time = styled.p`
   text-align: right;
   font-weight: bold;
   margin-top:0px;
+  font-size: 12px;
 `;
 
 export const Detail = styled.p`
