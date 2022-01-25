@@ -16,11 +16,11 @@ export const MHT_DATA = [
                 E: true,
                 F: true,
                 G: true,
-                H: true,
-                I: true,
-                J: true,
-                K: true,
-                L: true,
+                H: false,
+                I: false,
+                J: false,
+                K: false,
+                L: false,
                 L_detail: "-"
             }
         ]

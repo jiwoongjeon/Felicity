@@ -15,6 +15,8 @@ function MHT5() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (5/6)</SubTitle>
+            <SubmitButton to={`/MHT6`}>
+                Next</SubmitButton>
             <Label>5. Do you have any suspective reason why? (Optional)</Label>
             <RadioBox>
               <RadioButton
@@ -39,8 +41,6 @@ function MHT5() {
             <InputBox>
               <ReasonInput />
             </InputBox> }
-            <SubmitButton to={`/MHT6`}>
-                Next</SubmitButton>
         </QuestionContainer>
     </MainContainer>
   );

@@ -11,7 +11,7 @@ export const MainContainer = styled.div`
 `;
 
 export const QuestionContainer = styled.div`
-    width: 800px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -22,7 +22,6 @@ export const Logo = styled.img`
     height: 38px;
     width: 35.67px;
 `;
-
 
 export const Title = styled.div`
     text-align: left;
@@ -53,11 +52,12 @@ export const Label = styled.div`
 `;
 
 export const SubmitButton = styled(Link)`
-    width: 100%;
+    width: 500px;
     height: 40px;
     background-color: #0075FF;
     border-radius: 20px;
-    margin-top: 43px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     padding-top: 5px;
     border: 0;
     outline: 0;
