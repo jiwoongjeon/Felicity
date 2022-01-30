@@ -1,7 +1,10 @@
 import { useState } from "react";
 import {CATEGORY_DATA, POST_DATA} from "./tempData";
+import { IoMdSearch } from "react-icons/io";
 
-const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider, SymptomsBubble, CategoryContainer, CategoryBubble, PostElement, Column, No, Patient, Date, NoLabel, SymptomsLabel, DateLabel, Edit } = require("./styles");
+const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider, SymptomsBubble, CategoryContainer, CategoryBubble,
+    PostElement, Column, Date, NewestLabel, DateLabel, StateLabel, OldestLabel, Title, Content, ContentElement, State, UnState,
+    Search, SearchIcon, SearchContent, WriteButton } = require("./styles");
 
 
 export const RecentPost = () => {
@@ -14,14 +17,17 @@ export const RecentPost = () => {
                 {CATEGORY_DATA.map((category) => (
                     <CategoryBubble>{category.id}</CategoryBubble>
                 ))}
-                <Edit>edit</Edit>
             </CategoryContainer>
 
             <Column>
-                    <NoLabel>NO</NoLabel>
-                    <Patient></Patient>
-                    <SymptomsLabel>SYMPTOMS</SymptomsLabel>
-                    <DateLabel>DATE</DateLabel>
+                <ContentElement>
+                    <Column>
+                        <NewestLabel>Newest</NewestLabel>
+                        <OldestLabel>Oldest</OldestLabel>
+                    </Column>
+                </ContentElement>
+                <DateLabel>DATE</DateLabel>
+                <StateLabel>STATE</StateLabel>
             </Column>
 
             <PostElementContainer>
@@ -29,16 +35,20 @@ export const RecentPost = () => {
                 {POST_DATA.map((data, i) => (
                     <PostElement>
                         <Column>
-
-                            <No>{data.no}</No>
-                            <Patient>{data.patient}</Patient>
-                            <SymptomsContainer>
-                                {POST_DATA[i].symptoms.map((symptom) => (
-                                    <SymptomsBubble>{symptom.id}</SymptomsBubble>
-                                ))}
-                            </SymptomsContainer>
+                            <ContentElement>
+                                <Title>{data.title}</Title>
+                                <Content>{data.content}</Content>
+                                <SymptomsContainer>
+                                    {POST_DATA[i].symptoms.map((symptom) => (
+                                        <SymptomsBubble>{symptom.id}</SymptomsBubble>
+                                    ))}
+                                </SymptomsContainer>
+                            </ContentElement>
                             <Date>{data.date}</Date>
-
+                            { data.state && 
+                            <State>Answered</State>}
+                            { !data.state && 
+                            <UnState>Not Answered</UnState>}
                         </Column>
                         <Divider></Divider>
                     </PostElement>
@@ -46,6 +56,14 @@ export const RecentPost = () => {
                     
                     ))}
             </PostElementContainer>
+
+            <Column>
+                <Search>
+                    <SearchIcon><IoMdSearch style={{color: '#718096', fontSize: '20px'}}/></SearchIcon>
+                    <SearchContent />
+                </Search>
+                <WriteButton to={'/newpost'}>Write A New Post</WriteButton>
+            </Column>
 
         </PostContainer>
     );

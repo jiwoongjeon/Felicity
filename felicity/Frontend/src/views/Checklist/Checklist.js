@@ -9,18 +9,19 @@ import {
 } from "./layout";
 import RecentPost from "../../Components/RecentPost";
 import Checklists from "../../Components/Checklists";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-function Checklist() {
+function Checklist(props) {
   return (
 
     <Mostouter>
 
     <Cat>
-         <Header />
+      <Header isDoctor={props.isDoctor}/>
     </Cat>
 
     <Directory>
-        <Path />
+        <Path directory="Checklist"/>
     </Directory>
 
     <User>

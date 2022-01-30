@@ -7,9 +7,6 @@ import {IconContext} from "react-icons"
 
 import {
 MainContainer,
-Search,
-SearchIcon,
-SearchContent,
 Account,
 AccountIcon,
 Setting,
@@ -19,10 +16,6 @@ Noti,
 const Login = () => {
   return (
   <MainContainer>
-    <Search>
-        <SearchIcon><IoMdSearch style={{color: '#718096', fontSize: '20px'}}/></SearchIcon>
-        <SearchContent />
-    </Search>
 
     <Account>
         <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}}/> SignIn </AccountIcon>

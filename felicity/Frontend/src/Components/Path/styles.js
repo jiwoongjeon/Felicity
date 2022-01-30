@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const MainContainer = styled.div`
     width: 100%;
-
     display: flex;
     flex-direction: column;
     margin-left: 20px;
@@ -36,7 +35,6 @@ export const Title = styled.div`
     font-weight: 600;
     text-align: start;
 `;
-
 
 
 
