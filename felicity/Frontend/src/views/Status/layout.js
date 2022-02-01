@@ -28,6 +28,7 @@ export const List = styled.div`
     grid-area: list;
     margin-left: 20px;
     margin-right: 10px;
+    margin-bottom: 2%;
 `;
 
 export const Directory = styled.div`

@@ -8,16 +8,20 @@ import Login from '../../Components/Login';
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
 
-function Videocall() {
+function Videocall(props) {
   return (
     <Mostouter>
 
     <Cat>
-         <Header />
+         <Header isDoctor={props.isDoctor} />
     </Cat>
 
     <Directory>
-        <Path />
+      {props.isDoctor &&
+        <Path directory="Meeting" title="Meeting with your Patient" meeting={true}/>}
+      {!props.isDoctor &&
+        <Path directory="Meeting" title="Meeting with your Doctor" meeting={true}/>}
+        
     </Directory>
 
     <User>

@@ -1,33 +1,37 @@
 import React from "react"
 import Header from '../../Components/Header/Header';
-import {Mostouter,Cat,List,Directory,User} from './layout';
+import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
-import RecentPost from "../../Components/RecentPost";
 
-function StatusDoctor() {
+function Chatting(props) {
   return (
+
     <Mostouter>
 
     <Cat>
-      <Header isDoctor={true}/>
+        <Header isDoctor={props.isDoctor}/>
     </Cat>
+
     <Directory>
-    <Path directory="Recent Post"/>
+        <Path directory="Chatting"/>
     </Directory>
 
     <User>
         <Login />
     </User>
 
-    <List>
-        <RecentPost />
-    </List>
+
+    <Video>
+    </Video>
+
+
 
     </Mostouter>
+
 
   );
 }
 
-export default StatusDoctor;
+export default Chatting;
