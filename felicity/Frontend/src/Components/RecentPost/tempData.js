@@ -1,5 +1,6 @@
 export const POST_DATA = [
     {
+        id: 168,
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         symptoms: [
@@ -11,6 +12,7 @@ export const POST_DATA = [
         state: false
     },
     {
+        id: 167,
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         symptoms: [
@@ -22,6 +24,7 @@ export const POST_DATA = [
         state: true
     },
     {
+        id: 166,
         title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         symptoms: [

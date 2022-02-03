@@ -27,12 +27,13 @@ width: 100%;
 height: 80%;
 display: flex;
 flex-direction: column;
-overflow-y: hidden
+overflow-y: auto;
 `;
 
-export const PostElement = styled.div`
+export const PostElement = styled(Link)`
   display: flex;
   flex-direction: column;
+  text-decoration:none;
 `;
 
 export const ContentElement = styled.div`
@@ -47,6 +48,15 @@ export const Column = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
+`;
+
+export const ColumnBottom = styled.div`
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content:space-between;
+  flex-wrap: wrap;
 `;
 
 export const Divider = styled.div`
@@ -138,6 +148,7 @@ export const Title = styled.p`
   text-align: left;
   font-weight: bold;
   overflow-y: hidden;
+  color:black;
 `;
 
 export const Content = styled.p`
@@ -159,6 +170,7 @@ export const State = styled.p`
   margin-top: 60px;
   margin-right: 2%;
   font-weight: bold;
+  white-space: nowrap;
 `;
 
 export const UnState = styled.p`
@@ -221,4 +233,82 @@ export const WriteButton = styled(Link)`
       color: white;
       background-color: #004FEB;
     }
+`;
+
+export const PageContainer = styled.div`
+  min-width:300px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 15px;
+  justify-content:flex-start;
+  overflow-x:hidden;
+  overflow-y:hidden;
+`;
+
+export const PageNavigatorLabel = styled.p`
+  min-width:80px;
+  font-weight: bold;
+  color: #0075FF;
+  padding: 5px 0px 5px 0px;
+  margin-left:30px;
+  margin-right:30px;
+  &:hover {
+    color: #3D7EFF;
+  }
+  &:active {
+    color: #004FEB;
+  }
+`;
+
+export const PageNumberContainer = styled.div`
+  min-width:50px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 15px;
+  justify-content:flex-start;
+  overflow-x:hidden;
+  overflow-y:hidden;
+`;
+
+export const PageNumberLabel = styled.p`
+  font-weight: bold;
+  border-radius: 10px;
+  color:white;
+  background-color: #0075FF;
+  padding:5px 13px 5px 13px;
+  margin-left:10px;
+  margin-right:10px;
+  &:hover {
+    color: white;
+    background-color: #3D7EFF;
+  }
+  &:active {
+    color: white;
+    background-color: #004FEB;
+  }
+`;
+
+export const PageNumber = styled.p`
+  font-weight: bold;
+  border-radius: 10px;
+  color:#718096;
+  padding:5px 13px 5px 13px;
+  margin-left:10px;
+  margin-right:10px;
+  &:hover {
+    color: white;
+    background-color: #3D7EFF;
+  }
+  &:active {
+    color: white;
+    background-color: #004FEB;
+  }
 `;

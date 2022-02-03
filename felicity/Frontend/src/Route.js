@@ -18,6 +18,10 @@ import StatusPatient from "./views/Status/patient";
 import Checklist from "./views/Checklist/Checklist";
 import Profile from "./views/Profile";
 import Chatting from "./views/Chatting";
+import Board from "./views/Board";
+import NewBoard from "./views/NewBoard";
+import Appointment from "./views/Appointment";
+
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
@@ -43,6 +47,11 @@ const ROUTES = [
 
   { path: "/Doctor/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
   { path: "/Patient/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
+
+  { path: "/Doctor/Board", key: "video", component: () => <Board/> },
+  { path: "/Doctor/NewPost", key: "video", component: () => <NewBoard/> },
+
+  { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
 ];
 
 export default ROUTES;

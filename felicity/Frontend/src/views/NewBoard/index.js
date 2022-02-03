@@ -3,10 +3,10 @@ import Header from '../../Components/Header/Header';
 import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
-import { BoardDetail } from "../../Components/BoardDetail";
+import { BoardNew } from "../../Components/BoardNew";
 
 
-function Board() {
+function NewBoard() {
   return (
 
     <Mostouter>
@@ -25,7 +25,7 @@ function Board() {
 
 
     <Video>
-      <BoardDetail />
+        <BoardNew />
     </Video>
 
 
@@ -36,5 +36,4 @@ function Board() {
   );
 }
 
-export default Board;
-
+export default NewBoard;
