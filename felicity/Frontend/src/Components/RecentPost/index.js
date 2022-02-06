@@ -4,10 +4,12 @@ import { IoMdSearch } from "react-icons/io";
 
 const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider, SymptomsBubble, CategoryContainer, CategoryBubble,
     PostElement, Column, Date, NewestLabel, DateLabel, StateLabel, OldestLabel, Title, Content, ContentElement, State, UnState,
-    Search, SearchIcon, SearchContent, WriteButton } = require("./styles");
+    Search, SearchIcon, SearchContent, WriteButton, ColumnBottom, PageContainer, PageNavigatorLabel, PageNumberLabel, PageNumber, PageNumberContainer } = require("./styles");
 
 
 export const RecentPost = () => {
+
+
     return (
         <PostContainer>
 
@@ -33,7 +35,7 @@ export const RecentPost = () => {
             <PostElementContainer>
                 <Divider />
                 {POST_DATA.map((data, i) => (
-                    <PostElement>
+                    <PostElement to={'./Board?' + data.id}>
                         <Column>
                             <ContentElement>
                                 <Title>{data.title}</Title>
@@ -45,25 +47,35 @@ export const RecentPost = () => {
                                 </SymptomsContainer>
                             </ContentElement>
                             <Date>{data.date}</Date>
-                            { data.state && 
-                            <State>Answered</State>}
-                            { !data.state && 
-                            <UnState>Not Answered</UnState>}
+                            { data.state && <State>Answered</State>}
+                            { !data.state && <UnState>Not Answered</UnState>}
                         </Column>
                         <Divider></Divider>
                     </PostElement>
-                    
-                    
+
                     ))}
             </PostElementContainer>
 
-            <Column>
+            <ColumnBottom>
                 <Search>
                     <SearchIcon><IoMdSearch style={{color: '#718096', fontSize: '20px'}}/></SearchIcon>
                     <SearchContent />
                 </Search>
-                <WriteButton to={'/newpost'}>Write A New Post</WriteButton>
-            </Column>
+                <PageContainer>
+                    <PageNavigatorLabel>Previous</PageNavigatorLabel>
+                    <PageNumberContainer>
+                    <PageNumberLabel>1</PageNumberLabel>
+                    <PageNumber>2</PageNumber>
+                    <PageNumber>3</PageNumber>
+                    <PageNumber>4</PageNumber>
+                    <PageNumber>5</PageNumber>
+                    <PageNumber>...</PageNumber>
+                    <PageNumber>10</PageNumber>
+                    </PageNumberContainer>
+                    <PageNavigatorLabel>Next</PageNavigatorLabel>
+                </PageContainer>
+                <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>
+            </ColumnBottom>
 
         </PostContainer>
     );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import needhelp from '../assets/needhelp_highres.png'
-import LogoImg from '../assets/Logo.png';
+import LogoImg from '../assets/telep_logo_horizon.png';
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -55,7 +55,8 @@ const Header = (props) => {
               {props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />}>See your patient</MenuItem>}
               {!props.isDoctor &&
-                <MenuItem active={true} icon={<AiOutlinePlus />}>See your doctor</MenuItem>}
+                <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
+                <MenuButton to={`./Appointment`}></MenuButton></MenuItem>}
               
               <MenuItem icon={<AiFillHome />}>Home
                 <MenuButton to={`./Home`}></MenuButton>
