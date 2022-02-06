@@ -1,6 +1,8 @@
 import LoginPage from "../../Components/LoginPage"
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
+
+import { SocketContext } from "../../API/video"
 
 function Login() {
   const { postPatientLogin, postDoctorLogin } = useContext(SocketContext);

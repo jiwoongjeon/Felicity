@@ -10,7 +10,7 @@ import 'react-nice-dates/build/style.css'
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { ContextProvider } from './api/video';
+import { ContextProvider } from './API/video';
 
 <DatePickerCalendar locale={enGB} />
 

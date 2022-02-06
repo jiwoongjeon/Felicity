@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Title, Chat, Video, Empty } from '../../Components/mostouter';
 import Layout from '../../Components/Layout';
@@ -7,7 +7,7 @@ import Login from '../../Components/Login';
 
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
-import { SocketContext } from "../../api/video";
+import { SocketContext } from "../../API/video";
 
 function Videocall(props) {
 
