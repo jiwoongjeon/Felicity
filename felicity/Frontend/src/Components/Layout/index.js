@@ -14,30 +14,30 @@ import {
     InfoBox
 } from "./styles";
 
-const Layout = () => {
-  return (
-  <div className="Layout">
-    <ContentLayout>
+const Layout = ({ myVideo }) => {
+    return (
+        <div className="Layout">
+            <ContentLayout>
 
-    <VideoBox>
-        <Video />
-    </VideoBox>
+                <VideoBox>
+                    <Video myVideo={myVideo} />
+                </VideoBox>
 
-    <Empty>
-        <Timer />
-    </Empty>
+                <Empty>
+                    <Timer />
+                </Empty>
 
-    <TitleBox>
-        <Title />
-    </TitleBox>
+                <TitleBox>
+                    <Title />
+                </TitleBox>
 
-    <InfoBox>
-        <Infos />
-    </InfoBox>
+                <InfoBox>
+                    <Infos />
+                </InfoBox>
 
-    </ContentLayout>
-    </div>
-  );
+            </ContentLayout>
+        </div>
+    );
 };
 
 export default Layout;
