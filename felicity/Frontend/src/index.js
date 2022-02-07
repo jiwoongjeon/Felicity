@@ -9,12 +9,17 @@ import { DatePickerCalendar } from 'react-nice-dates'
 import 'react-nice-dates/build/style.css'
 
 import { BrowserRouter as Router } from "react-router-dom";
+
+import { ContextProvider } from './API/video';
+
 <DatePickerCalendar locale={enGB} />
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <ContextProvider>
+    <Router>
+      <App />
+    </Router>
+  </ContextProvider>,
   document.getElementById("root")
 );
 

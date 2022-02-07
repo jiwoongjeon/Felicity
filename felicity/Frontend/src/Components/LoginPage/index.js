@@ -1,25 +1,25 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import {
-MainContainer,
-LoginContainer,
-Logo,
-Title,
-RadioWrapper,
-Label,
-LoginInput,
-PwInput,
-Icon,
-InputBox,
-UrlLink,
-Rowbox,
-PwLabel,
-TextLink,
-Rowbox2,
-SubmitButton,
-Signup,
-SignupLink,
-CheckboxWrapper
+  MainContainer,
+  LoginContainer,
+  Logo,
+  Title,
+  RadioWrapper,
+  Label,
+  LoginInput,
+  PwInput,
+  Icon,
+  InputBox,
+  UrlLink,
+  Rowbox,
+  PwLabel,
+  TextLink,
+  Rowbox2,
+  SubmitButton,
+  Signup,
+  SignupLink,
+  CheckboxWrapper
 } from "./styles";
 
 //https://codesandbox.io/s/custom-checkbox-and-radiobutton-with-react-and-styled-components-6h3st?from-embed=&file=/src/index.js:236-283
@@ -27,90 +27,97 @@ import RadioButton from "./Radiobox.js";
 import Checkbox from "./Checkbox.js";
 
 import LogoImg from '../assets/Logo.png';
-import {BsFillPersonFill} from "react-icons/bs";
-import {HiLockClosed} from "react-icons/hi";
+import { BsFillPersonFill } from "react-icons/bs";
+import { HiLockClosed } from "react-icons/hi";
 
-import loginPost from "../../API/login";
 
-function LoginPage() {
-    const [radioValue, setRadio] = useState(true);
-    const [value, setCheckbox] = useState(true);
+function LoginPage({ patientL, doctorL }) {
+  const [radioValue, setRadio] = useState(true);
+  const [value, setCheckbox] = useState(true);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <MainContainer>
 
-        <LoginContainer>
 
-            <Logo src={LogoImg} />
-            <Title>Sign in </Title>
-            <RadioWrapper>
-                <RadioButton
-                label="I'm a patient."
-                name="patient"
-                value={radioValue}
-                checked={radioValue}
-                onChange={({ target }) => {
-                  console.log(target.value);
-                  setRadio(Boolean(target.value));
-                }}
-              />
-              <RadioButton
-                label="I'm a doctor."
-                name="doctor"
-                value={!radioValue}
-                checked={!radioValue}
-                onChange={({ target }) => setRadio(!target.value)}
-              />
-            </RadioWrapper>
+      <LoginContainer>
 
-            <Label> USER ID </Label>
-            <InputBox>
-                <Icon> <BsFillPersonFill /> </Icon>
-                <LoginInput onChange={(e) => setEmail(e.target.value)}/>
-            </InputBox>
+        <Logo src={LogoImg} />
+        <Title>Sign in </Title>
+        <RadioWrapper>
+          <RadioButton
+            label="I'm a patient."
+            name="patient"
+            value={radioValue}
+            checked={radioValue}
+            onChange={({ target }) => {
+              console.log(target.value);
+              setRadio(Boolean(target.value));
+            }}
+          />
+          <RadioButton
+            label="I'm a doctor."
+            name="doctor"
+            value={!radioValue}
+            checked={!radioValue}
+            onChange={({ target }) => setRadio(!target.value)}
+          />
+        </RadioWrapper>
 
-            <Rowbox>
-                <PwLabel> PASSWORD </PwLabel>
-                <UrlLink>Forget your Password? </UrlLink>
-            </Rowbox>
-            <InputBox>
-                <Icon> <HiLockClosed /> </Icon>
-                <PwInput onChange={(e) => setPassword(e.target.value)}/>
-            </InputBox>
+        <Label> USER ID </Label>
+        <InputBox>
+          <Icon> <BsFillPersonFill /> </Icon>
+          <LoginInput
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </InputBox>
 
-            <Label> By signing up, you agree to our <TextLink>privacy policy, Telepossible terms.</TextLink></Label>
+        <Rowbox>
+          <PwLabel> PASSWORD </PwLabel>
+          <UrlLink>Forget your Password? </UrlLink>
+        </Rowbox>
+        <InputBox>
+          <Icon> <HiLockClosed /> </Icon>
+          <PwInput
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </InputBox>
 
-            <CheckboxWrapper>
-            <Checkbox
-              label="Stay Sign In"
-              value={value}
-              checked={value}
-              onChange={({ target }) => setCheckbox(!value)}
-             />
-             </CheckboxWrapper>
+        <Label> By signing up, you agree to our <TextLink>privacy policy, Telepossible terms.</TextLink></Label>
 
-            {radioValue &&
-              <SubmitButton to={`/Patient/Home`}>
-                Sign In
-              </SubmitButton>
-            }
-            
-            {!radioValue &&
-              <SubmitButton to={`/Doctor/Home`}>
-                Sign In
-              </SubmitButton>
-            }
+        <CheckboxWrapper>
+          <Checkbox
+            label="Stay Sign In"
+            value={value}
+            checked={value}
+            onChange={({ target }) => setCheckbox(!value)}
+          />
+        </CheckboxWrapper>
 
-            <Signup>
-                Don’t have an Account? <SignupLink> Sign Up </SignupLink>
-            </Signup>
+        {radioValue &&
+          <SubmitButton to={`/MHT1`} onClick={patientL({ email, password })}>
+            Sign In
+          </SubmitButton>
+        }
+
+        {!radioValue &&
+          <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>
+            Sign In
+          </SubmitButton>
+        }
+
+        <Signup>
+          Don’t have an Account? <SignupLink> Sign Up </SignupLink>
+        </Signup>
 
 
 
-        </LoginContainer>
+      </LoginContainer>
+
 
     </MainContainer>
   );
