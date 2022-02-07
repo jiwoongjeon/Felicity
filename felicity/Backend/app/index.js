@@ -72,11 +72,27 @@ app.get("/doctor_schedule", (req, res) => {
 })
 
 
+
+
 const io = socket(server, {
     cors: {
         origin: "http://localhost:3000",
     },
 });
+
+//chat
+const auth = require("./authentication.js")
+io.use(auth.chatAuth).on("connection", (socket) => {
+    socket.on("chatting", (data) => {
+        const { name, msg } = data;
+        io.emit("chatting", {
+            name,
+            msg,
+            time: moment(new Date()).format("h:mm A")
+        })
+    })
+})
+
 
 io.on("connection", async socket => {
     socket.on("message-transcribe", async (file) => {
