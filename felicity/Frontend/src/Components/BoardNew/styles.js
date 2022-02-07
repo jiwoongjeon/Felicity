@@ -25,6 +25,14 @@ export const Column = styled.div`
   margin:10px;
 `;
 
+export const ColumnTitle = styled.div`
+  height:30px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px 10px 30px;
+  overflow-y:hidden;
+`;
+
 export const WriteContainer = styled.div`
 width: 90%;
 height: 70%;
@@ -42,6 +50,7 @@ export const WriteSubContainer = styled.div`
 width: 100%;
 height: 100%;
 padding-left:2%;
+overflow-y:hidden;
 `;
 
 
@@ -49,6 +58,7 @@ export const Divider = styled.div`
   width:100%;
   display:flex;
   background: #E3E8F0;
+  margin-top:5px;
   margin-bottom: 5px;
   padding: 1px;
   border-radius: 2px;
@@ -66,7 +76,7 @@ export const TitleInput = styled.input.attrs({
     outline: none;
     ::placeholder,
     ::-webkit-input-placeholder {
-        color: #ccc;
+        color: #aaa;
       }
 `;
 
@@ -93,7 +103,7 @@ export const Blank = styled.p`
 margin-top:20px;
 `
 
-export const SubmitBtn = styled.div`
+export const SubmitBtnDisabled = styled.div`
 height:45px;
 width:120px;
 text-align:center;
@@ -104,5 +114,19 @@ margin-left:40px;
 padding-top: 5px;
 font-weight: bold;
 color: #0075FF;
+margin-bottom:1%;
+`;
+
+export const SubmitBtn = styled.div`
+height:45px;
+width:120px;
+text-align:center;
+background-color: #0075FF;
+border-radius: 10px;
+margin-top:13px;
+margin-left:40px;
+padding-top: 5px;
+font-weight: bold;
+color: white;
 margin-bottom:1%;
 `;
