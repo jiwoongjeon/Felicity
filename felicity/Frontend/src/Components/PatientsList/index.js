@@ -6,7 +6,6 @@ import { CV } from "../CV";
 import {CCV} from "../CCV";
 
 
-
 const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn} = require("./styles");
 
 

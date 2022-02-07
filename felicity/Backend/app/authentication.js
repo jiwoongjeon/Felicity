@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-require('dotenv').config({path: './app/.env'})
+require('dotenv').config({ path: './app/.env' })
 // const cookieParser = require('cookie-parser')
 // app.use(cookieParser())
 
@@ -33,8 +33,8 @@ function authenticateToken(req, res, next) {
     })
 }
 
-function generateAccessToken(payload){
-    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {algorithm: "HS256", expiresIn: '10m'})
+function generateAccessToken(payload) {
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { algorithm: "HS256", expiresIn: '10m' })
 }
 
 exports.generateAccessToken = generateAccessToken;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ScheduleContainer = styled.div`
   margin-right: 30px;
   width: 100%;
-  height: 400px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -20,7 +20,7 @@ export const Header = styled.p`
 
 export const AppointmentContainer = styled.div`
   width: 90%;
-  height: 200px;
+  height: 100%;
   margin-left: 40px;
   margin-bottom: 10px;
   padding: 20px;
@@ -33,7 +33,7 @@ export const AppointmentContainer = styled.div`
 
 export const AppointmentList = styled.div`
 width: 100%;
-height: 100%;
+height: 300px;
 display: flex;
 flex-direction: column;
 overflow-y: auto;

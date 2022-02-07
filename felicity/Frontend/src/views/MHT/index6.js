@@ -26,6 +26,8 @@ function MHT6() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (6/6)</SubTitle>
+            <SubmitButton to={`/MHT7`}>
+                Finish</SubmitButton>
             <Label>6. What kind of symptoms do you have? *</Label>
 
             <CheckboxBox>
@@ -46,8 +48,6 @@ function MHT6() {
               </InputBox>
              </CheckboxBox>
 
-            <SubmitButton to={`/Patient`}>
-                Finish</SubmitButton>
         </QuestionContainer>
     </MainContainer>
   );

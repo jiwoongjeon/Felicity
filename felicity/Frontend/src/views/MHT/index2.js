@@ -22,10 +22,10 @@ function MHT2() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (2/6)</SubTitle>
-            <Label>2. How long does the hurt last? *</Label>
-            <SelectBox></SelectBox>
             <SubmitButton to={`/MHT3`}>
                 Next</SubmitButton>
+            <Label>2. How long does the hurt last? *</Label>
+            <SelectBox></SelectBox>
         </QuestionContainer>
     </MainContainer>
   );
