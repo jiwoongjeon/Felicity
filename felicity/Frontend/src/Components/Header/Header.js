@@ -13,12 +13,8 @@ import {
 
 //import icons from react icons
 import { AiFillHome, AiOutlineBarChart, AiOutlinePlus } from "react-icons/ai";
-import { IoIosDocument, IoMdPerson } from "react-icons/io";
-import { FaList, FaRegHeart } from "react-icons/fa";
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
-import { BiCog } from "react-icons/bi";
-import { IoHome } from "react-icons/io"
+import { IoIosDocument, IoIosClipboard, IoMdPerson } from "react-icons/io";
+import { MdFormatListBulleted } from "react-icons/md";
 
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
@@ -56,7 +52,7 @@ const Header = (props) => {
                 <MenuItem active={true} icon={<AiOutlinePlus />}>See your patient</MenuItem>}
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
-                <MenuButton to={`./Appointment`}></MenuButton></MenuItem>}
+                <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
               
               <MenuItem icon={<AiFillHome />}>Home
                 <MenuButton to={`./Home`}></MenuButton>
@@ -64,6 +60,9 @@ const Header = (props) => {
               <MenuItem icon={<AiOutlineBarChart />}>Status
                 <MenuButton  to={`./Status`}></MenuButton>
               </MenuItem>
+              {!props.isDoctor &&
+                <MenuItem icon={<MdFormatListBulleted />} >Recent Post
+                <MenuButton to={`./RecentPost`}></MenuButton></MenuItem>}
               <MenuItem icon={<IoIosDocument />}>My Checklist
               <MenuButton  to={`./Checklist`}></MenuButton></MenuItem>
               <MenuItem icon={<IoMdPerson />}>Profile

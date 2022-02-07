@@ -6,12 +6,12 @@ import Login from '../../Components/Login';
 
 import RecentPost from "../../Components/RecentPost";
 
-function StatusDoctor() {
+function StatusDoctor(props) {
   return (
     <Mostouter>
 
     <Cat>
-      <Header isDoctor={true}/>
+      <Header isDoctor={props.isDoctor}/>
     </Cat>
     <Directory>
     <Path directory="Recent Post"/>

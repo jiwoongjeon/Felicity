@@ -41,6 +41,7 @@ function LoginPage({ patientL, doctorL }) {
   return (
     <MainContainer>
 
+
       <LoginContainer>
 
         <Logo src={LogoImg} />
@@ -116,6 +117,7 @@ function LoginPage({ patientL, doctorL }) {
 
 
       </LoginContainer>
+
 
     </MainContainer>
   );

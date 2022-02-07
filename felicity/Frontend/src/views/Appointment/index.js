@@ -6,7 +6,7 @@ import Login from '../../Components/Login';
 import { AppointmentHolder } from "../../Components/Appointment";
 
 
-function Appointment(props) {
+function Appointment() {
   return (
 
     <Mostouter>
