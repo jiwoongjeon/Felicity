@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { PATIENT_DATA } from "./tempData";
-import Calen from "../CalenDoctor"
+// import Calen from "../CalenDoctor"
 import Axios from "axios";
-import { CV } from "../CV";
-import {CCV} from "../CCV";
+// import { CV } from "../CV";
+// import {CCV} from "../CCV";
 
 
-const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn} = require("./styles");
+const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
 
 
 const PatientsList = () => {
@@ -14,51 +14,51 @@ const PatientsList = () => {
     const [scheduleData, setScheduleData] = useState([])
 
     useEffect(() => {
-        Axios.post("http://localhost:3001/doctor_schedule", {"doctor_id":1})
-        .then((response) => {
-            setScheduleData(response.data)
+        Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 1 })
+            .then((response) => {
+                setScheduleData(response.data)
 
-        })
-        }, [])
+            })
+    }, [])
 
-    function sy(array) { 
+    function sy(array) {
         var array1 = []
-            if (array[0] === 1){
-                array1.push("Cough")
-            }
-            if (array[1] === 1){
-                array1.push("Vomit")
-            }
-            if (array[2] === 1){
-                array1.push("Fever")
-            }
-            if (array[3] === 1){
-                array1.push("Sore Throat")
-            }
-            if (array[4] === 1){
-                array1.push("Phlegm")
-            }
-            if (array[5] === 1){
-                array1.push("Runny Nose")
-            }
-            if (array[6] === 1){
-                array1.push("Nauseous")
-            }
-            if (array[7] === 1){
-                array1.push("Out of Breath")
-            }
-            if (array[8] === 1){
-                array1.push("Stomachache")
-            }
-            if (array[9] === 1){
-                array1.push("Chills")
-            }
-            if (array[10] === 1){
-                array1.push("Muscle Sickness")
-            }
-            if (array[11] != null){
-                array1.push(array[11])
-            }
+        if (array[0] === 1) {
+            array1.push("Cough")
+        }
+        if (array[1] === 1) {
+            array1.push("Vomit")
+        }
+        if (array[2] === 1) {
+            array1.push("Fever")
+        }
+        if (array[3] === 1) {
+            array1.push("Sore Throat")
+        }
+        if (array[4] === 1) {
+            array1.push("Phlegm")
+        }
+        if (array[5] === 1) {
+            array1.push("Runny Nose")
+        }
+        if (array[6] === 1) {
+            array1.push("Nauseous")
+        }
+        if (array[7] === 1) {
+            array1.push("Out of Breath")
+        }
+        if (array[8] === 1) {
+            array1.push("Stomachache")
+        }
+        if (array[9] === 1) {
+            array1.push("Chills")
+        }
+        if (array[10] === 1) {
+            array1.push("Muscle Sickness")
+        }
+        if (array[11] != null) {
+            array1.push(array[11])
+        }
         return array1
     };
     console.log(scheduleData)
@@ -66,7 +66,7 @@ const PatientsList = () => {
     return (
         <PatientContainer>
             <CalenderBox>
-                <Calen/>
+                {/* <Calen /> */}
             </CalenderBox>
             <Title>Upcoming Patients</Title>
             <Divider />
@@ -90,7 +90,7 @@ const PatientsList = () => {
                         </PatientElement>
                         <Divider />
                     </Column>
-                    ))}
+                ))}
             </PatientElementContainer>
         </PatientContainer>
     );
