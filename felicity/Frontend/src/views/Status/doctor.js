@@ -11,10 +11,10 @@ function StatusDoctor() {
     <Mostouter>
 
     <Cat>
-    <Header />
+      <Header isDoctor={true}/>
     </Cat>
     <Directory>
-    <Path />
+    <Path directory="Recent Post"/>
     </Directory>
 
     <User>

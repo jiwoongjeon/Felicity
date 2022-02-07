@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -80,7 +81,7 @@ export const IconArea = styled.div`
   flex-direction: column;
 `;
 
-export const ReplyBtn = styled.p`
+export const ReplyBtn = styled(Link)`
   color: #FF800B;
   font-weight: bold;
 `;

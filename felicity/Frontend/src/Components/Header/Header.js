@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import needhelp from '../assets/needhelp_highres.png'
+import LogoImg from '../assets/telep_logo_horizon.png';
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -11,11 +12,13 @@ import {
 } from "react-pro-sidebar";
 
 //import icons from react icons
+import { AiFillHome, AiOutlineBarChart, AiOutlinePlus } from "react-icons/ai";
+import { IoIosDocument, IoMdPerson } from "react-icons/io";
 import { FaList, FaRegHeart } from "react-icons/fa";
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
-
+import { IoHome } from "react-icons/io"
 
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
@@ -24,7 +27,7 @@ import "./Header.css";
 const { HelpContainer, ActiveButton, MenuButton} = require("./styles");
 
 
-const Header = () => {
+const Header = (props) => {
   
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false)
@@ -43,24 +46,28 @@ const Header = () => {
           <SidebarHeader>
           <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{"Felicity"}</p>
+              <img src={LogoImg} className='logo' alt='logo'></img>
             </div>
-
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
-                See your patient
-              </MenuItem>
-              <MenuItem icon={<FaList />}>Home
+
+              {props.isDoctor &&
+                <MenuItem active={true} icon={<AiOutlinePlus />}>See your patient</MenuItem>}
+              {!props.isDoctor &&
+                <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
+                <MenuButton to={`./Appointment`}></MenuButton></MenuItem>}
+              
+              <MenuItem icon={<AiFillHome />}>Home
                 <MenuButton to={`./Home`}></MenuButton>
               </MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Status
+              <MenuItem icon={<AiOutlineBarChart />}>Status
                 <MenuButton  to={`./Status`}></MenuButton>
               </MenuItem>
-              <MenuItem icon={<RiPencilLine />}>My Checklist
+              <MenuItem icon={<IoIosDocument />}>My Checklist
               <MenuButton  to={`./Checklist`}></MenuButton></MenuItem>
-              <MenuItem icon={<BiCog />}>Profile</MenuItem>
+              <MenuItem icon={<IoMdPerson />}>Profile
+              <MenuButton  to={`./Profile`}></MenuButton></MenuItem>
             </Menu>
             
           </SidebarContent>

@@ -15,7 +15,6 @@ export const ContentLayout = styled.div`
         "list info";
     background-color : #F8F9FA;
     gap: 10px;
-    padding-bottom: 20px;
     padding-right: 20px;
 `;
 

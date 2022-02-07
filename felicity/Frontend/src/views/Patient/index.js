@@ -24,11 +24,11 @@ function Patient() {
       <Mostouter>
   
       <Cat>
-           <Header />
+        <Header isDoctor={false}/>
       </Cat>
   
       <Directory>
-          <Path />
+          <Path directory="Home"/>
       </Directory>
   
       <User>

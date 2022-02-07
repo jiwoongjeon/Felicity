@@ -1,3 +1,4 @@
+import { propTypes } from "react-bootstrap/esm/Image";
 import { Container, ConversationContainer, ConversationList, Header, IconArea, InfoArea, PhotoArea, Preview, ReplyBtn, Username } from "./styles";
 
 const Data = [
@@ -64,7 +65,7 @@ export const Conversations = () => {
               <Preview>{data.preview}</Preview>
             </InfoArea>
             <IconArea>
-              <ReplyBtn>REPLY</ReplyBtn>
+              <ReplyBtn to={`./Chatting`}>REPLY</ReplyBtn>
             </IconArea>
           </ConversationContainer>
         ))}

@@ -13,10 +13,10 @@ function StatusPatient() {
       <Mostouter>
 
       <Cat>
-        <Header />
+        <Header isDoctor={false}/>
       </Cat>
       <Directory>
-        <Path />
+        <Path directory="Doctor List"/>
       </Directory>
 
       <User>
