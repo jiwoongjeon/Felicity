@@ -19,6 +19,8 @@ function MHT4() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (4/6)</SubTitle>
+            <SubmitButton to={`/MHT5`}>
+                Next</SubmitButton>
             <Label>4. How much does it hurt?  *</Label>
             <SliderBox>
               <Label>Mild</Label>
@@ -33,9 +35,6 @@ function MHT4() {
               onChange={severity} />
               <Label>Severe</Label>
             </SliderBox>
-            
-            <SubmitButton to={`/MHT5`}>
-                Next</SubmitButton>
         </QuestionContainer>
     </MainContainer>
   );

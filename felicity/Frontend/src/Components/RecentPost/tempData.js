@@ -1,69 +1,48 @@
 export const POST_DATA = [
     {
-        no: 162,
-        patient: "Esthera Jackson",
+        id: 168,
+        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         symptoms: [
             {id:"High Fever"}
             ,
             {id:"Cough"}
         ],
-        date: "2021-09-20"
+        date: "2022/01/22 10:20",
+        state: false
     },
     {
-        no: 161,
-        patient: "Alexa Liras",
+        id: 167,
+        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         symptoms: [
             {id:"High Fever"}
+            ,
+            {id:"Cough"}
         ],
-        date: "2021-09-20"
+        date: "2022/01/21 10:20",
+        state: true
     },
     {
-        no: 160,
-        patient: "Laurent Michael",
+        id: 166,
+        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         symptoms: [
-            {id:"Headache"},
-            {id:"Allergy"}
+            {id:"High Fever"}
+            ,
+            {id:"Cough"}
         ],
-        date: "2021-09-20"
+        date: "2022/01/20 10:20",
+        state: false
     },
-    {
-        no: 159,
-        patient: "Freduardo Hill",
-        symptoms: [
-            {id:"Sore throat"}
-        ],
-        date: "2021-09-20"
-    },
-    {
-        no: 158,
-        patient: "Daniel Thomas",
-        symptoms: [
-            {id:"High Fever"},
-            {id:"Diarrhea"}
-        ],
-        date: "2021-09-20"
-    },
-    {
-        no: 157,
-        patient: "Esthera Jackson",
-        symptoms: [
-            {id:"Itch"}
-        ],
-        date: "2021-09-20"
-    },
-    {
-        no: 156,
-        patient: "Mark Wilson",
-        symptoms: [
-            {id:"Headache"}
-        ],
-        date: "2021-09-20"
-    },
-    
 ];
 
 export const CATEGORY_DATA = [
-    {id: "Respiratory disease"},
-    {id: "Pediatric care"},
-    {id: "Skin disease"}
+    {id: "All Clinics"},
+    {id: "Internal Medicine"},
+    {id: "Ear-Nose-And-Throat Department"},
+    {id: "Orthopedics"},
+    {id: "Orthopedics"},
+    {id: "Orthopedics"},
+    {id: "Orthopedics"},
 ];

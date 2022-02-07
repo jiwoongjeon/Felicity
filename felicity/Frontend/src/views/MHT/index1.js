@@ -13,6 +13,8 @@ function MHT1() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (1/6)</SubTitle>
+            <SubmitButton to={`/MHT2`}>
+                Next</SubmitButton>
             <Label>1. Where does it hurt?  *</Label>
             <InputBox>
                 <BodyInput/>
@@ -36,15 +38,13 @@ function MHT1() {
                 onChange={({ target }) => setRadio(!target.value)}
               />
             </RadioBox>
-
             { radioValue &&
             <InputBox>
               <DepartmentInput />
             </InputBox> }
-
-            <SubmitButton to={`/MHT2`}>
-                Next</SubmitButton>
+            
         </QuestionContainer>
+
     </MainContainer>
   );
 }

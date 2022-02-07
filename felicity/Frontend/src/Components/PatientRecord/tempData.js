@@ -23,5 +23,10 @@ export const PATIENT_RECORD = [
         id: "Covid Vaccine 2nd dose",
         date: "09/3/2021",
         doctor: "TBD"
+    },
+    {
+        id: "Covid Vaccine 2nd dose",
+        date: "09/3/2021",
+        doctor: "TBD"
     }
 ]

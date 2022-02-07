@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -14,22 +15,35 @@ export const Container = styled.div`
 
 export const Header = styled.p`
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-weight: bold;
   font-size:20px;
 `;
 
+export const ConversationList = styled.div`
+width: 95%;
+height: 100%
+display:flex;
+flex-direction:column;
+overflow-y:auto;
+&::-webkit-scrollbar {
+  width: 10px;
+}
+`;
+
 export const ConversationContainer = styled.div`
+  width: 95%;
+  height: 65px;
+  max-width: 95%;
   display: flex;
   flex-direction: row;
-  width: 95%;
   margin-bottom: 30px;
-
 `;
 
 export const PhotoArea = styled.div`
-  flex: 1.5;
-  height: 100%;
+  width:65px;
+  height:65px;
+  min-width:65px;
   border-radius: 8px;
   background-image: url(${props => props.img});
   background-position: center;
@@ -39,9 +53,11 @@ export const PhotoArea = styled.div`
 
 export const InfoArea = styled.div`
   flex: 8;
+  max-width:80%
   display: flex;
   flex-direction: column;
   padding-left: 10px;
+  overflow-y:hidden;
 `;
 
 export const Username = styled.p`
@@ -56,14 +72,16 @@ export const Preview = styled.p`
   margin-top: 5px;
   color: rgba(107, 114, 128);
   text-align: left;
+  overflow:hidden;
 `;
 
 export const IconArea = styled.div`
   flex: 1;
-
+  display: flex;
+  flex-direction: column;
 `;
 
-export const ReplyBtn = styled.p`
+export const ReplyBtn = styled(Link)`
   color: #FF800B;
   font-weight: bold;
 `;

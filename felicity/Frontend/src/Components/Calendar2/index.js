@@ -7,7 +7,7 @@ export const Calen = () => {
 
   return (
     <div>
-      <Calendar onChange={onChange} value={value}/>
+      <Calendar onChange={onChange} value={value} locale='en-EN'/>
     </div>
   );
 }

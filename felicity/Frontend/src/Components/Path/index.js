@@ -8,20 +8,17 @@ Directory,
 Title,
 } from "./styles";
 
-const Path = () => {
+const Path = (props) => {
   return (
   <MainContainer>
     <Directory>
-        <ParentDirectory>
-        Pages /
-        </ParentDirectory>
-        <CurrentDirectory>
-        Meeting
-        </CurrentDirectory>
+        <ParentDirectory>Pages /</ParentDirectory>
+        <CurrentDirectory>{props.directory}</CurrentDirectory>
     </Directory>
-    <Title>
-        Meeting with your Patient
-    </Title>
+
+    {props.meeting &&
+      <Title>{props.title}</Title>}
+      
   </MainContainer>
 
   );

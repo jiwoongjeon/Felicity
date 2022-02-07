@@ -21,11 +21,11 @@ function Doctor() {
     <Mostouter>
 
     <Cat>
-         <Header />
+        <Header isDoctor={true}/>
     </Cat>
 
     <Directory>
-        <Path />
+        <Path directory="Home"/>
     </Directory>
 
     <User>
@@ -42,10 +42,6 @@ function Doctor() {
             <InfoBox>
                 <CV />
             </InfoBox>
-            
-            <Post>
-                <RecentPost/>
-            </Post>
 
         </ContentLayout>
     </Video>
