@@ -7,28 +7,16 @@ let patientID = -1
 let accessToken = null
 
 
-<<<<<<< HEAD
-Object.prototype.getByIndex = function(index) {
-    return this[Object.keys(this)[index]];
-  };
-
-function docLogin([email, password]){
-=======
 Object.prototype.getByIndex = function (index) {
     return this[Object.keys(this)[index]];
 };
 
 function docLogin([email, password]) {
->>>>>>> 946018a293344c5551650e8a7b2b4494a7e0f9c8
     dlogin.doctorLogin([email, password], (err, result) => {
         if (err) console.log(err);
         // res.json(result);
         doctorID = result[0].getByIndex(0)
-<<<<<<< HEAD
-        const payload = {email:email}
-=======
         const payload = { email: email }
->>>>>>> 946018a293344c5551650e8a7b2b4494a7e0f9c8
         accessToken = auth.generateAccessToken(payload)
         //res.cookie("jwt", accessToken)
         //res.send()
@@ -36,17 +24,6 @@ function docLogin([email, password]) {
     return [doctorID, accessToken]
 }
 
-<<<<<<< HEAD
-function paLogin([email, password]){
-    plogin.patientLogin([email, password], (err, result) =>{
-        if (err) console.log(err);
-        // res.json(result);
-        patientID = result[0].getByIndex(0)
-        const payload = {email:eamil}
-        accessToken = auth.generateAccessToken(payload)
-        res.json({accessToken:accessToken, doctorID:doctorID})
-        //res.cooke("jwt", accessToken)
-=======
 function paLogin([email, password]) {
     plogin.patientLogin([email, password], (err, result) => {
         if (err) console.log(err);
@@ -56,17 +33,11 @@ function paLogin([email, password]) {
         accessToken = auth.generateAccessToken(payload)
         res.json({ accessToken: accessToken, doctorID: doctorID })
         //res.cookie("jwt", accessToken)
->>>>>>> 946018a293344c5551650e8a7b2b4494a7e0f9c8
         //res.send()
     });
     return [patientID, accessToken]
 }
 
 
-<<<<<<< HEAD
-exports.docLogin=docLogin;
-exports.paLogin=paLogin;
-=======
 exports.docLogin = docLogin;
 exports.paLogin = paLogin;
->>>>>>> 946018a293344c5551650e8a7b2b4494a7e0f9c8
