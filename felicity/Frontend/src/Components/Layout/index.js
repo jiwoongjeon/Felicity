@@ -14,13 +14,13 @@ import {
     InfoBox
 } from "./styles";
 
-const Layout = ({ myVideo }) => {
+const Layout = ({ context }) => {
     return (
         <div className="Layout">
             <ContentLayout>
 
                 <VideoBox>
-                    <Video myVideo={myVideo} />
+                    <Video context={context} />
                 </VideoBox>
 
                 <Empty>

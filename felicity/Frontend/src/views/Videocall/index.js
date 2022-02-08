@@ -13,11 +13,12 @@ function Videocall(props) {
 
   const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = useContext(SocketContext);
 
+  const context = { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio }
+
   useEffect(() => startCall(), []);
 
   return (
     <Mostouter>
-
       <Cat>
         <Header isDoctor={props.isDoctor} />
       </Cat>
@@ -36,7 +37,7 @@ function Videocall(props) {
 
 
       <Video>
-        <Layout myVideo={myVideo} />
+        <Layout context={context} />
       </Video>
 
 
