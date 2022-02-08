@@ -19,7 +19,7 @@
     "json-web-token": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.0",
-    "nodemon": "^2.0.12",
+    "nodemon": "^2.0.15",
     "socket.io": "^4.4.1",
     "sox": "^0.1.0"
   }
