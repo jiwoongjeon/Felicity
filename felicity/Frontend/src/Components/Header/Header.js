@@ -20,15 +20,15 @@ import { MdFormatListBulleted } from "react-icons/md";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 
-const { HelpContainer, ActiveButton, MenuButton} = require("./styles");
+const { HelpContainer, ActiveButton, MenuButton } = require("./styles");
 
 
 const Header = (props) => {
-  
-    //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(false)
 
-    //create a custom function that will change menucollapse state from false to true and true to false
+  //create initial menuCollapse state using useState hook
+  const [menuCollapse, setMenuCollapse] = useState(false)
+
+  //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
     //condition checking to change state from true to false and vice versa
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
@@ -37,10 +37,10 @@ const Header = (props) => {
   return (
     <>
       <div id="header">
-          {/* collapsed props to change menu size using menucollapse state */}
+        {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
-          <div className="logotext">
+            <div className="logotext">
               {/* small and big change using menucollapse state */}
               <img src={LogoImg} className='logo' alt='logo'></img>
             </div>
@@ -52,26 +52,27 @@ const Header = (props) => {
                 <MenuItem active={true} icon={<AiOutlinePlus />}>See your patient</MenuItem>}
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
-                <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
-              
+                  <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
+              {/* <MenuButton to={"/Patient/videocall"}></MenuButton></MenuItem>} */}
+
               <MenuItem icon={<AiFillHome />}>Home
                 <MenuButton to={`./Home`}></MenuButton>
               </MenuItem>
               <MenuItem icon={<AiOutlineBarChart />}>Status
-                <MenuButton  to={`./Status`}></MenuButton>
+                <MenuButton to={`./Status`}></MenuButton>
               </MenuItem>
               {!props.isDoctor &&
                 <MenuItem icon={<MdFormatListBulleted />} >Recent Post
-                <MenuButton to={`./RecentPost`}></MenuButton></MenuItem>}
+                  <MenuButton to={`./RecentPost`}></MenuButton></MenuItem>}
               <MenuItem icon={<IoIosDocument />}>My Checklist
-              <MenuButton  to={`./Checklist`}></MenuButton></MenuItem>
+                <MenuButton to={`./Checklist`}></MenuButton></MenuItem>
               <MenuItem icon={<IoMdPerson />}>Profile
-              <MenuButton  to={`./Profile`}></MenuButton></MenuItem>
+                <MenuButton to={`./Profile`}></MenuButton></MenuItem>
             </Menu>
-            
+
           </SidebarContent>
           <SidebarFooter>
-            <HelpContainer img = {needhelp}>
+            <HelpContainer img={needhelp}>
               <ActiveButton>Active</ActiveButton>
             </HelpContainer>
             {/*<img  src={needhelp} alt=""/>*/}
