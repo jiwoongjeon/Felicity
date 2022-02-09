@@ -8,8 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-var mysql = require('mysql');
-
 
 
 var bodyParser = require('body-parser')
@@ -21,9 +19,7 @@ app.use(bodyParser.json());
 
 
 
-
-app.use(require("./patientlogin/router"));
-app.use(require("./doctorlogin/router"));
+app.use(require("./patientLogin/router"));
 app.use(require("./posts/router"));
 app.use(require("./schedules/router"));
 
@@ -137,11 +133,11 @@ app.post("/reservation", (req,res) => {
     const created_date = req.body.created_date
     // var reservationQuery1 = "INSERT INTO felicity.symptom('patient_id', 'wounded_area', 'preferred_department', 'injured_time', 'severity', 'reason', 'created_time' ) " + 
     // "VALUES (" + patient_id + ", " + wounded_area + ", " + preferred_department + ", " + injured_time + ", " + severity + ", " + reason + ", " + created_date + "); "
-    var reservationQuery1 = mysql.format("INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (?, ?, ?, ?, ?, ?, ?);", [patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_date]);
+    var reservationQuery1 = config.db.mysql.format("INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (?, ?, ?, ?, ?, ?, ?);", [patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_date]);
     // var reservationQuery2 = "INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) " + 
     // "SELECT id, " + patient_id + ", " + doctor_id + ", " + reservation_date + ", " + created_date + ", " + socket_id + " "
     // "FROM symptom ORDER BY id DESC LIMIT 1; "
-    var reservationQuery2 = mysql.format("INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;", [patient_id, doctor_id, reservation_date, created_date, socket_id])
+    var reservationQuery2 = config.db.mysql.format("INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;", [patient_id, doctor_id, reservation_date, created_date, socket_id])
     // var reservationQuery3 = "INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) " + 
     // "SELECT id, " + cough + ", " + vomit + ", " + fever + ", " + sore_throat + ", " + runny_nose + ", " + phlegm + ", " + nauseous + ", " + out_of_breath + ", " + stomachache + ", " +
     // chills + ", " + muscle_sickness + ", " + other + " " +
@@ -174,7 +170,7 @@ const io = socket(server, {
     },
 });
 
-// //chat
+//chat
 // const auth = require("./authentication.js")
 // io.use(auth.chatAuth).on("connection", (socket) => {
 //     socket.on("chatting", (data) => {
