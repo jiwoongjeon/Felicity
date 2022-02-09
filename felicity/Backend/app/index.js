@@ -133,28 +133,28 @@ app.post("/reservation", (req,res) => {
     const created_date = req.body.created_date
     // var reservationQuery1 = "INSERT INTO felicity.symptom('patient_id', 'wounded_area', 'preferred_department', 'injured_time', 'severity', 'reason', 'created_time' ) " + 
     // "VALUES (" + patient_id + ", " + wounded_area + ", " + preferred_department + ", " + injured_time + ", " + severity + ", " + reason + ", " + created_date + "); "
-    var reservationQuery1 = config.db.mysql.format("INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (?, ?, ?, ?, ?, ?, ?);", [patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_date]);
+    var reservationQuery1 = "INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (?, ?, ?, ?, ?, ?, ?);" 
     // var reservationQuery2 = "INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) " + 
     // "SELECT id, " + patient_id + ", " + doctor_id + ", " + reservation_date + ", " + created_date + ", " + socket_id + " "
     // "FROM symptom ORDER BY id DESC LIMIT 1; "
-    var reservationQuery2 = config.db.mysql.format("INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;", [patient_id, doctor_id, reservation_date, created_date, socket_id])
+    var reservationQuery2 = "INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;" 
     // var reservationQuery3 = "INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) " + 
     // "SELECT id, " + cough + ", " + vomit + ", " + fever + ", " + sore_throat + ", " + runny_nose + ", " + phlegm + ", " + nauseous + ", " + out_of_breath + ", " + stomachache + ", " +
     // chills + ", " + muscle_sickness + ", " + other + " " +
     // "FROM symptom ORDER BY id DESC LIMIT 1;"
     // var reservationQuery = "BEGIN; INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (6, 'dd', 'vkdeiv', '2020-12-33', 'yye', 'reason', 'created_time'); INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, 6, 7, '2022-12-04', '2022-12-04', 19231 FROM symptom ORDER BY id DESC LIMIT 1; INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) SELECT id, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'others' FROM symptom ORDER BY id DESC LIMIT 1; COMMIT;"
-    var reservationQuery3 = mysql.format("INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) SELECT id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;", [cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other])
-    config.db.query(reservationQuery1,(err, result) => {
+    var reservationQuery3 = "INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) SELECT id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;"
+    config.db.query(reservationQuery1,[patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_date],(err, result) => {
         if (err) console.log(err);
         // console.log(result);
         res.json(result)
     })
-    config.db.query(reservationQuery2,(err, result) => {
+    config.db.query(reservationQuery2,[patient_id, doctor_id, reservation_date, created_date, socket_id], (err, result) => {
         if (err) console.log(err);
         // console.log(result);
         // res.json(result)
     })
-    config.db.query(reservationQuery3,(err, result) => {
+    config.db.query(reservationQuery3, [cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other], (err, result) => {
         if (err) console.log(err);
         // console.log(result);
         // res.json(result)
