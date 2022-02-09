@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import default_profile from '../assets/default_profile.png'
 
 export const Container = styled.div`
   width: 100%;
@@ -45,7 +46,7 @@ export const PhotoArea = styled.div`
   height:65px;
   min-width:65px;
   border-radius: 8px;
-  background-image: url(${props => props.img});
+  background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

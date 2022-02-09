@@ -34,8 +34,7 @@ const DATA = [
     }
 ];
 
-export const Schedule = () => {
-    // const [data, setData] = useState([]);
+export const Schedule = (props) => {
     return (
         <ScheduleContainer>
             <Header>My Schedule</Header>
