@@ -70,6 +70,7 @@ app.post("/patient_schedule", (req, res) => {
     "symptom.preferred_department as department, " +
     "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
     "date_format((reserved_date), '%l:%i %p') as reserved_time " +
+    "symptom.wounded_area as wounded_area, symptom.preferred_department as preferred_department, symptom.injured_time as injured_time, symptom.severity as severity, symptom.reason as reason " + 
     "FROM felicity.reservation JOIN symptom_list ON reservation.symptom_id = symptom_list.symptom_id " +
     "JOIN symptom ON reservation.patient_id = symptom.patient_id " +
     "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " + 
@@ -95,7 +96,8 @@ app.post("/doctor_schedule", (req, res) => {
     "symptom_list.chills as j, symptom_list.muscle_sickness as k, symptom_list.other as l, " +
     "symptom.preferred_department as department, " +
     "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
-    "date_format((reserved_date), '%l:%i %p') as reserved_time " +
+    "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
+    "symptom.wounded_area as wounded_area, symptom.preferred_department as preferred_department, symptom.injured_time as injured_time, symptom.severity as severity, symptom.reason as reason " + 
     "FROM felicity.reservation JOIN symptom_list ON reservation.symptom_id = symptom_list.symptom_id " +
     "JOIN symptom ON reservation.patient_id = symptom.patient_id " +
     "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " + 
