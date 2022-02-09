@@ -21,7 +21,9 @@ app.use(bodyParser.json());
 
 
 
-app.use(require("./patientLogin/router"));
+
+app.use(require("./patientlogin/router"));
+app.use(require("./doctorlogin/router"));
 app.use(require("./posts/router"));
 app.use(require("./schedules/router"));
 
@@ -172,7 +174,7 @@ const io = socket(server, {
     },
 });
 
-//chat
+// //chat
 // const auth = require("./authentication.js")
 // io.use(auth.chatAuth).on("connection", (socket) => {
 //     socket.on("chatting", (data) => {

@@ -26,17 +26,13 @@ function MHT1() {
                   name="true"
                   value={radioValue}
                   checked={radioValue}
-                  onChange={({ target }) => {
-                    console.log(target.value);
-                    setRadio(Boolean(target.value));
-                  }}/>
+                  onChange={({ target }) => setRadio(Boolean(target.value)) }/>
               <RadioButton
                 label="No."
                 name="false"
                 value={!radioValue}
                 checked={!radioValue}
-                onChange={({ target }) => setRadio(!target.value)}
-              />
+                onChange={({ target }) => setRadio(!target.value) } />
             </RadioBox>
             { radioValue &&
             <InputBox>

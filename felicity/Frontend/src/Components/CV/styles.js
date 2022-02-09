@@ -89,3 +89,12 @@ export const Btn = styled(Link)`
       color: white;
     }
 `;
+
+export const DefaultLabel = styled.p`
+  text-align: center;
+  font-weight: bold;
+  font-family: Roboto;
+  color: #aaaaaa;
+  margin-top: 10%;
+  font-size: 20px;
+`;

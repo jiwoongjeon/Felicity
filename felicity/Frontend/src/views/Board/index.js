@@ -6,13 +6,13 @@ import Login from '../../Components/Login';
 import { BoardDetail } from "../../Components/BoardDetail";
 
 
-function Board() {
+function Board(props) {
   return (
 
     <Mostouter>
 
     <Cat>
-        <Header/>
+        <Header isDoctor={props.isDoctor}/>
     </Cat>
 
     <Directory>
@@ -25,7 +25,7 @@ function Board() {
 
 
     <Video>
-      <BoardDetail />
+      <BoardDetail isDoctor={props.isDoctor}/>
     </Video>
 
 

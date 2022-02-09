@@ -22,7 +22,6 @@ import Board from "./views/Board";
 import NewBoard from "./views/NewBoard";
 import Appointment from "./views/Appointment";
 
-
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
@@ -38,7 +37,7 @@ const ROUTES = [
   { path: "/MHT6", key: "video", component: () => <MHT6 /> },
   { path: "/MHT7", key: "video", component: () => <MHT7 /> },
 
-  { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor /> },
+  { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor isDoctor={true}/> },
   { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
   { path: "/Doctor/Checklist", key: "video", component: () => <Checklist isDoctor={true}/> },
   { path: "/Patient/Checklist", key: "video", component: () => <Checklist isDoctor={false}/> },
@@ -48,10 +47,13 @@ const ROUTES = [
   { path: "/Doctor/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
   { path: "/Patient/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
 
-  { path: "/Doctor/Board", key: "video", component: () => <Board/> },
-  { path: "/Doctor/NewPost", key: "video", component: () => <NewBoard/> },
+  { path: "/Doctor/Board", key: "video", component: () => <Board isDoctor={true}/> },
+  { path: "/Patient/Board", key: "video", component: () => <Board isDoctor={false}/> },
+  { path: "/Doctor/NewPost", key: "video", component: () => <NewBoard isDoctor={true}/> },
+  { path: "/Patient/NewPost", key: "video", component: () => <NewBoard isDoctor={false}/> },
 
   { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
+  { path: "/Patient/RecentPost", key: "PS", component: () => <StatusDoctor isDoctor={false}/> },
 ];
 
 export default ROUTES;

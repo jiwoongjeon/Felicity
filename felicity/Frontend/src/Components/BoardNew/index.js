@@ -1,16 +1,41 @@
+import React from "react";
 import { AiFillCamera } from "react-icons/ai";
+import TextField from '@mui/material/TextField';
 
-const { NewBoardContainer, Header, WriteContainer, TitleInput, ContentInput, WriteSubContainer, SubmitBtn, Column, Divider  } = require('./styles')
+const { NewBoardContainer, Header, WriteContainer, WriteSubContainer, SubmitBtn, Column, Divider, ColumnTitle, SubmitBtnDisabled  } = require('./styles')
 
 
-export const BoardNew = (props) => {
+export const BoardNew = () => {
+
+    const [title, setTitle] = React.useState('');
+    const [content, setContent] = React.useState('');
+
+    let button;
+    const handleTitle = (event) => { setTitle(event.target.value); };
+    const handleContent = (event) => { setContent(event.target.value); };
+
+    if (title == '' || content == '') {
+        button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+    }
+    else {
+        button = <SubmitBtn>Submit</SubmitBtn>
+    }
 
     return(
         <NewBoardContainer>
             <Header>New Question</Header>
 
             <WriteContainer>
-                <TitleInput />
+                <ColumnTitle>
+                    <TextField
+                    fullWidth
+                    defaultValue={title}
+                    variant="standard"
+                    placeholder="Title"
+                    value={title}
+                    onChange={handleTitle}
+                    />
+                </ColumnTitle>
                 <Divider />
 
                 <WriteSubContainer>
@@ -20,13 +45,20 @@ export const BoardNew = (props) => {
 
                     <Divider />
 
-                    <ContentInput 
-                    rows = '5'/>
+                    <TextField
+                    rows={18}
+                    multiline
+                    fullWidth
+                    variant="standard"
+                    placeholder="Write Contents..."
+                    value={content}
+                    onChange={handleContent}
+                    />
 
                 </WriteSubContainer>
                 <Divider />
-                <SubmitBtn>Submit</SubmitBtn>
-
+                {button}
+                
             </WriteContainer>
 
         </NewBoardContainer>

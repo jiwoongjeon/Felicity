@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import default_profile from '../assets/default_profile.png'
+
 export const PostContainer = styled.div`
 width: 100%;
 height: 100%;
@@ -141,12 +143,15 @@ export const No = styled.p`
   margin-top: 4px;
   color: gray;
 `;
-export const Photo = styled.img`
-    width: 80px;
-    height: 80px;
-    border: none;
-    border-radius: 20px;
-    margin: 0 20px;
+export const PhotoArea = styled.div`
+  width:65px;
+  height:65px;
+  min-width:65px;
+  border-radius: 8px;
+  background-image: url(${props => props.img? props.img : default_profile });
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 export const Doctor = styled.p`
   flex: 12;

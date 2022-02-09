@@ -13,6 +13,5 @@ export const MHT_DATA = [
         K: false,
         L: true,
         L_detail: "other details"
-
     }
 ];

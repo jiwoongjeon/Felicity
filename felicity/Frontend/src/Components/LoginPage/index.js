@@ -41,6 +41,7 @@ function LoginPage({ patientL, doctorL }) {
   return (
     <MainContainer>
 
+
       <LoginContainer>
 
         <Logo src={LogoImg} />
@@ -98,7 +99,7 @@ function LoginPage({ patientL, doctorL }) {
         </CheckboxWrapper>
 
         {radioValue &&
-          <SubmitButton to={`/MHT1`} onClick={patientL({ email, password })}>
+          <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>
             Sign In
           </SubmitButton>
         }
@@ -116,6 +117,7 @@ function LoginPage({ patientL, doctorL }) {
 
 
       </LoginContainer>
+
 
     </MainContainer>
   );
