@@ -52,8 +52,8 @@ const Header = (props) => {
                 <MenuItem active={true} icon={<AiOutlinePlus />}>See your patient</MenuItem>}
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
-                  <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
-              {/* <MenuButton to={"/Patient/videocall"}></MenuButton></MenuItem>} */}
+                {/*   <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}*/}
+              <MenuButton to={"/Patient/videocall"}></MenuButton></MenuItem>} 
 
               <MenuItem icon={<AiFillHome />}>Home
                 <MenuButton to={`./Home`}></MenuButton>

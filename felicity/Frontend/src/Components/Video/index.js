@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-
-
 import { IoMdVideocam } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardVoice, MdAirplay, MdStopScreenShare } from "react-icons/md";
 
 import {
     MainContainer,
+    MainVideoContainer,
+    VideoContainer,
+    TextArea,
     Container,
     Block,
     Button,
@@ -19,25 +20,24 @@ import {
 
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
+    const [visible, setVisible] = React.useState(true);
     return (
         <MainContainer>
-            {stream && (
-                <video playsInline muted ref={myVideo} autoPlay onClick={(!isClicked) ? (getAudio) : (stopAudio)} />
-            )}
+            
             {callAccepted && !callEnded && (
-                <div>
-                    <video playsInline ref={userVideo} autoPlay />
-                    <textarea>{text[0].transcription}</textarea>
-                    <textarea>{text[0].translation}</textarea>
-                </div>
+            <MainVideoContainer>
+                    <VideoContainer playsInline ref={userVideo} autoPlay />
+                    
+            </MainVideoContainer>
             )}
-            <Container>
+            
+            {visible &&<Container id='container'>
                 {(role) ? (
                     call.isReceivedCall && !callAccepted && (
                         <Block>
                             Are you ready to meet your doctor?
                             {console.log(role)}
-                            <Button onClick={answerCall}>
+                            <Button onClick={() => {answerCall();setVisible(false);}}>
                                 Let's start!
                             </Button>
                         </Block>
@@ -46,19 +46,24 @@ const Video = ({ context }) => {
                     <Block>
                         Call your patient!
                         {console.log(role)}
-                        <Button onClick={callUser}>
+                        <Button onClick={() => {callUser();setVisible(false);}}>
                             Let's start!
                         </Button>
                     </Block>
                 )}
 
-            </Container>
+            </Container>}
             <Patient>
+                {stream && (
+                    <VideoContainer playsInline muted ref={myVideo} autoPlay onClick={(!isClicked) ? (getAudio) : (stopAudio)} />
+
+                )}
                 <Name>
                     Mark Wilson
                 </Name>
             </Patient>
-
+            <TextArea>{text[0].transcription}</TextArea>
+            <TextArea>{text[0].translation}</TextArea>
             <Setting>
                 <Phone><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
