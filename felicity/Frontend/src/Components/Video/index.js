@@ -17,16 +17,40 @@ import {
     IconBox,
 } from "./styles";
 
-const Video = ({ myVideo }) => {
+const Video = ({ context }) => {
+    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
     return (
         <MainContainer>
+            {stream && (
+                <video playsInline muted ref={myVideo} autoPlay onClick={(!isClicked) ? (getAudio) : (stopAudio)} />
+            )}
+            {callAccepted && !callEnded && (
+                <div>
+                    <video playsInline ref={userVideo} autoPlay />
+                    <textarea>{text[0].transcription}</textarea>
+                    <textarea>{text[0].translation}</textarea>
+                </div>
+            )}
             <Container>
-                <Block>
-                    Are you ready to meet your doctor?
-                    <Button>
-                        Let's start!
-                    </Button>
-                </Block>
+                {(role) ? (
+                    call.isReceivedCall && !callAccepted && (
+                        <Block>
+                            Are you ready to meet your doctor?
+                            {console.log(role)}
+                            <Button onClick={answerCall}>
+                                Let's start!
+                            </Button>
+                        </Block>
+                    )
+                ) : (
+                    <Block>
+                        Call your patient!
+                        {console.log(role)}
+                        <Button onClick={callUser}>
+                            Let's start!
+                        </Button>
+                    </Block>
+                )}
 
             </Container>
             <Patient>

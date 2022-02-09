@@ -1,5 +1,5 @@
-const plogin = require("./patientLogin/login_model");
-const dlogin = require("./doctorLogin/login_model");
+const plogin = require("./patientlogin/login_model");
+const dlogin = require("./doctorlogin/login_model");
 const auth = require("./authentication.js");
 
 let doctorID = -1
