@@ -186,16 +186,16 @@ const io = socket(server, {
 // })
 
 
-io.on("connection", async socket => {
-    socket.on("message-transcribe", async (file) => {
-        const dataURL = file.audio.dataURL.split(",").pop()
-        let fileBuffer = Buffer.from(dataURL, "base64")
-        const result = await transcribe(fileBuffer)
-        console.log(result)
-        // console.log(dataURL)
-        socket.emit("result", result)
-    })
-})
+// io.on("connection", async socket => {
+//     socket.on("message-transcribe", async (file) => {
+//         const dataURL = file.audio.dataURL.split(",").pop()
+//         let fileBuffer = Buffer.from(dataURL, "base64")
+//         const result = await transcribe(fileBuffer)
+//         console.log(result)
+//         // console.log(dataURL)
+//         socket.emit("result", result)
+//     })
+// })
 
 
 console.log(socket.id);
