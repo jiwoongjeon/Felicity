@@ -186,16 +186,16 @@ const io = socket(server, {
 // })
 
 
-// io.on("connection", async socket => {
-//     socket.on("message-transcribe", async (file) => {
-//         const dataURL = file.audio.dataURL.split(",").pop()
-//         let fileBuffer = Buffer.from(dataURL, "base64")
-//         const result = await transcribe(fileBuffer)
-//         console.log(result)
-//         // console.log(dataURL)
-//         socket.emit("result", result)
-//     })
-// })
+io.on("connection", async socket => {
+    socket.on("message-transcribe", async (file) => {
+        const dataURL = file.audio.dataURL.split(",").pop()
+        let fileBuffer = Buffer.from(dataURL, "base64")
+        const result = await transcribe(fileBuffer)
+        console.log(result)
+        // console.log(dataURL)
+        socket.emit("result", result)
+    })
+
 
 
 console.log(socket.id);
@@ -272,25 +272,26 @@ socket.on("start", (data) => {
     // console.log(otherSocketId);
     // socket.emit("me", ({ socketid, otherUserId, otherSocketId }));
 
-});
+    });
 
-socket.on("disconnect", () => {
-    socket.broadcast.emit("callended");
-});
+    socket.on("disconnect", () => {
+        socket.broadcast.emit("callended");
+    });
 
-socket.on("calluser", ({ userToCall, signalData, from, someName }) => {
-    io.to(userToCall).emit("calluser", { signal: signalData, from, someName });
-});
+    socket.on("calluser", ({ userToCall, signalData, from, someName }) => {
+        io.to(userToCall).emit("calluser", { signal: signalData, from, someName });
+    });
 
-socket.on("answercall", (data) => {
-    io.to(data.to).emit("callaccepted", data.signal);
-});
+    socket.on("answercall", (data) => {
+        io.to(data.to).emit("callaccepted", data.signal);
+    });
 
-socket.on("message-transcribe", async (file) => {
-    const dataURL = file.audio.dataURL.split(",").pop();
-    let fileBuffer = Buffer.from(dataURL, "base64");
-    const result = await transcribe(fileBuffer);
-    console.log(result);
-    // console.log(dataURL);
-    socket.emit("result", result);
-});
+    socket.on("message-transcribe", async (file) => {
+        const dataURL = file.audio.dataURL.split(",").pop();
+        let fileBuffer = Buffer.from(dataURL, "base64");
+        const result = await transcribe(fileBuffer);
+        console.log(result);
+        // console.log(dataURL);
+        socket.emit("result", result);
+    });
+})
