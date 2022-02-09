@@ -22,7 +22,6 @@ import Board from "./views/Board";
 import NewBoard from "./views/NewBoard";
 import Appointment from "./views/Appointment";
 
-
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },

@@ -20,12 +20,13 @@ export const ContentLayout = styled.div`
 
 export const InfoBox = styled.div`
 width: 100%;
-min-width: 300px;
-    grid-area:info;
+min-width: 350px;
+grid-area:info;
 `;
 
 export const PatientBox = styled.div`
-    grid-area: list;
+min-width: 350px;
+grid-area: list;
 `;
 
 
