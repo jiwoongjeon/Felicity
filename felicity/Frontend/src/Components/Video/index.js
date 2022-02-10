@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+
 import { IoMdVideocam } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardVoice, MdAirplay, MdStopScreenShare } from "react-icons/md";
@@ -21,23 +23,24 @@ import {
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
     const [visible, setVisible] = React.useState(true);
+    const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
     return (
         <MainContainer>
-            
+
             {callAccepted && !callEnded && (
-            <MainVideoContainer>
+                <MainVideoContainer>
                     <VideoContainer playsInline ref={userVideo} autoPlay />
-                    
-            </MainVideoContainer>
+
+                </MainVideoContainer>
             )}
-            
-            {visible &&<Container id='container'>
+
+            {visible && <Container id='container'>
                 {(role) ? (
                     call.isReceivedCall && !callAccepted && (
                         <Block>
                             Are you ready to meet your doctor?
                             {console.log(role)}
-                            <Button onClick={() => {answerCall();setVisible(false);}}>
+                            <Button onClick={() => { answerCall(); setVisible(false); }}>
                                 Let's start!
                             </Button>
                         </Block>
@@ -46,7 +49,7 @@ const Video = ({ context }) => {
                     <Block>
                         Call your patient!
                         {console.log(role)}
-                        <Button onClick={() => {callUser();setVisible(false);}}>
+                        <Button onClick={() => { callUser(); setVisible(false); }}>
                             Let's start!
                         </Button>
                     </Block>
@@ -62,8 +65,8 @@ const Video = ({ context }) => {
                     Mark Wilson
                 </Name>
             </Patient>
-            <TextArea>{text[0].transcription}</TextArea>
-            <TextArea>{text[0].translation}</TextArea>
+            <TextArea>{temptxt[0].transcription}</TextArea>
+            <TextArea>{temptxt[0].translation}</TextArea>
             <Setting>
                 <Phone><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
