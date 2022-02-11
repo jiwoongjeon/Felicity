@@ -8,6 +8,8 @@ const SocketContext = createContext();
 
 const socket = io("http://localhost:3001");
 
+let recordAudio;
+
 const ContextProvider = ({ children }) => {
     const [id, setId] = useState(0);
     const [role, setRole] = useState(true); // true: p, false: d
@@ -20,7 +22,6 @@ const ContextProvider = ({ children }) => {
     const [callEnded, setCallEnded] = useState(false);
     const [someName, setSomeName] = useState("");
 
-    let recordAudio;
     const [isClicked, setIsClicked] = useState(false);
     const [text, setText] = useState([
         {
@@ -217,7 +218,15 @@ const ContextProvider = ({ children }) => {
     })
 
     return (
-        <SocketContext.Provider value={{ userToCall, setUserToCall, role, setRole, postPatientLogin, postDoctorLogin, id, startCall, call, callAccepted, myVideo, userVideo, stream, someName, setSomeName, callEnded, me, callUser, leaveCall, answerCall, isClicked, getAudio, stopAudio, text }}>
+        <SocketContext.Provider
+            value={{
+                userToCall, setUserToCall, role, setRole, postPatientLogin,
+                postDoctorLogin, id, startCall, call, callAccepted, myVideo,
+                userVideo, stream, someName, setSomeName, callEnded, me,
+                callUser, leaveCall, answerCall, isClicked, getAudio,
+                stopAudio, text, recordAudio
+            }}
+        >
             {children}
         </SocketContext.Provider>
     );
