@@ -23,8 +23,8 @@ app.use(require("./patientlogin/router"));
 app.use(require("./posts/router"));
 app.use(require("./schedules/router"));
 
-const login = require("./login.js")
-const schedule = require("./schedule.js")
+// const login = require("./login.js")
+// const schedule = require("./schedule.js")
 
 app.get("/audio", (req, res) => {
     console.log(req.body);
@@ -282,14 +282,5 @@ io.on("connection", async socket => {
 
     socket.on("answercall", (data) => {
         io.to(data.to).emit("callaccepted", data.signal);
-    });
-
-    socket.on("message-transcribe", async (file) => {
-        const dataURL = file.audio.dataURL.split(",").pop();
-        let fileBuffer = Buffer.from(dataURL, "base64");
-        const result = await transcribe(fileBuffer);
-        console.log(result);
-        // console.log(dataURL);
-        socket.emit("result", result);
     });
 })

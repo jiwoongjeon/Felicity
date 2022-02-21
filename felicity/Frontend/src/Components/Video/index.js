@@ -23,7 +23,7 @@ import {
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
     const [visible, setVisible] = React.useState(true);
-    const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
+    // const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
     return (
         <MainContainer>
 
@@ -65,8 +65,8 @@ const Video = ({ context }) => {
                     Mark Wilson
                 </Name>
             </Patient>
-            <TextArea>{temptxt[0].transcription}</TextArea>
-            <TextArea>{temptxt[0].translation}</TextArea>
+            <TextArea>{text[0].transcription}</TextArea>
+            <TextArea>{text[0].translation}</TextArea>
             <Setting>
                 <Phone><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
