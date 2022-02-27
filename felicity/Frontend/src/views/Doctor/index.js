@@ -90,7 +90,7 @@ function Doctor() {
     <Video>
         <ContentLayout>
             <PatientBox>
-                <PatientList data={PATIENT_DATA} setFunction={setDisplay} symptoms={sy}/>
+                <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy}/>
             </PatientBox>
 
             <InfoBox>
