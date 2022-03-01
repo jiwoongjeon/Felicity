@@ -24,8 +24,6 @@ overflow-y:auto;
 }
 `;
 
-
-
 export const Column = styled.div`
   flex:9;
   height:100%;
@@ -45,7 +43,6 @@ export const Title = styled.p`
   margin-top: 10px;
   font-size:20px;
 `;
-
 
 export const Divider = styled.div`
   width:100%;
@@ -72,6 +69,7 @@ overflow-y: auto;
 export const PatientElement = styled.div`
 display: flex;
 flex-direction: row;
+cursor:pointer;
 `;
 
 export const PatientInfoContainer = styled.div`

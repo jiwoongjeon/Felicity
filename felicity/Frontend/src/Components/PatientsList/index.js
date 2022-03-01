@@ -35,7 +35,7 @@ const PatientsList = (props) => {
                         <Divider />
                     </Column>
                 ))}
-                { !props.data.sex && <Column>There is no appointment left</Column>}
+                { !props.data[0] && <Column>There is no appointment left</Column>}
             </PatientElementContainer>
         </PatientContainer>
     );

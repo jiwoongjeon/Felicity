@@ -40,7 +40,7 @@ export const Divider = styled.div`
 
 export const PatientImage = styled.div`
   width:100%;
-  height:100%;
+  height:91.5%;
   border-radius: 8px;
   background-image:  url(${props => props.img});
   background-position: center;
