@@ -1,28 +1,41 @@
 import styled from "styled-components";
-
-import temp_image from '../assets/MaskGroup.png';
-import temp_image2 from '../assets/patient.png';
-
 export const MainContainer = styled.div`
     width: 100%;
     min-width: 300px;
     height: 100%;
     min-height: 600px;
     position: relative;
-    background-image : url(${temp_image});
-    background-size:cover;
-    background-repeat: no-repeat;
-    border-radius : 20px;
-    //padding-top: 13px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
 
+    border-radius : 20px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    position:relative;
+
+`;
+
+export const MainVideoContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 50;
+`;
+
+export const VideoContainer = styled.video`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`;
+export const TextArea = styled.textarea`
+    position: absolute;
+    z-index: 250;
+    margin-top: 65%;
+    margin-left: 30%;
 `;
 
 export const Container = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: 3;
+    z-index: 300;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,8 +81,8 @@ export const Button = styled.button`
 export const Patient = styled.div`
     width: 25%;
     height: 50%;
-    background-image : url(${temp_image2});
-    background-size:cover;
+    position:absolute;
+
     margin-left:auto;
     margin-right: 18.5px;
     border-radius : 15px;
@@ -77,7 +90,7 @@ export const Patient = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: end;
-    z-index: 2;
+    z-index: 200;
 `;
 
 export const Name = styled.div`
@@ -98,11 +111,13 @@ export const Name = styled.div`
 export const Setting = styled.div`
     width: 400px;
     height: 70px;
+    position:absolute;
+    z-index: 100;
     background-color: rgba(255, 255, 255, 0.82);
     border: 4px solid;
     border-radius: 10px;
     border-color: white;
-    margin-top: 25%;
+    margin-top: 70%;
     margin-left: 30%;
     display:flex;
     flex-direction: row;

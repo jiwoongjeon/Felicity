@@ -29,7 +29,11 @@ export const Column = styled.div`
   height:100%;
   padding: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
+  font-weight: bold;
+  font-family: Roboto;
+  color: #aaaaaa;
+  font-size: 20px;
 `;
 
 export const Title = styled.p`

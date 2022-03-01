@@ -7,6 +7,9 @@ import { MdKeyboardVoice, MdAirplay, MdStopScreenShare } from "react-icons/md";
 
 import {
     MainContainer,
+    MainVideoContainer,
+    VideoContainer,
+    TextArea,
     Container,
     Block,
     Button,
@@ -17,24 +20,53 @@ import {
     IconBox,
 } from "./styles";
 
-const Video = ({ myVideo }) => {
+const Video = ({ context }) => {
+    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
+    const [visible, setVisible] = React.useState(true);
+    // const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
     return (
         <MainContainer>
-            <Container>
-                <Block>
-                    Are you ready to meet your doctor?
-                    <Button>
-                        Let's start!
-                    </Button>
-                </Block>
 
-            </Container>
+            {callAccepted && !callEnded && (
+                <MainVideoContainer>
+                    <VideoContainer playsInline ref={userVideo} autoPlay />
+
+                </MainVideoContainer>
+            )}
+
+            {visible && <Container id='container'>
+                {(role) ? (
+                    call.isReceivedCall && !callAccepted && (
+                        <Block>
+                            Are you ready to meet your doctor?
+                            {console.log(role)}
+                            <Button onClick={() => { answerCall(); setVisible(false); }}>
+                                Let's start!
+                            </Button>
+                        </Block>
+                    )
+                ) : (
+                    <Block>
+                        Call your patient!
+                        {console.log(role)}
+                        <Button onClick={() => { callUser(); setVisible(false); }}>
+                            Let's start!
+                        </Button>
+                    </Block>
+                )}
+
+            </Container>}
             <Patient>
+                {stream && (
+                    <VideoContainer playsInline muted ref={myVideo} autoPlay onClick={(!isClicked) ? (getAudio) : (stopAudio)} />
+
+                )}
                 <Name>
                     Mark Wilson
                 </Name>
             </Patient>
-
+            <TextArea>{text[0].transcription}</TextArea>
+            <TextArea>{text[0].translation}</TextArea>
             <Setting>
                 <Phone><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
