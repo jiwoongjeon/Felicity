@@ -19,9 +19,8 @@ export const BOARD_DATA = [
     }
 ]
 
-export const USER_DATA = [
-    {
-        id: 'Dr.Lee',
-        img: 'https://i.imgur.com/CK4gqz3.jpg'
-    }
-]
+export const USER_DATA = 
+{
+    id: 'Dr.Lee',
+    img: 'https://i.imgur.com/CK4gqz3.jpg'
+}

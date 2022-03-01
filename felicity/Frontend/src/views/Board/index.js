@@ -25,7 +25,7 @@ function Board(props) {
 
 
     <Video>
-      <BoardDetail />
+      <BoardDetail isDoctor={props.isDoctor}/>
     </Video>
 
 

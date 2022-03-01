@@ -13,7 +13,7 @@ BodyColumn,
 No,
 Doctor,
 Name,
-Photo,
+PhotoArea,
 UnavailableBubble,
 Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel} from "./styles";
 
@@ -47,7 +47,7 @@ const DoctorList = () => {
                     <PostElement>
                         <BodyColumn>
                             <No>{i+1}</No>
-                            <Photo src={data.img} />
+                            <PhotoArea img = {data.img}/>
                             <Doctor>
                                 <Name>{data.name}</Name>
                                 <Department>{data.department}</Department>

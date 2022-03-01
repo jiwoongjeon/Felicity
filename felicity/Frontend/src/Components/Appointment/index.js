@@ -5,8 +5,6 @@ const { NewAppContainer, Header, AppDetailContainer, Divider, DetailLabel, Detai
     Column, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, SubmitBtn, ColumnBottom} = require('./styles')
 
 export const AppointmentHolder = (props) => {
-
-
     
     const [department, setDepartment] = React.useState('');
     const [preference, setPreference] = React.useState('');
