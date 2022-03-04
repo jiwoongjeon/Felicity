@@ -23,7 +23,7 @@ export const Calen = (props) => {
         onChange={onChange}
         value={value}
         tileClassName={({ date, view }) => {
-        if(result.find(x=>x===moment(date).format("YYYY-MM-DD"))){
+        if(result.find(x=>x===moment(date).format("MM-DD-YYYY"))){
           return 'highlight'
         }
         }}

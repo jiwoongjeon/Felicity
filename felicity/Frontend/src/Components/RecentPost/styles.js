@@ -90,6 +90,7 @@ margin-right: 25px;
 font-weight: 1000;
 color: #4A5568;
 white-space: nowrap;
+cursor:pointer;
 &:hover {
   color: #0457f9;
 }

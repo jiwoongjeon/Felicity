@@ -18,13 +18,13 @@ const PatientsList = (props) => {
                 {props.data.map((data, i) => (
                     <Column>
                         <PatientElement onClick={({ target }) =>  props.setFunction(props.data[i])}>
-                            <PatientImage img={data.img} />
+                            <PatientImage img = {data.img} />
                             <Column>
                                 <PatientInfoContainer>
                                     <Patient>{data.patient_firstName} {data.patient_lastName}</Patient>
                                     <Bio>{data.sex}, {data.birthday}</Bio>
                                 </PatientInfoContainer>
-                                <Time>Meeting time: {data.reserved_date} {data.time}</Time>
+                                <Time>Meeting time: {data.reserved_date} {data.reserved_time}</Time>
                                 <SymptomsContainer>
                                     {props.symptoms([data.a, data.b, data.c, data.d, data.e, data.f, data.g, data.h, data.i, data.j, data.k, data.l]).map((symptom) => (
                                         <SymptomsBubble>{symptom}</SymptomsBubble>
