@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import default_profile from '../assets/default_profile.png'
 
 export const PatientContainer = styled.div`
   width: 100%;
@@ -24,16 +25,12 @@ overflow-y:auto;
 }
 `;
 
+
+
 export const Column = styled.div`
-  flex:9;
-  height:100%;
+  width:100%;
   padding: 5px;
-  display: flex;
-  flex-direction: column;  
-  font-weight: bold;
-  font-family: Roboto;
-  color: #aaaaaa;
-  font-size: 20px;
+  flex-direction: column;
 `;
 
 export const Title = styled.p`
@@ -43,6 +40,7 @@ export const Title = styled.p`
   margin-top: 10px;
   font-size:20px;
 `;
+
 
 export const Divider = styled.div`
   width:100%;
@@ -70,6 +68,7 @@ export const PatientElement = styled.div`
 display: flex;
 flex-direction: row;
 cursor:pointer;
+overflow:hidden;
 `;
 
 export const PatientInfoContainer = styled.div`
@@ -103,7 +102,7 @@ export const PatientImage = styled.div`
   flex: 2.7;
   min-width: 100px;
   border-radius: 8px;
-  background-image:  url(${props => props.img});
+  background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
