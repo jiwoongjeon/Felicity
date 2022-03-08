@@ -22,6 +22,7 @@ function Doctor() {
 
     React.useEffect(() => {
         Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 1 })
+
             .then((response) => {
                 setScheduleData(response.data)
             })
@@ -90,7 +91,7 @@ function Doctor() {
     <Video>
         <ContentLayout>
             <PatientBox>
-                <PatientList data={PATIENT_DATA} setFunction={setDisplay} symptoms={sy}/>
+                <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy}/>
             </PatientBox>
 
             <InfoBox>
