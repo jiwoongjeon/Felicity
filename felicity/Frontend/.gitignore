@@ -1,7 +1,5 @@
 # dependencies
 /node_modules/*
 !/node_modules/react-calendar
-<<<<<<< HEAD
 !/node_modules/react-pro-sidebar
-=======
->>>>>>> b9c9e8d3 (d)
+/build
