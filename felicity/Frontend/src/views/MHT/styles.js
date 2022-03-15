@@ -83,7 +83,7 @@ export const Row = styled.div`
 `
 
 export const MoveButton = styled(Link)`
-    width:40%;
+    width:45%;
     height: 40px;
     background-color: #0075FF;
     border-radius: 20px;

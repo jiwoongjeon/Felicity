@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ScheduleContainer = styled.div`
   margin-right: 30px;
@@ -20,21 +21,20 @@ export const Header = styled.p`
 
 export const AppointmentContainer = styled.div`
   width: 90%;
-  height: 100%;
+  height: 35%;
+  min-width:300px;
   margin-left: 40px;
   margin-bottom: 10px;
   padding: 20px;
   border: 3px;
-  display: flex;
   flex-direction: column;
-  background: #F8F9FA;
+  background-color: #F8F9FA;
   border-radius: 10px;
 `;
 
 export const AppointmentList = styled.div`
 width: 100%;
 height: 300px;
-display: flex;
 flex-direction: column;
 overflow-y: auto;
 &::-webkit-scrollbar {
@@ -59,10 +59,10 @@ export const Group = styled.div`
   flex-direction: row;
 `;
 
-export const Date = styled.p`
+export const Date = styled(Link)`
   margin: 0px;
   margin-right: 15px;
-//   font-size: 14px;
+  text-decoration:none;
   font-weight: bold;
   color: #0075FF;
 `;

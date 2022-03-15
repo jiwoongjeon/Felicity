@@ -2,49 +2,17 @@ import { useState } from "react";
 
 const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail } = require("./styles");
 
-const DATA = [
-    {
-        id: 1,
-        date: "9/3",
-        time: "8:00 AM",
-        doctor: "Dr. Oliver",
-        email: "oliver@burrito.com"
-    }
-    ,
-    {
-        id: 2,
-        date: "9/3",
-        time: "8:00 AM",
-        doctor: "Dr. Oliver",
-        email: "oliver@burrito.com"
-    },
-    {
-        id: 2,
-        date: "9/3",
-        time: "8:00 AM",
-        doctor: "Dr. Oliver",
-        email: "oliver@burrito.com"
-    },
-    {
-        id: 2,
-        date: "9/3",
-        time: "8:00 AM",
-        doctor: "Dr. Oliver",
-        email: "oliver@burrito.com"
-    }
-];
-
 export const Schedule = (props) => {
     return (
         <ScheduleContainer>
             <Header>My Schedule</Header>
             <AppointmentList>
-            {DATA.map((data) => (
+            {props.schedule_data.map((data) => (
                 <AppointmentContainer>
                     <FstColumn>
                         <Group>
-                            <Date>{data.date}</Date>
-                            <TimeEmail>{data.time}</TimeEmail>
+                            <Date to={"/Patient/videocall"}>{data.reserved_date}</Date>
+                            <TimeEmail>{data.reserved_time}</TimeEmail>
                         </Group>
                         <Group>
                             <DeleteIcon>DELETE</DeleteIcon>
@@ -52,11 +20,7 @@ export const Schedule = (props) => {
                         </Group>
                     </FstColumn>
                     <Column>
-                        <DoctorEmail>{data.doctor}</DoctorEmail>
-                    </Column>
-                    <Column>
-                        <DoctorEmail>Email:</DoctorEmail>
-                        <TimeEmail>{data.email}</TimeEmail>
+                        <DoctorEmail>Doctor: {data.doctor_firstName} {data.doctor_lastName}</DoctorEmail>
                     </Column>
                 </AppointmentContainer>
         ))}

@@ -64,6 +64,17 @@ export const Label = styled.div`
     font-size: 12px;
     margin-top: 12px;
 `;
+
+export const LabelRecursive = styled.div`
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 12px;
+    color:red;
+`;
+
 export const LoginInput =  styled.input.attrs(({ type }) => ({
   type:  type || "text",
   placeholder: "avgsdf@email.com"

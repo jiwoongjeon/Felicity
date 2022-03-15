@@ -26,7 +26,7 @@ function MHT6() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (6/6)</SubTitle>
-            <SubmitButton to={`/Patient/Appointment`}>
+            <SubmitButton to={`/MHT7`}>
                 Finish</SubmitButton>
             <Label>6. What kind of symptoms do you have? *</Label>
 

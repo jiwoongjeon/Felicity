@@ -17,8 +17,8 @@ const Login = () => {
   return (
   <MainContainer>
 
-    <Account>
-        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}}/> SignIn </AccountIcon>
+    <Account to={""}>
+        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} /> SignIn </AccountIcon>
     </Account>
 
     <Setting><IoMdSettings style={{color: '#718096', fontSize: '20px'}}/></Setting>
