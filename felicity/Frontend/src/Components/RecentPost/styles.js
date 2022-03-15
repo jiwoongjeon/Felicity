@@ -48,6 +48,17 @@ export const Column = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
+  text-align: center;
+  color: #aaaaaa;
+`;
+
+export const Column_alert = styled.div`
+  width:100%;
+  flex-direction: row;
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #aaaaaa;
 `;
 
 export const ColumnBottom = styled.div`
@@ -90,23 +101,57 @@ margin-right: 25px;
 font-weight: 1000;
 color: #4A5568;
 white-space: nowrap;
-&:hover {
-  color: #0457f9;
-}
-&:active {
-  color: #004FEB;
-}
+cursor:pointer;
+&:hover { color: #0457f9; }
+&:active { color: #004FEB; }
+`;
+
+export const CategoryBubbleSelected = styled.div`
+display: flex;
+border-radius: 20px;
+margin-top: 1.3%;
+margin-left: 25px;
+margin-right: 25px;
+font-weight: 1000;
+color: #0457f9;
+white-space: nowrap;
+cursor:pointer;
+&:hover { color: #0457f9; }
+&:active { color: #004FEB; }
 `;
 
 export const NewestLabel = styled.p`
   font-weight: bold;
   color: #a0aec0;
   margin-right: 10px;
+  cursor:pointer;
 `;
+
 export const OldestLabel = styled.p`
-  font-weight: bold;
-  color: #a0aec0;
+font-weight: bold;
+color: #a0aec0;
+cursor:pointer;
+&:hover { color: #0457f9; }
+&:active { color: #004FEB; }
 `;
+
+export const NewestLabelSelected = styled.p`
+  font-weight: bold;
+  color: #0457f9;
+  margin-right: 10px;
+  cursor:pointer;
+  &:hover { color: #0457f9; }
+  &:active { color: #004FEB; }
+`;
+
+export const OldestLabelSelected = styled.p`
+  font-weight: bold;
+  color: #0457f9;
+  cursor:pointer;
+  &:hover { color: #0457f9; }
+  &:active { color: #004FEB; }
+`;
+
 export const DateLabel = styled.p`
   flex:2;
   margin-top: 4px;
@@ -256,6 +301,7 @@ export const PageNavigatorLabel = styled.p`
   padding: 5px 0px 5px 0px;
   margin-left:30px;
   margin-right:30px;
+  cursor:pointer;
   &:hover {
     color: #3D7EFF;
   }
@@ -286,6 +332,7 @@ export const PageNumberLabel = styled.p`
   padding:5px 13px 5px 13px;
   margin-left:10px;
   margin-right:10px;
+  cursor:pointer;
   &:hover {
     color: white;
     background-color: #3D7EFF;
@@ -303,6 +350,7 @@ export const PageNumber = styled.p`
   padding:5px 13px 5px 13px;
   margin-left:10px;
   margin-right:10px;
+  cursor:pointer;
   &:hover {
     color: white;
     background-color: #3D7EFF;

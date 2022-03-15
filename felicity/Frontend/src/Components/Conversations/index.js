@@ -4,7 +4,7 @@ import { Container, ConversationContainer, ConversationList, Header, IconArea, I
 const Data = [
   {
     id: 1,
-    img: "https://i.imgur.com/mNJWYVi.png",
+    img: "",
     username: "Dr.Lee",
     preview: "Hi! I need more\ninformations...",
   },

@@ -1,48 +1,71 @@
-import react from "react";
-import { PATIENT_DATA } from "./tempData";
-import { Switch, Route, Link } from "react-router-dom";
+const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel} = require("./styles");
 
-const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail} = require("./styles");
 
-export const CV = () => {
+//props.data[props.index]
+export const CV = (props) => {
+
     return (
         <PatientContainer>
-            {PATIENT_DATA.map((data, i) => (
-                <Column>
-                    <PatientImage img = {data.img} />
-                    <Row>
-                        <Patient>{data.name}</Patient>
-                        <Bio>{data.sex}, {data.age}</Bio>
-                    </Row>
+            <Column>
+                <PatientImage img = {props.data.img} />
+                <Row>
+                    <Patient>{props.data.patient_firstName} {props.data.patient_lastName}</Patient>
+                    <Bio>{props.data.sex}, {props.data.birthday}</Bio>
+                </Row>
 
-                    <Divider />
-
+                <Divider />
+                
+                <Patient>Detailed description</Patient>
+                {!props.data.sex && <DefaultLabel>Select an appointement from left to view a detailed description</DefaultLabel>}
+                {props.data.sex && 
                     <Column>
-                        <Patient>Detailed description</Patient>
                         <Row>
                             <DetailLabel>Appointment Date: </DetailLabel>
-                            <Detail>{data.date}</Detail>
+                            <Detail>{props.data.reserved_date} {props.data.time}</Detail>
                         </Row>
-                        
                         <Row>
                             <DetailLabel>Symptoms: </DetailLabel>
-                            {PATIENT_DATA[i].symptoms.map((symptom) => (
-                                <Detail>{symptom.id},</Detail>
+                            {props.symptoms(
+                                [props.data.a,props.data.b, props.data.c, props.data.d, 
+                                    props.data.e, props.data.f, props.data.g, props.data.h, 
+                                    props.data.i, props.data.j, props.data.k, props.data.l]).map((symptom) => (
+                                <Detail>{symptom}, </Detail>
                             ))}
+                        </Row>
+                        <Row>
+                            <DetailLabel>Request: </DetailLabel>
+                            {props.data.request && <Detail>{props.data.request}</Detail>}
+                            {!props.data.request && <Detail>None</Detail>}
+                        </Row>
+                        <Row>
+                            <DetailLabel>Department: </DetailLabel>
+                            {props.data.department && <Detail>{props.data.department}</Detail>}
+                            {!props.data.department && <Detail>None</Detail>}
+                        </Row>
+                        <Row>
+                            <DetailLabel>Wounded area: </DetailLabel>
+                            <Detail>{props.data.wounded_area}</Detail>
+                        </Row>
+                        <Row>
+                            <DetailLabel>Injured time: </DetailLabel>
+                            <Detail>{props.data.injured_time}</Detail>
                         </Row>
 
                         <Row>
-                            <DetailLabel>Patient's request: </DetailLabel>
-                            <Detail>{data.request}</Detail>
+                            <DetailLabel>Severity: </DetailLabel>
+                            <Detail>{props.data.severity}</Detail>
                         </Row>
-                        
-                    </Column>
 
-                </Column>  
-            ))}
-            
+                        <Row>
+                            <DetailLabel>Expected reason: </DetailLabel>
+                            {props.data.reason && <Detail>{props.data.reason}</Detail>}
+                            {!props.data.reason && <Detail>None</Detail>}
+                        </Row>
+
+                    </Column>}
+            </Column>  
             <Divider />
-            <Btn to={`./videocall`}>See your patient now</Btn>
+            {props.data.sex && <Btn to={`./videocall`}>See your patient now</Btn>}
         </PatientContainer>
     );
 }

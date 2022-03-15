@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import default_profile from '../assets/default_profile.png'
 
 export const PatientContainer = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ export const PatientContainer = styled.div`
 
 export const CalenderBox = styled.div`
 width: 100%;
-height: 100%;
+height: 600px;
 overflow-y:auto;
 &::-webkit-scrollbar {
   width: 10px;
@@ -27,11 +28,8 @@ overflow-y:auto;
 
 
 export const Column = styled.div`
-  flex:9;
-  height:100%;
-
+  width:100%;
   padding: 5px;
-  display: flex;
   flex-direction: column;
 `;
 
@@ -69,6 +67,8 @@ overflow-y: auto;
 export const PatientElement = styled.div`
 display: flex;
 flex-direction: row;
+cursor:pointer;
+overflow:hidden;
 `;
 
 export const PatientInfoContainer = styled.div`
@@ -77,18 +77,20 @@ flex-direction: row;
 `;
 
 export const SymptomsContainer = styled.div`
+width:100%;
+max-width:340px;
 display: flex;
 flex-direction: row;
-margin-top: -6px;
+margin-top: -10px;
+overflow:hidden;
 `;
 
 export const SymptomsBubble = styled.div`
-height:100%;
+height:30px;
 display: flex;
 background: #0075ff;
 border-radius: 8px;
-padding-top: 5px;
-padding-bottom: 5px;
+padding-top: 2px;
 padding-left: 15px;
 padding-right: 15px;
 margin-right: 10px;
@@ -97,10 +99,10 @@ color: white;
 `;
 
 export const PatientImage = styled.div`
-  flex: 1.5;
-  min-width: 70px;
+  flex: 2.7;
+  min-width: 100px;
   border-radius: 8px;
-  background-image:  url(${props => props.img});
+  background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -118,17 +120,18 @@ export const Patient = styled.p`
 export const Bio = styled.p`
   text-align: left;
   color: #a0aec0;
-  margin-top:0px;
+  margin-top:2px;
   margin-left: 10px;
   font-size: 15px;
 `;
 
 export const Time = styled.p`
-  flex: 1;
-  text-align: right;
+  min-width:350px;
+  text-align: left;
   font-weight: bold;
-  margin-top:0px;
-  font-size: 12px;
+  margin-top:-10px;
+  word-break: keep-all;
+  color:#0075ff;
 `;
 
 export const Detail = styled.p`

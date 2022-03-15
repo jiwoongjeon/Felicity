@@ -6,7 +6,9 @@ import Login from '../../Components/Login';
 import { BoardDetail } from "../../Components/BoardDetail";
 
 
+
 function Board(props) {
+
   return (
 
     <Mostouter>
@@ -25,10 +27,8 @@ function Board(props) {
 
 
     <Video>
-      <BoardDetail />
+      <BoardDetail isDoctor={props.isDoctor} />
     </Video>
-
-
 
     </Mostouter>
 

@@ -6,9 +6,6 @@ const fs = require('fs')
 async function transcribe(audioFile) {
     //instantiates a client and locate test file
     const client = new speech.SpeechClient();
-    const filename = 'today_it_s_raining.wav';
-    const file = fs.readFileSync(filename);
-    const audioBytes = file.toString('base64');
 
     // const audio = {
     //     content: audioBytes

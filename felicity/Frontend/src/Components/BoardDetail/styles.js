@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import default_profile from '../assets/default_profile.png'
 
 export const BoardContainer = styled.div`
 width: 100%;
@@ -33,6 +34,7 @@ margin-bottom:5px;
 
 
 export const ContentSubContainer = styled.div`
+width:100%;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -106,7 +108,7 @@ export const PhotoArea = styled.div`
   min-height:60px;
   border-radius: 40px;
   background-color: #ff0000;
-  background-image: url(${props => props.img});
+  background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -166,6 +168,7 @@ margin-left:20px;
 padding-top: 3px;
 font-weight: bold;
 color: #0075FF;
+cursor: pointer;
 `;
 
 export const Blank = styled.p`
@@ -218,4 +221,64 @@ export const UnStateBottom = styled.p`
   margin-left:2%;
   margin-bottom:5px;
   white-space: nowrap;
+`;
+
+export const WriteContainer = styled.div`
+width: 100%;
+height: 90%;
+display: flex;
+flex-direction: column;
+border: 1px solid #0075FF;
+border-radius: 8px;
+margin-left:20px;
+margin-top:10px;
+padding-top: 3px;
+font-weight: bold;
+color: #0075FF;
+box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1)
+`;
+
+export const WriteSubContainer = styled.div`
+width: 100%;
+height: 100%;
+padding-left:2%;
+overflow-y:hidden;
+`;
+
+export const ColumnTitle = styled.div`
+  height:30px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px 10px 30px;
+  overflow-y:hidden;
+`;
+
+export const SubmitBtn = styled.div`
+height:45px;
+width:120px;
+text-align:center;
+background-color: #0075FF;
+border-radius: 10px;
+margin-top:13px;
+margin-left:40px;
+padding-top: 5px;
+font-weight: bold;
+color: white;
+margin-bottom:1%;
+cursor: pointer;
+`;
+
+export const CancelBtn = styled.div`
+height:45px;
+width:120px;
+text-align:center;
+border: 1px solid #0075FF;
+border-radius: 10px;
+margin-top:13px;
+margin-left:40px;
+padding-top: 5px;
+font-weight: bold;
+color: #0075FF;
+margin-bottom:1%;
+cursor: pointer;
 `;

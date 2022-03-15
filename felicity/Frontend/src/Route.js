@@ -21,10 +21,13 @@ import Chatting from "./views/Chatting";
 import Board from "./views/Board";
 import NewBoard from "./views/NewBoard";
 import Appointment from "./views/Appointment";
-
+import Meeting from "./views/Meeting";
+import { io } from "socket.io-client";
+import LoginSubpage from "./views/LoginSubpage";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
+  { path: "/LoginSubpage", key: "video", component: () => <LoginSubpage /> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
   { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
   { path: "/Doctor/Home", key: "video", component: () => <Doctor /> },
@@ -55,6 +58,8 @@ const ROUTES = [
 
   { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
   { path: "/Patient/RecentPost", key: "PS", component: () => <StatusDoctor isDoctor={false}/> },
+
+  { path: "/Doctor/Meeting", key: "PS", component: () => <Meeting isDoctor={true}/> },
 ];
 
 export default ROUTES;

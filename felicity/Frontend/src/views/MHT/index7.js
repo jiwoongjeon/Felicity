@@ -12,10 +12,10 @@ function MHT7() {
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Now you are all set!</Title>
-            <SubTitle>Which page you want to proceed?</SubTitle>
+            <SubTitle>You can request an appointment or post a question to doctors</SubTitle>
             <Row>
-                <MoveButton to={`/Patient/Home`}>Home</MoveButton>
-                <MoveButton to={`/Patient/Status`}>Status</MoveButton>
+                <MoveButton to={`/Patient/Appointment`}>Request Appointment</MoveButton>
+                <MoveButton to={`/Patient/RecentPost`}>Post a question</MoveButton>
             </Row>
             
         </QuestionContainer>

@@ -1,6 +1,7 @@
 import { parseWithOptions } from "date-fns/fp";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import default_profile from '../assets/default_profile.png'
 
 export const PatientContainer = styled.div`
   width: 100%;
@@ -22,6 +23,11 @@ export const Column = styled.div`
   width:100%;
   display: flex;
   flex-direction: column;
+  overflow-y:auto;
+  overflow-x:hidden;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
 `;
 
 export const Row = styled.div`
@@ -40,9 +46,10 @@ export const Divider = styled.div`
 
 export const PatientImage = styled.div`
   width:100%;
-  height:100%;
+  height:320px;
+  min-height:320px;
   border-radius: 8px;
-  background-image:  url(${props => props.img});
+  background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -69,11 +76,13 @@ export const Bio = styled.p`
 export const DetailLabel = styled.p`
   font-weight: bold;
   text-align: left;
+  min-width: 150px;
 `;
 
 export const Detail = styled.p`
   text-align: left;
   margin-left: 7px;
+  overflow-wrap:normal;
 `;
 
 export const Btn = styled(Link)`
@@ -88,4 +97,13 @@ export const Btn = styled(Link)`
    &:hover {
       color: white;
     }
+`;
+
+export const DefaultLabel = styled.p`
+  text-align: center;
+  font-weight: bold;
+  font-family: Roboto;
+  color: #aaaaaa;
+  margin-top: 10%;
+  font-size: 20px;
 `;

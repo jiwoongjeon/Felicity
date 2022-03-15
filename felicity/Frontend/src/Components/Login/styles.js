@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const MainContainer = styled.div`
     width: 100%;
@@ -12,9 +13,10 @@ export const MainContainer = styled.div`
 
 
 
-export const Account = styled.div`
+export const Account = styled(Link)`
     width: 90px;
     height: 16px;
+    text-decoration:none;
 `;
 
 export const AccountIcon = styled.div`

@@ -65,21 +65,24 @@ export const Divider = styled.div`
 `;
 
 export const NoLabel = styled.p`
-  flex: 1;
+  flex: 1.1;
+  text-align:left;
+  padding-left:35px;
   font-weight: bold;
   font-size: 12px;
   color: #a0aec0;
 `;
 export const PhotoLabel = styled.p`
-  flex: 3;
+  flex: 1;
   font-weight: bold;
   font-size: 12px;
   color: #a0aec0;
-  text-align: center;
+  text-align: left;
+  margin-right:80px;
 `;
 
 export const DepartLabel = styled.p`
-  flex: 7;
+  flex: 3.2;
   text-align: left;
   font-weight: bold;
   font-size: 12px;
@@ -137,38 +140,78 @@ line-height: 45px;
 `;
 
 export const No = styled.p`
-  flex: 1;
+  flex: 0.3;
   line-height: 70px;
-  text-align: center;
+  padding-left:35px;
+  text-align: left;
   margin-top: 4px;
+  margin-right:5px;
   color: gray;
 `;
 export const PhotoArea = styled.div`
   width:65px;
   height:65px;
   min-width:65px;
+  margin-top:5px;
   border-radius: 8px;
   background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 `;
-export const Doctor = styled.p`
-  flex: 12;
-  margin-top: 2px;
-  margin-left: 10px;
+export const Patient = styled.p`
+  flex: 2;
+  margin-left: 20px;
   text-align: left;
   font-weight: bold;
 `;
+
+export const TimeLabel = styled.p`
+  flex: 4.8;
+  text-align: left;
+  font-weight: bold;
+`;
+
+export const LevelLabel = styled.p`
+  flex: 4.8;
+  text-align: left;
+  font-weight: bold;
+  margin-top:40px;
+`;
+
 export const Department = styled.p`
-
-
   font-weight: bold;
   text-align: left;
   color: grey;
 `;
-export const Name = styled.p`
-  margin-top: 2px;
+export const Time = styled.p`
+  margin-top:3px;
+  margin-left:30px;
   font-weight: bold;
   text-align: left;
+`;
+export const Name = styled.p`
+  margin-top:5px;
+  font-weight: bold;
+  text-align: left;
+`;
+export const SymptomsContainer = styled.div`
+width:100%;
+max-width:360px;
+display: flex;
+flex-direction: row;
+margin-left: 25px;
+overflow:hidden;
+`;
+export const SymptomsBubble = styled.div`
+height:30px;
+display: flex;
+background: #0075ff;
+border-radius: 8px;
+padding-top: 2px;
+padding-left: 15px;
+padding-right: 15px;
+margin-right: 10px;
+font-weight: bold;
+color: white;
 `;
