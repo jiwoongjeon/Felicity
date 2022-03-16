@@ -104,13 +104,13 @@ function LoginPage({ patientL, doctorL }) {
         </CheckboxWrapper>
 
         {radioValue &&
-          <SubmitButton to={`/LoginSubpage`} onClick={patientL({ email, password })}>
+          <SubmitButton to={`/MHT1`} onClick={patientL({ email, password })}>
             Sign In
           </SubmitButton>
         }
 
         {!radioValue &&
-          <SubmitButton to={`/LoginSubpage`} onClick={doctorL({ email, password })}>
+          <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>
             Sign In
           </SubmitButton>
         }

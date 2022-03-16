@@ -18,11 +18,16 @@ import {
     Setting,
     Phone,
     IconBox,
+    SubtitleContainer,
+    Record,
+    RecordBox
 } from "./styles";
 
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
     const [visible, setVisible] = React.useState(true);
+    const [record, setRecord] = useState(false);
+
     // const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
     return (
         <MainContainer>
@@ -65,8 +70,39 @@ const Video = ({ context }) => {
                     Mark Wilson
                 </Name>
             </Patient>
-            <TextArea>{text[0].transcription}</TextArea>
-            <TextArea>{text[0].translation}</TextArea>
+            <SubtitleContainer>
+                <RecordBox>
+                    <div>
+                    <Record disabled={record} onClick={() => {setRecord(true)}}>
+                            Start
+                    </Record>
+                    <Record disabled={!record} onClick={() => {setRecord(false)}}>
+                            Stop
+                    </Record>
+                    <Record disabled={record} onClick={() => {setRecord(true)}}>
+                            Send
+                    </Record>
+                    </div>
+                </RecordBox>
+
+                <TextArea><p>{text[0].transcription}</p>
+                <p>Transcription Transcription Transcription Transcription Transcription
+                Transcription Transcription Transcription Transcription Transcription
+                Transcription Transcription Transcription Transcription Transcription
+                Transcription Transcription Transcription Transcription Transcription
+                Transcription Transcription Transcription Transcription Transcription
+                </p>
+                </TextArea>
+                <TextArea><p>{text[0].translation}</p>
+                <p> Translation Translation Translation Translation Translation
+                Translation Translation Translation Translation Translation
+                Translation Translation Translation Translation Translation
+                Translation Translation Translation Translation Translation
+                Translation Translation Translation Translation Translation
+                </p>
+                </TextArea>
+            </SubtitleContainer>
+            
             <Setting>
                 <Phone><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
@@ -74,6 +110,7 @@ const Video = ({ context }) => {
                 <IconBox><MdAirplay style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                 <IconBox><MdStopScreenShare style={{ color: 'white', fontSize: '30px' }} /></IconBox>
             </Setting>
+
         </MainContainer>
     );
 };

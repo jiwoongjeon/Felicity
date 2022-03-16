@@ -5,7 +5,17 @@ const { NewAppContainer, Header, AppDetailContainer, Divider, DetailLabel, Detai
     Column, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, SubmitBtn, ColumnBottom} = require('./styles')
 
 export const AppointmentHolder = (props) => {
+
+    function sessionClose () { //stores items in sessionStorage
     
+        window.sessionStorage.clear();
+        document.location.href = '/Patient/Home';
+    }
+
+    const Checklist = JSON.parse(sessionStorage.getItem("checklist"));
+    if (Checklist == null){
+        Checklist = [false, false, false, false, false, false, false, false, false, false, false, false, ""];
+    };
     const [department, setDepartment] = React.useState('');
     const [preference, setPreference] = React.useState('');
     const [reserved_date, setDate] = React.useState('');
@@ -79,41 +89,38 @@ export const AppointmentHolder = (props) => {
                 </Column>
 
                 <Divider />
-                
+      
                 <DetailLabel>Symptom: </DetailLabel>
-                {MHT_DATA.map((symptom) => (
+                
                 <SymptomsContainer>
-                    {symptom.A && <SymptomsBubble>Cough</SymptomsBubble>}
-                    {symptom.B && <SymptomsBubble>Vomit</SymptomsBubble>}
-                    {symptom.C && <SymptomsBubble>Fever</SymptomsBubble>}
-                    {symptom.D && <SymptomsBubble>Sore throat</SymptomsBubble>}
-                    {symptom.E && <SymptomsBubble>Phlegm</SymptomsBubble>}
-                    {symptom.F && <SymptomsBubble>Runny Nose</SymptomsBubble>}
-                    {symptom.G && <SymptomsBubble>Nauseous</SymptomsBubble>}
-                    {symptom.H && <SymptomsBubble>Out of breath</SymptomsBubble>}
-                    {symptom.I && <SymptomsBubble>Stomachache</SymptomsBubble>}
-                    {symptom.J && <SymptomsBubble>Chills</SymptomsBubble>}
-                    {symptom.K && <SymptomsBubble>Muscle Sickness</SymptomsBubble>}
-                    {symptom.L && <SymptomsBubble>Other</SymptomsBubble>}
-                    
-                    
-                    {!symptom.A && <SymptomsBubbleUnchecked>Cough</SymptomsBubbleUnchecked>}
-                    {!symptom.B && <SymptomsBubbleUnchecked>Vomit</SymptomsBubbleUnchecked>}
-                    {!symptom.C && <SymptomsBubbleUnchecked>Fever</SymptomsBubbleUnchecked>}
-                    {!symptom.D && <SymptomsBubbleUnchecked>Sore throat</SymptomsBubbleUnchecked>}
-                    {!symptom.E && <SymptomsBubbleUnchecked>Phlegm</SymptomsBubbleUnchecked>}
-                    {!symptom.F && <SymptomsBubbleUnchecked>Runny Nose</SymptomsBubbleUnchecked>}
-                    {!symptom.G && <SymptomsBubbleUnchecked>Nauseous</SymptomsBubbleUnchecked>}
-                    {!symptom.H && <SymptomsBubbleUnchecked>Out of breath</SymptomsBubbleUnchecked>}
-                    {!symptom.I && <SymptomsBubbleUnchecked>Stomachache</SymptomsBubbleUnchecked>}
-                    {!symptom.J && <SymptomsBubbleUnchecked>Chills</SymptomsBubbleUnchecked>}
-                    {!symptom.K && <SymptomsBubbleUnchecked>Muscle Sickness</SymptomsBubbleUnchecked>}
-                    {!symptom.L && <SymptomsBubbleUnchecked>Other</SymptomsBubbleUnchecked>}
-
-                    {symptom.L && <OtherBox>{symptom.L_detail}</OtherBox>}
-                </SymptomsContainer>))}
+                    {Checklist[0] && <SymptomsBubble>Cough</SymptomsBubble>}
+                    {!Checklist[0] && <SymptomsBubbleUnchecked>Cough</SymptomsBubbleUnchecked>}
+                    {Checklist[1] && <SymptomsBubble>Vomit</SymptomsBubble>}
+                    {!Checklist[1] && <SymptomsBubbleUnchecked>Vomit</SymptomsBubbleUnchecked>}
+                    {Checklist[2] && <SymptomsBubble>Fever</SymptomsBubble>}
+                    {!Checklist[2] && <SymptomsBubbleUnchecked>Fever</SymptomsBubbleUnchecked>}
+                    {Checklist[3] && <SymptomsBubble>Sore throat</SymptomsBubble>}
+                    {!Checklist[3] && <SymptomsBubbleUnchecked>Sore throat</SymptomsBubbleUnchecked>}
+                    {Checklist[4] && <SymptomsBubble>Phlegm</SymptomsBubble>}
+                    {!Checklist[4] && <SymptomsBubbleUnchecked>Phlegm</SymptomsBubbleUnchecked>}
+                    {Checklist[5] && <SymptomsBubble>Runny Nose</SymptomsBubble>}
+                    {!Checklist[5] && <SymptomsBubbleUnchecked>Runny Nose</SymptomsBubbleUnchecked>}
+                    {Checklist[6] && <SymptomsBubble>Nauseous</SymptomsBubble>}
+                    {!Checklist[6] && <SymptomsBubbleUnchecked>Nauseous</SymptomsBubbleUnchecked>}
+                    {Checklist[7] && <SymptomsBubble>Out of breath</SymptomsBubble>}
+                    {!Checklist[7] && <SymptomsBubbleUnchecked>Out of breath</SymptomsBubbleUnchecked>}
+                    {Checklist[8] && <SymptomsBubble>Stomachache</SymptomsBubble>}
+                    {!Checklist[8] && <SymptomsBubbleUnchecked>Stomachache</SymptomsBubbleUnchecked>}
+                    {Checklist[9] && <SymptomsBubble>Chills</SymptomsBubble>}
+                    {!Checklist[9] && <SymptomsBubbleUnchecked>Chills</SymptomsBubbleUnchecked>}
+                    {Checklist[10] && <SymptomsBubble>Muscle Sickness</SymptomsBubble>}
+                    {!Checklist[10] && <SymptomsBubbleUnchecked>Muscle Sickness</SymptomsBubbleUnchecked>}
+                    {Checklist[11] && <SymptomsBubble>Other</SymptomsBubble>}
+                    {!Checklist[11] && <SymptomsBubbleUnchecked>Other</SymptomsBubbleUnchecked>}
+                    {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
+                </SymptomsContainer>
             <ColumnBottom>
-                <SubmitBtn>Submit</SubmitBtn>
+                <SubmitBtn onClick={sessionClose}>Submit</SubmitBtn>
             </ColumnBottom>
             </AppDetailContainer>
 
