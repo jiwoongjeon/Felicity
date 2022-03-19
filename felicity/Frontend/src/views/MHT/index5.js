@@ -4,9 +4,24 @@ import LogoImg from '../../Components/assets/Logo.png';
 import RadioButton from "../../Components/LoginPage/Radiobox";
 import { InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, RadioBox, ReasonInput } from "./styles";
 
+const Check = () => {
+  const hurt = window.sessionStorage.getItem('hurt');
+  const depart = window.sessionStorage.getItem('depart');
+  const time = window.sessionStorage.getItem('time');
+  const where = window.sessionStorage.getItem('where');
+  const level = window.sessionStorage.getItem('level');
 
+  return (<div>hurt: {hurt} depart: {depart} time: {time} where: {where} level: {level} </div>);
+};
 
 function MHT5() {
+  function sessionStore () { //stores items in sessionStorage
+    var why = document.getElementById('why').value;
+  
+    window.sessionStorage.setItem('why',why);
+  
+    document.location.href = '/MHT6';
+  }
   const [radioValue, setRadio] = React.useState(true);
 
   return (
@@ -15,7 +30,7 @@ function MHT5() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (5/6)</SubTitle>
-            <SubmitButton to={`/MHT6`}>
+            <SubmitButton onClick={sessionStore}>
                 Next</SubmitButton>
             <Label>5. Do you have any suspective reason why? (Optional)</Label>
             <RadioBox>
@@ -39,7 +54,7 @@ function MHT5() {
             </RadioBox>
             { radioValue &&
             <InputBox>
-              <ReasonInput />
+              <ReasonInput id="why" />
             </InputBox> }
         </QuestionContainer>
     </MainContainer>

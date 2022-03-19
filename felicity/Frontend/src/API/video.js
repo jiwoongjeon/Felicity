@@ -11,7 +11,7 @@ const socket = io("http://localhost:3001");
 let recordAudio;
 
 const ContextProvider = ({ children }) => {
-    const [id, setId] = useState(0);
+    const [id, setId] = useState();
     const [role, setRole] = useState(true); // true: p, false: d
     const [userToCall, setUserToCall] = useState("");
 
@@ -36,6 +36,7 @@ const ContextProvider = ({ children }) => {
 
     const postPatientLogin = ({ email, password }) => async () => {
         try {
+            setRole(true);
             console.log(email, password);
             await Axios.post(`http://localhost:3001/plogin`, {
                 email: email,
@@ -43,7 +44,6 @@ const ContextProvider = ({ children }) => {
             }).then((response) => {
                 console.log(response.data[0].user_id);
                 setId(response.data[0].user_id);
-                setRole(true);
                 socket.emit("login", [response.data[0].user_id, true]);
             });
         } catch (e) {
@@ -53,6 +53,7 @@ const ContextProvider = ({ children }) => {
 
     const postDoctorLogin = ({ email, password }) => async () => {
         try {
+            setRole(false);
             console.log(email, password);
             await Axios.post(`http://localhost:3001/dlogin`, {
                 email: email,
@@ -60,7 +61,6 @@ const ContextProvider = ({ children }) => {
             }).then((response) => {
                 console.log(response.data[0].doctor_id);
                 setId(response.data[0].doctor_id);
-                setRole(false);
                 socket.emit("login", [response.data[0].doctor_id, false]);
             });
         } catch (e) {

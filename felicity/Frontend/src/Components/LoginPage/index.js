@@ -19,7 +19,8 @@ import {
   SubmitButton,
   Signup,
   SignupLink,
-  CheckboxWrapper
+  CheckboxWrapper,
+  LabelRecursive
 } from "./styles";
 
 //https://codesandbox.io/s/custom-checkbox-and-radiobutton-with-react-and-styled-components-6h3st?from-embed=&file=/src/index.js:236-283
@@ -29,9 +30,12 @@ import Checkbox from "./Checkbox.js";
 import LogoImg from '../assets/Logo.png';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
+import { SocketContext } from "../../API/video"
 
 
 function LoginPage({ patientL, doctorL }) {
+  const { id } = React.useContext(SocketContext);
+
   const [radioValue, setRadio] = useState(true);
   const [value, setCheckbox] = useState(true);
 
@@ -46,6 +50,7 @@ function LoginPage({ patientL, doctorL }) {
 
         <Logo src={LogoImg} />
         <Title>Sign in </Title>
+        { id===0 && <LabelRecursive>Please enter valid User ID and Password</LabelRecursive>}
         <RadioWrapper>
           <RadioButton
             label="I'm a patient."
@@ -99,7 +104,7 @@ function LoginPage({ patientL, doctorL }) {
         </CheckboxWrapper>
 
         {radioValue &&
-          <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>
+          <SubmitButton to={`/MHT1`} onClick={patientL({ email, password })}>
             Sign In
           </SubmitButton>
         }

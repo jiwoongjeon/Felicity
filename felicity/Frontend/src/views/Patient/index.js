@@ -17,8 +17,21 @@ import Conversations from "../../Components/Conversations";
 import Emergency from "../../Components/Emergency";
 import PatientRecord from "../../Components/PatientRecord";
 import RecentPrescription from "../../Components/RecentPrescription";
+import Axios from "axios";
+import { DATA } from "./tempData";
 
 function Patient() {
+
+    const [scheduleData, setScheduleData] = React.useState([])
+
+    React.useEffect(() => {
+        Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 1 })
+            .then((response) => {
+                setScheduleData(response.data)
+            })
+    }, [])
+    console.log(scheduleData)
+
     return (
   
       <Mostouter>
@@ -43,7 +56,7 @@ function Patient() {
               </EmergencyBox>
 
               <ScheduleBox>
-                  <Schedule />
+                  <Schedule schedule_data={scheduleData}/>
               </ScheduleBox>
 
               <RecordBox>

@@ -21,7 +21,7 @@ function Doctor() {
     const [displayedData, setDisplay] = React.useState({})
 
     React.useEffect(() => {
-        Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 0 })
+        Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 1 })
 
             .then((response) => {
                 setScheduleData(response.data)

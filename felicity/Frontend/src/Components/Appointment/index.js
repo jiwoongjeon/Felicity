@@ -5,12 +5,26 @@ const { NewAppContainer, Header, AppDetailContainer, Divider, DetailLabel, Detai
     Column, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, SubmitBtn, ColumnBottom} = require('./styles')
 
 export const AppointmentHolder = (props) => {
+
+    function sessionClose () { //stores items in sessionStorage
     
+        window.sessionStorage.clear();
+        document.location.href = '/Patient/Home';
+    }
+
+    const Checklist = JSON.parse(sessionStorage.getItem("checklist"));
+    if (Checklist == null){
+        Checklist = [false, false, false, false, false, false, false, false, false, false, false, false, ""];
+    };
     const [department, setDepartment] = React.useState('');
     const [preference, setPreference] = React.useState('');
-
+    const [reserved_date, setDate] = React.useState('');
+    const [reserved_time, setTime] = React.useState('');
+    
     const handleDepartmentChange = (event) => {setDepartment(event.target.value);};
     const handlePreferenceChange = (event) => {setPreference(event.target.value);};
+    const handleDateChange = (event) => {setDate(event.target.value);};
+    const handleTimeChange = (event) => {setTime(event.target.value);};
     
     return(
         <NewAppContainer>
@@ -33,20 +47,26 @@ export const AppointmentHolder = (props) => {
                 <DetailLabel>Date and Time: </DetailLabel>
                 <Column>
                 <TextField
+                    value={reserved_date}
                     id="date"
                     label="Appointment Date"
                     type="date"
                     defaultValue="2017-05-24"
                     sx={{ width: 200 }}
-                    InputLabelProps={{ shrink: true }}/>
+                    InputLabelProps={{ shrink: true }}
+                    onChange={handleDateChange}
+                    />
                 <TextField
+                    value={reserved_time}
                     id="time"
                     label="Appointment Time"
                     type="time"
                     defaultValue="07:30"
                     sx={{ width: 200, marginLeft: 3 }}
                     InputLabelProps={{ shrink: true }}
-                    inputProps={{ step: 300 }}/>
+                    inputProps={{ step: 300 }}
+                    onChange={handleTimeChange}
+                    />
                 </Column>
 
                 <Divider />
@@ -54,53 +74,53 @@ export const AppointmentHolder = (props) => {
                 <Column>
                     <DetailLabel>Preferd Physician: </DetailLabel>
                     <FormControl sx={{minWidth: 265, marginTop: 3, marginLeft: 3, textAlign: "left"}}>
-                    <InputLabel>Preference</InputLabel>
-                    <Select
-                        value={preference}
-                        label="Preference"
-                        onChange={handlePreferenceChange}
-                        autoWidth>
-                        <MenuItem value={0}>No Preference</MenuItem>
-                        <MenuItem value={1}>Dr.Lee</MenuItem>
-                        <MenuItem value={2}>Dr.Kim</MenuItem>
-                        <MenuItem value={3}>Dr.Park</MenuItem>
-                    </Select>
-                </FormControl>
+                        <InputLabel>Preference</InputLabel>
+                        <Select
+                            value={preference}
+                            label="Preference"
+                            onChange={handlePreferenceChange}
+                            autoWidth>
+                            <MenuItem value={0}>No Preference</MenuItem>
+                            <MenuItem value={1}>Dr.Lee</MenuItem>
+                            <MenuItem value={2}>Dr.Kim</MenuItem>
+                            <MenuItem value={3}>Dr.Park</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Column>
 
                 <Divider />
-                
+      
                 <DetailLabel>Symptom: </DetailLabel>
-                {MHT_DATA.map((symptom) => (
+                
                 <SymptomsContainer>
-                    {symptom.A && <SymptomsBubble>Cough</SymptomsBubble>}
-                    {!symptom.A && <SymptomsBubbleUnchecked>Cough</SymptomsBubbleUnchecked>}
-                    {symptom.B && <SymptomsBubble>Vomit</SymptomsBubble>}
-                    {!symptom.B && <SymptomsBubbleUnchecked>Vomit</SymptomsBubbleUnchecked>}
-                    {symptom.C && <SymptomsBubble>Fever</SymptomsBubble>}
-                    {!symptom.C && <SymptomsBubbleUnchecked>Fever</SymptomsBubbleUnchecked>}
-                    {symptom.D && <SymptomsBubble>Sore throat</SymptomsBubble>}
-                    {!symptom.D && <SymptomsBubbleUnchecked>Sore throat</SymptomsBubbleUnchecked>}
-                    {symptom.E && <SymptomsBubble>Phlegm</SymptomsBubble>}
-                    {!symptom.E && <SymptomsBubbleUnchecked>Phlegm</SymptomsBubbleUnchecked>}
-                    {symptom.F && <SymptomsBubble>Runny Nose</SymptomsBubble>}
-                    {!symptom.F && <SymptomsBubbleUnchecked>Runny Nose</SymptomsBubbleUnchecked>}
-                    {symptom.G && <SymptomsBubble>Nauseous</SymptomsBubble>}
-                    {!symptom.G && <SymptomsBubbleUnchecked>Nauseous</SymptomsBubbleUnchecked>}
-                    {symptom.H && <SymptomsBubble>Out of breath</SymptomsBubble>}
-                    {!symptom.H && <SymptomsBubbleUnchecked>Out of breath</SymptomsBubbleUnchecked>}
-                    {symptom.I && <SymptomsBubble>Stomachache</SymptomsBubble>}
-                    {!symptom.I && <SymptomsBubbleUnchecked>Stomachache</SymptomsBubbleUnchecked>}
-                    {symptom.J && <SymptomsBubble>Chills</SymptomsBubble>}
-                    {!symptom.J && <SymptomsBubbleUnchecked>Chills</SymptomsBubbleUnchecked>}
-                    {symptom.K && <SymptomsBubble>Muscle Sickness</SymptomsBubble>}
-                    {!symptom.K && <SymptomsBubbleUnchecked>Muscle Sickness</SymptomsBubbleUnchecked>}
-                    {symptom.L && <SymptomsBubble>Other</SymptomsBubble>}
-                    {!symptom.L && <SymptomsBubbleUnchecked>Other</SymptomsBubbleUnchecked>}
-                    {symptom.L && <OtherBox>{symptom.L_detail}</OtherBox>}
-                </SymptomsContainer>))}
+                    {Checklist[0] && <SymptomsBubble>Cough</SymptomsBubble>}
+                    {!Checklist[0] && <SymptomsBubbleUnchecked>Cough</SymptomsBubbleUnchecked>}
+                    {Checklist[1] && <SymptomsBubble>Vomit</SymptomsBubble>}
+                    {!Checklist[1] && <SymptomsBubbleUnchecked>Vomit</SymptomsBubbleUnchecked>}
+                    {Checklist[2] && <SymptomsBubble>Fever</SymptomsBubble>}
+                    {!Checklist[2] && <SymptomsBubbleUnchecked>Fever</SymptomsBubbleUnchecked>}
+                    {Checklist[3] && <SymptomsBubble>Sore throat</SymptomsBubble>}
+                    {!Checklist[3] && <SymptomsBubbleUnchecked>Sore throat</SymptomsBubbleUnchecked>}
+                    {Checklist[4] && <SymptomsBubble>Phlegm</SymptomsBubble>}
+                    {!Checklist[4] && <SymptomsBubbleUnchecked>Phlegm</SymptomsBubbleUnchecked>}
+                    {Checklist[5] && <SymptomsBubble>Runny Nose</SymptomsBubble>}
+                    {!Checklist[5] && <SymptomsBubbleUnchecked>Runny Nose</SymptomsBubbleUnchecked>}
+                    {Checklist[6] && <SymptomsBubble>Nauseous</SymptomsBubble>}
+                    {!Checklist[6] && <SymptomsBubbleUnchecked>Nauseous</SymptomsBubbleUnchecked>}
+                    {Checklist[7] && <SymptomsBubble>Out of breath</SymptomsBubble>}
+                    {!Checklist[7] && <SymptomsBubbleUnchecked>Out of breath</SymptomsBubbleUnchecked>}
+                    {Checklist[8] && <SymptomsBubble>Stomachache</SymptomsBubble>}
+                    {!Checklist[8] && <SymptomsBubbleUnchecked>Stomachache</SymptomsBubbleUnchecked>}
+                    {Checklist[9] && <SymptomsBubble>Chills</SymptomsBubble>}
+                    {!Checklist[9] && <SymptomsBubbleUnchecked>Chills</SymptomsBubbleUnchecked>}
+                    {Checklist[10] && <SymptomsBubble>Muscle Sickness</SymptomsBubble>}
+                    {!Checklist[10] && <SymptomsBubbleUnchecked>Muscle Sickness</SymptomsBubbleUnchecked>}
+                    {Checklist[11] && <SymptomsBubble>Other</SymptomsBubble>}
+                    {!Checklist[11] && <SymptomsBubbleUnchecked>Other</SymptomsBubbleUnchecked>}
+                    {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
+                </SymptomsContainer>
             <ColumnBottom>
-                <SubmitBtn>Submit</SubmitBtn>
+                <SubmitBtn onClick={sessionClose}>Submit</SubmitBtn>
             </ColumnBottom>
             </AppDetailContainer>
 

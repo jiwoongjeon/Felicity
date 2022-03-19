@@ -10,7 +10,6 @@ function Login() {
 
     <LoginPage patientL={postPatientLogin} doctorL={postDoctorLogin} />
 
-
   );
 }
 

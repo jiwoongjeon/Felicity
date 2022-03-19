@@ -24,11 +24,47 @@ export const VideoContainer = styled.video`
     height: 100%;
     object-fit: cover;
 `;
-export const TextArea = styled.textarea`
-    position: absolute;
+
+export const SubtitleContainer = styled.div`
+    width = 100%;
+    display:flex;
+    flex-direction: column;
+    jusfity-content: flex-end;
+    position:absolute;
     z-index: 250;
-    margin-top: 65%;
-    margin-left: 30%;
+    bottom: 80px;
+`;
+
+export const RecordBox = styled.div`
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    flex-direction: row;
+    jusfity-content: flex-end;
+`;
+
+export const Record = styled.button`
+    margin: 5px 0px 0px 5px;
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 10%;
+    color : white;
+    background-color: #CF4942;
+    line-height: 25px;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+`;
+
+
+export const TextArea = styled.p`
+    width: 100%;
+    color : white;
+    background-color: rgba(0, 0, 0, 0.70);
 `;
 
 export const Container = styled.div`
@@ -117,7 +153,7 @@ export const Setting = styled.div`
     border: 4px solid;
     border-radius: 10px;
     border-color: white;
-    margin-top: 70%;
+    bottom: 0;
     margin-left: 30%;
     display:flex;
     flex-direction: row;
@@ -141,4 +177,5 @@ export const Phone = styled.div`
     background-color: #CF4942;
     line-height: 50px;
 `;
+
 
