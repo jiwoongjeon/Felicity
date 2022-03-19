@@ -36,7 +36,7 @@ overflow-y: auto;
 export const PostElement = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100px;
+  height: 100%;
 `;
 
 export const HeaderColumn = styled.div`
@@ -49,7 +49,7 @@ export const HeaderColumn = styled.div`
 
 export const BodyColumn = styled.div`
   width:100%;
-  height: 90px;
+  height: 100%;
   display: flex;
   flex-direction: row;
   vertical-align:center;
@@ -104,8 +104,7 @@ align-items: center;
 `;
 
 export const AvailBubble = styled.button`
-
-height: 70%;
+height: 50px;
 display: flex;
 background-color: #0075ff;
 border-radius: 8px;
@@ -115,6 +114,7 @@ padding-left: 15px;
 padding-right: 15px;
 margin-right: 10px;
 font-weight: bold;
+font-size:14px;
 color: white;
 line-height: 45px;
 border: none;
@@ -124,7 +124,7 @@ border: none;
 `;
 export const UnavailableBubble = styled.div`
 
-height:70%;
+height:50px;
 display: flex;
 background-color: #a0aec0;
 border-radius: 8px;
@@ -183,6 +183,7 @@ export const Department = styled.p`
   font-weight: bold;
   text-align: left;
   color: grey;
+  flex-wrap:wrap;
 `;
 export const Time = styled.p`
   margin-top:3px;

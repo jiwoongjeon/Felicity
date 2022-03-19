@@ -19,7 +19,8 @@ import {
   SubmitButton,
   Signup,
   SignupLink,
-  CheckboxWrapper
+  CheckboxWrapper,
+  LabelRed
 } from "./styles";
 
 import RadioButton from "./Radiobox.js";
@@ -27,6 +28,7 @@ import LogoImg from '../assets/Logo.png';
 import ConsentForm from './consentform.pdf';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
+import { LabelRecursive } from "../LoginPage/styles";
 
 function RegistrationPage({ patientL, doctorL }) {
     const [radioValue, setRadio] = useState(true);
@@ -85,8 +87,8 @@ function RegistrationPage({ patientL, doctorL }) {
 
                 <Rowbox>
                 <PwLabel>Confirm Password </PwLabel>
-
                 </Rowbox>
+                {password!=confirmedPassword && <LabelRed>Your confirmed password should match with the original one.</LabelRed>}
                 <InputBox>
                 <Icon> <HiLockClosed /> </Icon>
                 <PwInput
@@ -95,9 +97,6 @@ function RegistrationPage({ patientL, doctorL }) {
                 />
                 </InputBox>
                 
-
-                <Label> By signing up, you agree to our <TextLink>privacy policy, Telepossible terms.</TextLink></Label>
-
                 <Label> Before signing up, you must agree to our patient consent form:</Label>
                 <iframe src={ConsentForm} width="100%" height="500px"></iframe>
 

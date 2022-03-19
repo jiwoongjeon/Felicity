@@ -24,11 +24,9 @@ import Appointment from "./views/Appointment";
 import Registration from "./views/Registration"
 import Meeting from "./views/Meeting";
 import { io } from "socket.io-client";
-import LoginSubpage from "./views/LoginSubpage";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
-  { path: "/LoginSubpage", key: "video", component: () => <LoginSubpage /> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
   { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
   { path: "/Doctor/Home", key: "video", component: () => <Doctor /> },

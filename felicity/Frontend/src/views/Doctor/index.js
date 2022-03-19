@@ -13,6 +13,7 @@ import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 import Axios from "axios";
 import { PATIENT_DATA } from "./tempData";
+import { Redirect } from "react-router-dom";
 
 
 function Doctor() {
@@ -29,6 +30,8 @@ function Doctor() {
     }, [])
     console.log(scheduleData)
 
+    const role = JSON.parse(sessionStorage.getItem("role"));
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     
     function sy(array) {
         var array1 = []
@@ -72,7 +75,7 @@ function Doctor() {
     };
 
   return (
-
+      
     <Mostouter>
 
     <Cat>

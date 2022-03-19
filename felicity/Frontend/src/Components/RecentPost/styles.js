@@ -228,7 +228,7 @@ export const UnState = styled.p`
 
 export const Search = styled.div`
   min-width:170px;
-  width: 25%;
+  flex:1;
   height: 40px;
   display: flex;
   flex-direction: row;
@@ -261,6 +261,7 @@ export const SearchContent = styled.input.attrs({
 `;
 
 export const WriteButton = styled(Link)`
+    flex:1;
     height: 40px;
     background-color: #0075FF;
     border-radius: 15px;
@@ -281,6 +282,7 @@ export const WriteButton = styled(Link)`
 `;
 
 export const PageContainer = styled.div`
+  flex:3;
   min-width:300px;
   height: 40px;
   display: flex;

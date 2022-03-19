@@ -14,7 +14,7 @@ export const MainContainer = styled.div`
 
 
 export const Account = styled(Link)`
-    width: 90px;
+    width: 150px;
     height: 16px;
     text-decoration:none;
 `;

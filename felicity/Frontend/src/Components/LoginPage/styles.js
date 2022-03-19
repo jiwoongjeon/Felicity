@@ -162,7 +162,7 @@ export const Rowbox2 = styled.div`
 border:1px solid #0075FF;
 `;
 
-export const SubmitButton = styled(Link)`
+export const SubmitButton = styled.div`
     width: 100%;
     height: 40px;
     background-color: #0075FF;
@@ -199,7 +199,7 @@ export const Signup = styled.div`
     margin-top: 12px;
 `;
 
-export const SignupLink = styled.a`
+export const SignupLink = styled(Link)`
     font-family: Roboto;
     font-style: normal;
     font-weight: 600;

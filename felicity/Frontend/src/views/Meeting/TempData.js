@@ -3,7 +3,7 @@ export const PATIENT_DATA = [
         img: "https://i.imgur.com/oDUfOX6.png",
         first_name: "Justin",
         last_name: "Lee",
-        wounded_area: "Eat too much pizza",
+        wounded_area: "Eat too much pizza pizza pizza",
         available: 1,
         severity: 4,
         reserved_date: "03-26-2022",

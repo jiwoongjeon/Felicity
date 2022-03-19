@@ -7,7 +7,7 @@ export const ContentLayout = styled.div`
     min-height: 700px;
     display: grid;
 
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1.3fr;
     grid-template-rows: 1fr 1fr 8fr;
     grid-template-areas:
         "list info"
