@@ -14,11 +14,12 @@ Noti,
 } from "./styles";
 
 const Login = () => {
+
   return (
   <MainContainer>
 
     <Account to={""} onClick={window.sessionStorage.clear()}>
-        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} /> Log Out </AccountIcon>
+        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} />Log Out</AccountIcon>
     </Account>
 
     <Setting><IoMdSettings style={{color: '#718096', fontSize: '20px'}}/></Setting>
