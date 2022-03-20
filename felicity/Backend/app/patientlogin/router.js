@@ -2,13 +2,18 @@ var login = require("./login_model");
 var router = require("express").Router();
 
 function postPatientLogin(req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     const email = req.body.email;
     const password = req.body.password;
 
     login.patientLogin([email, password], (err, result) => {
-        if (err) console.log(err);
-        res.json(result);
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Login failed" })
+        }
+        else {
+            res.json(result);
+        }
     })
 }
 

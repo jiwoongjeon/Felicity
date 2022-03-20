@@ -5,9 +5,7 @@ const doctorLoginQry = "SELECT get_doctor_login(?, ?) as doctor_id";
 function doctorLogin([email, password], callback) {
     config.db.query(doctorLoginQry, [email, password], (err, result) => {
 
-        if (err) console.log(err);
-
-        console.log(result);
+        if (err) callback(err, null);
 
         callback(null, result);
     })
