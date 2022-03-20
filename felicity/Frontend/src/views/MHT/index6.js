@@ -25,7 +25,7 @@ function MHT6() {
     
     window.sessionStorage.setItem('checklist',JSON.stringify(Checklist));
   
-    document.location.href = '/Patient/Appointment';
+    document.location.href = '/MHT7';
   }
   
   const [valueA, setCheckboxA] = React.useState(false);
