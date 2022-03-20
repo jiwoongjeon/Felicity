@@ -8,13 +8,14 @@ import { Title, SubTitle, SliderBox, } from "../../views/MHT/styles";
 const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, CheckboxBox, SymptomsContainer, SymptomsBubble, Divider } = require("./styles");
 
 
-export const Checklists = () => {
+export const Checklists = (props) => {
 
     return (
         <ChecklistsContainer>
             {MHT_DATA.map((data, i) => (
                 <ChecklistsElementContainer>
-                    <Title>Medical History Form</Title>
+                    {props.isDoctor && <Title>Medical History Form for next patient</Title>}
+                    {!props.isDoctor && <Title>Medical History Form Review</Title>}
                     <SubTitle>Patient: {data.patient}</SubTitle>
                     <Divider />
                     <Label>1. Where does it hurt?  *</Label>

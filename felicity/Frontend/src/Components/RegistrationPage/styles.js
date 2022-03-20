@@ -63,7 +63,18 @@ export const Label = styled.div`
     font-weight: 600;
     font-size: 12px;
     margin-top: 12px;
+    margin-bottom:12px;
 `;
+
+export const LabelRed = styled.div`
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    color:red;
+`;
+
 export const LoginInput =  styled.input.attrs(({ type }) => ({
   type:  type || "text",
   placeholder: "avgsdf@email.com"
@@ -157,6 +168,7 @@ export const SubmitButton = styled(Link)`
     background-color: #0075FF;
     border-radius: 20px;
     margin-top: 43px;
+    margin-bottom:40px;
     padding-top: 5px;
     border: 0;
     outline: 0;

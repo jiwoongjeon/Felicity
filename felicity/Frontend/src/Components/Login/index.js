@@ -17,8 +17,8 @@ const Login = () => {
   return (
   <MainContainer>
 
-    <Account to={""}>
-        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} /> SignIn </AccountIcon>
+    <Account to={""} onClick={window.sessionStorage.clear()}>
+        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} /> Log Out </AccountIcon>
     </Account>
 
     <Setting><IoMdSettings style={{color: '#718096', fontSize: '20px'}}/></Setting>

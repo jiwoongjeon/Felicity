@@ -20,6 +20,8 @@ import RecentPrescription from "../../Components/RecentPrescription";
 import Axios from "axios";
 import { DATA } from "./tempData";
 
+import { Redirect, Route } from "react-router-dom";
+
 function Patient() {
 
     const [scheduleData, setScheduleData] = React.useState([])
@@ -31,11 +33,14 @@ function Patient() {
             })
     }, [])
     console.log(scheduleData)
+    
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    const role = JSON.parse(sessionStorage.getItem("role"))
 
     return (
-  
+
       <Mostouter>
-  
+
       <Cat>
         <Header isDoctor={false}/>
       </Cat>

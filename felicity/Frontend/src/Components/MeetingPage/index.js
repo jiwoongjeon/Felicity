@@ -65,7 +65,7 @@ export const MeetingPage = (props) => {
                             </AvailContainer>
 
                         </BodyColumn>
-                        <Divider></Divider>
+                        <Divider/>
                     </PostElement>
 
 

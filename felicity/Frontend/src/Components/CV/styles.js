@@ -5,7 +5,6 @@ import default_profile from '../assets/default_profile.png'
 
 export const PatientContainer = styled.div`
   width: 100%;
-  min-width: 300px;
   height: 95%;
   display: flex;
   flex-direction: column;
@@ -16,6 +15,7 @@ export const PatientContainer = styled.div`
   background: white;
   border-radius: 20px;
   justify-content: center;
+  ovrflow-y:auto;
 `;
 
 export const Column = styled.div`
@@ -23,8 +23,7 @@ export const Column = styled.div`
   width:100%;
   display: flex;
   flex-direction: column;
-  overflow-y:auto;
-  overflow-x:hidden;
+  overflow:auto;
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -46,8 +45,8 @@ export const Divider = styled.div`
 
 export const PatientImage = styled.div`
   width:100%;
-  height:320px;
-  min-height:320px;
+  height:200px;
+  min-height:200px;
   border-radius: 8px;
   background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
@@ -82,7 +81,6 @@ export const DetailLabel = styled.p`
 export const Detail = styled.p`
   text-align: left;
   margin-left: 7px;
-  overflow-wrap:normal;
 `;
 
 export const Btn = styled(Link)`
