@@ -1,18 +1,28 @@
 const config = require("../config");
+var post = module.exports;
 
 const readPostQry =
-    "SELECT post.id as postId, post.title as postTitle, symptom as postSymptom, " +
-    "date_format((postdate), '%m-%d-%Y') as postDate, username as postAuthor FROM felicitytest.post " +
-    "join user on user_id = user.id;";
+    "SELECT post.id, symptom.id as sid, symptom.category, post.title, post.content, " +
+    "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') as date, " +
+    "post.is_replied as state, post.comment from post " +
+    "join symptom on post.symptom_id = symptom.id";
 
-function findPosts(callback) {
+const readSymptomList =
+    "select * from symptom_list where symptom_list.symptom_id in (?)";
+
+post.findPosts = function findPosts(callback) {
     config.db.query(readPostQry, (err, result) => {
-        if (err) console.log(err);
-
-        console.log(result);
+        if (err) callback(err, null);
 
         callback(null, result);
     })
 }
 
-exports.findPosts = findPosts;
+post.findSymptoms = function findSymptoms(symptomIds, callback) {
+    var idString = symptomIds.join(', ');
+    config.db.query(readSymptomList, idString, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result)
+    })
+}

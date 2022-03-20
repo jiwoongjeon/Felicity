@@ -21,11 +21,9 @@ app.use(bodyParser.json());
 app.use(require("./doctorlogin/router"));
 app.use(require("./patientlogin/router"));
 app.use(require("./posts/router"));
-app.use(require("./schedules/router"));
 app.use(require("./schedule/router"));
 
 // const login = require("./login.js")
-// const schedule = require("./schedule.js")
 
 app.get("/audio", (req, res) => {
     console.log(req.body);
