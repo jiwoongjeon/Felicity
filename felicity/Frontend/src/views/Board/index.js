@@ -4,7 +4,7 @@ import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mo
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { BoardDetail } from "../../Components/BoardDetail";
-
+import UserRedirect from "../UserRedirect";
 
 
 function Board(props) {
@@ -12,6 +12,7 @@ function Board(props) {
   return (
 
     <Mostouter>
+      <UserRedirect isRole={!props.isDoctor}/>
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

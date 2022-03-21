@@ -2,6 +2,7 @@ import React from "react";
 
 import LogoImg from '../../Components/assets/Logo.png';
 import { BodyInput, InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title } from "./styles";
+import UserRedirect from "../UserRedirect";
 
 const Check = () => {
   const hurt = window.sessionStorage.getItem('hurt');
@@ -21,6 +22,7 @@ function MHT3() {
 
   return (
     <MainContainer>
+      <UserRedirect isRole={true}/>
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>

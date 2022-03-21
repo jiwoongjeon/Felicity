@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { SocketContext } from "../../API/video"
 
-function UserRedirect() {
+function UserRedirect({isRole}) {
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
   const role = JSON.parse(sessionStorage.getItem("role"))
+  console.log('userredirect')
+  console.log(jwt)
+  console.log(role)
   return (
     <Route>
-      { !jwt ? <Redirect to="/" /> : role ? <Redirect to ="/Patient/Home"/> : <Redirect to ="/Doctor/Home"/> }
+      { !jwt && <Redirect to="/" />}
+      { isRole & !role && <Redirect to="/Doctor/Home" />}
+      { !isRole & role && <Redirect to="/Patient/Home" />}
     </Route>
   );
 }

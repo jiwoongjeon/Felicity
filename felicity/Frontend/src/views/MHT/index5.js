@@ -3,6 +3,7 @@ import React from "react";
 import LogoImg from '../../Components/assets/Logo.png';
 import RadioButton from "../../Components/LoginPage/Radiobox";
 import { InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, RadioBox, ReasonInput } from "./styles";
+import UserRedirect from "../UserRedirect";
 
 const Check = () => {
   const hurt = window.sessionStorage.getItem('hurt');
@@ -26,6 +27,7 @@ function MHT5() {
 
   return (
     <MainContainer>
+      <UserRedirect isRole={true}/>
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>

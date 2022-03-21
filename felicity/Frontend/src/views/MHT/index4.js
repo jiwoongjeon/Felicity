@@ -3,6 +3,7 @@ import Slider from '@material-ui/core/Slider';
 
 import LogoImg from '../../Components/assets/Logo.png';
 import { Label, Logo, MainContainer, QuestionContainer, SliderBox, SubmitButton, SubTitle, Title } from "./styles";
+import UserRedirect from "../UserRedirect";
 
 const Check = () => {
   const hurt = window.sessionStorage.getItem('hurt');
@@ -30,6 +31,7 @@ function MHT4() {
 
   return (
     <MainContainer>
+      <UserRedirect isRole={true}/>
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>

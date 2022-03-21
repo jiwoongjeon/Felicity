@@ -80,7 +80,7 @@ export function RenderRoutes({ routes }) {
       {routes.map((route, i) => {
         return <RouteWithSubRoutes key={route.key} {...route} />;
       })}
-      <Route component={() => <h1>Not Found!</h1>} />
+      <Route component={() => <Login/>} />
     </Switch>
   );
 }

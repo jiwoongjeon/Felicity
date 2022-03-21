@@ -18,9 +18,7 @@ import Emergency from "../../Components/Emergency";
 import PatientRecord from "../../Components/PatientRecord";
 import RecentPrescription from "../../Components/RecentPrescription";
 import Axios from "axios";
-import { DATA } from "./tempData";
-
-import { Redirect, Route } from "react-router-dom";
+import UserRedirect from "../UserRedirect"
 
 function Patient() {
 
@@ -33,13 +31,11 @@ function Patient() {
             })
     }, [])
     console.log(scheduleData)
-    
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-    const role = JSON.parse(sessionStorage.getItem("role"))
 
     return (
 
       <Mostouter>
+          <UserRedirect isRole={true}/>
 
       <Cat>
         <Header isDoctor={false}/>
