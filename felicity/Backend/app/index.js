@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 
 
 
-app.use(require("./doctorlogin/router"));
-app.use(require("./patientlogin/router"));
-app.use(require("./posts/router"));
-app.use(require("./schedule/router"));
+app.use(require("./doctorlogin/router"));   // "/dlogin"
+app.use(require("./patientlogin/router"));  // "/plogin"
+app.use(require("./posts/router"));         // "/post"
+app.use(require("./schedule/router"));      // "/patient_schedule" or "/doctor_schedule"
 
 // const login = require("./login.js")
 
