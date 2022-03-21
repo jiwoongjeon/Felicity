@@ -2,8 +2,8 @@ import React from "react";
 
 import LogoImg from '../../Components/assets/Logo.png';
 import RadioButton from "../../Components/LoginPage/Radiobox";
+import UserRedirect from "../UserRedirect";
 import { BodyInput, DepartmentInput, InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, RadioBox } from "./styles";
-
 
 
 function MHT1() {
@@ -21,6 +21,7 @@ function MHT1() {
 
   return (
     <MainContainer>
+      <UserRedirect isRole={true}/>
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>

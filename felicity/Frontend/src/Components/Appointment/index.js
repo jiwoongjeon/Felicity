@@ -8,7 +8,13 @@ export const AppointmentHolder = (props) => {
 
     function sessionClose () { //stores items in sessionStorage
     
-        window.sessionStorage.clear();
+        window.sessionStorage.removeItem('hurt');
+        window.sessionStorage.removeItem('depart');
+        window.sessionStorage.removeItem('time');
+        window.sessionStorage.removeItem('where');
+        window.sessionStorage.removeItem('level');
+        window.sessionStorage.removeItem('why');
+        window.sessionStorage.removeItem('checklist');
         document.location.href = '/Patient/Home';
     }
 
