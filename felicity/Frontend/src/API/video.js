@@ -4,9 +4,11 @@ import Peer from "simple-peer";
 import Axios from "axios";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
+import API_URI from "./server-ip";
+
 const SocketContext = createContext();
 
-const socket = io("http://localhost:3001");
+const socket = io(`http://${API_URI}:3001`);
 
 let recordAudio;
 
@@ -34,16 +36,16 @@ const ContextProvider = ({ children }) => {
     const userVideo = useRef();
     const connectionRef = useRef();
 
-    function loginSessionStore (role, jwt) { //stores items in sessionStorage
-        window.sessionStorage.setItem('role',JSON.stringify(role));
-        window.sessionStorage.setItem('jwt',JSON.stringify(jwt));
-      }
+    function loginSessionStore(role, jwt) { //stores items in sessionStorage
+        window.sessionStorage.setItem('role', JSON.stringify(role));
+        window.sessionStorage.setItem('jwt', JSON.stringify(jwt));
+    }
 
     const postPatientLogin = ({ email, password }) => async () => {
         try {
             setRole(true);
             console.log(email, password);
-            await Axios.post(`http://localhost:3001/plogin`, {
+            await Axios.post(`http://${API_URI}:3001/plogin`, {
                 email: email,
                 password: password
             }).then((response) => {
@@ -64,7 +66,7 @@ const ContextProvider = ({ children }) => {
         try {
             setRole(false);
             console.log(email, password);
-            await Axios.post(`http://localhost:3001/dlogin`, {
+            await Axios.post(`http://${API_URI}:3001/dlogin`, {
                 email: email,
                 password: password
             }).then((response) => {

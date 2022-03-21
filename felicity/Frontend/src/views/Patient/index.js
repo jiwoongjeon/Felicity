@@ -1,6 +1,6 @@
 import React from "react"
 import Header from '../../Components/Header/Header';
-import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
+import { Mostouter, Directory, User, Cat, Title, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
@@ -20,12 +20,14 @@ import RecentPrescription from "../../Components/RecentPrescription";
 import Axios from "axios";
 import UserRedirect from "../UserRedirect"
 
+import API_URI from "../../API/server-ip";
+
 function Patient() {
 
     const [scheduleData, setScheduleData] = React.useState([])
 
     React.useEffect(() => {
-        Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 1 })
+        Axios.post(`http://${API_URI}:3001/patient_schedule`, { "patient_id": 1 })
             .then((response) => {
                 setScheduleData(response.data)
             })
@@ -34,50 +36,50 @@ function Patient() {
 
     return (
 
-      <Mostouter>
-          <UserRedirect isRole={true}/>
+        <Mostouter>
+            <UserRedirect isRole={true} />
 
-      <Cat>
-        <Header isDoctor={false}/>
-      </Cat>
-  
-      <Directory>
-          <Path directory="Home"/>
-      </Directory>
-  
-      <User>
-          <Login />
-      </User>
-  
-  
-      <Video>
-          <ContentLayout>
-              <EmergencyBox>
-                  <Emergency/>
-              </EmergencyBox>
+            <Cat>
+                <Header isDoctor={false} />
+            </Cat>
 
-              <ScheduleBox>
-                  <Schedule schedule_data={scheduleData}/>
-              </ScheduleBox>
+            <Directory>
+                <Path directory="Home" />
+            </Directory>
 
-              <RecordBox>
-                  <PatientRecord />
-              </RecordBox>
+            <User>
+                <Login />
+            </User>
 
-              <PrescriptionBox>
-                  <RecentPrescription />
-              </PrescriptionBox>
 
-              <ConversationBox>
-                  <Conversations/>
-              </ConversationBox>
-          </ContentLayout>
-      </Video>
-  
-      </Mostouter>
-  
-  
+            <Video>
+                <ContentLayout>
+                    <EmergencyBox>
+                        <Emergency />
+                    </EmergencyBox>
+
+                    <ScheduleBox>
+                        <Schedule schedule_data={scheduleData} />
+                    </ScheduleBox>
+
+                    <RecordBox>
+                        <PatientRecord />
+                    </RecordBox>
+
+                    <PrescriptionBox>
+                        <RecentPrescription />
+                    </PrescriptionBox>
+
+                    <ConversationBox>
+                        <Conversations />
+                    </ConversationBox>
+                </ContentLayout>
+            </Video>
+
+        </Mostouter>
+
+
     );
-  }
-  
+}
+
 export default Patient;
