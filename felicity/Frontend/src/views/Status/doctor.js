@@ -7,6 +7,7 @@ import Login from '../../Components/Login';
 
 import RecentPost from "../../Components/RecentPost";
 import { POST_DATA, PAGE_DATA } from "./tempData";
+import UserRedirect from "../UserRedirect";
 
 function StatusDoctor(props) {
 
@@ -60,6 +61,7 @@ function StatusDoctor(props) {
 
   return (
     <Mostouter>
+        <UserRedirect isRole={!props.isDoctor}/>
 
     <Cat>
       <Header isDoctor={props.isDoctor}/>

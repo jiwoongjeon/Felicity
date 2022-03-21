@@ -4,13 +4,16 @@ import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mo
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { ProfilePage } from "../../Components/ProfilePage";
+import UserRedirect from "../UserRedirect";
 
 
 function Profile(props) {
+
   return (
 
     <Mostouter>
-
+      <UserRedirect isRole={!props.isDoctor}/>
+      
     <Cat>
         <Header isDoctor={props.isDoctor}/>
     </Cat>

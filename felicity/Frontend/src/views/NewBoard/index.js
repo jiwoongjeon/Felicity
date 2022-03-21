@@ -4,12 +4,13 @@ import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mo
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { BoardNew } from "../../Components/BoardNew";
-
+import UserRedirect from "../UserRedirect";
 
 function NewBoard(props) {
   return (
 
     <Mostouter>
+      <UserRedirect isRole={true}/>
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

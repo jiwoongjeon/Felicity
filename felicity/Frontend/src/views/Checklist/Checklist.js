@@ -10,11 +10,13 @@ import {
 import RecentPost from "../../Components/RecentPost";
 import Checklists from "../../Components/Checklists";
 import { propTypes } from "react-bootstrap/esm/Image";
+import UserRedirect from "../UserRedirect";
 
 function Checklist(props) {
   return (
 
     <Mostouter>
+      <UserRedirect isRole={!props.isDoctor}/>
 
     <Cat>
       <Header isDoctor={props.isDoctor}/>

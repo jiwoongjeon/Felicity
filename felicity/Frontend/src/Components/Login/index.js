@@ -14,11 +14,18 @@ Noti,
 } from "./styles";
 
 const Login = () => {
+
+  function sessionClose () { //stores items in sessionStorage
+    
+    window.sessionStorage.clear();
+    document.location.href = '/';
+  }
+
   return (
   <MainContainer>
 
-    <Account to={""} onClick={window.sessionStorage.clear()}>
-        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} /> Log Out </AccountIcon>
+    <Account to={""} onClick={sessionClose}>
+        <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} />Log Out</AccountIcon>
     </Account>
 
     <Setting><IoMdSettings style={{color: '#718096', fontSize: '20px'}}/></Setting>

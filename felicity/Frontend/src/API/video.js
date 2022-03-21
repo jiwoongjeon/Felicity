@@ -35,8 +35,8 @@ const ContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     function loginSessionStore (role, jwt) { //stores items in sessionStorage
-        window.sessionStorage.setItem('role',role);
-        window.sessionStorage.setItem('jwt',jwt);
+        window.sessionStorage.setItem('role',JSON.stringify(role));
+        window.sessionStorage.setItem('jwt',JSON.stringify(jwt));
       }
 
     const postPatientLogin = ({ email, password }) => async () => {
@@ -52,7 +52,7 @@ const ContextProvider = ({ children }) => {
                 socket.emit("login", [response.data[0].user_id, true]);
                 if (response.data[0].user_id) {
                     loginSessionStore(true, response.data[0].user_id)
-                    document.location.href = '/Patient/Home';
+                    document.location.href = '/Patient/Home'
                 }
             });
         } catch (e) {

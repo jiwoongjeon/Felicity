@@ -12,8 +12,7 @@ import {
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 import Axios from "axios";
-import { PATIENT_DATA } from "./tempData";
-import { Redirect } from "react-router-dom";
+import UserRedirect from "../UserRedirect";
 
 
 function Doctor() {
@@ -77,6 +76,7 @@ function Doctor() {
   return (
       
     <Mostouter>
+        <UserRedirect isRole={false}/>
 
     <Cat>
         <Header isDoctor={true}/>
