@@ -228,3 +228,21 @@ export const InputBox = styled.div`
     background-color: white;
 `;
 
+export const ConsentBox = styled.div`
+    width: 100%;
+    height: 600px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0.5px solid #E2E8F0;
+    box-sizing: border-box;
+    border-radius:5px;
+    display: flex;
+    flex-direction: row;
+    text-align:left;
+    background-color: white;
+    overflow-y:auto;
+    white-space: pre-wrap;
+`;
+
+
