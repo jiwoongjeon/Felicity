@@ -1,3 +1,3 @@
-const API_URI = "3.19.173.113";
+const API_URL = "https://telepossibleserver.com";
 
-export default API_URI;
+export default API_URL;

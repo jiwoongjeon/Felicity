@@ -15,5 +15,5 @@ config.db.connect((err) => {
 });
 
 config.express = {
-    port: 443,
+    port: 3001,
 };

@@ -8,10 +8,12 @@ import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 import API_URI from "./server-ip";
 import { render } from "react-dom";
 import LoginRedirect from "../views/UserRedirect/login";
+import API_URL from "./server-ip";
+
 
 const SocketContext = createContext();
 
-const socket = io(`http://${API_URI}:3001`);
+const socket = io(`${API_URL}`);
 
 let recordAudio;
 
@@ -49,7 +51,7 @@ const ContextProvider = ({ children }) => {
         try {
             setRole(true);
             console.log(email, password);
-            await Axios.post(`http://${API_URI}:3001/plogin`, {
+            await Axios.post(`${API_URL}/plogin`, {
                 email: email,
                 password: password
             }).then((response) => {
@@ -69,7 +71,7 @@ const ContextProvider = ({ children }) => {
         try {
             setRole(false);
             console.log(email, password);
-            await Axios.post(`http://${API_URI}:3001/dlogin`, {
+            await Axios.post(`${API_URL}/dlogin`, {
                 email: email,
                 password: password
             }).then((response) => {
