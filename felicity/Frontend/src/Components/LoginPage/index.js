@@ -31,6 +31,7 @@ import LogoImg from '../assets/Logo.png';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 import { SocketContext } from "../../API/video"
+import LoginRedirect from "../../views/UserRedirect/login";
 
 
 function LoginPage({ patientL, doctorL }) {
@@ -119,7 +120,7 @@ function LoginPage({ patientL, doctorL }) {
           Don’t have an Account? <SignupLink to='/registeration'> Sign Up </SignupLink>
         </Signup>
 
-
+        {id && <LoginRedirect/>}
 
       </LoginContainer>
 

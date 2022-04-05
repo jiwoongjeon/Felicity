@@ -1,10 +1,15 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
 import { connect, io } from "socket.io-client";
+import { BrowserRouter, Redirect } from "react-router-dom";
 import Peer from "simple-peer";
 import Axios from "axios";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
+import API_URI from "./server-ip";
+import { render } from "react-dom";
+import LoginRedirect from "../views/UserRedirect/login";
 import API_URL from "./server-ip";
+
 
 const SocketContext = createContext();
 
@@ -42,6 +47,7 @@ const ContextProvider = ({ children }) => {
     }
 
     const postPatientLogin = ({ email, password }) => async () => {
+        
         try {
             setRole(true);
             console.log(email, password);
@@ -50,12 +56,11 @@ const ContextProvider = ({ children }) => {
                 password: password
             }).then((response) => {
                 console.log(response.data[0].user_id);
-                setId(response.data[0].user_id);
                 socket.emit("login", [response.data[0].user_id, true]);
                 if (response.data[0].user_id) {
                     loginSessionStore(true, response.data[0].user_id)
-                    document.location.href = '/Patient/Home'
-                }
+                    setId(response.data[0].user_id);
+                    }
             });
         } catch (e) {
             console.log(e);
@@ -71,11 +76,10 @@ const ContextProvider = ({ children }) => {
                 password: password
             }).then((response) => {
                 console.log(response.data[0].doctor_id);
-                setId(response.data[0].doctor_id);
                 socket.emit("login", [response.data[0].doctor_id, false]);
                 if (response.data[0].doctor_id) {
                     loginSessionStore(false, response.data[0].doctor_id)
-                    document.location.href = '/Doctor/Home';
+                    setId(response.data[0].doctor_id);
                 }
             });
         } catch (e) {

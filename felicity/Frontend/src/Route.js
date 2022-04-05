@@ -24,6 +24,7 @@ import Appointment from "./views/Appointment";
 import Registration from "./views/Registration"
 import Meeting from "./views/Meeting";
 import { io } from "socket.io-client";
+import LoginRedirect from "./views/UserRedirect/login";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
