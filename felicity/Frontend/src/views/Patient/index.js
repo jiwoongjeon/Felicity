@@ -20,7 +20,7 @@ import RecentPrescription from "../../Components/RecentPrescription";
 import Axios from "axios";
 import UserRedirect from "../UserRedirect"
 
-import API_URI from "../../API/server-ip";
+import API_URL from "../../API/server-ip";
 
 function Patient() {
 
@@ -29,7 +29,7 @@ function Patient() {
     const [scheduleData, setScheduleData] = React.useState([])
 
     React.useEffect(() => {
-        Axios.post(`http://${API_URI}:3001/patient_schedule`, { "patient_id": 1 })
+        Axios.post(`${API_URL}/patient_schedule`, { "patient_id": 1 })
             .then((response) => {
                 setScheduleData(response.data)
             })
