@@ -10,7 +10,6 @@ function LoginRedirect({isRole}) {
         <Route>
             { !isRole  && <Redirect to="/Doctor/Home" />}
             { isRole  && <Redirect to="/Patient/Home" />}
-            <Redirect to="/Patient/Home" />
         </Route>
         </body>
     </html>

@@ -15,7 +15,6 @@ export const AppointmentHolder = (props) => {
         window.sessionStorage.removeItem('level');
         window.sessionStorage.removeItem('why');
         window.sessionStorage.removeItem('checklist');
-        document.location.href = '/Patient/Home';
     }
 
     const Checklist = JSON.parse(sessionStorage.getItem("checklist"));
@@ -126,7 +125,7 @@ export const AppointmentHolder = (props) => {
                     {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
                 </SymptomsContainer>
             <ColumnBottom>
-                <SubmitBtn onClick={sessionClose}>Submit</SubmitBtn>
+                <SubmitBtn onClick={sessionClose} to='./Home'>Submit</SubmitBtn>
             </ColumnBottom>
             </AppDetailContainer>
 

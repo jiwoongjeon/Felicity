@@ -8,17 +8,22 @@ import Login from '../../Components/Login';
 // import { LayoutOuter } from './components/LayoutOuter copy';
 
 import { SocketContext } from "../../API/video";
+import UserRedirect from "../UserRedirect";
 
 function Videocall(props) {
 
-  const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = useContext(SocketContext);
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
+  const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = useContext(SocketContext);
   const context = { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio }
 
   useEffect(() => startCall(), []);
 
   return (
     <Mostouter>
+
+      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
+      
       <Cat>
         <Header isDoctor={props.isDoctor} />
       </Cat>

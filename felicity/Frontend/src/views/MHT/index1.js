@@ -7,27 +7,25 @@ import { BodyInput, DepartmentInput, InputBox, Label, Logo, MainContainer, Quest
 
 
 function MHT1() {
+
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   function sessionStore () { //stores items in sessionStorage
     var hurt = document.getElementById('hurt').value;
     var depart = document.getElementById('depart').value;
-  
-  
     window.sessionStorage.setItem('hurt',hurt);
     window.sessionStorage.setItem('depart',depart);
-  
-    document.location.href = '/MHT2';
   }
-  const [radioValue, setRadio] = React.useState(true);
+  const [radioValue, setRadio] = React.useState(false);
 
   return (
     <MainContainer>
-      <UserRedirect isRole={true}/>
+      {!jwt && <UserRedirect isRole={true}/>}
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (1/6)</SubTitle>
-            <SubmitButton onClick={sessionStore}>
-                Next</SubmitButton>
+            <SubmitButton onClick={sessionStore} to={'/MHT2'}>Next</SubmitButton>
             <Label>1. Where does it hurt?  *</Label>
             <InputBox>
                 <BodyInput id="hurt"/>

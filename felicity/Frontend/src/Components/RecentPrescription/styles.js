@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import default_profile from '../assets/default_profile.png'
 
 export const PrescriptionContainer = styled.div`
 width:100%;
@@ -92,7 +93,7 @@ overflow-y: hidden;
 export const Doctor = styled.div`
 height:120%;
 width:20%;
-background-image:  url(${props => props.img});
+background-image:  url(${props => props.img? props.img : default_profile });
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;

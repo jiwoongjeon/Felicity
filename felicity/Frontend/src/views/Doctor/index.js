@@ -18,6 +18,8 @@ import API_URL from "../../API/server-ip";
 
 function Doctor() {
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
     const [scheduleData, setScheduleData] = React.useState([])
     const [displayedData, setDisplay] = React.useState({})
 
@@ -29,10 +31,7 @@ function Doctor() {
             })
     }, [])
     console.log(scheduleData)
-
-    const role = JSON.parse(sessionStorage.getItem("role"));
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
-
+  
     function sy(array) {
         var array1 = []
         if (array[0] === 1) {
@@ -74,10 +73,11 @@ function Doctor() {
         return array1
     };
 
-    return (
+  return (
+      
+    <Mostouter>
+        {!jwt && <UserRedirect isRole={false}/>}
 
-        <Mostouter>
-            <UserRedirect isRole={false} />
 
             <Cat>
                 <Header isDoctor={true} />

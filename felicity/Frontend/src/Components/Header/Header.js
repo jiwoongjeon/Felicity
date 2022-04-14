@@ -41,8 +41,9 @@ const Header = (props) => {
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
             <div className="logotext">
-              {/* small and big change using menucollapse state */}
-              <img src={LogoImg} className='logo' alt='logo'></img>
+              <MenuButton to='./Home'>
+                <img src={LogoImg} className='logo' alt='logo' ></img>
+              </MenuButton>
             </div>
           </SidebarHeader>
           <SidebarContent>

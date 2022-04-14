@@ -10,10 +10,12 @@ import UserRedirect from "../UserRedirect";
 
 function Appointment() {
 
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   return (
 
     <Mostouter>
-      <UserRedirect isRole={true}/>
+      {!jwt && <UserRedirect isRole={true}/>}
 
     <Cat>
         <Header isDoctor={false}/>

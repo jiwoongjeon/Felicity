@@ -9,10 +9,13 @@ import UserRedirect from "../UserRedirect";
 
 
 function StatusPatient() {
+
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
     return (
 
       <Mostouter>
-        <UserRedirect isRole={true}/>
+        {!jwt && <UserRedirect isRole={true}/>}
 
       <Cat>
         <Header isDoctor={false}/>
