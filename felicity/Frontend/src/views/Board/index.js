@@ -9,10 +9,12 @@ import UserRedirect from "../UserRedirect";
 
 function Board(props) {
 
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   return (
 
     <Mostouter>
-      <UserRedirect isRole={!props.isDoctor}/>
+      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

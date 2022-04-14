@@ -9,6 +9,7 @@ const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider,
 
 export const RecentPost = (props) => {
 
+
     return (
         <PostContainer>
 
@@ -99,7 +100,7 @@ export const RecentPost = (props) => {
                     </PageNumberContainer>
                     <PageNavigatorLabel>Next</PageNavigatorLabel>
                 </PageContainer>
-                <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>
+                {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
             </ColumnBottom>
 
         </PostContainer>

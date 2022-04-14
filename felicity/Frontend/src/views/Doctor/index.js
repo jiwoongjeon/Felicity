@@ -17,6 +17,8 @@ import UserRedirect from "../UserRedirect";
 
 function Doctor() {
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
     const [scheduleData, setScheduleData] = React.useState([])
     const [displayedData, setDisplay] = React.useState({})
 
@@ -28,9 +30,6 @@ function Doctor() {
             })
     }, [])
     console.log(scheduleData)
-
-    const role = JSON.parse(sessionStorage.getItem("role"));
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     
     function sy(array) {
         var array1 = []
@@ -76,7 +75,7 @@ function Doctor() {
   return (
       
     <Mostouter>
-        <UserRedirect isRole={false}/>
+        {!jwt && <UserRedirect isRole={false}/>}
 
     <Cat>
         <Header isDoctor={true}/>

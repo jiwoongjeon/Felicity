@@ -9,6 +9,8 @@ import UserRedirect from "../UserRedirect";
 
 function Meeting(props) {
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   function sy(array) {
     var array1 = []
     if (array[0] === 1) {
@@ -53,7 +55,7 @@ function Meeting(props) {
   return (
 
     <Mostouter>
-        <UserRedirect isRole={!props.isDoctor}/>
+        {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

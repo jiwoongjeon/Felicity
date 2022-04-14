@@ -7,10 +7,13 @@ import { BoardNew } from "../../Components/BoardNew";
 import UserRedirect from "../UserRedirect";
 
 function NewBoard(props) {
+
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   return (
 
     <Mostouter>
-      <UserRedirect isRole={true}/>
+      {!jwt && <UserRedirect isRole={true}/>}
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

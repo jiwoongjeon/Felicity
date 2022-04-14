@@ -77,6 +77,29 @@ export const SubmitButton = styled(Link)`
     }
 `;
 
+export const SubmitButtonDisabled = styled(Link)`
+    width: 500px;
+    height: 40px;
+    background-color: #cccccc;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration:none;
+    cursor: not-allowed; 
+    &:hover {
+        color: white;
+        background-color: #cccccc;
+      }
+`;
+
 export const Row = styled.div`
     width:100%
     flex-align:row;

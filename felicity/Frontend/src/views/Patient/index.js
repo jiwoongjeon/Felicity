@@ -24,6 +24,8 @@ import API_URI from "../../API/server-ip";
 
 function Patient() {
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
     const [scheduleData, setScheduleData] = React.useState([])
 
     React.useEffect(() => {
@@ -37,7 +39,7 @@ function Patient() {
     return (
 
         <Mostouter>
-            <UserRedirect isRole={true} />
+            {!jwt && <UserRedirect isRole={true} />}
 
             <Cat>
                 <Header isDoctor={false} />
