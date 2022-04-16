@@ -32,7 +32,7 @@ overflow-y:auto;
 }
 `;
 
-export const ConversationContainer = styled(Link)`
+export const ConversationContainer = styled.div`
   width: 95%;
   height: 65px;
   max-width: 95%;

@@ -8,7 +8,6 @@ import UserRedirect from "../UserRedirect";
 function MHT6() {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-  const [radioValue, setRadio] = React.useState(true);
   const [next, setNext] = React.useState(false);
   
   function sessionStore () { //stores items in sessionStorage
@@ -32,11 +31,6 @@ function MHT6() {
   const [valueK, setCheckboxK] = React.useState(false);
   const [valueL, setCheckboxL] = React.useState(false);
 
-  function setValue(index) {
-    setNext(valueA | valueB | valueC | valueD | valueE | valueF | valueG | valueH | valueI | valueJ | valueK)
-  }
-  
-
   return (
     <MainContainer>
       {!jwt && <UserRedirect isRole={true}/>}
@@ -48,7 +42,7 @@ function MHT6() {
             {next && <SubmitButton onClick={sessionStore} to={'/MHT7'}>Next</SubmitButton>}
             <Label>6. What kind of symptoms do you have? *</Label>
             <CheckboxBox>
-              <Checkbox label="A. Cough" value={valueA} checked={valueA} onChange={({ target }) => setCheckboxA(!valueA)}/>
+              <Checkbox label="A. Cough"value={valueA} checked={valueA} onChange={({ target }) => setCheckboxA(!valueA)}/>
               <Checkbox label="B. Vomit" value={valueB} checked={valueB} onChange={({ target }) => setCheckboxB(!valueB)} />
               <Checkbox label="c. Fever" value={valueC} checked={valueC} onChange={({ target }) => setCheckboxC(!valueC)} />
               <Checkbox label="D. Sore throat" value={valueD} checked={valueD} onChange={({ target }) => setCheckboxD(!valueD)} />
