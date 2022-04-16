@@ -120,7 +120,7 @@ function LoginPage({ patientL, doctorL }) {
           Don’t have an Account? <SignupLink to='/registeration'> Sign Up </SignupLink>
         </Signup>
 
-        {id && <LoginRedirect/>}
+        {id && <LoginRedirect isRole={radioValue}/>}
 
       </LoginContainer>
 

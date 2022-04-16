@@ -9,9 +9,9 @@ export const Schedule = (props) => {
             <AppointmentList>
             {props.schedule_data.map((data) => (
                 <AppointmentContainer>
-                    <FstColumn>
+                    <FstColumn to={"/Patient/videocall"}>
                         <Group>
-                            <Date to={"/Patient/videocall"}>{data.reserved_date}</Date>
+                            <Date>{data.reserved_date}</Date>
                             <TimeEmail>{data.reserved_time}</TimeEmail>
                         </Group>
                         <Group>
