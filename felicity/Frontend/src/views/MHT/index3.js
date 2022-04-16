@@ -1,19 +1,13 @@
 import React from "react";
 
 import LogoImg from '../../Components/assets/Logo.png';
-import { BodyInput, InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title } from "./styles";
+import { BodyInput, InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, SubmitButtonDisabled } from "./styles";
 import UserRedirect from "../UserRedirect";
-
-// const Check = () => {
-//   const hurt = window.sessionStorage.getItem('hurt');
-//   const depart = window.sessionStorage.getItem('depart');
-//   const time = window.sessionStorage.getItem('time');
-//   return (<div>hurt: {hurt} depart: {depart} time: {time}</div>);
-// };
 
 function MHT3() {
   
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const [next, setNext] = React.useState(false);
   
   function sessionStore () { //stores items in sessionStorage
     var where = document.getElementById('where').value;
@@ -27,12 +21,11 @@ function MHT3() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (3/6)</SubTitle>
-            <SubmitButton onClick={sessionStore} to={'/MHT4'}>
-                Next</SubmitButton>
+            {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
+            {next && <SubmitButton onClick={sessionStore} to={'/MHT4'}>Next</SubmitButton>}
             <Label>3. Where does the most severely hurt?  *</Label>
-        
             <InputBox>
-                <BodyInput id="where"/>
+                <BodyInput id="where" onChange={({target}) => setNext(target.value)}/>
             </InputBox>
         </QuestionContainer>
     </MainContainer>

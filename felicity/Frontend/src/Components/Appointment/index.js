@@ -7,7 +7,6 @@ const { NewAppContainer, Header, AppDetailContainer, Divider, DetailLabel, Detai
 export const AppointmentHolder = (props) => {
 
     function sessionClose () { //stores items in sessionStorage
-    
         window.sessionStorage.removeItem('hurt');
         window.sessionStorage.removeItem('depart');
         window.sessionStorage.removeItem('time');
