@@ -10,7 +10,7 @@ import { render } from "react-dom";
 import LoginRedirect from "../views/UserRedirect/login";
 import API_URL from "./server-ip";
 
-
+const moment = require("moment");
 const SocketContext = createContext();
 
 const socket = io(`${API_URL}`);
@@ -21,6 +21,8 @@ const ContextProvider = ({ children }) => {
     const [id, setId] = useState();
     const [role, setRole] = useState(true); // true: p, false: d
     const [userToCall, setUserToCall] = useState("");
+
+    const [chatArr, setChatArr] = useState([]); // chatArr: 채팅 리스트
 
     const [stream, setStream] = useState(null);
     const [me, setMe] = useState("");
@@ -86,6 +88,24 @@ const ContextProvider = ({ children }) => {
             console.log(e);
         }
     }
+
+    const send = (n, m) => {
+        if (m !== "") {
+            socket.emit("chat", {userToCall: userToCall, name: n, msg: m, time: moment(new Date()).format("h:mm A")});
+            setChatArr([...chatArr, { name: n, msg: m, time: moment(new Date()).format("h:mm A") }]);
+        }
+    }
+
+    useEffect(() => {
+        socket.once("chatting", (data)=> {
+            const { name, msg, time } = data;
+            setChatArr([...chatArr, { name: name, msg: msg, time: time }]);
+            console.log(data);
+        });
+        return(() => {
+            socket.off("chatting");
+        })
+    })
 
     const startCall = () => {
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
@@ -243,7 +263,7 @@ const ContextProvider = ({ children }) => {
                 postDoctorLogin, id, startCall, call, callAccepted, myVideo,
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
-                stopAudio, text, recordAudio
+                stopAudio, text, recordAudio, chatArr, send
             }}
         >
             {children}
