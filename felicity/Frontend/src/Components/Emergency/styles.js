@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HelpContainer = styled.div`
 margin-right: 30px;
@@ -20,7 +21,7 @@ font-size:20px;
 color: white;
 `
 
-export const NowButton = styled.div`
+export const NowButton = styled(Link)`
 height:23%;
 width:88%;
 background: #ffffff;
@@ -31,4 +32,5 @@ padding-top: 10px;
 font-weight: bold;
 text-align: center;
 color: black;
+text-decoration:none;
 `;

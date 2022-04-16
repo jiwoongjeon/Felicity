@@ -42,11 +42,12 @@ overflow-y: auto;
 }
 `;
 
-export const FstColumn = styled.div`
+export const FstColumn = styled(Link)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 5px;
+  text-decoration:none;
 `;
 
 export const Column = styled.div`
@@ -59,10 +60,9 @@ export const Group = styled.div`
   flex-direction: row;
 `;
 
-export const Date = styled(Link)`
+export const Date = styled.div`
   margin: 0px;
   margin-right: 15px;
-  text-decoration:none;
   font-weight: bold;
   color: #0075FF;
 `;
