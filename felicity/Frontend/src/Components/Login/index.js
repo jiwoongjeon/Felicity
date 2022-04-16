@@ -24,7 +24,7 @@ const Login = () => {
   return (
   <MainContainer>
 
-    <Account to={""} onClick={sessionClose}>
+    <Account onClick={sessionClose}>
         <AccountIcon> <IoPerson style={{color: '#718096', fontSize: '15px'}} />Log Out</AccountIcon>
     </Account>
 

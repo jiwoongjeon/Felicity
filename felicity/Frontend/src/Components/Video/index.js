@@ -86,19 +86,7 @@ const Video = ({ context }) => {
                 </RecordBox>
 
                 <TextArea><p>{text[0].transcription}</p>
-                <p>Transcription Transcription Transcription Transcription Transcription
-                Transcription Transcription Transcription Transcription Transcription
-                Transcription Transcription Transcription Transcription Transcription
-                Transcription Transcription Transcription Transcription Transcription
-                Transcription Transcription Transcription Transcription Transcription
-                </p>
-                </TextArea>
-                <TextArea><p>{text[0].translation}</p>
-                <p> Translation Translation Translation Translation Translation
-                Translation Translation Translation Translation Translation
-                Translation Translation Translation Translation Translation
-                Translation Translation Translation Translation Translation
-                Translation Translation Translation Translation Translation
+                <p>Transcription Transcription
                 </p>
                 </TextArea>
             </SubtitleContainer>
