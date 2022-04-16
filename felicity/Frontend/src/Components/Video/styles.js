@@ -26,10 +26,11 @@ export const VideoContainer = styled.video`
 `;
 
 export const SubtitleContainer = styled.div`
-    width = 100%;
+    width: 100%;
     display:flex;
     flex-direction: column;
-    jusfity-content: flex-end;
+    align-items: center;
+    justify-content: center;
     position:absolute;
     z-index: 250;
     bottom: 80px;
@@ -38,10 +39,10 @@ export const SubtitleContainer = styled.div`
 export const RecordBox = styled.div`
     width: 100%;
     height: 40px;
-
     display: flex;
     flex-direction: row;
-    jusfity-content: flex-end;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const Record = styled.button`
@@ -62,8 +63,13 @@ export const Record = styled.button`
 
 
 export const TextArea = styled.p`
-    width: 100%;
-    color : white;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    color: white;
+    text-align:center;
     background-color: rgba(0, 0, 0, 0.70);
 `;
 
