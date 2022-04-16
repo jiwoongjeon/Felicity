@@ -7,8 +7,11 @@ import Login from '../../Components/Login';
 
 import RecentPost from "../../Components/RecentPost";
 import { POST_DATA, PAGE_DATA } from "./tempData";
+import UserRedirect from "../UserRedirect";
 
 function StatusDoctor(props) {
+    
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
   const [allSelect, setAll] = useState(true);
   const [internalSelect, setInternal] = useState(false);
@@ -60,6 +63,7 @@ function StatusDoctor(props) {
 
   return (
     <Mostouter>
+        {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
 
     <Cat>
       <Header isDoctor={props.isDoctor}/>
@@ -77,7 +81,7 @@ function StatusDoctor(props) {
         setToNewest={setToNewest} setToOldest={setToOldest}
         allSelect={allSelect} internalSelect={internalSelect} EBinSelect={EBinSelect} orthopedicsSelect={orthopedicsSelect} 
         newestSelect={newestSelect} oldestSelect={oldestSelect} 
-        postData={POST_DATA} pageData={PAGE_DATA}/>
+        postData={POST_DATA} pageData={PAGE_DATA} isDoctor={props.isDoctor}/>
     </List>
 
     </Mostouter>

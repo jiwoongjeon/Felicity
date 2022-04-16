@@ -55,8 +55,9 @@ export const BoardDetail = (props) => {
                     <ContentSubContainer>
                         <Content>{data.content}</Content>
                     </ContentSubContainer>
+                    
                     <Divider />
-                    {props.isDoctor && 
+                    {props.isDoctor & !data.state && 
                         <ContentSubContainer>
                             <Blank />
                             <Column>
@@ -93,37 +94,9 @@ export const BoardDetail = (props) => {
                             </Column>
                             <Blank />
                         </ContentSubContainer>}
-
-                    {!props.isDoctor && 
-                        <ContentSubContainer>
-                            <Blank />
-                            <Blank />
-                        </ContentSubContainer>}
                 </ContentContainer>
             ))}
 
-            <Divider />
-                {BOARD_DATA.map((data, i) => (
-                    <BottomBoardContainer>
-                        <GoTriangleUp style={{color: '#545455', marginTop: '10px'}}></GoTriangleUp>
-                        <WrittenByBottom>{data.up_writer}</WrittenByBottom>
-                        <TitleBottom>{data.up_title}</TitleBottom>
-                        <DateBottom>{data.up_date}</DateBottom>
-                        { data.up_status && <StateBottom>Answered</StateBottom>}
-                        { !data.up_status && <UnStateBottom>Not Answered</UnStateBottom>}
-                    </BottomBoardContainer>
-                ))}
-            <Divider />
-                {BOARD_DATA.map((data, i) => (
-                    <BottomBoardContainer>
-                        <GoTriangleDown style={{color: '#545455', marginTop: '10px'}}></GoTriangleDown>
-                        <WrittenByBottom>{data.down_writer}</WrittenByBottom>
-                        <TitleBottom>{data.down_title}</TitleBottom>
-                        <DateBottom>{data.down_date}</DateBottom>
-                        { data.down_status && <StateBottom>Answered</StateBottom>}
-                        { !data.down_status && <UnStateBottom>Not Answered</UnStateBottom>}
-                    </BottomBoardContainer>
-                ))}
             <Divider />
         </BoardContainer>
     );

@@ -23,15 +23,13 @@ export const CV = (props) => {
                             <DetailLabel>Appointment Date: </DetailLabel>
                             <Detail>{props.data.reserved_date} {props.data.time}</Detail>
                         </Row>
-                        <Row>
                             <DetailLabel>Symptoms: </DetailLabel>
                             {props.symptoms(
                                 [props.data.a,props.data.b, props.data.c, props.data.d, 
                                     props.data.e, props.data.f, props.data.g, props.data.h, 
                                     props.data.i, props.data.j, props.data.k, props.data.l]).map((symptom) => (
-                                <Detail>{symptom}, </Detail>
+                                <Detail>{symptom} </Detail>
                             ))}
-                        </Row>
                         <Row>
                             <DetailLabel>Request: </DetailLabel>
                             {props.data.request && <Detail>{props.data.request}</Detail>}

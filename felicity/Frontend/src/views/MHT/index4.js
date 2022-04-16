@@ -3,38 +3,37 @@ import Slider from '@material-ui/core/Slider';
 
 import LogoImg from '../../Components/assets/Logo.png';
 import { Label, Logo, MainContainer, QuestionContainer, SliderBox, SubmitButton, SubTitle, Title } from "./styles";
+import UserRedirect from "../UserRedirect";
 
-const Check = () => {
-  const hurt = window.sessionStorage.getItem('hurt');
-  const depart = window.sessionStorage.getItem('depart');
-  const time = window.sessionStorage.getItem('time');
-  const where = window.sessionStorage.getItem('where');
-  return (<div>hurt: {hurt} depart: {depart} time: {time} where: {where}</div>);
-};
+// const Check = () => {
+//   const hurt = window.sessionStorage.getItem('hurt');
+//   const depart = window.sessionStorage.getItem('depart');
+//   const time = window.sessionStorage.getItem('time');
+//   const where = window.sessionStorage.getItem('where');
+//   return (<div>hurt: {hurt} depart: {depart} time: {time} where: {where}</div>);
+// };
 
 function MHT4() {
 
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   function sessionStore () { //stores items in sessionStorage
-  
     window.sessionStorage.setItem('level',value);
-  
-    document.location.href = '/MHT5';
   }
 
   const [value, setValue] = React.useState(5);
 
-  const severity = (event, newValue) => {
-    setValue(newValue);
-  };
+  const severity = (event, newValue) => {setValue(newValue);};
 
 
   return (
     <MainContainer>
+      {!jwt && <UserRedirect isRole={true}/>}
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (4/6)</SubTitle>
-            <SubmitButton onClick={sessionStore}>
+            <SubmitButton onClick={sessionStore} to={'/MHT5'}>
                 Next</SubmitButton>
             <Label>4. How much does it hurt?  *</Label>
             <SliderBox>

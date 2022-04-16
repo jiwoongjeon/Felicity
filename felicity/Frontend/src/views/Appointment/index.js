@@ -5,13 +5,17 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { AppointmentHolder } from "../../Components/Appointment";
 import Axios from "axios";
+import UserRedirect from "../UserRedirect";
 
 
 function Appointment() {
 
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   return (
 
     <Mostouter>
+      {!jwt && <UserRedirect isRole={true}/>}
 
     <Cat>
         <Header isDoctor={false}/>

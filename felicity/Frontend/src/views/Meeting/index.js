@@ -5,8 +5,11 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { MeetingPage } from "../../Components/MeetingPage";
 import { PATIENT_DATA } from "./TempData";
+import UserRedirect from "../UserRedirect";
 
 function Meeting(props) {
+
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
   function sy(array) {
     var array1 = []
@@ -52,6 +55,7 @@ function Meeting(props) {
   return (
 
     <Mostouter>
+        {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

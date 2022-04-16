@@ -31,6 +31,7 @@ import LogoImg from '../assets/Logo.png';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 import { SocketContext } from "../../API/video"
+import LoginRedirect from "../../views/UserRedirect/login";
 
 
 function LoginPage({ patientL, doctorL }) {
@@ -92,7 +93,7 @@ function LoginPage({ patientL, doctorL }) {
           />
         </InputBox>
 
-        <Label> By signing up, you agree to our <TextLink>privacy policy, Telepossible terms.</TextLink></Label>
+        <Label> By signing up, you agree to our <TextLink to="/registeration">privacy policy, Telepossible terms.</TextLink></Label>
 
         <CheckboxWrapper>
           <Checkbox
@@ -104,22 +105,22 @@ function LoginPage({ patientL, doctorL }) {
         </CheckboxWrapper>
 
         {radioValue &&
-          <SubmitButton to={`/MHT1`} onClick={patientL({ email, password })}>
+          <SubmitButton onClick={patientL({ email, password })}>
             Sign In
           </SubmitButton>
         }
 
         {!radioValue &&
-          <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>
+          <SubmitButton onClick={doctorL({ email, password })}>
             Sign In
           </SubmitButton>
         }
 
         <Signup>
-          Don’t have an Account? <SignupLink> Sign Up </SignupLink>
+          Don’t have an Account? <SignupLink to='/registeration'> Sign Up </SignupLink>
         </Signup>
 
-
+        {id && <LoginRedirect isRole={radioValue}/>}
 
       </LoginContainer>
 

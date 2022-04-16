@@ -10,11 +10,16 @@ import {
 import RecentPost from "../../Components/RecentPost";
 import Checklists from "../../Components/Checklists";
 import { propTypes } from "react-bootstrap/esm/Image";
+import UserRedirect from "../UserRedirect";
 
 function Checklist(props) {
+  
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  
   return (
 
     <Mostouter>
+      {!jwt &&<UserRedirect isRole={!props.isDoctor}/>}
 
     <Cat>
       <Header isDoctor={props.isDoctor}/>
@@ -31,7 +36,7 @@ function Checklist(props) {
 
     <Video>
         <ContentLayout>
-          <Checklists />
+          <Checklists isDoctor={props.isDoctor}/>
         </ContentLayout>
     </Video>
 

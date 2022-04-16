@@ -5,12 +5,17 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
 import DoctorList from "../../Components/DoctorList";
+import UserRedirect from "../UserRedirect";
 
 
 function StatusPatient() {
+
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
     return (
 
       <Mostouter>
+        {!jwt && <UserRedirect isRole={true}/>}
 
       <Cat>
         <Header isDoctor={false}/>

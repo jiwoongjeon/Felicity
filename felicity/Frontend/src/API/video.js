@@ -1,12 +1,19 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
 import { connect, io } from "socket.io-client";
+import { BrowserRouter, Redirect } from "react-router-dom";
 import Peer from "simple-peer";
 import Axios from "axios";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
+import API_URI from "./server-ip";
+import { render } from "react-dom";
+import LoginRedirect from "../views/UserRedirect/login";
+import API_URL from "./server-ip";
+
+
 const SocketContext = createContext();
 
-const socket = io("http://localhost:3001");
+const socket = io(`${API_URL}`);
 
 let recordAudio;
 
@@ -34,17 +41,26 @@ const ContextProvider = ({ children }) => {
     const userVideo = useRef();
     const connectionRef = useRef();
 
+    function loginSessionStore(role, jwt) { //stores items in sessionStorage
+        window.sessionStorage.setItem('role', JSON.stringify(role));
+        window.sessionStorage.setItem('jwt', JSON.stringify(jwt));
+    }
+
     const postPatientLogin = ({ email, password }) => async () => {
+        
         try {
             setRole(true);
             console.log(email, password);
-            await Axios.post(`http://localhost:3001/plogin`, {
+            await Axios.post(`${API_URL}/plogin`, {
                 email: email,
                 password: password
             }).then((response) => {
                 console.log(response.data[0].user_id);
-                setId(response.data[0].user_id);
                 socket.emit("login", [response.data[0].user_id, true]);
+                if (response.data[0].user_id) {
+                    loginSessionStore(true, response.data[0].user_id)
+                    setId(response.data[0].user_id);
+                    }
             });
         } catch (e) {
             console.log(e);
@@ -55,13 +71,16 @@ const ContextProvider = ({ children }) => {
         try {
             setRole(false);
             console.log(email, password);
-            await Axios.post(`http://localhost:3001/dlogin`, {
+            await Axios.post(`${API_URL}/dlogin`, {
                 email: email,
                 password: password
             }).then((response) => {
                 console.log(response.data[0].doctor_id);
-                setId(response.data[0].doctor_id);
                 socket.emit("login", [response.data[0].doctor_id, false]);
+                if (response.data[0].doctor_id) {
+                    loginSessionStore(false, response.data[0].doctor_id)
+                    setId(response.data[0].doctor_id);
+                }
             });
         } catch (e) {
             console.log(e);

@@ -18,13 +18,12 @@ app.use(bodyParser.json());
 
 
 
-app.use(require("./doctorlogin/router"));
-app.use(require("./patientlogin/router"));
-app.use(require("./posts/router"));
-app.use(require("./schedules/router"));
+app.use(require("./doctorlogin/router"));   // "/dlogin"
+app.use(require("./patientlogin/router"));  // "/plogin"
+app.use(require("./posts/router"));         // "/post"
+app.use(require("./schedule/router"));      // "/patient_schedule" or "/doctor_schedule"
 
 // const login = require("./login.js")
-// const schedule = require("./schedule.js")
 
 app.get("/audio", (req, res) => {
     console.log(req.body);
@@ -50,62 +49,6 @@ app.post('/plogin', (req, res) => {
     const password = req.body.password
     const result = login.paLogin([email, password])
     res.json({ accessToken: result[1], doctorID: result[0] })
-})
-
-//schedule
-app.post("/patient_schedule", (req, res) => {
-    const patient_id = req.body.patient_id
-    var scheduleQuery = "SELECT reservation.patient_id as patient_id, reservation.doctor_id as doctor_id, " +
-        "doctor_profile.firstname as doctor_firstName, doctor_profile.lastname as doctor_lastName, " +
-        "patient_profile.firstname as patient_firstName, patient_profile.lastname as patient_lastName, " +
-        "date_format((patient_profile.birth), '%m-%d-%Y') as birthday, patient_profile.sex as sex, " +
-        "symptom.reason as request, " +
-        "reservation.symptom_id as symptom_id, " +
-        "symptom_list.cough as a, symptom_list.vomit as b, symptom_list.fever as c, " +
-        "symptom_list.sore_throat as d, symptom_list.runny_nose as e, symptom_list.phlegm as f, " +
-        "symptom_list.nauseous as g, symptom_list.out_of_breath as h, symptom_list.stomachache as i, " +
-        "symptom_list.chills as j, symptom_list.muscle_sickness as k, symptom_list.other as l, " +
-        "symptom.preferred_department as department, " +
-        "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
-        "date_format((reserved_date), '%l:%i %p') as reserved_time " +
-        "symptom.wounded_area as wounded_area, symptom.preferred_department as preferred_department, symptom.injured_time as injured_time, symptom.severity as severity, symptom.reason as reason " +
-        "FROM felicity.reservation JOIN symptom_list ON reservation.symptom_id = symptom_list.symptom_id " +
-        "JOIN symptom ON reservation.patient_id = symptom.patient_id " +
-        "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " +
-        "FROM felicity.reservation JOIN doctor_profile ON " + "reservation.doctor_id = doctor_profile.doctor_id and patient_id = "
-    config.db.query(scheduleQuery + patient_id, (err, result) => {
-        if (err) console.log(err);
-        console.log(result);
-        res.json(result)
-    })
-})
-
-app.post("/doctor_schedule", (req, res) => {
-    const doctor_id = req.body.doctor_id
-    const scheduleQuery = "SELECT reservation.patient_id as patient_id, reservation.doctor_id as doctor_id, " +
-        "doctor_profile.firstname as doctor_firstName, doctor_profile.lastname as doctor_lastName, " +
-        "patient_profile.firstname as patient_firstName, patient_profile.lastname as patient_lastName, " +
-        "date_format((patient_profile.birth), '%m-%d-%Y') as birthday, patient_profile.sex as sex, " +
-        "symptom.reason as request, " +
-        "reservation.symptom_id as symptom_id, " +
-        "symptom_list.cough as a, symptom_list.vomit as b, symptom_list.fever as c, " +
-        "symptom_list.sore_throat as d, symptom_list.runny_nose as e, symptom_list.phlegm as f, " +
-        "symptom_list.nauseous as g, symptom_list.out_of_breath as h, symptom_list.stomachache as i, " +
-        "symptom_list.chills as j, symptom_list.muscle_sickness as k, symptom_list.other as l, " +
-        "symptom.preferred_department as department, " +
-        "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
-        "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
-        "symptom.wounded_area as wounded_area, symptom.preferred_department as preferred_department, symptom.injured_time as injured_time, symptom.severity as severity, symptom.reason as reason " +
-        "FROM felicity.reservation JOIN symptom_list ON reservation.symptom_id = symptom_list.symptom_id " +
-        "JOIN symptom ON reservation.patient_id = symptom.patient_id " +
-        "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " +
-        "JOIN doctor_profile ON reservation.doctor_id = doctor_profile.doctor_id AND reservation.doctor_id = "
-    config.db.query(scheduleQuery + doctor_id, (err, result) => {
-        if (err) console.log(err);
-        console.log(result);
-        res.json(result)
-    })
-
 })
 
 app.post("/reservation", (req, res) => {
@@ -166,22 +109,9 @@ app.post("/reservation", (req, res) => {
 
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "*",
     },
 });
-
-//chat
-// const auth = require("./authentication.js")
-// io.use(auth.chatAuth).on("connection", (socket) => {
-//     socket.on("chatting", (data) => {
-//         const { name, msg } = data;
-//         io.emit("chatting", {
-//             name,
-//             msg,
-//             time: moment(new Date()).format("h:mm A")
-//         })
-//     })
-// })
 
 
 io.on("connection", async socket => {
@@ -203,18 +133,20 @@ io.on("connection", async socket => {
         const userid = data[0];
         const role = data[1];
 
-        if (role) {
-            const insertPatientSocket = "select felicity.insert_patient_socket(?, ?);";
-            config.db.query(insertPatientSocket, [userid, socket.id], (err, result) => {
-                if (err) console.log(err);
-                console.log(result);
-            });
-        } else {
-            const insertDoctorSocket = "select felicity.insert_doctor_socket(?, ?);";
-            config.db.query(insertDoctorSocket, [userid, socket.id], (err, result) => {
-                if (err) console.log(err);
-                console.log(result);
-            });
+        if (userid != 0) {
+            if (role) {
+                const insertPatientSocket = "select felicity.insert_patient_socket(?, ?);";
+                config.db.query(insertPatientSocket, [userid, socket.id], (err, result) => {
+                    if (err) console.log(err);
+                    console.log(result);
+                });
+            } else {
+                const insertDoctorSocket = "select felicity.insert_doctor_socket(?, ?);";
+                config.db.query(insertDoctorSocket, [userid, socket.id], (err, result) => {
+                    if (err) console.log(err);
+                    console.log(result);
+                });
+            }
         }
     })
 
@@ -235,14 +167,15 @@ io.on("connection", async socket => {
             config.db.query(getDoctorId, userid, (err, result) => {
                 if (err) console.log(err);
 
-                otherUserId = result[0].doctor_id;
-                otherSocketId = result[0].socket_id;
+                if (result != null) {
+                    otherUserId = result[0].doctor_id;
+                    otherSocketId = result[0].socket_id;
 
-                socket.emit("me", ({ socketid, otherUserId, otherSocketId }));
+                    socket.emit("me", ({ socketid, otherUserId, otherSocketId }));
 
-                console.log(otherSocketId);
-                console.log(socketid);
-
+                    console.log(otherSocketId);
+                    console.log(socketid);
+                }
                 console.log(result);
             });
         } else {
@@ -251,13 +184,15 @@ io.on("connection", async socket => {
             config.db.query(getPatientId, userid, (err, result) => {
                 if (err) console.log(err);
 
-                otherUserId = result[0].doctor_id;
-                otherSocketId = result[0].socket_id;
+                if (result != null) {
+                    otherUserId = result[0].doctor_id;
+                    otherSocketId = result[0].socket_id;
 
-                console.log(otherSocketId);
+                    console.log(otherSocketId);
 
-                socket.emit("me", { socketid, otherUserId, otherSocketId });
-                console.log(socketid);
+                    socket.emit("me", { socketid, otherUserId, otherSocketId });
+                    console.log(socketid);
+                }
 
                 console.log(result);
 

@@ -3,12 +3,16 @@ import React from "react";
 import LogoImg from '../../Components/assets/Logo.png';
 import { Row } from "../../Components/CV/styles";
 import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput, MoveButton } from "./styles";
+import UserRedirect from "../UserRedirect";
 
 
 function MHT7() {
 
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
   return (
     <MainContainer>
+      {!jwt && <UserRedirect isRole={true}/>}
         <QuestionContainer>
             <Logo src={LogoImg}></Logo>
             <Title>Now you are all set!</Title>

@@ -1,6 +1,6 @@
 import React from "react"
 import Header from '../../Components/Header/Header';
-import {Mostouter, Directory, User, Cat, Video} from '../../Components/mostouter';
+import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
@@ -12,24 +12,26 @@ import {
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 import Axios from "axios";
-import { PATIENT_DATA } from "./tempData";
+import UserRedirect from "../UserRedirect";
 
+import API_URL from "../../API/server-ip";
 
 function Doctor() {
+
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
     const [scheduleData, setScheduleData] = React.useState([])
     const [displayedData, setDisplay] = React.useState({})
 
     React.useEffect(() => {
-        Axios.post("http://localhost:3001/doctor_schedule", { "doctor_id": 1 })
+        Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": 1 })
 
             .then((response) => {
                 setScheduleData(response.data)
             })
     }, [])
     console.log(scheduleData)
-
-    
+  
     function sy(array) {
         var array1 = []
         if (array[0] === 1) {
@@ -72,41 +74,43 @@ function Doctor() {
     };
 
   return (
-
+      
     <Mostouter>
-
-    <Cat>
-        <Header isDoctor={true}/>
-    </Cat>
-
-    <Directory>
-        <Path directory="Home"/>
-    </Directory>
-
-    <User>
-        <Login />
-    </User>
+        {!jwt && <UserRedirect isRole={false}/>}
 
 
-    <Video>
-        <ContentLayout>
-            <PatientBox>
-                <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy}/>
-            </PatientBox>
+            <Cat>
+                <Header isDoctor={true} />
+            </Cat>
 
-            <InfoBox>
-                <CV data={displayedData} symptoms={sy}/>
-            </InfoBox>
+            <Directory>
+                <Path directory="Home" />
+            </Directory>
 
-        </ContentLayout>
-    </Video>
-
+            <User>
+                <Login />
+            </User>
 
 
-    </Mostouter>
+            <Video>
+                <ContentLayout>
+                    <PatientBox>
+                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} />
+                    </PatientBox>
+
+                    <InfoBox>
+                        <CV data={displayedData} symptoms={sy} />
+                    </InfoBox>
+
+                </ContentLayout>
+            </Video>
 
 
-  );
+
+        </Mostouter>
+
+
+    );
 }
 
 export default Doctor;
