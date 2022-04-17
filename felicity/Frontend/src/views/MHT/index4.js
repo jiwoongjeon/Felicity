@@ -2,7 +2,7 @@ import React from "react";
 import Slider from '@material-ui/core/Slider';
 
 import LogoImg from '../../Components/assets/Logo.png';
-import { Label, Logo, MainContainer, QuestionContainer, SliderBox, SubmitButton, SubTitle, Title } from "./styles";
+import { Label, Logo, MainContainer, QuestionContainer, SliderBox, SubmitButton, SubTitle, Title, SubmitButtonDisabled } from "./styles";
 import UserRedirect from "../UserRedirect";
 
 // const Check = () => {
@@ -16,6 +16,7 @@ import UserRedirect from "../UserRedirect";
 function MHT4() {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const [next, setNext] = React.useState(false);
 
   function sessionStore () { //stores items in sessionStorage
     window.sessionStorage.setItem('level',value);
@@ -23,7 +24,7 @@ function MHT4() {
 
   const [value, setValue] = React.useState(5);
 
-  const severity = (event, newValue) => {setValue(newValue);};
+  const severity = (event, newValue) => {setValue(newValue); setNext(newValue)};
 
 
   return (
@@ -33,21 +34,21 @@ function MHT4() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (4/6)</SubTitle>
-            <SubmitButton onClick={sessionStore} to={'/MHT5'}>
-                Next</SubmitButton>
+            {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
+            {next && <SubmitButton onClick={sessionStore} to={'/MHT5'}>Next</SubmitButton>}
             <Label>4. How much does it hurt?  *</Label>
             <SliderBox>
               <Label>Mild</Label>
               <Slider 
               marks
-              min={0}
+              min={1}
               max={10}
               step={1}
               value={value}
               id="level"
               defaultValue={5}
               valueLabelDisplay="auto"
-              onChange={severity} />
+              onChange={severity}/>
               <Label>Severe</Label>
             </SliderBox>
         </QuestionContainer>

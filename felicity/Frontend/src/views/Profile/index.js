@@ -30,7 +30,7 @@ function Profile(props) {
 
 
     <Video>
-      <ProfilePage name="Justin Lee" email="justin212553@gmail.com"/>
+      <ProfilePage name="Justin Lee" email="justin212553@gmail.com" time="14:00 ~ 16:00" isDoctor={props.isDoctor}/>
     </Video>
 
 
