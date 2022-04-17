@@ -218,4 +218,13 @@ io.on("connection", async socket => {
     socket.on("answercall", (data) => {
         io.to(data.to).emit("callaccepted", data.signal);
     });
+
+    socket.on("chat", ({ userToCall, name, msg, time }) => {
+        // const { name, msg, time } = data;
+        io.to(userToCall).emit("chatting", {
+            name,
+            msg,
+            time
+        })
+    })
 })
