@@ -1,0 +1,64 @@
+h1 {
+  font-family: "Roboto";
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    height:60%;
+    min-height: 150px;
+}
+
+.button_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+}
+.time{
+    width: 30%;
+    margin-left: 10px;
+    border: none;
+    border-left: 2px solid;
+    border-color: #DCDCDC;
+    background: none;
+    color: #0075FF;
+    font-size: 20px;
+    font-family: "Montserrat";
+    font-weight: 500;
+}
+
+button[disabled=disabled], button:disabled {
+    color: #DCDCDC;
+}
+.timer-wrapper {
+  width: 70%;
+  display: flex;
+  justify-content:center;
+}
+
+.timer {
+  font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  color: #aaa;
+}
+
+.value {
+  font-size: 25px;
+}
+
+.info {
+  max-width: 360px;
+  margin: 40px auto 0;
+  text-align: center;
+  font-size: 16px;
+}
