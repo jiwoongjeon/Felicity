@@ -32,7 +32,7 @@ const Layout = ({ context }) => {
                 </TitleBox>
 
                 <InfoBox>
-                    <Infos />
+                    <Infos context={context}/>
                 </InfoBox>
 
             </ContentLayout>

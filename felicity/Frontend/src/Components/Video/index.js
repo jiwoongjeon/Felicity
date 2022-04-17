@@ -38,7 +38,7 @@ const sessionStore= role => {
 }
 
 const Video = ({ context }) => {
-    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
+    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send } = context;
     const [visible, setVisible] = React.useState(true);
     const [record, setRecord] = useState(false);
 
