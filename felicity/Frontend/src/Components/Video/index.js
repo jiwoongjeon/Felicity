@@ -3,7 +3,8 @@ import React, { useState } from "react";
 
 import { IoMdVideocam } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
-import { MdKeyboardVoice, MdAirplay, MdStopScreenShare } from "react-icons/md";
+import { MdKeyboardVoice } from "react-icons/md";
+import { BsFillChatSquareFill } from "react-icons/bs";
 
 import {
     MainContainer,
@@ -18,10 +19,23 @@ import {
     Setting,
     Phone,
     IconBox,
+    IconLeft,
+    IconRight,
     SubtitleContainer,
     Record,
     RecordBox
 } from "./styles";
+
+const sessionStore= role => {
+    var timer_end = true;
+    window.sessionStorage.setItem('show',timer_end);
+    if (role){
+        window.location.replace("/Patient/Home");
+    }
+    else{
+        window.location.replace("/Doctor/Home");
+    }
+}
 
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio } = context;
@@ -92,11 +106,14 @@ const Video = ({ context }) => {
             </SubtitleContainer>
             
             <Setting>
-                <Phone><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
-                <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                <IconBox><MdKeyboardVoice style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                <IconBox><MdAirplay style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                <IconBox><MdStopScreenShare style={{ color: 'white', fontSize: '30px' }} /></IconBox>
+                <IconLeft>
+                    <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
+                    <IconBox><MdKeyboardVoice style={{ color: 'white', fontSize: '30px' }} /></IconBox>
+                    <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
+                </IconLeft>
+                <IconRight>
+                    <Phone onClick={() =>sessionStore(role)}><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
+                </IconRight>
             </Setting>
 
         </MainContainer>

@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState } from "react"
+import styled from "styled-components";
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -8,6 +9,9 @@ import {
     ContentLayout,
     PatientBox,
     InfoBox,
+    Button,
+    Block,
+    Container
 } from "./layout";
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
@@ -16,12 +20,17 @@ import UserRedirect from "../UserRedirect";
 
 import API_URL from "../../API/server-ip";
 
+
+
+
 function Doctor() {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    const show = JSON.parse(sessionStorage.getItem("show"))
 
     const [scheduleData, setScheduleData] = React.useState([])
     const [displayedData, setDisplay] = React.useState({})
+    const [visible, setVisible] = useState(true)
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": 1 })
@@ -73,6 +82,12 @@ function Doctor() {
         return array1
     };
 
+
+    function CloseSession(){
+        window.sessionStorage.removeItem('show');   
+        
+    }
+
   return (
       
     <Mostouter>
@@ -93,11 +108,19 @@ function Doctor() {
 
 
             <Video>
+            {visible && show && <Container>
+                    <Block>Video call Ended
+                        <Button onClick={() => { CloseSession(); setVisible(false);}}>
+                                Okay
+                        </Button>
+                    </Block>
+                </Container>}
                 <ContentLayout>
                     <PatientBox>
                         <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} />
                     </PatientBox>
 
+                    
                     <InfoBox>
                         <CV data={displayedData} symptoms={sy} />
                     </InfoBox>
