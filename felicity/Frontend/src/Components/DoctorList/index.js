@@ -15,7 +15,7 @@ Doctor,
 Name,
 PhotoArea,
 UnavailableBubble,
-Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel} from "./styles";
+Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, AvailTime} from "./styles";
 
 const ActivateButton = ( active ) => {
   if (active === 0) {
@@ -36,8 +36,8 @@ const DoctorList = () => {
 
             <HeaderColumn>
                     <NoLabel>NO</NoLabel>
-                    <PhotoLabel>Doctor</PhotoLabel>
-                    <DepartLabel></DepartLabel>
+                    <PhotoLabel>DOCTOR</PhotoLabel>
+                    <DepartLabel>AVAILABLE TIME</DepartLabel>
                     <AvailLabel>APPOINTMENT</AvailLabel>
             </HeaderColumn>
 
@@ -52,6 +52,7 @@ const DoctorList = () => {
                                 <Name>{data.name}</Name>
                                 <Department>{data.department}</Department>
                             </Doctor>
+                            <AvailTime>{data.time}</AvailTime>
                             <AvailContainer>
                             {ActivateButton(data.available)}
                             </AvailContainer>

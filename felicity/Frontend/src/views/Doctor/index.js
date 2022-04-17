@@ -25,7 +25,6 @@ function Doctor() {
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": 1 })
-
             .then((response) => {
                 setScheduleData(response.data)
             })
