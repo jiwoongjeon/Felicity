@@ -1,3 +1,4 @@
+const e = require("express");
 var schedule = require("./schedule_model");
 var router = require("express").Router();
 
@@ -29,7 +30,37 @@ function readDoctorSchedule(req, res) {
     });
 }
 
+function postSchedule(req, res) {
+    const scheduleData = req.body;
+    console.log(scheduleData)
+    const MHTData = req.body.MHT;
+    const checkList = MHTData.checklist;
+
+    schedule.insertSymptom(MHTData, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.json({ errMsg: "Error: Failed on creating symptom" });
+        }
+        else {
+            symptomId = result.insertId;
+            schedule.insertSymptomList(symptomId, checkList, (error, result) => {
+                if (error) {
+                    console.log(error);
+                    res.json({ errMsg: "Error: Failed on creating symptom list" });
+                }
+            })
+            schedule.insertSchedule(symptomId, scheduleData, (error, result) => {
+                if (error) {
+                    console.log(error);
+                    res.json({ errMsg: "Error: Failed on creating reservation" });
+                }
+            })
+        }
+    })
+}
+
 router.post("/patient_schedule", readPatientSchedule);
 router.post("/doctor_schedule", readDoctorSchedule);
+router.post("/create_schedule", postSchedule);
 
 module.exports = router;
