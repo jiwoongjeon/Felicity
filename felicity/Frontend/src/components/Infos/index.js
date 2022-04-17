@@ -6,7 +6,10 @@ import Chat from '../Chat';
 import { CONVERSATION_DATA } from "./tempData";
 import { Patient } from "../RecentPost/styles";
 
-export const Infos = () => {
+export const Infos = ({ context }) => {
+    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send } = context;
+
+
     return (
         <Accordion defaultActiveKey="0">
             {CONVERSATION_DATA.map((data) => (
@@ -68,15 +71,7 @@ export const Infos = () => {
                     <Accordion.Header>Chat</Accordion.Header>
                     <Accordion.Body>
                         <div className="chat">
-                            <Chat />
-                        </div>
-                        <div className="type-box">
-                            <form>
-                                <input type="text" id="type" name="type" value="type message"></input>
-                            </form>
-                            <button className="send">
-                                send
-                            </button>
+                            <Chat context={context}/>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
