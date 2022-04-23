@@ -25,8 +25,8 @@ app.use(require("./schedule/router"));      // "/patient_schedule" or "/doctor_s
 
 // const login = require("./login.js")
 
-app.get("/audio", (req, res) => {
-    console.log(req.body);
+app.get("/", (req, res) => {
+    res.send('Health Check');
 });
 
 // const port = 3001;
