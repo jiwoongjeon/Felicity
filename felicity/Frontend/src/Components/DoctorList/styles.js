@@ -154,19 +154,27 @@ export const PhotoArea = styled.div`
   background-size: cover;
 `;
 export const Doctor = styled.p`
-  flex: 12;
+  flex: 3;
   margin-top: 2px;
   margin-left: 10px;
   text-align: left;
   font-weight: bold;
 `;
 export const Department = styled.p`
-
-
+  flex:9;
   font-weight: bold;
   text-align: left;
   color: grey;
 `;
+
+export const AvailTime = styled.p`
+  flex:9;
+  text-align: left;
+  font-weight: bold;
+  font-size:20px;
+  margin-top:20px;
+`;
+
 export const Name = styled.p`
   margin-top: 2px;
   font-weight: bold;

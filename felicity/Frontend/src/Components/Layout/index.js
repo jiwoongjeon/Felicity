@@ -1,7 +1,7 @@
 import React from "react";
 import Video from '../Video';
 import Title from '../Title';
-import Information from '../Information';
+
 import Infos from '../Infos';
 import Timer from '../Timer';
 
@@ -24,7 +24,7 @@ const Layout = ({ context }) => {
                 </VideoBox>
 
                 <Empty>
-                    <Timer />
+                    <Timer role={context.role}/>
                 </Empty>
 
                 <TitleBox>

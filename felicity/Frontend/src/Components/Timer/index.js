@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-
 const formatRemainingTime = time => {
   const minutes = Math.floor((time % 3600) / 60);
   const seconds = time % 60;
@@ -23,9 +22,18 @@ const renderTime = ({ remainingTime }) => {
     </div>
   );
 };
+const sessionStore= (role) => {
+  var timer_end = true;
+  window.sessionStorage.setItem('show',timer_end);
+  if (role){
+    window.location.replace("/Patient/Home");
+  }
+  else{
+    window.location.replace("/Doctor/Home");
+  }
+}
 
-
-const Timer = () => {
+const Timer = ({role}) => {
     const [duration, setDuration] = useState(0);
     const [key, setKey] = useState(0);
     const [disable, setDisable] = useState(false);
@@ -51,14 +59,18 @@ const Timer = () => {
         >
          {(timerProps) => {
         global.time= timerProps.remainingTime; // here you save the remainigTime to the ref
+        if (global.time == 1){
+          sessionStore(role);
+        }
+          
         return renderTime(timerProps);
         }}
         </CountdownCircleTimer>
       </div>
 
       <div className="button_container">
-        <button className="time" disabled={disable} onClick={() => {handleStart(50); setDisable(true)}}>Start Timer</button>
-        <button className="time" onClick={() => handleComplete(50)}>Extends +50sec</button>
+        <button className="time" disabled={disable} onClick={() => {handleStart(900); setDisable(true)}}>Start Timer</button>
+        <button className="time" onClick={() => handleComplete(300)}>Extends +5min</button>
         </div>
   </div>
 

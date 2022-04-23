@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import Header from '../../Components/Header/Header';
-import { Mostouter, Directory, User, Cat, Title, Video } from '../../Components/mostouter';
+import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
@@ -10,7 +10,10 @@ import {
     ScheduleBox,
     RecordBox,
     PrescriptionBox,
-    ConversationBox
+    ConversationBox,
+    Block,
+    Button,
+    Container
 } from "./layout"
 import Schedule from "../../Components/Schedule";
 import Conversations from "../../Components/Conversations";
@@ -21,12 +24,14 @@ import Axios from "axios";
 import UserRedirect from "../UserRedirect"
 
 import API_URL from "../../API/server-ip";
+import moment from "moment";
 
 function Patient() {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-
+    const show = JSON.parse(sessionStorage.getItem("show"))
     const [scheduleData, setScheduleData] = React.useState([])
+    const [visible, setVisible] = useState(true)
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
@@ -35,6 +40,11 @@ function Patient() {
             })
     }, [])
     console.log(scheduleData)
+
+    function CloseSession() {
+        window.sessionStorage.removeItem('show');
+
+    }
 
     return (
 
@@ -55,6 +65,13 @@ function Patient() {
 
 
             <Video>
+                {visible && show && <Container>
+                    <Block>Video call Ended
+                        <Button onClick={() => { CloseSession(); setVisible(false); }}>
+                            Okay
+                        </Button>
+                    </Block>
+                </Container>}
                 <ContentLayout>
                     <EmergencyBox>
                         <Emergency />

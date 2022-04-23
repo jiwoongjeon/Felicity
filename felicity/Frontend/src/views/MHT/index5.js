@@ -18,12 +18,14 @@ import UserRedirect from "../UserRedirect";
 function MHT5() {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const [radioValue, setRadio] = React.useState(false);
 
   function sessionStore () { //stores items in sessionStorage
-    var why = document.getElementById('why').value;
+    var why;
+    if (radioValue) why = document.getElementById('why').value;
+    else why = '';
     window.sessionStorage.setItem('why',why);
   }
-  const [radioValue, setRadio] = React.useState(true);
 
   return (
     <MainContainer>
