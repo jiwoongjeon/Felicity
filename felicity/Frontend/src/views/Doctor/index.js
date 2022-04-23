@@ -24,14 +24,14 @@ function Doctor() {
     const [displayedData, setDisplay] = React.useState({})
 
     React.useEffect(() => {
-        Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": 1 })
+        Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": jwt })
 
             .then((response) => {
                 setScheduleData(response.data)
             })
     }, [])
     console.log(scheduleData)
-  
+
     function sy(array) {
         var array1 = []
         if (array[0] === 1) {
@@ -73,10 +73,10 @@ function Doctor() {
         return array1
     };
 
-  return (
-      
-    <Mostouter>
-        {!jwt && <UserRedirect isRole={false}/>}
+    return (
+
+        <Mostouter>
+            {!jwt && <UserRedirect isRole={false} />}
 
 
             <Cat>

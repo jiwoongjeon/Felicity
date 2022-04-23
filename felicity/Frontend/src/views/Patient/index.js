@@ -29,7 +29,7 @@ function Patient() {
     const [scheduleData, setScheduleData] = React.useState([])
 
     React.useEffect(() => {
-        Axios.post(`${API_URL}/patient_schedule`, { "patient_id": 1 })
+        Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
             .then((response) => {
                 setScheduleData(response.data)
             })
