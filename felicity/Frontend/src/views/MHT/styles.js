@@ -77,7 +77,7 @@ export const SubmitButton = styled(Link)`
     }
 `;
 
-export const SubmitButtonDisabled = styled(Link)`
+export const SubmitButtonDisabled = styled.div`
     width: 500px;
     height: 40px;
     background-color: #cccccc;

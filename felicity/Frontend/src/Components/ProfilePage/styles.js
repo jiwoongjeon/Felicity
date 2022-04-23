@@ -61,3 +61,29 @@ export const Content = styled.p`
   text-align: left;
   margin-bottom:50px;
 `;
+
+export const TimeButton = styled.div`
+    width: 200px;
+    height: 50px;
+    background-color: #FF800B;
+    border-radius: 20px;
+    padding-top: 10px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    &:hover {
+      color: white;
+      background-color: #FF902A  ;
+    }
+    &:active {
+      color: white;
+      background-color: #E97204;
+    }
+`;
+
+export const Row = styled.div`
+`

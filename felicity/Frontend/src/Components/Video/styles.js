@@ -5,10 +5,9 @@ export const MainContainer = styled.div`
     height: 100%;
     min-height: 600px;
     position: relative;
-
+    background-color: grey;
     border-radius : 20px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-    position:relative;
 
 `;
 
@@ -151,19 +150,29 @@ export const Name = styled.div`
 `;
 
 export const Setting = styled.div`
-    width: 400px;
-    height: 70px;
-    position:absolute;
-    z-index: 100;
-    background-color: rgba(255, 255, 255, 0.82);
-    border: 4px solid;
-    border-radius: 10px;
-    border-color: white;
-    bottom: 0;
-    margin-left: 30%;
+    width: 100%;
+    height: 60px;
     display:flex;
     flex-direction: row;
-    jusfity-content: space-around;
+
+    position:absolute;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: none;
+    bottom: 0;
+`;
+export const IconLeft = styled.div`
+    display:flex;
+    flex-direction: row;
+    border: none;
+`;
+
+export const IconRight = styled.div`
+position: absolute;
+    display:flex;
+    flex-direction: row;
+    border: none;
+    right: 10px;
 `;
 
 export const IconBox = styled.div`
@@ -171,17 +180,19 @@ export const IconBox = styled.div`
     width: 52px;
     height: 52px;
     border-radius: 50%;
-background: #959595;
-line-height: 50px;
+    background: #959595;
+    line-height: 50px;
 `;
 
-export const Phone = styled.div`
+export const Phone = styled.button`
     margin: 5px 0px 0px 20px;
     width: 52px;
     height: 52px;
+    border: none;
     border-radius: 50%;
     background-color: #CF4942;
     line-height: 50px;
+    align: right;
 `;
 
 

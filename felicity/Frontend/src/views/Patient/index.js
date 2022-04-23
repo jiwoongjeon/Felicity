@@ -1,6 +1,6 @@
-import React from "react"
+import React, {useState} from "react"
 import Header from '../../Components/Header/Header';
-import { Mostouter, Directory, User, Cat, Title, Video } from '../../Components/mostouter';
+import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
@@ -10,7 +10,10 @@ import {
     ScheduleBox,
     RecordBox,
     PrescriptionBox,
-    ConversationBox
+    ConversationBox,
+    Block,
+    Button,
+    Container
 } from "./layout"
 import Schedule from "../../Components/Schedule";
 import Conversations from "../../Components/Conversations";
@@ -26,9 +29,16 @@ import moment from "moment";
 function Patient() {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+<<<<<<< HEAD
     const today = moment().format("MM-DD-YYYY");
     const [scheduleData, setScheduleData] = React.useState([])
     //const [list, setlist] = React.useState([])
+=======
+    const show = JSON.parse(sessionStorage.getItem("show"))
+
+    const [scheduleData, setScheduleData] = React.useState([])
+    const [visible, setVisible] = useState(true)
+>>>>>>> 9e00d9a551472ca0c62dbb725eb54753314454ed
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/patient_schedule`, { "patient_id": 1 })
@@ -36,8 +46,18 @@ function Patient() {
                 setScheduleData(response.data)
             })
     }, [])
+<<<<<<< HEAD
     console.log(scheduleData);
     //setScheduleData(list.filter((item,index) => (moment(item.reserved_date).format("MM-DD-YYYY") < today)));
+=======
+    console.log(scheduleData)
+
+    function CloseSession(){
+        window.sessionStorage.removeItem('show');   
+        
+    }
+
+>>>>>>> 9e00d9a551472ca0c62dbb725eb54753314454ed
     return (
 
         <Mostouter>
@@ -57,6 +77,13 @@ function Patient() {
 
 
             <Video>
+            {visible &&show && <Container>
+                    <Block>Video call Ended
+                            <Button onClick={() => { CloseSession(); setVisible(false);}}>
+                                    Okay
+                            </Button>
+                        </Block>
+                </Container>}
                 <ContentLayout>
                     <EmergencyBox>
                         <Emergency />
