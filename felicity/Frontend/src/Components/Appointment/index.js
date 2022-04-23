@@ -1,13 +1,12 @@
 import React from "react";
-import { MHT_DATA } from "../BoardNew/tempData";
 import { InputLabel, MenuItem, FormControl, Select, TextField } from '@mui/material';
 const { NewAppContainer, Header, AppDetailContainer, Divider, DetailLabel, DetailLabelTop,
-    Column, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, SubmitBtn, ColumnBottom} = require('./styles')
+    Column, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, SubmitBtn, ColumnBottom, SubmitBtnDisabled} = require('./styles')
 
 export const AppointmentHolder = (props) => {
-
-    function sessionClose () { //stores items in sessionStorage
     
+    var today = new Date().toISOString().split('T')[0];
+    function sessionClose () { //stores items in sessionStorage
         window.sessionStorage.removeItem('hurt');
         window.sessionStorage.removeItem('depart');
         window.sessionStorage.removeItem('time');
@@ -43,9 +42,10 @@ export const AppointmentHolder = (props) => {
                         label="Department"
                         onChange={handleDepartmentChange}
                         autoWidth>
-                        <MenuItem value={1}>Internal Medicine</MenuItem>
-                        <MenuItem value={2}>Ear-Nose-And-Throat Department</MenuItem>
-                        <MenuItem value={3}>Orthopedics</MenuItem>
+                        <MenuItem value={1}>No preference</MenuItem>
+                        <MenuItem value={2}>Internal Medicine</MenuItem>
+                        <MenuItem value={3}>Ear-Nose-And-Throat Department</MenuItem>
+                        <MenuItem value={4}>Orthopedics</MenuItem>
                     </Select>
                 </FormControl>
             
@@ -56,9 +56,9 @@ export const AppointmentHolder = (props) => {
                     id="date"
                     label="Appointment Date"
                     type="date"
-                    defaultValue="2017-05-24"
                     sx={{ width: 200 }}
                     InputLabelProps={{ shrink: true }}
+                    min={today}
                     onChange={handleDateChange}
                     />
                 <TextField
@@ -66,7 +66,6 @@ export const AppointmentHolder = (props) => {
                     id="time"
                     label="Appointment Time"
                     type="time"
-                    defaultValue="07:30"
                     sx={{ width: 200, marginLeft: 3 }}
                     InputLabelProps={{ shrink: true }}
                     inputProps={{ step: 300 }}
@@ -85,10 +84,10 @@ export const AppointmentHolder = (props) => {
                             label="Preference"
                             onChange={handlePreferenceChange}
                             autoWidth>
-                            <MenuItem value={0}>No Preference</MenuItem>
-                            <MenuItem value={1}>Dr.Lee</MenuItem>
-                            <MenuItem value={2}>Dr.Kim</MenuItem>
-                            <MenuItem value={3}>Dr.Park</MenuItem>
+                            <MenuItem value={1}>No Preference</MenuItem>
+                            <MenuItem value={2}>Dr.Lee</MenuItem>
+                            <MenuItem value={3}>Dr.Kim</MenuItem>
+                            <MenuItem value={4}>Dr.Park</MenuItem>
                         </Select>
                     </FormControl>
                 </Column>
@@ -125,7 +124,11 @@ export const AppointmentHolder = (props) => {
                     {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
                 </SymptomsContainer>
             <ColumnBottom>
-                <SubmitBtn onClick={sessionClose} to='./Home'>Submit</SubmitBtn>
+                {!department? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+                    : !preference?  <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+                    : !reserved_date? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+                    : !reserved_time? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+                    : <SubmitBtn onClick={sessionClose} to='./Home'>Submit</SubmitBtn>}
             </ColumnBottom>
             </AppDetailContainer>
 
