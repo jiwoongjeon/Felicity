@@ -21,12 +21,14 @@ import Axios from "axios";
 import UserRedirect from "../UserRedirect"
 
 import API_URL from "../../API/server-ip";
+import moment from "moment";
 
 function Patient() {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-
+    const today = moment().format("MM-DD-YYYY");
     const [scheduleData, setScheduleData] = React.useState([])
+    //const [list, setlist] = React.useState([])
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/patient_schedule`, { "patient_id": 1 })
@@ -34,8 +36,8 @@ function Patient() {
                 setScheduleData(response.data)
             })
     }, [])
-    console.log(scheduleData)
-
+    console.log(scheduleData);
+    //setScheduleData(list.filter((item,index) => (moment(item.reserved_date).format("MM-DD-YYYY") < today)));
     return (
 
         <Mostouter>
