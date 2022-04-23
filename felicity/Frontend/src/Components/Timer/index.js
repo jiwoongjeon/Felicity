@@ -69,7 +69,7 @@ const Timer = ({role}) => {
       </div>
 
       <div className="button_container">
-        <button className="time" disabled={disable} onClick={() => {handleStart(10); setDisable(true)}}>Start Timer</button>
+        <button className="time" disabled={disable} onClick={() => {handleStart(900); setDisable(true)}}>Start Timer</button>
         <button className="time" onClick={() => handleComplete(300)}>Extends +5min</button>
         </div>
   </div>
