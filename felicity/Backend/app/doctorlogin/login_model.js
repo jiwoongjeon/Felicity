@@ -10,10 +10,10 @@ function doctorLogin([email, password], callback) {
     config.db.query(doctorLoginQry, [email, password], (err, result) => {
 
         if (err) callback(err, null);
+
         const nickname = result[0].firstname + " " + result[0].lastname
         result[0].nickname = nickname
         callback(null, result);
-        // console.log(result[0], nickname)
     })
 }
 
