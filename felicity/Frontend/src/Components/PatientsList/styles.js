@@ -139,3 +139,4 @@ export const Detail = styled.p`
   font-weight: bold;
   margin-top: 6px;
 `;
+

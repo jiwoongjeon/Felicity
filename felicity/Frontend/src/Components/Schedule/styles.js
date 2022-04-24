@@ -51,9 +51,15 @@ export const FstColumn = styled(Link)`
   text-decoration:none;
 `;
 
+// export const Column = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
+
 export const Column = styled.div`
-  display: flex;
-  flex-direction: row;
+  width:100%;
+  padding: 5px;
+  flex-direction: column;
 `;
 
 export const Group = styled.div`
