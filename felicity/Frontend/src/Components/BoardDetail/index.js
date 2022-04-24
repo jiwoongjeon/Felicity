@@ -57,7 +57,7 @@ export const BoardDetail = (props) => {
                     </ContentSubContainer>
                     
                     <Divider />
-                    {props.isDoctor & !data.state && 
+                    {props.isDoctor && 
                         <ContentSubContainer>
                             <Blank />
                             <Column>
@@ -93,7 +93,8 @@ export const BoardDetail = (props) => {
                                     </WriteContainer>}
                             </Column>
                             <Blank />
-                        </ContentSubContainer>}
+                        </ContentSubContainer>
+                    }
                 </ContentContainer>
             ))}
 

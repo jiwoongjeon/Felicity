@@ -18,6 +18,13 @@ export const LoginContainer = styled.div`
     margin-top: 10%;
 `;
 
+export const LoginSubContainer = styled.div`
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
+
 export const Logo = styled.img`
     height: 38px;
     width: 35.67px;
@@ -32,6 +39,17 @@ export const Title = styled.div`
     margin-top: 40px;
     color: #002D84;
 
+`;
+
+export const SubTitle = styled.div`
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #002D84;
 `;
 
 
@@ -186,6 +204,40 @@ export const SubmitButton = styled.div`
       background-color: #004FEB;
     }
 `;
+
+export const RoleSubmitButton = styled.div`
+    flex:1;
+    width: 40%;
+    height: 40px;
+    background-color: #0075FF;
+    border-radius: 20px;
+    margin-top: 43px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    margin-left:10px;
+    margin-right:10px;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration:none;
+    &:hover {
+      color: white;
+      background-color: #3D7EFF;
+    }
+    &:active {
+      color: white;
+      background-color: #004FEB;
+    }
+`;
+
+export const Row = styled.div`
+    display:flex;
+    width:100%
+    flex-align:row;
+`
 
 export const Signup = styled.div`
     display: flex;
