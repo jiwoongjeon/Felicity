@@ -128,7 +128,7 @@ export const AppointmentHolder = (props) => {
                     : !preference?  <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
                     : !reserved_date? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
                     : !reserved_time? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
-                    : <SubmitBtn onClick={sessionClose} to='./Home'>Submit</SubmitBtn>}
+                    : <SubmitBtn to='./Home'>Submit</SubmitBtn>}
             </ColumnBottom>
             </AppDetailContainer>
 

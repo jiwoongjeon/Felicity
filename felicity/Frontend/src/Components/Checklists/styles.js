@@ -56,14 +56,16 @@ export const Divider = styled.div`
 export const SymptomsContainer = styled.div`
 width: 95%;
 height: 10%;
+margin-bottom:10%;
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 `;
 
 export const SymptomsBubble = styled.div`
+width:155px;
 height:30px;
-display: flex;
+text-align:center;
 background: #0075ff;
 border-radius: 8px;
 padding-top: 2px;
@@ -71,6 +73,38 @@ padding-bottom: 2px;
 padding-left: 15px;
 padding-right: 15px;
 margin-right: 10px;
+margin-bottom: 10px;
 font-weight: bold;
 color: white;
+`;
+
+export const SymptomsBubbleUnchecked = styled.div`
+width:155px;
+height:30px;
+text-align:center;
+background: white;
+border: 1px solid #718096;
+border-radius: 8px;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 15px;
+padding-right: 15px;
+margin-right: 10px;
+margin-bottom: 10px;
+font-weight: bold;
+color: #718096;
+`;
+
+export const OtherBox = styled.div`
+width: 650px;
+height: 40px;
+border: 0.5px solid #E2E8F0;
+padding-top:5px;
+padding-left:20px;
+box-sizing: border-box;
+border-radius:15px;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+background-color: white;
 `;

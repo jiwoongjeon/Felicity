@@ -5,62 +5,88 @@ import Checkbox from "../LoginPage/Checkbox";
 import { MHT_DATA } from "./tempData";
 import { Title, SubTitle, SliderBox, } from "../../views/MHT/styles";
 
-const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, CheckboxBox, SymptomsContainer, SymptomsBubble, Divider } = require("./styles");
+const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, CheckboxBox, SymptomsContainer, SymptomsBubble, Divider, SymptomsBubbleUnchecked, OtherBox } = require("./styles");
 
 
 export const Checklists = (props) => {
 
+    const Checklist = JSON.parse(sessionStorage.getItem("checklist"));
+    if (Checklist == null){
+        Checklist = [false, false, false, false, false, false, false, false, false, false, false, false, ""];
+    };
+
+    const time = sessionStorage.getItem('time');
+
     return (
         <ChecklistsContainer>
-            {MHT_DATA.map((data, i) => (
+        {sessionStorage.getItem('checklist') &&
+            <ChecklistsElementContainer>
+                <Title>Medical History Form Review</Title>
+                <SubTitle>Patient: Gaebiscon</SubTitle>
+                <Divider />
+                <Label>1. Where does it hurt?  *</Label>
+                <Answers>{sessionStorage.getItem('hurt')}</Answers>
+                <Label>1-1. Do you have any specific department that you want to visit? (Optional)</Label>
+                <Answers>{sessionStorage.getItem('depart')? sessionStorage.getItem('depart'): 'None'}</Answers>
+                <Label>2. How long does the hurt last? *</Label>
+                <Answers>{time === 'hours'? 'Less than 24 hours' :
+                            time === 'days'? 'Less than 3 days' :
+                            time === 'week'? 'Less than 1 week' : 
+                            time === 'month'? 'Less than 1 month' :
+                            'More than 1 month'}</Answers>
+                <Label>3. Where does the most severely hurt?  *</Label>
+                <Answers>{sessionStorage.getItem('where')}</Answers>
+                <Label>4. How much does it hurt?  *</Label>
+                <SliderBox>
+                    <Label>Mild</Label>
+                    <Slider 
+                    marks
+                    min={0}
+                    max={10}
+                    step={1}
+                    defaultValue={JSON.parse(sessionStorage.getItem('level'))}
+                    valueLabelDisplay="on"
+                    disabled />
+                    <Label>Severe</Label>
+                </SliderBox>
+                <Label>5. Do you have any suspective reason why? (Optional)</Label>
+                <Answers>{sessionStorage.getItem('why')? sessionStorage.getItem('why'): 'None'}</Answers>
+                <Label>6. What kind of symptoms do you have? *</Label>
+
+                <SymptomsContainer>
+                    {Checklist[0] && <SymptomsBubble>Cough</SymptomsBubble>}
+                    {!Checklist[0] && <SymptomsBubbleUnchecked>Cough</SymptomsBubbleUnchecked>}
+                    {Checklist[1] && <SymptomsBubble>Vomit</SymptomsBubble>}
+                    {!Checklist[1] && <SymptomsBubbleUnchecked>Vomit</SymptomsBubbleUnchecked>}
+                    {Checklist[2] && <SymptomsBubble>Fever</SymptomsBubble>}
+                    {!Checklist[2] && <SymptomsBubbleUnchecked>Fever</SymptomsBubbleUnchecked>}
+                    {Checklist[3] && <SymptomsBubble>Sore throat</SymptomsBubble>}
+                    {!Checklist[3] && <SymptomsBubbleUnchecked>Sore throat</SymptomsBubbleUnchecked>}
+                    {Checklist[4] && <SymptomsBubble>Phlegm</SymptomsBubble>}
+                    {!Checklist[4] && <SymptomsBubbleUnchecked>Phlegm</SymptomsBubbleUnchecked>}
+                    {Checklist[5] && <SymptomsBubble>Runny Nose</SymptomsBubble>}
+                    {!Checklist[5] && <SymptomsBubbleUnchecked>Runny Nose</SymptomsBubbleUnchecked>}
+                    {Checklist[6] && <SymptomsBubble>Nauseous</SymptomsBubble>}
+                    {!Checklist[6] && <SymptomsBubbleUnchecked>Nauseous</SymptomsBubbleUnchecked>}
+                    {Checklist[7] && <SymptomsBubble>Out of breath</SymptomsBubble>}
+                    {!Checklist[7] && <SymptomsBubbleUnchecked>Out of breath</SymptomsBubbleUnchecked>}
+                    {Checklist[8] && <SymptomsBubble>Stomachache</SymptomsBubble>}
+                    {!Checklist[8] && <SymptomsBubbleUnchecked>Stomachache</SymptomsBubbleUnchecked>}
+                    {Checklist[9] && <SymptomsBubble>Chills</SymptomsBubble>}
+                    {!Checklist[9] && <SymptomsBubbleUnchecked>Chills</SymptomsBubbleUnchecked>}
+                    {Checklist[10] && <SymptomsBubble>Muscle Sickness</SymptomsBubble>}
+                    {!Checklist[10] && <SymptomsBubbleUnchecked>Muscle Sickness</SymptomsBubbleUnchecked>}
+                    {Checklist[11] && <SymptomsBubble>Other</SymptomsBubble>}
+                    {!Checklist[11] && <SymptomsBubbleUnchecked>Other</SymptomsBubbleUnchecked>}
+                    {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
+                </SymptomsContainer>
+                
+            </ChecklistsElementContainer>}
+            {!sessionStorage.getItem('checklist') && 
                 <ChecklistsElementContainer>
-                    {props.isDoctor && <Title>Medical History Form for next patient</Title>}
-                    {!props.isDoctor && <Title>Medical History Form Review</Title>}
-                    <SubTitle>Patient: {data.patient}</SubTitle>
-                    <Divider />
-                    <Label>1. Where does it hurt?  *</Label>
-                    <Answers>{data.no_1}</Answers>
-                    <Label>1-1. Do you have any specific department that you want to visit? (Optional)</Label>
-                    <Answers>{data.no_1_1}</Answers>
-                    <Label>2. How long does the hurt last? *</Label>
-                    <Answers>{data.no_2}</Answers>
-                    <Label>3. Where does the most severely hurt?  *</Label>
-                    <Answers>{data.no_3}</Answers>
-                    <Label>4. How much does it hurt?  *</Label>
-                    <SliderBox>
-                        <Label>Mild</Label>
-                        <Slider 
-                        marks
-                        min={0}
-                        max={10}
-                        step={1}
-                        defaultValue={data.no_4}
-                        valueLabelDisplay="on"
-                        disabled />
-                        <Label>Severe</Label>
-                    </SliderBox>
-                    <Label>5. Do you have any suspective reason why? (Optional)</Label>
-                    <Answers>{data.no_5}</Answers>
-                    <Label>6. What kind of symptoms do you have? *</Label>
-                    
-                    {MHT_DATA[i].no_6.map((symptom) => (
-                        <SymptomsContainer>
-                            {symptom.A && <SymptomsBubble>Cough</SymptomsBubble>}
-                            {symptom.B && <SymptomsBubble>Vomit</SymptomsBubble>}
-                            {symptom.C && <SymptomsBubble>Fever</SymptomsBubble>}
-                            {symptom.D && <SymptomsBubble>Sore throat</SymptomsBubble>}
-                            {symptom.E && <SymptomsBubble>Phlegm</SymptomsBubble>}
-                            {symptom.F && <SymptomsBubble>Runny Nose</SymptomsBubble>}
-                            {symptom.G && <SymptomsBubble>Nauseous</SymptomsBubble>}
-                            {symptom.H && <SymptomsBubble>Out of breath</SymptomsBubble>}
-                            {symptom.I && <SymptomsBubble>Stomachache</SymptomsBubble>}
-                            {symptom.J && <SymptomsBubble>Chills</SymptomsBubble>}
-                            {symptom.K && <SymptomsBubble>Muscle Sickness</SymptomsBubble>}
-                            {symptom.L && <SymptomsBubble>{symptom.L_detail}</SymptomsBubble>}
-                        </SymptomsContainer>
-                    ))}
-                </ChecklistsElementContainer>
-            ))}
+                    <Title>Medical History Form Review</Title>
+                    <SubTitle>You haven't submit your medical health form yet!</SubTitle>
+                </ChecklistsElementContainer>}
         </ChecklistsContainer>
     );
 }
