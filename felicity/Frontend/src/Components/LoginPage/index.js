@@ -75,7 +75,7 @@ function LoginPage({ patientL, doctorL }) {
         {isRole &&
           <LoginSubContainer>
             {role && <SubTitle>Login as patient</SubTitle>}
-            {!role && <SubTitle>Login as patient</SubTitle>}
+            {!role && <SubTitle>Login as doctor</SubTitle>}
             <Label> USER ID </Label>
 
             <InputBox>

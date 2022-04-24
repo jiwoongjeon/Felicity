@@ -82,6 +82,11 @@ export const Checklists = (props) => {
                 </SymptomsContainer>
                 
             </ChecklistsElementContainer>}
+            {!sessionStorage.getItem('checklist') && 
+                <ChecklistsElementContainer>
+                    <Title>Medical History Form Review</Title>
+                    <SubTitle>You haven't submit your medical health form yet!</SubTitle>
+                </ChecklistsElementContainer>}
         </ChecklistsContainer>
     );
 }
