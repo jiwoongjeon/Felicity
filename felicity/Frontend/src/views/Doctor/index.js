@@ -34,7 +34,6 @@ function Doctor() {
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": jwt })
-
             .then((response) => {
                 setScheduleData(response.data)
             })

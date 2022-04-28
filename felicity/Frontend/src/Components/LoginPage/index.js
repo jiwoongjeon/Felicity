@@ -43,7 +43,6 @@ function LoginPage({ patientL, doctorL }) {
 
   const [role, setRole] = useState(true);
   const [isRole, setIsRole] = useState(false);
-  const [radioValue, setRadio] = useState(true);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -65,8 +64,8 @@ function LoginPage({ patientL, doctorL }) {
           <LoginSubContainer>
             <SubTitle>Welcome! Select your role</SubTitle>
             <Row>
-              <RoleSubmitButton onClick={e => setInitRole(true)}>Doctor</RoleSubmitButton>
-              <RoleSubmitButton onClick={e => setInitRole(false)}>Patient</RoleSubmitButton>
+              <RoleSubmitButton onClick={e => setInitRole(false)}>Doctor</RoleSubmitButton>
+              <RoleSubmitButton onClick={e => setInitRole(true)}>Patient</RoleSubmitButton>
             </Row>
           </LoginSubContainer>
         }
@@ -112,7 +111,7 @@ function LoginPage({ patientL, doctorL }) {
           Don’t have an Account? <SignupLink to='/registeration'> Sign Up </SignupLink>
         </Signup>
 
-        {id && <LoginRedirect isRole={radioValue}/>}
+        {id && <LoginRedirect isRole={role}/>}
 
       </LoginContainer>
 
