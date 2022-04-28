@@ -36,7 +36,7 @@ function StatusDoctor(props) {
       setEBin(true)
       setInternal(false)
       setOrthopedics(false)
-      setPosts(posts.filter(post => post.category === "Ear-Nose-And-Throat Department"))
+      setPosts(POST_DATA.filter(post => post.category === "Ear-Nose-And-Throat Department"))
   }
 
   function setToInternal() {
@@ -44,7 +44,7 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(true)
       setOrthopedics(false)
-      setPosts(posts.filter(post => post.category === "Internal Medicine"))
+      setPosts(POST_DATA.filter(post => post.category === "Internal Medicine"))
   }
 
   function setToOrthopedics() {
@@ -52,7 +52,7 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(false)
       setOrthopedics(true)
-      setPosts(posts.filter(post => post.category === "Orthopedics"))
+      setPosts(POST_DATA.filter(post => post.category === "Orthopedics"))
   }
 
   function setToNewest() {

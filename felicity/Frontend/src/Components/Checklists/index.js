@@ -10,16 +10,16 @@ const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, Checkbo
 
 export const Checklists = (props) => {
 
-    const Checklist = JSON.parse(sessionStorage.getItem("checklist"));
+    let Checklist = JSON.parse(sessionStorage.getItem("checklist"));
     if (Checklist == null){
         Checklist = [false, false, false, false, false, false, false, false, false, false, false, false, ""];
     };
 
-    const time = sessionStorage.getItem('time');
+    let time = sessionStorage.getItem('time');
 
     return (
         <ChecklistsContainer>
-        {sessionStorage.getItem('checklist') &&
+        {time &&
             <ChecklistsElementContainer>
                 <Title>Medical History Form Review</Title>
                 <SubTitle>Patient: Gaebiscon</SubTitle>
