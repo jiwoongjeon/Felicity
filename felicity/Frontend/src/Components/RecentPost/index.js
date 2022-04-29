@@ -9,7 +9,6 @@ const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider,
 
 export const RecentPost = (props) => {
 
-
     return (
         <PostContainer>
 
@@ -51,6 +50,7 @@ export const RecentPost = (props) => {
                             
                     </Column>
                 </ContentElement>
+                <DateLabel>CATEGORY</DateLabel>
                 <DateLabel>DATE</DateLabel>
                 <StateLabel>STATE</StateLabel>
             </Column>
@@ -69,14 +69,13 @@ export const RecentPost = (props) => {
                                     ))}
                                 </SymptomsContainer>
                             </ContentElement>
+                            <Date>{data.category}</Date>
                             <Date>{data.date}</Date>
                             { data.state && <State>Answered</State>}
                             { !data.state && <UnState>Not Answered</UnState>}
                         </Column>
-                        <Divider></Divider>
-                    </PostElement>
-
-                    ))}
+                        <Divider/>
+                    </PostElement> ))}
 
                 {!props.postData[0] && <Column_alert>There is no post to show</Column_alert>}
 
@@ -96,7 +95,7 @@ export const RecentPost = (props) => {
                         <PageNumber>4</PageNumber>
                         <PageNumber>5</PageNumber>
                         <PageNumber>...</PageNumber>
-                        <PageNumber>10</PageNumber>
+                        <PageNumber>{props.pageData.last_page}</PageNumber>
                     </PageNumberContainer>
                     <PageNavigatorLabel>Next</PageNavigatorLabel>
                 </PageContainer>

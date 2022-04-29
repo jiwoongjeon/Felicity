@@ -49,7 +49,7 @@ const ContextProvider = ({ children }) => {
     }
 
     const postPatientLogin = ({ email, password }) => async () => {
-        
+
         try {
             setRole(true);
             console.log(email, password);
@@ -57,12 +57,16 @@ const ContextProvider = ({ children }) => {
                 email: email,
                 password: password
             }).then((response) => {
-                console.log(response.data[0].user_id);
-                socket.emit("login", [response.data[0].user_id, true]);
-                if (response.data[0].user_id) {
-                    loginSessionStore(true, response.data[0].user_id)
-                    setId(response.data[0].user_id);
+                if (response.data.errMsg) {
+                    console.log("Incorrect email or password")
+                }
+                else {
+                    socket.emit("login", [response.data[0].user_id, true]);
+                    if (response.data[0].user_id) {
+                        loginSessionStore(true, response.data[0].user_id)
+                        setId(response.data[0].user_id);
                     }
+                }
             });
         } catch (e) {
             console.log(e);
@@ -77,11 +81,15 @@ const ContextProvider = ({ children }) => {
                 email: email,
                 password: password
             }).then((response) => {
-                console.log(response.data[0].doctor_id);
-                socket.emit("login", [response.data[0].doctor_id, false]);
-                if (response.data[0].doctor_id) {
-                    loginSessionStore(false, response.data[0].doctor_id)
-                    setId(response.data[0].doctor_id);
+                if (response.data.errMsg) {
+                    console.log("Incorrect email or password")
+                }
+                else {
+                    socket.emit("login", [response.data[0].doctor_id, false]);
+                    if (response.data[0].doctor_id) {
+                        loginSessionStore(false, response.data[0].doctor_id)
+                        setId(response.data[0].doctor_id);
+                    }
                 }
             });
         } catch (e) {
@@ -91,18 +99,18 @@ const ContextProvider = ({ children }) => {
 
     const send = (n, m) => {
         if (m !== "") {
-            socket.emit("chat", {userToCall: userToCall, name: n, msg: m, time: moment(new Date()).format("h:mm A")});
+            socket.emit("chat", { userToCall: userToCall, name: n, msg: m, time: moment(new Date()).format("h:mm A") });
             setChatArr([...chatArr, { name: n, msg: m, time: moment(new Date()).format("h:mm A") }]);
         }
     }
 
     useEffect(() => {
-        socket.once("chatting", (data)=> {
+        socket.once("chatting", (data) => {
             const { name, msg, time } = data;
             setChatArr([...chatArr, { name: name, msg: msg, time: time }]);
             console.log(data);
         });
-        return(() => {
+        return (() => {
             socket.off("chatting");
         })
     })

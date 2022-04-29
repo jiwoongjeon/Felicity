@@ -1,21 +1,34 @@
 import React from "react";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Divider, InfoContainer, Label, PhotoArea, PictureContainer, ProfileContainer, Row } from "./styles";
+import { TimeButton, Content, Divider, InfoContainer, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton } from "./styles";
 
 export const ProfilePage = (props) => {
 
     const [start_time, setStartTime] = React.useState('');
     const [end_time, setEndTime] = React.useState('');
     const [isTime, changeTime] = React.useState(false);
+    const [fileImage, setFileImage] = React.useState("");
 
     function setTime() {
         changeTime(!isTime)
     }
+
+    const saveFileImage = (e) => {
+        setFileImage(URL.createObjectURL(e.target.files[0]));
+        //Sending a file code needed
+      };
+
+    const deleteFileImage = () => {
+        URL.revokeObjectURL(fileImage);
+        setFileImage("");
+      };
     
     return(
         <ProfileContainer>
             <PictureContainer>
-                <PhotoArea/>
+                <PhotoArea img={fileImage}/>
+                <input type='file' className='imgInput' id='logoImg' accept='image/*' name='file' onChange={saveFileImage}/>
+                {fileImage && <DeleteButton onClick={deleteFileImage}>Delete image</DeleteButton>}
             </PictureContainer>
             <Divider/>
             <InfoContainer>

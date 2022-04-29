@@ -33,13 +33,13 @@ function Doctor() {
     const [visible, setVisible] = useState(true)
 
     React.useEffect(() => {
-        Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": 1 })
+        Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": jwt })
             .then((response) => {
                 setScheduleData(response.data)
             })
     }, [])
     console.log(scheduleData)
-  
+
     function sy(array) {
         var array1 = []
         if (array[0] === 1) {
@@ -82,15 +82,15 @@ function Doctor() {
     };
 
 
-    function CloseSession(){
-        window.sessionStorage.removeItem('show');   
-        
+    function CloseSession() {
+        window.sessionStorage.removeItem('show');
+
     }
 
-  return (
-      
-    <Mostouter>
-        {!jwt && <UserRedirect isRole={false}/>}
+    return (
+
+        <Mostouter>
+            {!jwt && <UserRedirect isRole={false} />}
 
 
             <Cat>
@@ -107,10 +107,10 @@ function Doctor() {
 
 
             <Video>
-            {visible && show && <Container>
+                {visible && show && <Container>
                     <Block>Video call Ended
-                        <Button onClick={() => { CloseSession(); setVisible(false);}}>
-                                Okay
+                        <Button onClick={() => { CloseSession(); setVisible(false); }}>
+                            Okay
                         </Button>
                     </Block>
                 </Container>}
@@ -119,7 +119,7 @@ function Doctor() {
                         <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} />
                     </PatientBox>
 
-                    
+
                     <InfoBox>
                         <CV data={displayedData} symptoms={sy} />
                     </InfoBox>

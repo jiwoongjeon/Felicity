@@ -170,8 +170,8 @@ export const Department = styled.p`
 export const AvailTime = styled.p`
   flex:9;
   text-align: left;
-  font-weight: bold;
-  font-size:20px;
+  font-weight: regular;
+  font-size: 18px;
   margin-top:20px;
 `;
 

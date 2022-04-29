@@ -45,10 +45,16 @@ overflow-y: auto;
 }
 `;
 
+// export const Column = styled.div`
+// flex-direction: column;
+// width:80%
+// `
+
 export const Column = styled.div`
-flex-direction: column;
-width:80%
-`
+  width:100%;
+  padding: 5px;
+  flex-direction: column;
+`;
 
 export const RecordElement = styled.div`
   width: 92%;

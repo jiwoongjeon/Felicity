@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -24,26 +24,26 @@ import Axios from "axios";
 import UserRedirect from "../UserRedirect"
 
 import API_URL from "../../API/server-ip";
+import moment from "moment";
 
 function Patient() {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
-
     const [scheduleData, setScheduleData] = React.useState([])
     const [visible, setVisible] = useState(true)
 
     React.useEffect(() => {
-        Axios.post(`${API_URL}/patient_schedule`, { "patient_id": 1 })
+        Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
             .then((response) => {
                 setScheduleData(response.data)
             })
     }, [])
     console.log(scheduleData)
 
-    function CloseSession(){
-        window.sessionStorage.removeItem('show');   
-        
+    function CloseSession() {
+        window.sessionStorage.removeItem('show');
+
     }
 
     return (
@@ -65,12 +65,12 @@ function Patient() {
 
 
             <Video>
-            {visible &&show && <Container>
+                {visible && show && <Container>
                     <Block>Video call Ended
-                            <Button onClick={() => { CloseSession(); setVisible(false);}}>
-                                    Okay
-                            </Button>
-                        </Block>
+                        <Button onClick={() => { CloseSession(); setVisible(false); }}>
+                            Okay
+                        </Button>
+                    </Block>
                 </Container>}
                 <ContentLayout>
                     <EmergencyBox>

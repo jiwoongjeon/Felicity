@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { normalizeUnits } from "moment";
 
 export const ScheduleContainer = styled.div`
   margin-right: 30px;
@@ -50,9 +51,15 @@ export const FstColumn = styled(Link)`
   text-decoration:none;
 `;
 
+// export const Column = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
+
 export const Column = styled.div`
-  display: flex;
-  flex-direction: row;
+  width:100%;
+  padding: 5px;
+  flex-direction: column;
 `;
 
 export const Group = styled.div`
@@ -73,17 +80,24 @@ export const TimeEmail = styled.p`
 //   font-size: 14px;
 `;
 
-export const DeleteIcon = styled.p`
+export const DeleteIcon = styled.button`
   margin: 0px;
   margin-right: 13px;
   font-weight: bold;
   color: rgba(239, 68, 68);
+  background-color: #F8F9FA;
+  outline: none;
+  border: none;
+
 `;
 
-export const EditIcon = styled.p`
+export const EditIcon = styled.button`
   margin: 0px;
   font-weight: bold;
   color: rgba(55, 65, 81);
+  background-color: #F8F9FA;
+  outline: none;
+  border: none;
 `;
 
 export const DoctorEmail = styled.p`
