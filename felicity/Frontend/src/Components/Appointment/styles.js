@@ -185,3 +185,19 @@ export const SubmitBtn = styled(Link)`
       background-color: #E97204;
     }
 `;
+
+export const SubmitBtnDisabled = styled.div`
+    width: 200px;
+    height: 50px;
+    background-color: #bbbbbb;
+    border-radius: 20px;
+    padding-top: 10px;
+    margin-bottom:40px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+`;

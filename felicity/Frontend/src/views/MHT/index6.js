@@ -2,26 +2,18 @@ import React from "react";
 
 import LogoImg from '../../Components/assets/Logo.png';
 import Checkbox from "../../Components/LoginPage/Checkbox";
-import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput } from "./styles";
+import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput, SubmitButtonDisabled } from "./styles";
 import UserRedirect from "../UserRedirect";
-
-// const Check = () => {
-//   const hurt = window.sessionStorage.getItem('hurt');
-//   const depart = window.sessionStorage.getItem('depart');
-//   const time = window.sessionStorage.getItem('time');
-//   const where = window.sessionStorage.getItem('where');
-//   const level = window.sessionStorage.getItem('level');
-//   const why = window.sessionStorage.getItem('why');
-  
-//   return (<div>hurt: {hurt} depart: {depart} time: {time} where: {where} level: {level} why: {why} </div>);
-// };
 
 function MHT6() {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const [next, setNext] = React.useState(false);
   
   function sessionStore () { //stores items in sessionStorage
-    var other = document.getElementById('other').value;
+    var other;
+    if (valueL) other = document.getElementById('other').value;
+    else other = '';
     var Checklist = [valueA, valueB, valueC, valueD, valueE, valueF, valueG, valueH, valueI, valueJ, valueK, valueL, other];   
     window.sessionStorage.setItem('checklist',JSON.stringify(Checklist)); 
   }
@@ -39,7 +31,6 @@ function MHT6() {
   const [valueK, setCheckboxK] = React.useState(false);
   const [valueL, setCheckboxL] = React.useState(false);
 
-
   return (
     <MainContainer>
       {!jwt && <UserRedirect isRole={true}/>}
@@ -47,11 +38,10 @@ function MHT6() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (6/6)</SubTitle>
-            <SubmitButton onClick={sessionStore} to={'/MHT7'}>
-                Finish</SubmitButton>
+            <SubmitButton onClick={sessionStore} to={'/MHT7'}>Next</SubmitButton>
             <Label>6. What kind of symptoms do you have? *</Label>
             <CheckboxBox>
-              <Checkbox label="A. Cough" value={valueA} checked={valueA} onChange={({ target }) => setCheckboxA(!valueA)} />
+              <Checkbox label="A. Cough"value={valueA} checked={valueA} onChange={({ target }) => setCheckboxA(!valueA)}/>
               <Checkbox label="B. Vomit" value={valueB} checked={valueB} onChange={({ target }) => setCheckboxB(!valueB)} />
               <Checkbox label="c. Fever" value={valueC} checked={valueC} onChange={({ target }) => setCheckboxC(!valueC)} />
               <Checkbox label="D. Sore throat" value={valueD} checked={valueD} onChange={({ target }) => setCheckboxD(!valueD)} />
@@ -63,9 +53,7 @@ function MHT6() {
               <Checkbox label="J. Chills" value={valueJ} checked={valueJ} onChange={({ target }) => setCheckboxJ(!valueJ)} />
               <Checkbox label="K. Muscle Sickness" value={valueK} checked={valueK} onChange={({ target }) => setCheckboxK(!valueK)} />
               <Checkbox label="L. Others" value={valueL} checked={valueL} onChange={({ target }) => setCheckboxL(!valueL)} />
-              <InputBox>
-                <OtherInput id="other" />
-              </InputBox>
+              {valueL && <InputBox> <OtherInput id="other" /> </InputBox>}
              </CheckboxBox>
 
         </QuestionContainer>
