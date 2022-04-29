@@ -11,9 +11,14 @@ function doctorLogin([email, password], callback) {
 
         if (err) callback(err, null);
 
-        const nickname = result[0].firstname + " " + result[0].lastname
-        result[0].nickname = nickname
-        callback(null, result);
+        if (result.length != 0) {
+            const nickname = result[0].firstname + " " + result[0].lastname
+            result[0].nickname = nickname
+            callback(null, result);
+        }
+        else {
+            callback({ errMsg: "Wrong email or password" }, null)
+        }
     })
 }
 
