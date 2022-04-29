@@ -162,7 +162,7 @@ export const Rowbox2 = styled.div`
 border:1px solid #0075FF;
 `;
 
-export const SubmitButton = styled.div`
+export const SubmitButton = styled.button`
     width: 100%;
     height: 40px;
     background-color: #0075FF;
