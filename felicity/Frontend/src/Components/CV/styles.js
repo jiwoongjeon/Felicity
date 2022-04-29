@@ -61,6 +61,7 @@ export const Patient = styled.p`
   font-weight: bold;
   margin-top: 0px;
   font-size: 20px;
+  padding-left: 10px;
 `;
 
 export const Bio = styled.p`
@@ -76,11 +77,14 @@ export const DetailLabel = styled.p`
   font-weight: bold;
   text-align: left;
   min-width: 150px;
+  padding-left: 10px;
 `;
 
 export const Detail = styled.p`
   text-align: left;
   margin-left: 7px;
+  padding-left: 10px;
+
 `;
 
 export const Btn = styled(Link)`
