@@ -23,7 +23,7 @@ import API_URL from "../../API/server-ip";
 
 
 
-function Doctor() {
+function Doctor(props) {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
@@ -116,12 +116,12 @@ function Doctor() {
                 </Container>}
                 <ContentLayout>
                     <PatientBox>
-                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} />
+                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} past={props.past}/>
                     </PatientBox>
 
 
                     <InfoBox>
-                        <CV data={displayedData} symptoms={sy} />
+                        <CV data={displayedData} symptoms={sy} past={props.past}/>
                     </InfoBox>
 
                 </ContentLayout>

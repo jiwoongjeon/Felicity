@@ -30,7 +30,7 @@ const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
   { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
-  { path: "/Doctor/Home", key: "video", component: () => <Doctor /> },
+  { path: "/Doctor/Home", key: "video", component: () => <Doctor past={false}/> },
   { path: "/Patient/Home", key: "video", component: () => <Patient /> },
   { path: "/registeration", key: "ROOT", component: () => <Registration /> },
 
@@ -44,7 +44,7 @@ const ROUTES = [
 
   { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor isDoctor={true}/> },
   { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
-  { path: "/Doctor/Checklist", key: "video", component: () => <Checklist isDoctor={true}/> },
+  { path: "/Doctor/Checklist", key: "video", component: () => <Doctor past={true}/> },
   { path: "/Patient/Checklist", key: "video", component: () => <Checklist isDoctor={false}/> },
   { path: "/Doctor/Profile", key: "video", component: () => <Profile isDoctor={true}/> },
   { path: "/Patient/Profile", key: "video", component: () => <Profile isDoctor={false}/> },

@@ -59,6 +59,7 @@ const ContextProvider = ({ children }) => {
             }).then((response) => {
                 if (response.data.errMsg) {
                     console.log("Incorrect email or password")
+                    setId(0);
                 }
                 else {
                     socket.emit("login", [response.data[0].user_id, true]);
@@ -83,6 +84,7 @@ const ContextProvider = ({ children }) => {
             }).then((response) => {
                 if (response.data.errMsg) {
                     console.log("Incorrect email or password")
+                    setId(0);
                 }
                 else {
                     socket.emit("login", [response.data[0].doctor_id, false]);
