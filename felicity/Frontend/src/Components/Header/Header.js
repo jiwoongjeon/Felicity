@@ -42,7 +42,7 @@ const Header = (props) => {
           <SidebarHeader>
             <div className="logotext">
               <MenuButton to='./Home'>
-                <img src={LogoImg} className='logo' alt='logo' ></img>
+                <img src={LogoImg} className='logo' alt='logo' width={170} ></img>
               </MenuButton>
             </div>
           </SidebarHeader>
@@ -55,7 +55,6 @@ const Header = (props) => {
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
                     <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
-                  {/* <MenuButton to={"/Patient/videocall"}></MenuButton></MenuItem>} */}
 
               <MenuItem icon={<AiFillHome />}>Home
                 <MenuButton to={`./Home`}></MenuButton>

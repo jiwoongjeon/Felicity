@@ -37,7 +37,7 @@ const DoctorList = () => {
             <HeaderColumn>
                     <NoLabel>NO</NoLabel>
                     <PhotoLabel>DOCTOR</PhotoLabel>
-                    <DepartLabel>AVAILABLE TIME</DepartLabel>
+                    <DepartLabel>TIME STATUS</DepartLabel>
                     <AvailLabel>APPOINTMENT</AvailLabel>
             </HeaderColumn>
 
