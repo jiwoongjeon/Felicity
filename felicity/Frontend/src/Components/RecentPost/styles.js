@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export const PostContainer = styled.div`
 width: 100%;
 height: 100%;
+min-width:1000px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -34,6 +35,7 @@ export const PostElement = styled(Link)`
   display: flex;
   flex-direction: column;
   text-decoration:none;
+  align-items: center;
 `;
 
 export const ContentElement = styled.div`
@@ -71,6 +73,7 @@ export const ColumnBottom = styled.div`
 `;
 
 export const Divider = styled.div`
+  width:100%;
   display: flex;
   background: #E3E8F0;
   margin-bottom: 5px;
@@ -203,27 +206,33 @@ export const Content = styled.p`
   overflow-y: hidden;
 `;
 export const Date = styled.p`
+  display:flex;
   flex: 2;
   color: #718096;
-  margin-top: 60px;
   font-weight: bold;
-  white-space: nowrap;
+  white-space: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 export const State = styled.p`
+  display:flex;
   flex: 1.5;
   color: #718096;
-  margin-top: 60px;
   margin-right: 2%;
   font-weight: bold;
   white-space: nowrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const UnState = styled.p`
+  display:flex;
   flex: 1.5;
   color: #FF800B;
-  margin-top: 60px;
   margin-right: 2%;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Search = styled.div`

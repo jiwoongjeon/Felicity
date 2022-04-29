@@ -11,12 +11,14 @@ import UserRedirect from "../UserRedirect";
 
 function StatusDoctor(props) {
     
-    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
   const [allSelect, setAll] = useState(true);
   const [internalSelect, setInternal] = useState(false);
   const [EBinSelect, setEBin] = useState(false);
   const [orthopedicsSelect, setOrthopedics] = useState(false);
+
+  const [posts, setPosts] = useState(POST_DATA);
 
   const [newestSelect, setNewest] = useState(true);
   const [oldestSelect, setOldest] = useState(false);
@@ -26,6 +28,7 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(false)
       setOrthopedics(false)
+      setPosts(POST_DATA)
   }
 
   function setToEBin() {
@@ -33,6 +36,7 @@ function StatusDoctor(props) {
       setEBin(true)
       setInternal(false)
       setOrthopedics(false)
+      setPosts(POST_DATA.filter(post => post.category === "Ear-Nose-And-Throat Department"))
   }
 
   function setToInternal() {
@@ -40,6 +44,7 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(true)
       setOrthopedics(false)
+      setPosts(POST_DATA.filter(post => post.category === "Internal Medicine"))
   }
 
   function setToOrthopedics() {
@@ -47,16 +52,23 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(false)
       setOrthopedics(true)
+      setPosts(POST_DATA.filter(post => post.category === "Orthopedics"))
   }
 
   function setToNewest() {
       setNewest(true)
       setOldest(false)
+      setPosts(posts.sort((a,b) => {
+          return a.id < b.id ? 1 : -1
+      }))
   }
 
   function setToOldest() {
       setNewest(false)
       setOldest(true)
+      setPosts(posts.sort((a,b) => {
+        return a.id > b.id ? 1 : -1
+    }))
   }
 
 
@@ -81,7 +93,8 @@ function StatusDoctor(props) {
         setToNewest={setToNewest} setToOldest={setToOldest}
         allSelect={allSelect} internalSelect={internalSelect} EBinSelect={EBinSelect} orthopedicsSelect={orthopedicsSelect} 
         newestSelect={newestSelect} oldestSelect={oldestSelect} 
-        postData={POST_DATA} pageData={PAGE_DATA} isDoctor={props.isDoctor}/>
+        postData={posts} pageData={PAGE_DATA} 
+        isDoctor={props.isDoctor}/>
     </List>
 
     </Mostouter>

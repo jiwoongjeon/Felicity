@@ -1,7 +1,12 @@
-import { PRESCRIPTION_RECORD } from "./tempData";
-const { PrescriptionContainer, Header, PrescriptionList, HeaderText, ViewAll, PrescriptionElement, Image_Medicine, Id, Date, Detail, ViewAllButton, Footer, Doctor } = require("./styles");
 
-export const RecentPrescription = () => {
+import moment from "moment";
+
+
+const { PrescriptionContainer, Header, PrescriptionList, HeaderText, ViewAll, PrescriptionElement, Image_Medicine, Id, Date, Detail, ViewAllButton, Footer, Doctor, Column } = require("./styles");
+const counter = 0;
+const today = moment().format("MM-DD-YYYY");
+
+export const RecentPrescription = (props) => {
     return (
         <PrescriptionContainer>
             <Header>
@@ -9,8 +14,9 @@ export const RecentPrescription = () => {
                 <ViewAll>View All</ViewAll>
             </Header>
             <PrescriptionList>
-                {PRESCRIPTION_RECORD.map((data, i) => (
+                {moment(props.date).format("MM-DD-YYYY") < today && props.prescription_data.map((data) => (
                     <PrescriptionElement>
+                        {counter += 1}
                         <Image_Medicine img = {data.img}></Image_Medicine>
                         <Date>{data.date}</Date>
                         <Id>{data.id}</Id>
@@ -21,6 +27,7 @@ export const RecentPrescription = () => {
                         </Footer>
                     </PrescriptionElement>
                         ))}
+                        { counter == 0 && <Column>There is no recent prescription</Column>}
             </PrescriptionList>
         </PrescriptionContainer>
     );

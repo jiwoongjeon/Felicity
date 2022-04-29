@@ -117,3 +117,9 @@ color: #0075ff;
 font-size:14px;
 margin-right:30%;
 `;
+
+export const Column = styled.div`
+  width:100%;
+  padding: 5px;
+  flex-direction: column;
+`;

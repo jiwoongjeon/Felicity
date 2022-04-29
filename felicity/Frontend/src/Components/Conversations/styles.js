@@ -86,3 +86,9 @@ export const ReplyBtn = styled(Link)`
   color: #FF800B;
   font-weight: bold;
 `;
+
+export const Column = styled.div`
+  width:100%;
+  padding: 5px;
+  flex-direction: column;
+`;

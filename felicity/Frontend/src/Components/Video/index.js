@@ -87,24 +87,24 @@ const Video = ({ context }) => {
             <SubtitleContainer>
                 <RecordBox>
                     <div>
-                    <Record disabled={record} onClick={() => {setRecord(true)}}>
+                        <Record disabled={record} onClick={() => { setRecord(true) }}>
                             Start
-                    </Record>
-                    <Record disabled={!record} onClick={() => {setRecord(false)}}>
+                        </Record>
+                        <Record disabled={!record} onClick={() => { setRecord(false) }}>
                             Stop
-                    </Record>
-                    <Record disabled={record} onClick={() => {setRecord(true)}}>
+                        </Record>
+                        <Record disabled={record} onClick={() => { setRecord(true) }}>
                             Send
-                    </Record>
+                        </Record>
                     </div>
                 </RecordBox>
 
                 <TextArea><p>{text[0].transcription}</p>
-                <p>Transcription Transcription
-                </p>
+                    <p>{text[0].translation}
+                    </p>
                 </TextArea>
             </SubtitleContainer>
-            
+
             <Setting>
                 <IconLeft>
                     <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
