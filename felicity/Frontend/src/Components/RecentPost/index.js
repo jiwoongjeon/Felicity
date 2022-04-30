@@ -9,6 +9,42 @@ const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider,
 
 export const RecentPost = (props) => {
 
+    let page = props.pageData.current_page;
+    let last = props.pageData.last_page;
+    let index = props.index;
+    let offset = index * 5;
+    let page_index = page - offset;
+
+    const PageButton = () => {
+        return (
+            <PageNumberContainer>
+                {index > 0 && <PageNumber onClick={props.IndexReduction}>...</PageNumber>}
+                {page_index === 1 && <PageNumberLabel >{page}</PageNumberLabel>}
+                {page_index !== 1 && 
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 1)}>{offset + 1}</PageNumber>}
+
+                {page_index === 2 && <PageNumberLabel>{page}</PageNumberLabel>}
+                {page_index !== 2 && offset + 2 <= last && 
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 2)}>{offset + 2}</PageNumber>}
+
+                {page_index === 3 && <PageNumberLabel>{page}</PageNumberLabel>}
+                {page_index !== 3 && offset + 3 <= last && 
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 3)}>{offset + 3}</PageNumber>}
+
+                {page_index === 4 && <PageNumberLabel>{page}</PageNumberLabel>}
+                {page_index !== 4 && offset + 4 <= last && 
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 4)}>{offset + 4}</PageNumber>}
+
+                {page_index === 5 && <PageNumberLabel>{page}</PageNumberLabel>}
+                {page_index !== 5 && offset + 5 <= last && 
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 5)}>{offset + 5}</PageNumber>}
+
+                {last > index * 5 + 5 && <PageNumber onClick={props.IndexIncrement}>...</PageNumber>}
+
+            </PageNumberContainer>
+        )
+    }
+
     return (
         <PostContainer>
 
@@ -87,17 +123,9 @@ export const RecentPost = (props) => {
                     <SearchContent />
                 </Search>
                 <PageContainer>
-                    <PageNavigatorLabel>Previous</PageNavigatorLabel>
-                    <PageNumberContainer>
-                        <PageNumberLabel>1</PageNumberLabel>
-                        <PageNumber>2</PageNumber>
-                        <PageNumber>3</PageNumber>
-                        <PageNumber>4</PageNumber>
-                        <PageNumber>5</PageNumber>
-                        <PageNumber>...</PageNumber>
-                        <PageNumber>{props.pageData.last_page}</PageNumber>
-                    </PageNumberContainer>
-                    <PageNavigatorLabel>Next</PageNavigatorLabel>
+                    <PageNavigatorLabel onClick={({target}) => props.GetPage(page--)}>Previous</PageNavigatorLabel>
+                        <PageButton />
+                    <PageNavigatorLabel onClick={({target}) => props.GetPage(page++)}>Next</PageNavigatorLabel>
                 </PageContainer>
                 {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
             </ColumnBottom>

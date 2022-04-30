@@ -205,7 +205,7 @@ export const SubmitButton = styled.button`
     }
 `;
 
-export const RoleSubmitButton = styled.div`
+export const RoleSubmitButton = styled(Link)`
     flex:1;
     width: 40%;
     height: 40px;

@@ -49,6 +49,7 @@ box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1)
 export const WriteSubContainer = styled.div`
 width: 100%;
 height: 100%;
+padding-top:20px;
 padding-left:2%;
 overflow-y:hidden;
 `;
@@ -115,6 +116,7 @@ padding-top: 5px;
 font-weight: bold;
 color: #0075FF;
 margin-bottom:1%;
+cursor: not-allowed; 
 `;
 
 export const SubmitBtn = styled.div`
@@ -129,4 +131,5 @@ padding-top: 5px;
 font-weight: bold;
 color: white;
 margin-bottom:1%;
+cursor: pointer; 
 `;
