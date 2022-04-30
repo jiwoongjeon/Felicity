@@ -10,7 +10,7 @@ const pScheduleQry =
     "JOIN doctor_profile on reservation.doctor_id = doctor_profile.doctor_id " +
     "JOIN symptom on symptom.id = reservation.symptom_id " +
     "JOIN symptom_list on symptom_list.symptom_id = reservation.symptom_id " +
-    "WHERE reservation.patient_id = ? ";
+    "WHERE reservation.patient_id = ? and reserved_date > timestamp(now())";
 
 const dScheduleQry =
     "SELECT reservation.id, reservation.patient_id, patient_profile.firstname, " +
@@ -21,7 +21,7 @@ const dScheduleQry =
     "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " +
     "JOIN symptom ON symptom.id = reservation.symptom_id " +
     "JOIN symptom_list ON symptom_list.symptom_id = reservation.symptom_id " +
-    "WHERE reservation.doctor_id = 1 ";
+    "WHERE reservation.doctor_id = ? and reserved_date > timestamp(now())";
 
 const insertScheduleQry =
     "insert into felicity.reservation " +
