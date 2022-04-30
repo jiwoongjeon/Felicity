@@ -11,7 +11,6 @@ function patientLogin([email, password], callback) {
         if (err) callback(err, null);
 
         if (result.length != 0) {
-            console.log(result.length)
             const nickname = result[0].firstname + " " + result[0].lastname
             result[0].nickname = nickname
             callback(null, result);
