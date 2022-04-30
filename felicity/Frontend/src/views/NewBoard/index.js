@@ -5,15 +5,18 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { BoardNew } from "../../Components/BoardNew";
 import UserRedirect from "../UserRedirect";
+import MHTRedirect from "../UserRedirect/MHT";
 
 function NewBoard(props) {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const written = JSON.parse(sessionStorage.getItem('level'));
 
   return (
 
     <Mostouter>
       {!jwt && <UserRedirect isRole={true}/>}
+      {!written && <MHTRedirect />}
 
     <Cat>
         <Header isDoctor={props.isDoctor}/>

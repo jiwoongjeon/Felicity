@@ -17,11 +17,14 @@ function StatusDoctor(props) {
   const [internalSelect, setInternal] = useState(false);
   const [EBinSelect, setEBin] = useState(false);
   const [orthopedicsSelect, setOrthopedics] = useState(false);
-
-  const [posts, setPosts] = useState(POST_DATA);
-
   const [newestSelect, setNewest] = useState(true);
   const [oldestSelect, setOldest] = useState(false);
+
+  const [index, setIndex] = useState(0);
+
+  const [posts, setPosts] = useState(POST_DATA);
+  const [pages, setPages] = useState(PAGE_DATA);
+
 
   function setToAll() {
       setAll(true)
@@ -71,6 +74,59 @@ function StatusDoctor(props) {
     }))
   }
 
+  
+  function IndexIncrement() {
+    setIndex(index + 1)
+    // getPage((index * 5) + 1)
+  }
+
+  function IndexReduction() {
+    setIndex(index - 1)
+    // getPage((index * 5) + 5)
+  }
+
+  function GetPage(page) {
+    console.log(page)
+    /*
+    Axios -> Receive posts data where...
+
+    -------------------------------Case of Newest
+    if (last_page > page)
+    { 
+        id = 
+            {(last_page * 5) - ((page - 1) * 5)}
+            ~ 
+            {(last_page * 5) - (page * 5) + 1}
+    }
+
+    if (last_page == page)
+    {
+        id = 
+            (last_page % 5)
+            ~ 
+            1
+    }
+
+    -------------------------------Case of Oldest
+    if (last_page > page)
+    { 
+        id = 
+            {(page - 1) * 5 + 1}
+            ~ 
+            {page * 5}
+    }
+
+    if (last_page == page)
+    {
+        id = 
+            {(last_page - 1) * 5}
+            ~
+            end of data
+    }
+    */
+    setPages(PAGE_DATA)
+  }
+
 
 
   return (
@@ -89,11 +145,14 @@ function StatusDoctor(props) {
     </User>
 
     <List>
-        <RecentPost setToAll={setToAll} setToEBin={setToEBin} setToInternal={setToInternal} setToOrthopedics={setToOrthopedics}
+        <RecentPost
+        setToAll={setToAll} setToEBin={setToEBin} setToInternal={setToInternal} setToOrthopedics={setToOrthopedics}
         setToNewest={setToNewest} setToOldest={setToOldest}
         allSelect={allSelect} internalSelect={internalSelect} EBinSelect={EBinSelect} orthopedicsSelect={orthopedicsSelect} 
         newestSelect={newestSelect} oldestSelect={oldestSelect} 
-        postData={posts} pageData={PAGE_DATA} 
+        postData={posts} pageData={pages} index={index} setIndex={setIndex} GetPage={GetPage}
+        IndexIncrement={IndexIncrement} IndexReduction={IndexReduction}
+
         isDoctor={props.isDoctor}/>
     </List>
 

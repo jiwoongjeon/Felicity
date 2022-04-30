@@ -1,13 +1,12 @@
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
-import { BOARD_DATA, USER_DATA } from "./tempData";
 import TextField from '@mui/material/TextField';
 
 
 const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, ContentContainer, Title, ContentSubContainer, PhotoArea, WrittenBy, WrittenByLabel,
     State, UnState, Date, Content, ReplyBtn, Blank, BottomBoardContainer, WrittenByBottom, TitleBottom, DateBottom, StateBottom, UnStateBottom, WriteContainer,
-    WriteSubContainer, ColumnTitle, SubmitBtn, CancelBtn } = require('./styles')
+    WriteSubContainer, ColumnTitle, SubmitBtn, CancelBtn, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox } = require('./styles')
 
 
 export const BoardDetail = (props) => {
@@ -33,7 +32,7 @@ export const BoardDetail = (props) => {
                 </Search>
             </Column>
             <Divider />
-            {BOARD_DATA.map((data, i) => (
+            {props.boardData.map((data, i) => (
                 <ContentContainer>
                     <ContentSubContainer>
                         <Title>Q: {data.title}</Title>
@@ -57,11 +56,18 @@ export const BoardDetail = (props) => {
                     </ContentSubContainer>
                     
                     <Divider />
+
+                    <SymptomsContainer>
+                        {props.symptoms([data.a, data.b, data.c, data.d, data.e, data.f, data.g, data.h, data.i, data.j, data.k, data.l]).map((symptom) => (
+                            <SymptomsBubble>{symptom}</SymptomsBubble>
+                        ))}
+                    </SymptomsContainer>
+
                     {props.isDoctor && 
                         <ContentSubContainer>
                             <Blank />
                             <Column>
-                                <PhotoArea img={USER_DATA.img}/>
+                                <PhotoArea img={props.userData.img}/>
                                 {!isReply && 
                                     <ReplyBtn onClick={({ target }) => setReplyState(!isReply)}>
                                         Reply</ReplyBtn>}

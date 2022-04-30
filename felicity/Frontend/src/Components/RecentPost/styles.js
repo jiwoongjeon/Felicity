@@ -68,6 +68,7 @@ export const ColumnBottom = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
+  align-items:center;
   justify-content:space-between;
   flex-wrap: wrap;
 `;
@@ -293,16 +294,14 @@ export const WriteButton = styled(Link)`
 export const PageContainer = styled.div`
   flex:3;
   min-width:300px;
-  height: 40px;
+  margin-top:15px;
+  height: 50px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   background-color: white;
   box-sizing: border-box;
   border-radius: 15px;
-  justify-content:flex-start;
-  overflow-x:hidden;
-  overflow-y:hidden;
+  justify-content:space-between;
 `;
 
 export const PageNavigatorLabel = styled.p`
@@ -310,14 +309,17 @@ export const PageNavigatorLabel = styled.p`
   font-weight: bold;
   color: #0075FF;
   padding: 5px 0px 5px 0px;
+  border-radius: 10px;
   margin-left:30px;
   margin-right:30px;
   cursor:pointer;
   &:hover {
-    color: #3D7EFF;
+    color: white;
+    background-color: #3D7EFF;
   }
   &:active {
-    color: #004FEB;
+    color: white;
+    background-color: #004FEB;
   }
 `;
 

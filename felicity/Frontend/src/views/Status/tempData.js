@@ -68,5 +68,5 @@ export const POST_DATA = [
 
 export const PAGE_DATA = {
     current_page: 1,
-    last_page: 158
+    last_page: 7
 }

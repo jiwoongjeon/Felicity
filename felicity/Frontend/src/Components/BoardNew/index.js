@@ -39,14 +39,14 @@ export const BoardNew = () => {
                 <Divider />
 
                 <WriteSubContainer>
-                    <Column>
+                    {/* <Column>
                         <AiFillCamera style={{color: '#000', fontSize: '20px', alignItems:'left'}}></AiFillCamera>
                     </Column>
 
-                    <Divider />
+                    <Divider /> */}
 
                     <TextField
-                    rows={18}
+                    rows={20}
                     multiline
                     fullWidth
                     variant="standard"

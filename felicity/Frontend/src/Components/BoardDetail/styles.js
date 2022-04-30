@@ -282,3 +282,41 @@ color: #0075FF;
 margin-bottom:1%;
 cursor: pointer;
 `;
+
+export const SymptomsContainer = styled.div`
+width:100%;
+max-width:340px;
+margin-top:10px;
+margin-bottom:20px;
+display: flex;
+flex-direction: row;
+overflow:hidden;
+`;
+
+export const SymptomsBubble = styled.div`
+height:100%;
+display: flex;
+border: 2px solid #CBD5E0;
+border-radius: 8px;
+padding-top: 1px;
+padding-bottom: 1px;
+padding-left: 15px;
+padding-right: 15px;
+margin-right: 10px;
+font-weight: bold;
+color: #0047D2;
+`;
+
+export const OtherBox = styled.div`
+width: 650px;
+height: 40px;
+border: 0.5px solid #E2E8F0;
+padding-top:5px;
+padding-left:20px;
+box-sizing: border-box;
+border-radius:15px;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+background-color: white;
+`;
