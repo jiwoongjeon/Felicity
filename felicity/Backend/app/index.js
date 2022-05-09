@@ -51,62 +51,6 @@ app.post('/plogin', (req, res) => {
     res.json({ accessToken: result[1], doctorID: result[0] })
 })
 
-app.post("/reservation", (req, res) => {
-    const patient_id = req.body.patient_id
-    const doctor_id = req.body.doctor_id
-    const wounded_area = req.body.wounded_area
-    const preferred_department = req.body.preferred_department
-    const injured_time = req.body.injured_time
-    const severity = req.body.severity
-    const cough = req.body.cough
-    const vomit = req.body.vomit
-    const fever = req.body.fever
-    const sore_throat = req.body.sore_throat
-    const runny_nose = req.body.runny_nose
-    const phlegm = req.body.phlegm
-    const nauseous = req.body.nauseous
-    const out_of_breath = req.body.out_of_breath
-    const stomachache = req.body.stomachache
-    const chills = req.body.chills
-    const muscle_sickness = req.body.muscle_sickness
-    const other = req.body.other
-    const reservation_date = req.body.reservation_date
-    const reason = req.body.reason
-    const socket_id = req.body.socket_id
-    const created_date = req.body.created_date
-    // var reservationQuery1 = "INSERT INTO felicity.symptom('patient_id', 'wounded_area', 'preferred_department', 'injured_time', 'severity', 'reason', 'created_time' ) " + 
-    // "VALUES (" + patient_id + ", " + wounded_area + ", " + preferred_department + ", " + injured_time + ", " + severity + ", " + reason + ", " + created_date + "); "
-    var reservationQuery1 = "INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (?, ?, ?, ?, ?, ?, ?);"
-    // var reservationQuery2 = "INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) " + 
-    // "SELECT id, " + patient_id + ", " + doctor_id + ", " + reservation_date + ", " + created_date + ", " + socket_id + " "
-    // "FROM symptom ORDER BY id DESC LIMIT 1; "
-    var reservationQuery2 = "INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;"
-    // var reservationQuery3 = "INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) " + 
-    // "SELECT id, " + cough + ", " + vomit + ", " + fever + ", " + sore_throat + ", " + runny_nose + ", " + phlegm + ", " + nauseous + ", " + out_of_breath + ", " + stomachache + ", " +
-    // chills + ", " + muscle_sickness + ", " + other + " " +
-    // "FROM symptom ORDER BY id DESC LIMIT 1;"
-    // var reservationQuery = "BEGIN; INSERT INTO felicity.symptom (patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_time ) VALUES (6, 'dd', 'vkdeiv', '2020-12-33', 'yye', 'reason', 'created_time'); INSERT INTO felicity.reservation (symptom_id, patient_id, doctor_id, reserved_date, created_date, socket_id) SELECT id, 6, 7, '2022-12-04', '2022-12-04', 19231 FROM symptom ORDER BY id DESC LIMIT 1; INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) SELECT id, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'others' FROM symptom ORDER BY id DESC LIMIT 1; COMMIT;"
-    var reservationQuery3 = "INSERT INTO felicity.symptom_list (symptom_id, cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other) SELECT id, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? FROM symptom ORDER BY id DESC LIMIT 1;"
-    config.db.query(reservationQuery1, [patient_id, wounded_area, preferred_department, injured_time, severity, reason, created_date], (err, result) => {
-        if (err) console.log(err);
-        // console.log(result);
-        res.json(result)
-    })
-    config.db.query(reservationQuery2, [patient_id, doctor_id, reservation_date, created_date, socket_id], (err, result) => {
-        if (err) console.log(err);
-        // console.log(result);
-        // res.json(result)
-    })
-    config.db.query(reservationQuery3, [cough, vomit, fever, sore_throat, runny_nose, phlegm, nauseous, out_of_breath, stomachache, chills, muscle_sickness, other], (err, result) => {
-        if (err) console.log(err);
-        // console.log(result);
-        // res.json(result)
-    })
-})
-
-
-
-
 const io = socket(server, {
     cors: {
         origin: "*",
@@ -124,8 +68,6 @@ io.on("connection", async socket => {
         socket.emit("result", result)
     })
 
-
-
     console.log(socket.id);
 
     socket.on("login", (data) => {
@@ -134,19 +76,10 @@ io.on("connection", async socket => {
         const role = data[1];
 
         if (userid != 0) {
-            if (role) {
-                const insertPatientSocket = "select felicity.insert_patient_socket(?, ?);";
-                config.db.query(insertPatientSocket, [userid, socket.id], (err, result) => {
-                    if (err) console.log(err);
-                    console.log(result);
-                });
-            } else {
-                const insertDoctorSocket = "select felicity.insert_doctor_socket(?, ?);";
-                config.db.query(insertDoctorSocket, [userid, socket.id], (err, result) => {
-                    if (err) console.log(err);
-                    console.log(result);
-                });
-            }
+            const insertSocket = "INSERT INTO connection (role, user_id, socket_id) values (?, ?, ?)";
+            config.db.query(insertSocket, [role, userid, socket.id], (err, result) => {
+                if (err) console.log(err);
+            });
         }
     })
 
@@ -225,6 +158,14 @@ io.on("connection", async socket => {
             name,
             msg,
             time
+        })
+    })
+
+    socket.on("disconnect", () => {
+        console.log(`disconnected: ${socket.id}`);
+        const updateDisconQry = "UPDATE connection SET disconnected_time = NOW() WHERE (socket_id = ?)"
+        config.db.query(updateDisconQry, socket.id, (err, result) => {
+            if (err) console.log(err);
         })
     })
 })
