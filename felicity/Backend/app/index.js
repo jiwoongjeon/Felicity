@@ -68,6 +68,10 @@ io.on("connection", async socket => {
         socket.emit("result", result)
     })
 
+    socket.on("send-transcription", ({ userToCall, text }) => {
+        io.to(userToCall).emit("result", text)
+    })
+
     console.log(socket.id);
 
     socket.on("login", (data) => {

@@ -38,7 +38,7 @@ const sessionStore = role => {
 }
 
 const Video = ({ context }) => {
-    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send } = context;
+    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send } = context;
     const [visible, setVisible] = React.useState(true);
     const [record, setRecord] = useState(false);
 
@@ -77,7 +77,7 @@ const Video = ({ context }) => {
             </Container>}
             <Patient>
                 {stream && (
-                    <VideoContainer playsInline muted ref={myVideo} autoPlay onClick={(!isClicked) ? (getAudio) : (stopAudio)} />
+                    <VideoContainer playsInline muted ref={myVideo} autoPlay />
 
                 )}
                 <Name>
@@ -87,13 +87,13 @@ const Video = ({ context }) => {
             <SubtitleContainer>
                 <RecordBox>
                     <div>
-                        <Record disabled={record} onClick={() => { setRecord(true) }}>
+                        <Record disabled={record} onClick={() => { setRecord(true); getAudio() }}>
                             Start
                         </Record>
-                        <Record disabled={!record} onClick={() => { setRecord(false) }}>
+                        <Record disabled={!record} onClick={() => { setRecord(false); stopAudio() }}>
                             Stop
                         </Record>
-                        <Record disabled={record} onClick={() => { setRecord(true) }}>
+                        <Record disabled={record} onClick={() => { sendAudio() }}>
                             Send
                         </Record>
                     </div>

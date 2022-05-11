@@ -258,6 +258,10 @@ const ContextProvider = ({ children }) => {
         })
     }
 
+    const sendAudio = () => {
+        socket.emit("send-transcription", { userToCall, text })
+    }
+
 
     const leaveCall = () => {
         setCallEnded(true);
@@ -281,7 +285,7 @@ const ContextProvider = ({ children }) => {
                 postDoctorLogin, id, startCall, call, callAccepted, myVideo,
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
-                stopAudio, text, recordAudio, chatArr, send
+                stopAudio, sendAudio, text, recordAudio, chatArr, send
             }}
         >
             {children}
