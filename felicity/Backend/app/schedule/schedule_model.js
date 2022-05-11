@@ -39,6 +39,19 @@ const insertSymptomListQry =
     "`chills`, `muscle_sickness`, `other`)" +
     "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
+const readReservationQry =
+    "SELECT reservation.id as rid, patient_profile.firstname, patient_profile.lastname, 1 AS active, " +
+    "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
+    "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
+    "symptom.*, symptom_list.* " +
+    "FROM reservation " +
+    "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " +
+    "JOIN symptom ON reservation.symptom_id = symptom.id " +
+    "JOIN symptom_list ON reservation.symptom_id = symptom_list.symptom_id " +
+    "WHERE reservation.doctor_id IS NULL";
+
+const acceptReservationQry =
+    "UPDATE reservation SET doctor_id = ? WHERE (id = ?)";
 
 schedule.patientSchedule = function patientSchedule(id, callback) {
     config.db.query(pScheduleQry, id, (err, result) => {
@@ -81,6 +94,22 @@ schedule.insertSymptom = function insertSymptom(data, callback) {
 schedule.insertSymptomList = function insertSymptomList(sid, data, callback) {
     const symptomList = [sid, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[12]];
     config.db.query(insertSymptomListQry, symptomList, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    })
+}
+
+schedule.readReservation = function readReservation(callback) {
+    config.db.query(readReservationQry, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    })
+}
+
+schedule.acceptReservation = function acceptReservation(did, rid, callback) {
+    config.db.query(acceptReservationQry, [did, rid], (err, result) => {
         if (err) callback(err, null);
 
         callback(null, result);

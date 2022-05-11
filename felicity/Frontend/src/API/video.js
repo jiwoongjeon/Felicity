@@ -136,6 +136,13 @@ const ContextProvider = ({ children }) => {
         Axios.post(`${API_URL}/create_schedule`, reservationData);
     }
 
+    const acceptReservation = (doctorId, reservationId) => {
+        Axios.post(`${API_URL}/accept_request`, {
+            doctor_id: doctorId,
+            reservation_id: reservationId
+        })
+    }
+
     const send = (n, m) => {
         if (m !== "") {
             socket.emit("chat", { userToCall: userToCall, name: n, msg: m, time: moment(new Date()).format("h:mm A") });
@@ -322,7 +329,8 @@ const ContextProvider = ({ children }) => {
                 postDoctorLogin, id, startCall, call, callAccepted, myVideo,
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
-                stopAudio, sendAudio, text, recordAudio, chatArr, send, sendPost, sendReservation
+                stopAudio, sendAudio, text, recordAudio, chatArr, send, sendPost,
+                sendReservation, acceptReservation
             }}
         >
             {children}

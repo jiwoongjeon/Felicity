@@ -1,77 +1,79 @@
 import React from "react";
 import Slider from '@material-ui/core/Slider';
-import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer,Header,PostElementContainer,AvailContainer,Divider,AvailBubble,PostElement,HeaderColumn,Time,BodyColumn,No,Patient,Name,PhotoArea,UnavailableBubble,Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
+import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer, Header, PostElementContainer, AvailContainer, Divider, AvailBubble, PostElement, HeaderColumn, Time, BodyColumn, No, Patient, Name, PhotoArea, UnavailableBubble, Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
 
-const ActivateButton = ( active ) => {
+const ActivateButton = (active, did, rid, func) => {
   if (active === 0) {
     return <UnavailableBubble>Already setted</UnavailableBubble>;
   }
 
   return (
-    <AvailBubble>Set Appointment</AvailBubble>
+    <AvailBubble onClick={() => { func(did, rid); active = 0; }}>Set Appointment</AvailBubble>
   );
 }
 
 
 export const MeetingPage = (props) => {
   return (
-        <PostContainer>
+    <PostContainer>
 
-            <Header>Patient waiting for a reservation</Header>
+      <Header>Patient waiting for a reservation</Header>
 
-            <HeaderColumn>
-                    <NoLabel>NO</NoLabel>
-                    <PhotoLabel>PATIENT</PhotoLabel>
-                    <DepartLabel>PREFERRED TIME, SYMPTOMS</DepartLabel>
-                    <DepartLabel>LEVEL OF HURT</DepartLabel>
-                    <AvailLabel>APPOINTMENT</AvailLabel>
-            </HeaderColumn>
+      <HeaderColumn>
+        <NoLabel>NO</NoLabel>
+        <PhotoLabel>PATIENT</PhotoLabel>
+        <DepartLabel>PREFERRED TIME, SYMPTOMS</DepartLabel>
+        <DepartLabel>LEVEL OF HURT</DepartLabel>
+        <AvailLabel>APPOINTMENT</AvailLabel>
+      </HeaderColumn>
 
-            <PostElementContainer>
-                <Divider />
-                {props.patientData.map((data, i) => (
-                    <PostElement>
-                        <BodyColumn>
-                            <No>{i+1}</No>
-                            <PhotoArea img = {data.img}/>
+      <PostElementContainer>
+        <Divider />
+        {props.patientData.map((data, i) => (
+          <PostElement>
+            <BodyColumn>
+              <No>{i + 1}</No>
+              <PhotoArea img={data.img} />
 
-                            <Patient>
-                              <Name>{data.first_name} {data.last_name}</Name>
-                              <Department>{data.wounded_area}</Department>
-                            </Patient>
-                            
-                            <TimeLabel>
-                              <Time>{data.reserved_date} {data.time}</Time>
-                              <SymptomsContainer>
-                                    {props.function([data.a, data.b, data.c, data.d, data.e, data.f, data.g, data.h, data.i, data.j, data.k, data.l]).map((symptom) => (
-                                        <SymptomsBubble>{symptom}</SymptomsBubble>
-                                    ))}
-                                </SymptomsContainer>
-                            </TimeLabel>
+              <Patient>
+                <Name>{data.firstname} {data.lastname}</Name>
+                <Department>{data.wounded_area}</Department>
+              </Patient>
 
-                            <LevelLabel>
-                                <Slider 
-                                marks
-                                min={0}
-                                max={10}
-                                step={1}
-                                defaultValue={data.severity}
-                                valueLabelDisplay="on"
-                                disabled />
-                            </LevelLabel>
+              <TimeLabel>
+                <Time>{data.reserved_date} {data.reserved_time}</Time>
+                <SymptomsContainer>
+                  {props.function([data.cough, data.vomit, data.fever, data.sore_throat,
+                  data.phlegm, data.runny_nose, data.nauseous, data.out_of_breath,
+                  data.stomachache, data.chills, data.muscle_sickness, data.other]).map((symptom) => (
+                    <SymptomsBubble>{symptom}</SymptomsBubble>
+                  ))}
+                </SymptomsContainer>
+              </TimeLabel>
 
-                            <AvailContainer>
-                            {ActivateButton(data.available)}
-                            </AvailContainer>
+              <LevelLabel>
+                <Slider
+                  marks
+                  min={0}
+                  max={10}
+                  step={1}
+                  defaultValue={data.severity}
+                  valueLabelDisplay="on"
+                  disabled />
+              </LevelLabel>
 
-                        </BodyColumn>
-                        <Divider/>
-                    </PostElement>
+              <AvailContainer>
+                {ActivateButton(data.active, props.jwt, data.rid, props.acceptReservation)}
+              </AvailContainer>
+
+            </BodyColumn>
+            <Divider />
+          </PostElement>
 
 
-                    ))}
-            </PostElementContainer>
+        ))}
+      </PostElementContainer>
 
-        </PostContainer>
+    </PostContainer>
   );
 };
