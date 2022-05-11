@@ -99,6 +99,43 @@ const ContextProvider = ({ children }) => {
         }
     }
 
+    const getMHTData = () => {
+
+        const MHTdata = {
+            patientId: sessionStorage.getItem("jwt"),
+            hurt: sessionStorage.getItem("hurt"),
+            department: sessionStorage.getItem("depart"),
+            time: sessionStorage.getItem("time"),
+            where: sessionStorage.getItem("where"),
+            level: sessionStorage.getItem("level"),
+            why: sessionStorage.getItem("why"),
+            checklist: JSON.parse(sessionStorage.getItem("checklist")),
+        }
+        return MHTdata;
+    }
+
+    const sendPost = (title, context) => {
+        const mhtData = getMHTData();
+        const postData = {
+            title: title,
+            context: context,
+            MHT: mhtData,
+        }
+        Axios.post(`${API_URL}/post`, postData)
+    }
+
+    const sendReservation = (departmentId, preferredDoctorId, date, time) => {
+        const mhtData = getMHTData();
+        const reservationData = {
+            department: departmentId,
+            date: date,
+            time: time,
+            pDoc: preferredDoctorId,
+            MHT: mhtData,
+        }
+        Axios.post(`${API_URL}/create_schedule`, reservationData);
+    }
+
     const send = (n, m) => {
         if (m !== "") {
             socket.emit("chat", { userToCall: userToCall, name: n, msg: m, time: moment(new Date()).format("h:mm A") });
@@ -285,7 +322,7 @@ const ContextProvider = ({ children }) => {
                 postDoctorLogin, id, startCall, call, callAccepted, myVideo,
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
-                stopAudio, sendAudio, text, recordAudio, chatArr, send
+                stopAudio, sendAudio, text, recordAudio, chatArr, send, sendPost, sendReservation
             }}
         >
             {children}

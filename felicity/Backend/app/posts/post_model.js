@@ -2,29 +2,29 @@ const config = require("../config");
 var post = module.exports;
 
 const readPostQry =
-    "SELECT post.id, symptom.id as sid, symptom.category, post.title, post.content, " +
-    "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') as date, " +
-    "post.is_replied as state, post.comment from post " +
-    "join symptom on post.symptom_id = symptom.id";
+    "SELECT post.id, symptom.id AS sid, symptom.category, post.title, post.content, " +
+    "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') AS date, " +
+    "post.is_replied AS state, post.comment FROM post " +
+    "JOIN symptom ON post.symptom_id = symptom.id";
 
 const readSymptomList =
-    "select * from symptom_list where symptom_list.symptom_id in (?)";
+    "SELECT * FROM symptom_list WHERE symptom_list.symptom_id IN (?)";
 
 const insertPostQry =
-    "insert into felicity.post " +
+    "INSERT INTO felicity.post " +
     "(`symptom_id`, `patient_id`, `title`, `content`, `is_replied`) " +
     "VALUES (?, ?, ?, ?, ?)"
 
 const insertSymptomQry =
-    "insert into felicity.symptom " +
+    "INSERT INTO felicity.symptom " +
     "(`patient_id`, `wounded_area`, `preferred_department`, `injured_time`, `severity`, `reason`) " +
-    "values (?, ?, ?, ?, ?, ?)"
+    "VALUES (?, ?, ?, ?, ?, ?)"
 
 const insertSymptomListQry =
-    "insert into felicity.symptom_list (`symptom_id`, `cough`, `vomit`, `fever`, " +
+    "INSERT INTO felicity.symptom_list (`symptom_id`, `cough`, `vomit`, `fever`, " +
     "`sore_throat`, `phlegm`, `runny_nose`, `nauseous`, `out_of_breath`, `stomachache`, " +
     "`chills`, `muscle_sickness`, `other`)" +
-    "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
 
 post.findPosts = function findPosts(callback) {

@@ -25,8 +25,9 @@ const dScheduleQry =
 
 const insertScheduleQry =
     "insert into felicity.reservation " +
-    "(`symptom_id`, `patient_id`, `doctor_id`, `reserved_date`) " +
-    "values (?, ?, ?, ?)"
+    "(`symptom_id`, `patient_id`, `reserved_date`) " +
+    "values (?, ?, ?)"
+
 const insertSymptomQry =
     "insert into felicity.symptom " +
     "(`patient_id`, `wounded_area`, `preferred_department`, `injured_time`, `severity`, `reason`) " +
@@ -58,19 +59,8 @@ schedule.doctorSchedule = function doctorSchedule(id, callback) {
 }
 
 schedule.insertSchedule = function insertSchedule(sid, data, callback) {
-    const date = data.date.split('/');
-    var time = data.time.split(':')
-    time = [time[0], time[1].split(' ')[0], time[1].split(' ')[1]]
-    var fulltime;
-    if (time[2] == "PM") {
-        fulltime = String(parseInt(time[0], 10) + 12) + ':' + time[1] + ':00';
-    }
-    else {
-        fulltime = time[0] + ':' + time[1] + ':00';
-    }
-    const datetime = date[2] + '-' + date[0] + '-' + date[1] + " " + fulltime
-
-    const scheduleList = [sid, data.MHT.patientId, null, datetime]
+    const datetime = data.date + " " + data.time + ":00"
+    const scheduleList = [sid, data.MHT.patientId, datetime]
 
     config.db.query(insertScheduleQry, scheduleList, (err, result) => {
         if (err) callback(err, null);
@@ -80,9 +70,7 @@ schedule.insertSchedule = function insertSchedule(sid, data, callback) {
 }
 
 schedule.insertSymptom = function insertSymptom(data, callback) {
-    // console.log(data)
     const symptomList = [data.patientId, data.hurt, data.department, data.time, data.level, data.why]
-    // console.log(symptomList)
     config.db.query(insertSymptomQry, symptomList, (err, result) => {
         if (err) callback(err, null);
 
@@ -92,7 +80,6 @@ schedule.insertSymptom = function insertSymptom(data, callback) {
 
 schedule.insertSymptomList = function insertSymptomList(sid, data, callback) {
     const symptomList = [sid, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[12]];
-    // console.log()
     config.db.query(insertSymptomListQry, symptomList, (err, result) => {
         if (err) callback(err, null);
 
