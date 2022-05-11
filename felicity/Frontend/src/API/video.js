@@ -117,7 +117,7 @@ const ContextProvider = ({ children }) => {
         })
     })
 
-    const startCall = () => {
+    const startCall = (reservation_id) => {
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then((currentStream) => {
                 setStream(currentStream);
@@ -125,19 +125,27 @@ const ContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.emit("start", { id, role });
+        socket.emit("start", { reservation_id });
 
-        socket.on("me", ({ socketid, otherUserId, otherSocketId }) => {
-            console.log("other socket id: %s", otherSocketId);
-            console.log("other user id: %d", otherUserId);
-            console.log("my socket id: %s", socketid);
+        socket.on("me", ({ socketid, otherSocketId }) => {
             setMe(socketid);
-            setUserToCall(otherSocketId);
+            if (otherSocketId == null) {
+                console.log("Waiting for other user to join the room")
+                socket.on("room-entered", ({ socketid }) => {
+                    setUserToCall(socketid);
+                    console.log("User joined the room")
+                })
+            }
+            else {
+                setUserToCall(otherSocketId);
+                console.log("Joining the room");
+                console.log(userToCall);
+            }
         });
 
 
         socket.on("calluser", ({ from, someName: callerName, signal }) => {
-            console.log("calling")
+            console.log("calling");
             setCall({ isReceivedCall: true, from, someName: callerName, signal });
         });
     }

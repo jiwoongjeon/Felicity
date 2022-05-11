@@ -17,13 +17,13 @@ function Videocall(props) {
   const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send } = useContext(SocketContext);
   const context = { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send }
 
-  useEffect(() => startCall(), []);
+  // useEffect(() => startCall(), []);
 
   return (
     <Mostouter>
 
-      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
-      
+      {!jwt && <UserRedirect isRole={!props.isDoctor} />}
+
       <Cat>
         <Header isDoctor={props.isDoctor} />
       </Cat>

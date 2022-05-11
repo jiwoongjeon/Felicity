@@ -85,59 +85,36 @@ io.on("connection", async socket => {
 
     socket.on("start", (data) => {
         console.log(data)
-        const userid = data.id;
-        const role = data.role;
+        const rid = data.reservation_id;
         const socketid = socket.id;
-        var otherUserId;
         var otherSocketId;
 
-        console.log(userid);
-        console.log(role);
+        const getSocketId =
+            "SELECT reservation.id, reservation.socket_id FROM reservation " +
+            "JOIN connection ON connection.disconnected_time IS NULL " +
+            "WHERE reservation.id = ? and reservation.socket_id = connection.socket_id";
+        config.db.query(getSocketId, rid, (err, result) => {
+            if (err) console.log(err);
 
-        if (role) {
-            const getDoctorId = "SELECT reservation.doctor_id, doctor_connection.socket_id FROM felicity.reservation join doctor_connection where patient_id = ? order by connected_time desc limit 1";
-
-            config.db.query(getDoctorId, userid, (err, result) => {
-                if (err) console.log(err);
-
-                if (result != null) {
-                    otherUserId = result[0].doctor_id;
-                    otherSocketId = result[0].socket_id;
-
-                    socket.emit("me", ({ socketid, otherUserId, otherSocketId }));
-
-                    console.log(otherSocketId);
-                    console.log(socketid);
-                }
-                console.log(result);
-            });
-        } else {
-            const getPatientId = "SELECT reservation.patient_id, patient_connection.socket_id FROM felicity.reservation join patient_connection where doctor_id = ? order by connected_time desc limit 1";
-
-            config.db.query(getPatientId, userid, (err, result) => {
-                if (err) console.log(err);
-
-                if (result != null) {
-                    otherUserId = result[0].doctor_id;
-                    otherSocketId = result[0].socket_id;
-
-                    console.log(otherSocketId);
-
-                    socket.emit("me", { socketid, otherUserId, otherSocketId });
-                    console.log(socketid);
-                }
-
+            else {
                 console.log(result);
 
-            });
-        }
-
-        // if (otherUserId && !otherSocketId) {
-
-        // }
-        // console.log(otherSocketId);
-        // socket.emit("me", ({ socketid, otherUserId, otherSocketId }));
-
+                if (result.length == 0) {
+                    const updateSocketId = "UPDATE reservation SET socket_id = ? WHERE (id = ?)"
+                    config.db.query(updateSocketId, [socketid, rid], (err, result) => {
+                        if (err) console.log(err);
+                    })
+                    socket.emit("me", ({ socketid, otherSocketId: null }))
+                    console.log("Updated reservation table")
+                }
+                else {
+                    otherSocketId = result[0].socket_id
+                    socket.emit("me", ({ socketid, otherSocketId }))
+                    io.to(otherSocketId).emit("room-entered", ({ socketid: socketid }))
+                    console.log("Sent socket id")
+                }
+            }
+        })
     });
 
     socket.on("disconnect", () => {

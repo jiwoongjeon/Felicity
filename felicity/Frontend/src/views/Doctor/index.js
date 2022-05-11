@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components";
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
@@ -19,7 +19,7 @@ import Axios from "axios";
 import UserRedirect from "../UserRedirect";
 
 import API_URL from "../../API/server-ip";
-
+import { SocketContext } from "../../API/video";
 
 
 
@@ -31,6 +31,8 @@ function Doctor(props) {
     const [scheduleData, setScheduleData] = React.useState([])
     const [displayedData, setDisplay] = React.useState({})
     const [visible, setVisible] = useState(true)
+
+    const { startCall } = useContext(SocketContext);
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": jwt })
@@ -116,12 +118,12 @@ function Doctor(props) {
                 </Container>}
                 <ContentLayout>
                     <PatientBox>
-                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} past={props.past}/>
+                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} past={props.past} />
                     </PatientBox>
 
 
                     <InfoBox>
-                        <CV data={displayedData} symptoms={sy} past={props.past}/>
+                        <CV startCall={startCall} data={displayedData} symptoms={sy} past={props.past} />
                     </InfoBox>
 
                 </ContentLayout>

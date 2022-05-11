@@ -4,7 +4,7 @@ import moment from "moment";
 
 const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement } = require("./styles");
 
-export const Schedule = ({ schedule_data }) => {
+export const Schedule = ({ startCall, schedule_data }) => {
 
 
     return (
@@ -13,7 +13,7 @@ export const Schedule = ({ schedule_data }) => {
             <AppointmentList>
                 {schedule_data.length ? (schedule_data.map((data) => (
                     <AppointmentContainer>
-                        <FstColumn to={"/Patient/videocall"}>
+                        <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
                             <Group>
                                 <Date>{data.reserved_date}</Date>
                                 <TimeEmail>{data.reserved_time}</TimeEmail>

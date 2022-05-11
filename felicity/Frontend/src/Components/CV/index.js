@@ -63,7 +63,7 @@ export const CV = (props) => {
                     </Column>}
             </Column>
             <Divider />
-            {props.data.sex && !props.past && <Btn to={`./videocall`}>See your patient now</Btn>}
+            {props.data.sex && !props.past && <Btn onClick={() => props.startCall(props.data.rid)} to={`./videocall`}>See your patient now</Btn>}
         </PatientContainer>
     );
 }
