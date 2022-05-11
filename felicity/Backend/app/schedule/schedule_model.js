@@ -16,7 +16,7 @@ const dScheduleQry =
     "SELECT reservation.id, reservation.patient_id, patient_profile.firstname, " +
     "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
     "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
-    "patient_profile.lastname, symptom.*, symptom_list.* " +
+    "patient_profile.lastname, sex, date_format((birth), '%m-%d-%Y') as birth, symptom.*, symptom_list.* " +
     "FROM reservation " +
     "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " +
     "JOIN symptom ON symptom.id = reservation.symptom_id " +
