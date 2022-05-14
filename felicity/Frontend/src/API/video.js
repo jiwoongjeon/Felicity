@@ -308,6 +308,8 @@ const ContextProvider = ({ children }) => {
 
     const sendAudio = () => {
         socket.emit("send-transcription", { userToCall, text })
+        text.transcription = ""
+        text.translation = ""
     }
 
 

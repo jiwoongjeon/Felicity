@@ -62,14 +62,13 @@ export const Record = styled.button`
 
 
 export const TextArea = styled.p`
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding : 10px;
     border-radius: 10px;
     display: flex;
-    color: white;
+    color: ${props => props.color};
     text-align:center;
     background-color: rgba(0, 0, 0, 0.70);
+    margin-bottom:0px;
 `;
 
 export const Container = styled.div`
@@ -85,7 +84,7 @@ export const Container = styled.div`
 `;
 
 export const Block = styled.div`
-    width: 30%;
+    width: 40%;
     height: 20%;
     display: flex;
     flex-direction: column;
@@ -102,12 +101,12 @@ export const Block = styled.div`
 `;
 
 export const Button = styled.button`
-    width: 150px;
+    width: ${props => props.color? '250px' : '150px'};
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0075FF;
+    background-color: ${props => props.color? props.color : '#0075FF'};
     border-radius: 15px;
     margin: 30px 25px 25px 25px;
     border: 0;

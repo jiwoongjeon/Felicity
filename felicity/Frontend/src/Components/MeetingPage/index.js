@@ -8,7 +8,7 @@ const ActivateButton = (active, did, rid, func) => {
   }
 
   return (
-    <AvailBubble onClick={() => { func(did, rid); active = 0; }}>Set Appointment</AvailBubble>
+    <AvailBubble onClick={() => { func(did, rid); active = 0; }} to={'/Doctor/Home'}>Set Appointment</AvailBubble>
   );
 }
 

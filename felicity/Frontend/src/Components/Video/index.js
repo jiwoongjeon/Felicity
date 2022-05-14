@@ -41,8 +41,9 @@ const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = context;
     const [visible, setVisible] = React.useState(true);
     const [record, setRecord] = useState(false);
+    const [mySpeech, setMySpeech] = useState(false);
 
-    // const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
+    const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
     return (
         <MainContainer>
 
@@ -68,9 +69,10 @@ const Video = ({ context }) => {
                     <Block>
                         Call your patient!
                         {console.log(role)}
-                        <Button onClick={() => { callUser(); setVisible(false); }}>
+                        {!userJoined && <Button color="#bbbbbb">The patient didn't joined yet</Button>}
+                        {userJoined && <Button onClick={() => { callUser(); setVisible(false); }}>
                             Let's start!
-                        </Button>
+                        </Button>}
                     </Block>
                 )}
 
@@ -87,22 +89,25 @@ const Video = ({ context }) => {
             <SubtitleContainer>
                 <RecordBox>
                     <div>
-                        <Record disabled={record} onClick={() => { setRecord(true); getAudio() }}>
+                        <Record disabled={record} onClick={() => { setRecord(true); setMySpeech(true); getAudio() }}>
                             Start
                         </Record>
                         <Record disabled={!record} onClick={() => { setRecord(false); stopAudio() }}>
                             Stop
                         </Record>
-                        <Record disabled={record} onClick={() => { sendAudio() }}>
+                        <Record disabled={record} onClick={() => { sendAudio(); setMySpeech(false); }}>
                             Send
                         </Record>
                     </div>
                 </RecordBox>
 
-                <TextArea><p>{text[0].transcription}</p>
-                    <p>{text[0].translation}
-                    </p>
-                </TextArea>
+                {mySpeech && <TextArea color='#ffff00'>
+                    {text[0].transcription}<br/>{text[0].translation}
+                </TextArea> }
+
+                {!mySpeech && <TextArea color='#ffffff'>
+                    {text[0].transcription}<br/>{text[0].translation}
+                </TextArea>}
             </SubtitleContainer>
 
             <Setting>
