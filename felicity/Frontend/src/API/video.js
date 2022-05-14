@@ -39,6 +39,8 @@ const ContextProvider = ({ children }) => {
         }
     ])
 
+    const [userJoined, setUserJoined] = useState(false);
+
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
@@ -177,11 +179,13 @@ const ContextProvider = ({ children }) => {
                 console.log("Waiting for other user to join the room")
                 socket.on("room-entered", ({ socketid }) => {
                     setUserToCall(socketid);
+                    setUserJoined(true);
                     console.log("User joined the room")
                 })
             }
             else {
                 setUserToCall(otherSocketId);
+                setUserJoined(true);
                 console.log("Joining the room");
                 console.log(userToCall);
             }
@@ -330,7 +334,7 @@ const ContextProvider = ({ children }) => {
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, send, sendPost,
-                sendReservation, acceptReservation
+                sendReservation, acceptReservation, userJoined, setUserJoined
             }}
         >
             {children}
