@@ -37,7 +37,6 @@ overflow-y: auto;
 export const PostElement = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
 
 export const HeaderColumn = styled.div`
@@ -122,6 +121,7 @@ border: none;
    &:hover {
       background-color: #268aff;
     }
+text-decoration:none;
 `;
 export const UnavailableBubble = styled.div`
 height:50px;
@@ -167,7 +167,7 @@ export const Patient = styled.p`
 `;
 
 export const TimeLabel = styled.p`
-  flex: 4.8;
+  flex: 4;
   text-align: left;
   font-weight: bold;
 `;

@@ -33,7 +33,7 @@ const TimeCompare = (date, time, past) => {
         else if (date < today_date)
             return false;
         else
-            if (time > today_time)
+            if (time >= today_time)
                 return true;
             else
                 return false;

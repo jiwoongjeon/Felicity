@@ -77,7 +77,7 @@ function Doctor(props) {
         if (array[10] === 1) {
             array1.push("Muscle Sickness")
         }
-        if (array[11] != null) {
+        if (array[11] !== "") {
             array1.push(array[11])
         }
         return array1
@@ -100,7 +100,7 @@ function Doctor(props) {
             </Cat>
 
             <Directory>
-                <Path directory="Home" />
+                <Path directory={props.past? "Past Patients" : "Home"} />
             </Directory>
 
             <User>

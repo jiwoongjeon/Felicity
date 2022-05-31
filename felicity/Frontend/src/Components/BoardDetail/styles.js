@@ -107,7 +107,6 @@ export const PhotoArea = styled.div`
   min-width:60px;
   min-height:60px;
   border-radius: 40px;
-  background-color: #ff0000;
   background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
