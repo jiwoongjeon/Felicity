@@ -111,7 +111,7 @@ function LoginPage({ patientL, doctorL }) {
           Don’t have an Account? <SignupLink to='/registeration'> Sign Up </SignupLink>
         </Signup>
 
-        {id && <LoginRedirect isRole={role}/>}
+        {id > 0 && <LoginRedirect isRole={role}/>}
 
       </LoginContainer>
 

@@ -42,7 +42,7 @@ const Header = (props) => {
           <SidebarHeader>
             <div className="logotext">
               <MenuButton to='./Home'>
-                <img src={LogoImg} className='logo' alt='logo' width={170} ></img>
+                <img src={LogoImg} className='logo' alt='logo' width={170} />
               </MenuButton>
             </div>
           </SidebarHeader>
