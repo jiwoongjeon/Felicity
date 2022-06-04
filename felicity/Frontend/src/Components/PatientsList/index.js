@@ -5,36 +5,41 @@ const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContaine
 var isEmpty = true;
 
 const TimeCompare = (date, time, past) => {
-    var today = new Date();
-    var today_date;
-    if (today.getMonth() < 10)
-        today_date = '0'
-    today_date = today_date + (today.getMonth() + 1) + '-';
-    if (today.getDate() < 10)
-        today_date = today_date + '0';
-    today_date = today_date + today.getDate() + '-' + today.getFullYear();
+    // var today = new Date();
+    // var today_date;
+    // if (today.getMonth() < 10)  
+    //     today_date = '0'
+    // today_date = today_date + (today.getMonth() + 1) + '-';
+    // if (today.getDate() < 10)
+    //     today_date = today_date + '0';
+    // today_date = today_date + today.getDate() + '-' + today.getFullYear();
 
-    console.log(today_date);
-    console.log(date);
-    //date format: MM-DD-YYYY
+    // console.log(today_date);
+    // console.log(date);
+    // //date format: MM-DD-YYYY
 
-    var today_time;
-    if (today.getHours() < 10)
-        today_date = '0'
-    today_date = today_date + today.getHours() + '-';
-    if (today.getMinutes() < 10)
-        today_date = today_date + '0';
-    today_date = today_date + today.getMinutes();
+    // var today_time;
+    // if (today.getHours() < 10)
+    //     today_date = '0'
+    // today_date = today_date + today.getHours() + '-';
+    // if (today.getMinutes() < 10)
+    //     today_date = today_date + '0';
+    // today_date = today_date + today.getMinutes();
+
+    const today = moment().format("MM-DD-YYYY")
+    const today_time = moment().format("HH:mm:ss")
+    const appointment = moment(date).format("MM-DD-YYYY")
+    const app_time = moment(time).format("HH:mm:ss")
 
     if (!past) {
-        if (date > today_date) {
+        if (appointment > today) {
             isEmpty = false;
             return true;
         }
-        else if (date < today_date)
+        else if (appointment < today)
             return false;
         else
-            if (time >= today_time){
+            if (app_time >= today_time){
                 isEmpty = false;
                 return true;
             }
@@ -42,14 +47,14 @@ const TimeCompare = (date, time, past) => {
                 return false;
     }
     else {
-        if (date < today_date) {
+        if (appointment < today) {
             isEmpty = false;
             return true;
         }
-        else if (date > today_date)
+        else if (appointment > today)
             return false;
         else
-            if (time < today_time){
+            if (app_time < today_time){
                 isEmpty = false;
                 return true;
             }
