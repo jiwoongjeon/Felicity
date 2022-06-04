@@ -51,6 +51,14 @@ export const FstColumn = styled(Link)`
   text-decoration:none;
 `;
 
+export const First = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-bottom: 5px;
+text-decoration:none;
+`;
+
 // export const Column = styled.div`
 //   display: flex;
 //   flex-direction: row;
