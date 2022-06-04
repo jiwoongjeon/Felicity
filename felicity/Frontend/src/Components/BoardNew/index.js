@@ -50,10 +50,10 @@ export const BoardNew = () => {
                         label="Category"
                         displayEmpty
                         onChange={handleCategoryChange}>
-                        <MenuItem value={1}>Category1</MenuItem>
-                        <MenuItem value={2}>Category2</MenuItem>
-                        <MenuItem value={3}>Category3</MenuItem>
-                        <MenuItem value={4}>Category4</MenuItem>
+                        <MenuItem value={1}>All Clinics</MenuItem>
+                        <MenuItem value={2}>Internal Medicine</MenuItem>
+                        <MenuItem value={3}>Ear-Nose-And-Throat Department</MenuItem>
+                        <MenuItem value={4}>Orthopedics</MenuItem>
                     </Select>
                 </FormControl>
                 <Divider />

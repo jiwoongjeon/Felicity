@@ -16,14 +16,15 @@ const TimeCompare = (date, time, past) => {
 
     console.log(today_date);
     console.log(date);
-    //today_date = "02-05-2022"
+    //date format: MM-DD-YYYY
+
     var today_time;
     if (today.getHours() < 10)
         today_date = '0'
     today_date = today_date + today.getHours() + '-';
     if (today.getMinutes() < 10)
         today_date = today_date + '0';
-    today_date = today_date + today.getMinutes();;
+    today_date = today_date + today.getMinutes();
 
     if (!past) {
         if (date > today_date) {
@@ -33,8 +34,10 @@ const TimeCompare = (date, time, past) => {
         else if (date < today_date)
             return false;
         else
-            if (time >= today_time)
+            if (time >= today_time){
+                isEmpty = false;
                 return true;
+            }
             else
                 return false;
     }
@@ -46,8 +49,10 @@ const TimeCompare = (date, time, past) => {
         else if (date > today_date)
             return false;
         else
-            if (time < today_time)
+            if (time < today_time){
+                isEmpty = false;
                 return true;
+            }
             else
                 return false;
     }
