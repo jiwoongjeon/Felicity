@@ -26,10 +26,10 @@ export const Column = styled.div`
 `;
 
 export const ColumnTitle = styled.div`
-  height:30px;
+  height:50px;
   display: flex;
   flex-direction: column;
-  margin: 10px 0px 10px 30px;
+  margin: 10px 20px 10px 20px;
   overflow-y:hidden;
 `;
 

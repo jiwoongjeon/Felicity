@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AiFillCamera } from "react-icons/ai";
-import TextField from '@mui/material/TextField';
+import { InputLabel, MenuItem, FormControl, Select, TextField } from '@mui/material';
 
 import { SocketContext } from "../../API/video";
 
@@ -10,11 +10,13 @@ const { NewBoardContainer, Header, WriteContainer, WriteSubContainer, SubmitBtn,
 export const BoardNew = () => {
 
     const [title, setTitle] = React.useState('');
+    const [category, setCategory] = React.useState('Select a category');
     const [content, setContent] = React.useState('');
 
     let button;
     const handleTitle = (event) => { setTitle(event.target.value); };
     const handleContent = (event) => { setContent(event.target.value); };
+    const handleCategoryChange = (event) => { setCategory(event.target.value); };
 
     const { sendPost } = useContext(SocketContext);
 
@@ -40,6 +42,20 @@ export const BoardNew = () => {
                         onChange={handleTitle}
                     />
                 </ColumnTitle>
+                <Divider />
+                <FormControl sx={{ minWidth: 300, textAlign: "left", marginLeft: 2, marginRight: 2 }}>
+                    <InputLabel>Category</InputLabel>
+                    <Select
+                        value={category}
+                        label="Category"
+                        displayEmpty
+                        onChange={handleCategoryChange}>
+                        <MenuItem value={1}>Category1</MenuItem>
+                        <MenuItem value={2}>Category2</MenuItem>
+                        <MenuItem value={3}>Category3</MenuItem>
+                        <MenuItem value={4}>Category4</MenuItem>
+                    </Select>
+                </FormControl>
                 <Divider />
 
                 <WriteSubContainer>
