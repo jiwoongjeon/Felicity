@@ -30,7 +30,7 @@ const TimeCompare = (date, time, past) => {
     const today_time = moment().format("HH:mm:ss")
     const appointment = moment(date).format("MM-DD-YYYY")
     const app_time = moment(time).format("HH:mm:ss")
-
+    
     if (!past) {
         if (appointment > today) {
             isEmpty = false;
