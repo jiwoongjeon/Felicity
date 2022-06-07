@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from '@material-ui/core/Slider';
 import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer, Header, PostElementContainer, AvailContainer, Divider, AvailBubble, PostElement, HeaderColumn, Time, BodyColumn, No, Patient, Name, PhotoArea, UnavailableBubble, Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
+import { Redirect } from "react-router-dom";
 
 const ActivateButton = (active, did, rid, func) => {
   if (active === 0) {
@@ -73,6 +74,7 @@ export const MeetingPage = (props) => {
 
         ))}
       </PostElementContainer>
+      {props.reserved && <Redirect to="/Doctor/Home" />}
 
     </PostContainer>
   );
