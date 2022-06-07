@@ -40,6 +40,7 @@ const ContextProvider = ({ children }) => {
     ])
 
     const [userJoined, setUserJoined] = useState(false);
+    const [reserved, setReserved] = useState(false)
 
     const myVideo = useRef();
     const userVideo = useRef();
@@ -142,7 +143,10 @@ const ContextProvider = ({ children }) => {
         Axios.post(`${API_URL}/accept_request`, {
             doctor_id: doctorId,
             reservation_id: reservationId
-        })
+        }).then((response) => {
+            setReserved(true);
+            setReserved(false);
+        });
     }
 
     const send = (n, m) => {

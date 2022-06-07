@@ -14,7 +14,7 @@ function Meeting(props) {
     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     const [patientData, setPatientData] = React.useState([]);
 
-    const { acceptReservation } = React.useContext(SocketContext);
+    const { acceptReservation, reserved } = React.useContext(SocketContext);
 
     React.useEffect(() => {
         Axios.get(`${API_URL}/read_schedule`)
@@ -84,7 +84,7 @@ function Meeting(props) {
 
 
             <Video>
-                <MeetingPage jwt={jwt} acceptReservation={acceptReservation} patientData={patientData} function={sy} />
+                <MeetingPage jwt={jwt} acceptReservation={acceptReservation} patientData={patientData} function={sy} reserved={reserved}/>
             </Video>
 
 
