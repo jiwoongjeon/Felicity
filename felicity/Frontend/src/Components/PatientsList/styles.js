@@ -46,8 +46,6 @@ export const Divider = styled.div`
   width:100%;
   display: flex;
   background: #E3E8F0;
-  margin-top: 5px;
-  margin-bottom: 5px;
   padding: 1px;
   border-radius: 2px;
 `;
@@ -67,8 +65,13 @@ overflow-y: auto;
 export const PatientElement = styled.div`
 display: flex;
 flex-direction: row;
+margin-bottom:-15px;
+padding-top:10px;
+padding-bottom:10px;
+padding-left:10px;
 cursor:pointer;
 overflow:hidden;
+background-color: ${props => props.clicked == props.displayed? "#E3E8F0": "#ffffff" }
 `;
 
 export const PatientInfoContainer = styled.div`
