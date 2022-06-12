@@ -13,14 +13,14 @@ import {
 
 //import icons from react icons
 import { AiFillHome, AiOutlineBarChart, AiOutlinePlus } from "react-icons/ai";
-import { IoIosDocument, IoIosClipboard, IoMdPerson } from "react-icons/io";
+import { IoIosDocument, IoIosClipboard, IoMdPerson, IoIosChatboxes, IoIosChatbubbles } from "react-icons/io";
 import { MdFormatListBulleted } from "react-icons/md";
 
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 
-const { HelpContainer, ActiveButton, MenuButton } = require("./styles");
+const { HelpContainer, MenuButton, ActiveButton } = require("./styles");
 
 
 const Header = (props) => {
@@ -69,6 +69,12 @@ const Header = (props) => {
                 <MenuButton to={`./Checklist`}></MenuButton></MenuItem>
               <MenuItem icon={<IoMdPerson />}>Profile
                 <MenuButton to={`./Profile`}></MenuButton></MenuItem>
+              {props.isDoctor &&
+                <MenuItem icon={<IoIosChatboxes />}>Patient Conversation
+                  <MenuButton to={`./Patient-Conversation`}></MenuButton></MenuItem>}
+              {props.isDoctor &&
+                <MenuItem icon={<IoIosChatbubbles />}>Doctor Conversation
+                  <MenuButton to={`./Doctor-Conversation`}></MenuButton></MenuItem>}
             </Menu>
 
           </SidebarContent>

@@ -15,7 +15,7 @@ background-size: cover;
 border-radius: 15px;
 `;
 
-export const ActiveButton = styled.div`
+export const ActiveButton = styled(Link)`
 height:23%;
 width:88%;
 background: #ffffff;
@@ -25,6 +25,7 @@ margin-left: 19px;
 padding-top: 10px;
 font-weight: bold;
 text-align: center;
+text-decoration:none;
 color: black;
 `;
 
