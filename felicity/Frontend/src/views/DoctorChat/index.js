@@ -1,32 +1,28 @@
 import React from "react"
 import Header from '../../Components/Header/Header';
 import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
+import Conversations from "../../Components/Conversations";
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
-
-import {
-    ContentLayout,
-} from "./layout";
-import RecentPost from "../../Components/RecentPost";
-import Checklists from "../../Components/Checklists";
-import { propTypes } from "react-bootstrap/esm/Image";
+import { ProfilePage } from "../../Components/ProfilePage";
 import UserRedirect from "../UserRedirect";
 
-function Conv(props) {
-  
+
+function DoctorChat(props) {
+
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-  
+
   return (
 
     <Mostouter>
-      {!jwt &&<UserRedirect isRole={!props.isDoctor}/>}
-
+      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
+      
     <Cat>
-      <Header isDoctor={props.isDoctor}/>
+        <Header isDoctor={props.isDoctor}/>
     </Cat>
 
     <Directory>
-        <Path directory="Checklist"/>
+        <Path directory="Doctor-Conversation"/>
     </Directory>
 
     <User>
@@ -35,14 +31,15 @@ function Conv(props) {
 
 
     <Video>
-        <ContentLayout>
-          <Checklists isDoctor={props.isDoctor}/>
-        </ContentLayout>
+      <Conversations />
     </Video>
 
+
+
     </Mostouter>
+
 
   );
 }
 
-export default Conv;
+export default DoctorChat;

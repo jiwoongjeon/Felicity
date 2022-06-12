@@ -23,6 +23,8 @@ import NewBoard from "./views/NewBoard";
 import Appointment from "./views/Appointment";
 import Registration from "./views/Registration"
 import Meeting from "./views/Meeting";
+import PatientChat from "./views/PatientChat";
+import DoctorChat from "./views/DoctorChat"
 import { io } from "socket.io-client";
 import LoginRedirect from "./views/UserRedirect/login";
 
@@ -61,6 +63,10 @@ const ROUTES = [
   { path: "/Patient/RecentPost", key: "PS", component: () => <StatusDoctor isDoctor={false}/> },
 
   { path: "/Doctor/Meeting", key: "PS", component: () => <Meeting isDoctor={true}/> },
+
+  { path: "/Doctor/Patient-Conversation", key: "video", component: () => <PatientChat isDoctor={true}/> },
+
+  { path: "/Doctor/Doctor-Conversation", key: "video", component: () => <DoctorChat isDoctor={true}/> },
 ];
 
 export default ROUTES;
