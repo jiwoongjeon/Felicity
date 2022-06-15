@@ -84,7 +84,7 @@ function Patient() {
                     </ScheduleBox>
 
                     <RecordBox>
-                        <PatientRecord />
+                        <PatientRecord schedule_data = {scheduleData} />
                     </RecordBox>
 
                     <PrescriptionBox>
