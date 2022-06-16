@@ -71,6 +71,8 @@ const Video = ({ context }) => {
                         {console.log(role)}
                         {!userJoined && <Button color="#bbbbbb">The patient didn't joined yet</Button>}
                         {userJoined && <Button onClick={() => { callUser(); setVisible(false); }}>
+                        {//userJoined && <Button onClick={() => { callUser(); setVisible(false); startTimer(); }}>
+                        }
                             Let's start!
                         </Button>}
                     </Block>
