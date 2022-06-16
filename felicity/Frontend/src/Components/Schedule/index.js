@@ -2,8 +2,9 @@ import { useState } from "react";
 import React from "react";
 import moment from "moment";
 const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, First, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement } = require("./styles");
-const today = moment().format("HH:mm:ss");
+
 var isEmpty = true;
+const counter = 0;
 
 const TimeCompare = (date, time, past) => {
     
@@ -12,11 +13,6 @@ const TimeCompare = (date, time, past) => {
     const appointment = moment(date).format("MM-DD-YYYY")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
-
-    console.log(today); 
-    console.log(today_time);
-    console.log(appointment);
-    console.log(app_time);
  
     if (!past) {
         if (appointment > today) {
@@ -25,9 +21,11 @@ const TimeCompare = (date, time, past) => {
         }
         else if (appointment < today) 
             return false;
+
         else
             if (app_time >= today_time){
                 isEmpty = false;
+           
                 return true;
             }
             else
@@ -37,6 +35,7 @@ const TimeCompare = (date, time, past) => {
     else {
         if (appointment < today) {
             isEmpty = false;
+         
             return true;
         }
         else if (appointment > today)
@@ -44,6 +43,7 @@ const TimeCompare = (date, time, past) => {
         else
             if (app_time < today_time){
                 isEmpty = false;
+              
                 return true;
             }
             else
@@ -60,10 +60,6 @@ const Click = (date, time, past) => {
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
  
-    console.log("click: " + today); 
-    console.log("click: " + click_time);
-    console.log("click: " + appointment);
-    console.log("click: " + app_time);
     
     if (appointment == today){
         if (app_time <= click_time){
@@ -123,11 +119,13 @@ const NonClick = (date, time, past) => {
     else 
         isEmpty = false;
         return true;
+    
 }
 
 const Schedule = ({ startCall, schedule_data}) => {
 
     isEmpty = true;
+
     
 
     return (
@@ -136,8 +134,10 @@ const Schedule = ({ startCall, schedule_data}) => {
             <AppointmentList>           
                 {schedule_data.map((data) => (
                     <>
-                    {console.log("code: " + moment(data.reserved_time, "hh:mm:ss").format("LT"))}
+                    
                         {TimeCompare(data.reserved_date, data.reserved_time, data.past) && (
+                            
+                            
                             <AppointmentContainer> 
                                 
                                 {Click(data.reserved_date, data.reserved_time, data.past) && (
@@ -166,12 +166,16 @@ const Schedule = ({ startCall, schedule_data}) => {
 
                                 <Column>
                                     <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
-                                </Column>
+                                </Column>           
                             </AppointmentContainer>
-                        )}       
+                            
+                            
+                        )} 
+                        
                     </>
-                    
+
                 ))}
+                {isEmpty == true && <Column>There is no appointment.</Column>}
                     
 
             </AppointmentList>
