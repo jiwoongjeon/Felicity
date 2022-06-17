@@ -5,31 +5,11 @@ const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContaine
 var isEmpty = true;
 
 const TimeCompare = (date, time, past) => {
-    // var today = new Date();
-    // var today_date;
-    // if (today.getMonth() < 10)  
-    //     today_date = '0'
-    // today_date = today_date + (today.getMonth() + 1) + '-';
-    // if (today.getDate() < 10)
-    //     today_date = today_date + '0';
-    // today_date = today_date + today.getDate() + '-' + today.getFullYear();
-
-    // console.log(today_date);
-    // console.log(date);
-    // //date format: MM-DD-YYYY
-
-    // var today_time;
-    // if (today.getHours() < 10)
-    //     today_date = '0'
-    // today_date = today_date + today.getHours() + '-';
-    // if (today.getMinutes() < 10)
-    //     today_date = today_date + '0';
-    // today_date = today_date + today.getMinutes();
 
     const today = moment().format("MM-DD-YYYY")
-    const today_time = moment().format("HH:mm:ss")
+    const today_time = moment().add(10, 'M').format("HH:mm:ss a")
     const appointment = moment(date).format("MM-DD-YYYY")
-    const app_time = moment(time).format("HH:mm:ss")
+    const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
     
     if (!past) {
         if (appointment > today) {
@@ -80,7 +60,9 @@ const PatientsList = (props) => {
                     <>
                         {TimeCompare(data.reserved_date, data.reserved_time, props.past) && (
                             <Column>
-                                <PatientElement onClick={({ target }) => props.setFunction(props.data[i])}>
+                            <Divider />
+                                <PatientElement onClick={({ target }) => props.setFunction(props.data[i])}
+                                displayed={props.clicked} clicked={data}>
 
                                     <PatientImage img={data.img} />
                                     <Column>
@@ -97,10 +79,7 @@ const PatientsList = (props) => {
                                             ))}
                                         </SymptomsContainer>
                                     </Column>
-
-
                                 </PatientElement>
-                                <Divider />
                             </Column>
 
                         )}

@@ -118,10 +118,8 @@ function Doctor(props) {
                 </Container>}
                 <ContentLayout>
                     <PatientBox>
-                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} past={props.past} />
+                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
                     </PatientBox>
-
-
                     <InfoBox>
                         <CV startCall={startCall} data={displayedData} symptoms={sy} past={props.past} />
                     </InfoBox>
