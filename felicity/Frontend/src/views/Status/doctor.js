@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react";
 import Header from '../../Components/Header/Header';
 import {Mostouter,Cat,List,Directory,User} from './layout';
@@ -8,6 +8,8 @@ import Login from '../../Components/Login';
 import RecentPost from "../../Components/RecentPost";
 import { POST_DATA, PAGE_DATA } from "./tempData";
 import UserRedirect from "../UserRedirect";
+import axios from "axios";
+import API_URL from "../../API/server-ip";
 
 function StatusDoctor(props) {
     
@@ -127,6 +129,20 @@ function StatusDoctor(props) {
     setPages(PAGE_DATA)
   }
 
+  useEffect(() => {
+    axios.post(`${API_URL}/read-post`, { targetPage: 1, department: 0})
+      .then((response) => {
+        setPosts(response.data)
+      })
+    axios.get(`${API_URL}/post-page`)
+      .then((response) => {
+        // console.log(response.data)
+        setPages({
+          current_page: 1,
+          last_page: response.data
+        })
+      })
+  }, [])
 
 
   return (

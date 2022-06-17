@@ -1,14 +1,16 @@
 const config = require("../config");
 var post = module.exports;
 
+const getPageQry = "SELECT count(*) AS pages FROM post";
+
 const readPostQry =
     "SELECT post.id, symptom.id AS sid, symptom.category, post.title, post.content, " +
     "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') AS date, " +
     "post.is_replied AS state, post.comment FROM post " +
-    "JOIN symptom ON post.symptom_id = symptom.id";
+    "JOIN symptom ON post.symptom_id = symptom.id ORDER BY symptom_id DESC LIMIT ?, 5";
 
 const readSymptomList =
-    "SELECT * FROM symptom_list WHERE symptom_list.symptom_id IN (?)";
+    "SELECT * FROM symptom_list WHERE symptom_list.symptom_id IN (";
 
 const insertPostQry =
     "INSERT INTO felicity.post " +
@@ -26,9 +28,17 @@ const insertSymptomListQry =
     "`chills`, `muscle_sickness`, `other`)" +
     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
+post.getPageNum = function getPageNum(callback) {
+    config.db.query(getPageQry, (err, result) => {
+        if (err) callback(err, null);
 
-post.findPosts = function findPosts(callback) {
-    config.db.query(readPostQry, (err, result) => {
+        callback(null, result);
+    });
+};
+
+post.findPosts = function findPosts(targetPage, callback) {
+    const targetIndex = (targetPage-1)*5
+    config.db.query(readPostQry, targetIndex, (err, result) => {
         if (err) callback(err, null);
 
         callback(null, result);
@@ -37,7 +47,7 @@ post.findPosts = function findPosts(callback) {
 
 post.findSymptoms = function findSymptoms(symptomIds, callback) {
     var idString = symptomIds.join(', ');
-    config.db.query(readSymptomList, idString, (err, result) => {
+    config.db.query(readSymptomList + idString + ")", (err, result) => {
         if (err) callback(err, null);
 
         callback(null, result)

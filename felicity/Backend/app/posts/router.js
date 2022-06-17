@@ -1,11 +1,24 @@
 var post = require("./post_model");
 var router = require("express").Router();
 
+function getPage(req, res) {
+    post.getPageNum((err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on getting the number of pages"});
+        }
+        else {
+            res.json(Math.ceil(result[0]["pages"]/5))
+        }
+    })
+}
+
 function getPosts(req, res) {
     // const data = req.body
     // console.log(req.body);
+    const targetPage = req.body.targetPage
     var symptomIds = [];
-    post.findPosts((err, result) => {
+    post.findPosts(targetPage, (err, result) => {
         if (err) {
             console.log(err);
             res.json({ errMsg: "Error: Failed on getting posts." })
@@ -21,6 +34,7 @@ function getPosts(req, res) {
                     res.json({ errMsg: "Error: Failed on reading symptom list." })
                 }
                 else {
+                    // console.log(symptoms)
                     for (i in symptoms) {
                         result[i]["symptoms"] = symptoms[i];
                     }
@@ -62,7 +76,8 @@ function postPost(req, res) {
     // res.json("received")
 }
 
-router.get("/post", getPosts);
-router.post("/post", postPost);
+router.get("/post-page", getPage);
+router.post("/read-post", getPosts);
+router.post("/write-post", postPost);
 
 module.exports = router;

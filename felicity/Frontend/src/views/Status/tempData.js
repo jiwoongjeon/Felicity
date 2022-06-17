@@ -1,70 +1,55 @@
 export const POST_DATA = [
     {
-        id: 168,
-        category: "Internal Medicine",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/22 10:20",
-        state: false
+        id:11,
+        sid:55,
+        category:"other",
+        title:"d",
+        content:"d",
+        date:"2022/05/11 12:24 PM",
+        state:0,
+        comment:null,
+        symptoms:{
+            symptom_id:55,
+            cough:0,
+            vomit:1,
+            fever:0,
+            sore_throat:0,
+            phlegm:0,
+            runny_nose:0,
+            nauseous:0,
+            out_of_breath:0,
+            stomachache:0,
+            chills:0,
+            muscle_sickness:0,
+            other:""
+        }
     },
     {
-        id: 167,
-        category: "Ear-Nose-And-Throat Department",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/21 10:20",
-        state: true
-    },
-    {
-        id: 166,
-        category: "Orthopedics",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/20 10:20",
-        state: false
-    },
-    {
-        id: 165,
-        category: "All Clinics",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/19 10:20",
-        state: true
-    },
-    {
-        id: 164,
-        category: "All Clinics",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/18 10:20",
-        state: false
-    },
-];
+        id:12,
+        sid:55,
+        category:"other",
+        title:"d",
+        content:"d",
+        date:"2022/05/11 12:24 PM",
+        state:0,
+        comment:null,
+        symptoms:{
+            symptom_id:56,
+            cough:0,
+            vomit:1,
+            fever:0,
+            sore_throat:0,
+            phlegm:0,
+            runny_nose:0,
+            nauseous:0,
+            out_of_breath:0,
+            stomachache:0,
+            chills:0,
+            muscle_sickness:0,
+            other:""
+        }
+    }
+]
 
 export const PAGE_DATA = {
     current_page: 1,

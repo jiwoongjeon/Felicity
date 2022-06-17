@@ -100,9 +100,10 @@ export const RecentPost = (props) => {
                                 <Title>{data.title}</Title>
                                 <Content>{data.content}</Content>
                                 <SymptomsContainer>
-                                    {props.postData[i].symptoms.map((symptom) => (
+                                    {/* Symptom 데이터 형식이 바꼈습니다잉 */}
+                                    {/* {props.postData[i].symptoms.map((symptom) => (
                                         <SymptomsBubble>{symptom.id}</SymptomsBubble>
-                                    ))}
+                                    ))} */}
                                 </SymptomsContainer>
                             </ContentElement>
                             <Date>{data.category}</Date>
