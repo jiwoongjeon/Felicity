@@ -10,12 +10,12 @@ config.db = mysql.createPool({
     database: "felicity",
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0,
+    queueLimit: 0
 });
-config.db.connect((err) => {
-    if (err) throw err;
-    console.log("Connected");
-});
+// config.db.connect((err) => {
+//     if (err) throw err;
+//     console.log("Connected");
+// });
 
 config.express = {
     port: 3001,
