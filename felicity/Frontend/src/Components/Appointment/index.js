@@ -47,7 +47,7 @@ export const AppointmentHolder = (props) => {
                         label="Department"
                         onChange={handleDepartmentChange}
                         autoWidth>
-                        <MenuItem value={1}>No preference</MenuItem>
+                        <MenuItem value={1}>Unknown</MenuItem>
                         <MenuItem value={2}>Internal Medicine</MenuItem>
                         <MenuItem value={3}>Ear-Nose-And-Throat Department</MenuItem>
                         <MenuItem value={4}>Orthopedics</MenuItem>
