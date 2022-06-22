@@ -60,7 +60,6 @@ const PatientsList = (props) => {
                     <>
                         {TimeCompare(data.reserved_date, data.reserved_time, props.past) && (
                             <Column>
-                            <Divider />
                                 <PatientElement onClick={({ target }) => props.setFunction(props.data[i])}
                                 displayed={props.clicked} clicked={data}>
 
@@ -80,6 +79,7 @@ const PatientsList = (props) => {
                                         </SymptomsContainer>
                                     </Column>
                                 </PatientElement>
+                                <Divider />
                             </Column>
 
                         )}

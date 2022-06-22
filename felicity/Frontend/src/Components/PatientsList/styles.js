@@ -65,7 +65,8 @@ overflow-y: auto;
 export const PatientElement = styled.div`
 display: flex;
 flex-direction: row;
-margin-bottom:-15px;
+margin-bottom: 0px;
+margin-top:-10px;
 padding-top:10px;
 padding-bottom:10px;
 padding-left:10px;
