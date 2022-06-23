@@ -21,8 +21,11 @@ function MHT2() {
         <Logo src={LogoImg}></Logo>
         <Title>Welcome!</Title>
         <SubTitle>Please fill out medical history form below (2/6)</SubTitle>
-        {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
-        {next && <SubmitButton onClick={sessionStore} to={'/MHT3'}>Next</SubmitButton>}
+        <SubTitle>
+          {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
+          {next && <SubmitButton onClick={sessionStore} to={'/MHT3'}>Next</SubmitButton>}
+          <SubmitButton to={'/MHT1'}>Previous</SubmitButton>
+        </SubTitle>
         <Label>2. How long does the hurt last? *</Label>
 
         <select id="time" onClick={e => setNext(e.target.value)}>

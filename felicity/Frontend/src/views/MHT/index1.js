@@ -29,8 +29,11 @@ function MHT1() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (1/6)</SubTitle>
-            {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
-            {next && <SubmitButton onClick={sessionStore} to={'/MHT2'}>Next</SubmitButton>}
+            <SubTitle>
+              {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
+              {next && <SubmitButton onClick={sessionStore} to={'/MHT2'}>Next</SubmitButton>} 
+              <SubmitButton to={'/Patient/Home'}>Cancel</SubmitButton>
+            </SubTitle>
             <Label>1. Where does it hurt?  *</Label>
             <InputBox>
                 <BodyInput id="hurt" onChange={({target}) => setNext(target.value)}/>

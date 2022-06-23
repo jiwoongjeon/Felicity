@@ -21,7 +21,9 @@ import {
   SignupLink,
   CheckboxWrapper,
   LabelRed,
-  ConsentBox
+  ConsentBox,
+  Label1,
+  SubmitButtonDisabled
 } from "./styles";
 
 import RadioButton from "./Radiobox.js";
@@ -35,6 +37,7 @@ function RegistrationPage({ patientL, doctorL }) {
     const [radioValue, setRadio] = useState(true);
     const [value, setCheckbox] = useState(true);
     const [lang,setLang] = useState(true);
+    const [consent,setConsent] = useState(false);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -44,7 +47,8 @@ function RegistrationPage({ patientL, doctorL }) {
         <MainContainer>
             <LoginContainer>
             <Logo src={LogoImg} />
-                <Title>Who are you registering as? </Title>
+            <Title>Registration </Title>
+                {/* 
                 <RadioWrapper>
                     <RadioButton
                         label="I'm a patient."
@@ -63,7 +67,7 @@ function RegistrationPage({ patientL, doctorL }) {
                         checked={!radioValue}
                         onChange={({ target }) => setRadio(!target.value)}
                     />
-                </RadioWrapper>
+                </RadioWrapper> */}
 
                 <Label> Enter Email </Label>
                 <InputBox>
@@ -99,7 +103,6 @@ function RegistrationPage({ patientL, doctorL }) {
                 />
                 </InputBox>
                 
-                <Label> Before signing up, you must agree to our patient consent form:</Label>
                 <RadioWrapper>
                     <RadioButton
                         label="English"
@@ -117,6 +120,7 @@ function RegistrationPage({ patientL, doctorL }) {
                     />
                 </RadioWrapper>
 
+                <Label1> Before signing up, you must agree to our patient consent form:</Label1>
                 {lang && <ConsentBox>
                     By signing this form, I understand and agree with the following: 
 
@@ -165,18 +169,27 @@ function RegistrationPage({ patientL, doctorL }) {
 
                 </ConsentBox>}
 
-                
-                {radioValue &&
-                    <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>
-                        Sign Up
-                    </SubmitButton>
-                }
+                <RadioWrapper>
+                    <RadioButton
+                        label="I agree"
+                        name="I agree"
+                        value={consent}
+                        checked={consent}
+                        onChange={({ target }) => {setConsent(true);}}
+                    />
+                    <RadioButton
+                        label="I disagree"
+                        name="I disagree"
+                        value={!consent}
+                        checked={!consent}
+                        onChange={({ target }) => setConsent(false)}
+                    />
+                </RadioWrapper>
 
-                {!radioValue &&
-                    <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>
-                        Sign Up
-                    </SubmitButton>
-                }
+                {/* {radioValue && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
+                {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
+                {consent && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
+                {!consent && <SubmitButtonDisabled to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButtonDisabled>}
 
             </LoginContainer>
         </MainContainer>

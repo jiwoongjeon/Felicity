@@ -2,7 +2,7 @@
 import Calen from "../CalenDoctor";
 import moment from "moment";
 const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
-var isEmpty = true;
+let isEmpty = true;
 
 const TimeCompare = (date, time, past) => {
 

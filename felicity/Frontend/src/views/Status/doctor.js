@@ -97,39 +97,37 @@ function StatusDoctor(props) {
 
   
   function IndexIncrement() {
+    GetPage(((index + 1) * 5) + 1)
     setIndex(index + 1)
-    GetPage((index * 5) + 1)
   }
 
   function IndexReduction() {
+    GetPage(((index - 1) * 5) + 5)
     setIndex(index - 1)
-    GetPage((index * 5) + 5)
   }
 
   function GetPage(page) {
     console.log(page)
 
-    useEffect(() => {
-      setPostLoad(0)
-      setPageLoad(0)
+    setPostLoad(0)
+    setPageLoad(0)
 
-      axios.post(`${API_URL}/read-post`, { targetPage: page, department: 0})
-        .then((response) => {
-          POST_DATA = response.data
-          setToAll()
-          setPostLoad(1)
-        })
+    axios.post(`${API_URL}/read-post`, { targetPage: page, department: 0})
+      .then((response) => {
+        POST_DATA = response.data
+        setToAll()
+        setPostLoad(1)
+      })
 
-      axios.get(`${API_URL}/post-page`)
-        .then((response) => {
-          // console.log(response.data)
-          setPages({
-            current_page: page,
-            last_page: response.data
-          })
-          setPageLoad(1)
+    axios.get(`${API_URL}/post-page`)
+      .then((response) => {
+        // console.log(response.data)
+        setPages({
+          current_page: page,
+          last_page: response.data
         })
-    }, [])
+        setPageLoad(1)
+      })
   }
 
   useEffect(() => {
