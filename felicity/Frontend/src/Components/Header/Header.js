@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import needhelp from '../assets/needhelp_highres.png'
 import LogoImg from '../assets/telep_logo_horizon.png';
 //import react pro sidebar components
@@ -56,25 +57,27 @@ const Header = (props) => {
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
                     <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
 
-              <MenuItem icon={<AiFillHome />}>Home
-                <MenuButton to={`./Home`}></MenuButton>
+              <MenuItem icon={<AiFillHome />}> <NavLink to='./Home' activeStyle={{color: '#0075FF'}} >Home</NavLink>
+      
               </MenuItem>
-              <MenuItem icon={<AiOutlineBarChart />}>Status
-                <MenuButton to={`./Status`}></MenuButton>
+              <MenuItem icon={<AiOutlineBarChart />}><NavLink to='./Status' activeStyle={{color: '#0075FF'}} >Status</NavLink>
+
               </MenuItem>
+
               {!props.isDoctor &&
-                <MenuItem icon={<MdFormatListBulleted />} >Recent Post
-                  <MenuButton to={`./RecentPost`}></MenuButton></MenuItem>}
-              <MenuItem icon={<IoIosDocument />}>My Checklist
-                <MenuButton to={`./Checklist`}></MenuButton></MenuItem>
-              <MenuItem icon={<IoMdPerson />}>Profile
-                <MenuButton to={`./Profile`}></MenuButton></MenuItem>
+                <MenuItem icon={<MdFormatListBulleted />} ><NavLink to='./RecentPost' activeStyle={{color: '#0075FF'}} >Recent Post</NavLink>
+                  </MenuItem>}
+              <MenuItem icon={<IoIosDocument />}><NavLink to='./Checklist' activeStyle={{color: '#0075FF'}} >My Checklist</NavLink>
+                </MenuItem>
+              <MenuItem icon={<IoMdPerson />}><NavLink to='./Profile' activeStyle={{color: '#0075FF'}} >Profile</NavLink>      
+                </MenuItem>
+
               {props.isDoctor &&
-                <MenuItem icon={<IoIosChatboxes />}>Patient Conversation
-                  <MenuButton to={`./Patient-Conversation`}></MenuButton></MenuItem>}
+                <MenuItem icon={<IoIosChatboxes />}><NavLink to='./Patient-Conversation' activeStyle={{color: '#0075FF'}} >Patient Conversation</NavLink> 
+                </MenuItem>}
               {props.isDoctor &&
-                <MenuItem icon={<IoIosChatbubbles />}>Doctor Conversation
-                  <MenuButton to={`./Doctor-Conversation`}></MenuButton></MenuItem>}
+                <MenuItem icon={<IoIosChatbubbles />}><NavLink to='./Doctor-Conversation' activeStyle={{color: '#0075FF'}} >Doctor Conversation</NavLink> 
+                </MenuItem>}
             </Menu>
 
           </SidebarContent>
