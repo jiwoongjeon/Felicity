@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, NavLink } from "react-router-dom";
 
 import Doctor from "./views/Doctor";
 import Patient from "./views/Patient";
@@ -77,6 +77,8 @@ function RouteWithSubRoutes(route) {
       path={route.path}
       exact={route.exact}
       render={(props) => <route.component {...props} routes={route.routes} />}
+      
+      
     />
   );
 }
@@ -88,6 +90,7 @@ export function RenderRoutes({ routes }) {
         return <RouteWithSubRoutes key={route.key} {...route} />;
       })}
       <Route component={() => <Login/>} />
+     
     </Switch>
   );
 }
