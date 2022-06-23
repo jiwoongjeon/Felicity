@@ -2,7 +2,7 @@ import React from "react";
 
 import LogoImg from '../../Components/assets/Logo.png';
 import { Row } from "../../Components/CV/styles";
-import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput, MoveButton } from "./styles";
+import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput, MoveButton, MoveButtonBig } from "./styles";
 import UserRedirect from "../UserRedirect";
 
 
@@ -21,6 +21,7 @@ function MHT7() {
                 <MoveButton to={`/Patient/Appointment`}>Request Appointment</MoveButton>
                 <MoveButton to={`/Patient/RecentPost`}>Post a question</MoveButton>
             </Row>
+            <MoveButtonBig to={`/MHT6`}> Previous</MoveButtonBig>
             
         </QuestionContainer>
     </MainContainer>

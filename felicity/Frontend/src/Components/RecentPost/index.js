@@ -167,10 +167,10 @@ export const RecentPost = (props) => {
             </PostElementContainer>
 
             <ColumnBottom>
-                <Search>
+                {/* <Search>
                     <SearchIcon><IoMdSearch style={{color: '#718096', fontSize: '20px'}}/></SearchIcon>
                     <SearchContent />
-                </Search>
+                </Search> */}
                 <PageContainer>
                     <PageNavigatorLabel onClick={({target}) => props.GetPage(page--)}>Previous</PageNavigatorLabel>
                         <PageButton />

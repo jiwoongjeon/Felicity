@@ -38,7 +38,10 @@ function MHT6() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (6/6)</SubTitle>
-            <SubmitButton onClick={sessionStore} to={'/MHT7'}>Next</SubmitButton>
+            <SubTitle>
+              <SubmitButton onClick={sessionStore} to={'/MHT7'}>Next</SubmitButton>
+              <SubmitButton to={'/MHT5'}>Previous</SubmitButton>
+            </SubTitle>
             <Label>6. What kind of symptoms do you have? *</Label>
             <CheckboxBox>
               <Checkbox label="A. Cough"value={valueA} checked={valueA} onChange={({ target }) => setCheckboxA(!valueA)}/>
