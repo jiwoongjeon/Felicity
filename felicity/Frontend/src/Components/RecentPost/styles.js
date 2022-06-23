@@ -39,9 +39,8 @@ export const PostElement = styled(Link)`
 `;
 
 export const ContentElement = styled.div`
-  flex: 10;
+  flex: 9;
   display: flex;
-  margin-left: 1%;
   flex-direction: column;
 `;
 
@@ -214,6 +213,17 @@ export const Date = styled.p`
   white-space: wrap;
   justify-content: center;
   align-items: center;
+`;
+export const Id = styled.p`
+  display:flex;
+  flex: 1;
+  color: #718096;
+  font-weight: bold;
+  white-space: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1%;
+  margin-right: 1%;
 `;
 export const State = styled.p`
   display:flex;

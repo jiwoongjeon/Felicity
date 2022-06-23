@@ -43,7 +43,7 @@ const Header = (props) => {
           <SidebarHeader>
             <div className="logotext">
               <MenuButton to='./Home'>
-                <img src={LogoImg} className='logo' alt='logo' width={170} />
+                <img src='/images/telep_logo_horizon.png' className='logo' alt='logo' width={170} />
               </MenuButton>
             </div>
           </SidebarHeader>
@@ -82,9 +82,9 @@ const Header = (props) => {
 
           </SidebarContent>
           <SidebarFooter>
-            <HelpContainer img={needhelp}>
+            {/* <HelpContainer img={needhelp}>
               <ActiveButton>Active</ActiveButton>
-            </HelpContainer>
+            </HelpContainer> */}
             {/*<img  src={needhelp} alt=""/>*/}
             {/* <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>

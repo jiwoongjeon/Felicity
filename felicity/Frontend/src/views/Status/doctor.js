@@ -6,7 +6,7 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
 import RecentPost from "../../Components/RecentPost";
-import { POST_DATA, PAGE_DATA } from "./tempData";
+//import { POST_DATA, PAGE_DATA } from "./tempData";
 import UserRedirect from "../UserRedirect";
 import axios from "axios";
 import API_URL from "../../API/server-ip";
@@ -15,10 +15,14 @@ function StatusDoctor(props) {
     
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
+  let POST_DATA = {};
+  let PAGE_DATA = {};
+
   const [allSelect, setAll] = useState(true);
   const [internalSelect, setInternal] = useState(false);
   const [EBinSelect, setEBin] = useState(false);
   const [orthopedicsSelect, setOrthopedics] = useState(false);
+  const [unknownSelect, setUnknown] = useState(false);
   const [newestSelect, setNewest] = useState(true);
   const [oldestSelect, setOldest] = useState(false);
 
@@ -27,12 +31,15 @@ function StatusDoctor(props) {
   const [posts, setPosts] = useState(POST_DATA);
   const [pages, setPages] = useState(PAGE_DATA);
 
+  const [postload, setPostLoad] = useState();
+  const [pageload, setPageLoad] = useState();
 
   function setToAll() {
       setAll(true)
       setEBin(false)
       setInternal(false)
       setOrthopedics(false)
+      setUnknown(false)
       setPosts(POST_DATA)
   }
 
@@ -41,6 +48,7 @@ function StatusDoctor(props) {
       setEBin(true)
       setInternal(false)
       setOrthopedics(false)
+      setUnknown(false)
       setPosts(POST_DATA.filter(post => post.category === "Ear-Nose-And-Throat Department"))
   }
 
@@ -49,6 +57,7 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(true)
       setOrthopedics(false)
+      setUnknown(false)
       setPosts(POST_DATA.filter(post => post.category === "Internal Medicine"))
   }
 
@@ -57,7 +66,17 @@ function StatusDoctor(props) {
       setEBin(false)
       setInternal(false)
       setOrthopedics(true)
+      setUnknown(false)
       setPosts(POST_DATA.filter(post => post.category === "Orthopedics"))
+  }
+
+  function setToUnknown() {
+      setAll(false)
+      setEBin(false)
+      setInternal(false)
+      setOrthopedics(false)
+      setUnknown(true)
+      setPosts(POST_DATA.filter(post => post.category === "Unknown"))
   }
 
   function setToNewest() {
@@ -79,60 +98,47 @@ function StatusDoctor(props) {
   
   function IndexIncrement() {
     setIndex(index + 1)
-    // getPage((index * 5) + 1)
+    GetPage((index * 5) + 1)
   }
 
   function IndexReduction() {
     setIndex(index - 1)
-    // getPage((index * 5) + 5)
+    GetPage((index * 5) + 5)
   }
 
   function GetPage(page) {
     console.log(page)
-    /*
-    Axios -> Receive posts data where...
 
-    -------------------------------Case of Newest
-    if (last_page > page)
-    { 
-        id = 
-            {(last_page * 5) - ((page - 1) * 5)}
-            ~ 
-            {(last_page * 5) - (page * 5) + 1}
-    }
+    useEffect(() => {
+      setPostLoad(0)
+      setPageLoad(0)
 
-    if (last_page == page)
-    {
-        id = 
-            (last_page % 5)
-            ~ 
-            1
-    }
+      axios.post(`${API_URL}/read-post`, { targetPage: page, department: 0})
+        .then((response) => {
+          POST_DATA = response.data
+          setToAll()
+          setPostLoad(1)
+        })
 
-    -------------------------------Case of Oldest
-    if (last_page > page)
-    { 
-        id = 
-            {(page - 1) * 5 + 1}
-            ~ 
-            {page * 5}
-    }
-
-    if (last_page == page)
-    {
-        id = 
-            {(last_page - 1) * 5}
-            ~
-            end of data
-    }
-    */
-    setPages(PAGE_DATA)
+      axios.get(`${API_URL}/post-page`)
+        .then((response) => {
+          // console.log(response.data)
+          setPages({
+            current_page: page,
+            last_page: response.data
+          })
+          setPageLoad(1)
+        })
+    }, [])
   }
 
   useEffect(() => {
     axios.post(`${API_URL}/read-post`, { targetPage: 1, department: 0})
       .then((response) => {
         setPosts(response.data)
+        POST_DATA = response.data
+        console.log(POST_DATA)
+        setPostLoad(1)
       })
     axios.get(`${API_URL}/post-page`)
       .then((response) => {
@@ -141,6 +147,7 @@ function StatusDoctor(props) {
           current_page: 1,
           last_page: response.data
         })
+        setPageLoad(1)
       })
   }, [])
 
@@ -163,11 +170,12 @@ function StatusDoctor(props) {
     <List>
         <RecentPost
         setToAll={setToAll} setToEBin={setToEBin} setToInternal={setToInternal} setToOrthopedics={setToOrthopedics}
-        setToNewest={setToNewest} setToOldest={setToOldest}
+        setToNewest={setToNewest} setToOldest={setToOldest} setToUnknown={setToUnknown}
         allSelect={allSelect} internalSelect={internalSelect} EBinSelect={EBinSelect} orthopedicsSelect={orthopedicsSelect} 
-        newestSelect={newestSelect} oldestSelect={oldestSelect} 
+        newestSelect={newestSelect} oldestSelect={oldestSelect} unknownSelect={unknownSelect}
         postData={posts} pageData={pages} index={index} setIndex={setIndex} GetPage={GetPage}
         IndexIncrement={IndexIncrement} IndexReduction={IndexReduction}
+        pageload={pageload} postload={postload}
 
         isDoctor={props.isDoctor}/>
     </List>
