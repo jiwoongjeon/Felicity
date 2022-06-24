@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import { AiFillCamera } from "react-icons/ai";
 import { InputLabel, MenuItem, FormControl, Select, TextField } from '@mui/material';
 
-import { SocketContext } from "../../API/video";
-
 const { NewBoardContainer, Header, WriteContainer, WriteSubContainer, SubmitBtn, Column, Divider, ColumnTitle, SubmitBtnDisabled } = require('./styles')
 
 
-export const BoardNew = () => {
+export const BoardNew = ({ sendPost }) => {
 
     const [title, setTitle] = React.useState('');
     const [category, setCategory] = React.useState('Select a category');
@@ -18,13 +16,11 @@ export const BoardNew = () => {
     const handleContent = (event) => { setContent(event.target.value); };
     const handleCategoryChange = (event) => { setCategory(event.target.value); };
 
-    const { sendPost } = useContext(SocketContext);
-
     if (title == '' || content == '') {
         button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
     }
     else {
-        button = <SubmitBtn onClick={() => sendPost(title, content)}> Submit</SubmitBtn >
+        button = <SubmitBtn onClick={() => sendPost(title, content, category)}> Submit</SubmitBtn >
     }
 
     return (

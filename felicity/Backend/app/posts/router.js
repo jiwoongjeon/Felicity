@@ -46,11 +46,12 @@ function getPosts(req, res) {
 }
 
 function postPost(req, res) {
-    // console.log(req.body);
+    console.log(req.body);
     const postData = req.body;
     const MHTData = req.body.MHT;
     const checkList = MHTData.checklist;
     // console.log(MHTData);
+
     post.insertSymptom(MHTData, (error, result) => {
         if (error) {
             console.log(error);
@@ -73,6 +74,7 @@ function postPost(req, res) {
             })
         }
     })
+
     // res.json("received")
 }
 

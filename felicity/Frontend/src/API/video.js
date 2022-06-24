@@ -117,14 +117,16 @@ const ContextProvider = ({ children }) => {
         return MHTdata;
     }
 
-    const sendPost = (title, context) => {
+    const sendPost = (title, context, category) => {
+        console.log(title, context, category)
         const mhtData = getMHTData();
         const postData = {
             title: title,
             context: context,
+            category: category,
             MHT: mhtData,
         }
-        Axios.post(`${API_URL}/post`, postData)
+        Axios.post(`${API_URL}/write-post`, postData)
     }
 
     const sendReservation = (departmentId, preferredDoctorId, date, time) => {

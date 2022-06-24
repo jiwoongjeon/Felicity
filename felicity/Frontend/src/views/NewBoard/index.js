@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import Header from '../../Components/Header/Header';
 import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -7,10 +7,14 @@ import { BoardNew } from "../../Components/BoardNew";
 import UserRedirect from "../UserRedirect";
 import MHTRedirect from "../UserRedirect/MHT";
 
+import { SocketContext } from "../../API/video";
+
 function NewBoard(props) {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
   const written = JSON.parse(sessionStorage.getItem('level'));
+
+  const { sendPost } = useContext(SocketContext);
 
   return (
 
@@ -32,7 +36,7 @@ function NewBoard(props) {
 
 
     <Video>
-        <BoardNew />
+        <BoardNew sendPost={sendPost} />
     </Video>
 
 

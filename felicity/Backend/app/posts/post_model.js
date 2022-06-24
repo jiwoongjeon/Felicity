@@ -14,8 +14,8 @@ const readSymptomList =
 
 const insertPostQry =
     "INSERT INTO felicity.post " +
-    "(`symptom_id`, `patient_id`, `title`, `content`, `is_replied`) " +
-    "VALUES (?, ?, ?, ?, ?)"
+    "(`symptom_id`, `patient_id`, `title`, `content`, `is_replied`, `category`) " +
+    "VALUES (?, ?, ?, ?, ?, ?)"
 
 const insertSymptomQry =
     "INSERT INTO felicity.symptom " +
@@ -55,7 +55,7 @@ post.findSymptoms = function findSymptoms(symptomIds, callback) {
 }
 
 post.insertPost = function insertPost(sid, data, callback) {
-    const postList = [sid, data.MHT.patientId, data.title, data.context, 0];
+    const postList = [sid, data.MHT.patientId, data.title, data.context, 0, data.category];
     config.db.query(insertPostQry, postList, (err, result) => {
         if (err) callback(err, null);
 
