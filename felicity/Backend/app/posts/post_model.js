@@ -28,6 +28,9 @@ const insertSymptomListQry =
     "`chills`, `muscle_sickness`, `other`)" +
     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
+const insertCommentQry = 
+    "UPDATE felicity.post SET `doctor_id` = ?, `comment` = ? WHERE (`id` = ?);"
+
 post.getPageNum = function getPageNum(callback) {
     config.db.query(getPageQry, (err, result) => {
         if (err) callback(err, null);
@@ -78,6 +81,14 @@ post.insertSymptomList = function insertSymptomList(sid, data, callback) {
     const symptomList = [sid, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[12]];
     // console.log()
     config.db.query(insertSymptomListQry, symptomList, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    })
+}
+
+post.insertComment = function insertComment(postId, doctorId, comment, callback) {
+    config.db.query(insertCommentQry, [doctorId, comment, postId], (err, result) => {
         if (err) callback(err, null);
 
         callback(null, result);

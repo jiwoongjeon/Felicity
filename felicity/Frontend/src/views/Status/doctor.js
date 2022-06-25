@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import { useState } from "react";
 import Header from '../../Components/Header/Header';
 import {Mostouter,Cat,List,Directory,User} from './layout';
@@ -11,6 +11,8 @@ import UserRedirect from "../UserRedirect";
 import axios from "axios";
 import API_URL from "../../API/server-ip";
 import { BOARD_DATA, USER_DATA } from "./tempData";
+
+import { SocketContext } from "../../API/video";
 
 function StatusDoctor(props) {
     
@@ -36,6 +38,8 @@ function StatusDoctor(props) {
 
   const [postload, setPostLoad] = useState();
   const [pageload, setPageLoad] = useState();
+
+  const { sendComment } = useContext(SocketContext);
 
   function setToAll() {
       setAll(true)
@@ -182,7 +186,9 @@ function StatusDoctor(props) {
         {isBoard && <BoardDetail 
           data={board}
           setIsBoard={setIsBoard}
-          isDoctor={props.isDoctor} />}
+          isDoctor={props.isDoctor}
+          sendComment={sendComment}
+        />}
     </List>
 
     </Mostouter>

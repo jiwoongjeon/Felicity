@@ -129,7 +129,7 @@ const ContextProvider = ({ children }) => {
     }
 
     const sendPost = (title, context, category) => {
-        console.log(title, context, category)
+        // console.log(title, context, category)
         const mhtData = getMHTData();
         const postData = {
             title: title,
@@ -139,6 +139,16 @@ const ContextProvider = ({ children }) => {
         }
         Axios.post(`${API_URL}/write-post`, postData)
         sessionClose()
+    }
+
+    const sendComment = (postId, doctorId, comment) => {
+        console.log(postId, doctorId, comment)
+        const data = {
+            postId: postId,
+            doctorId: doctorId,
+            comment: comment
+        }
+        Axios.post(`${API_URL}/write-comment`, data)
     }
 
     const sendReservation = (departmentId, preferredDoctorId, date, time) => {
@@ -355,7 +365,8 @@ const ContextProvider = ({ children }) => {
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, send, sendPost,
-                sendReservation, acceptReservation, userJoined, setUserJoined
+                sendReservation, acceptReservation, userJoined, setUserJoined,
+                sendComment
             }}
         >
             {children}

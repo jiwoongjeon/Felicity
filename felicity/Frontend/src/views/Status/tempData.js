@@ -7,7 +7,8 @@ export const POST_DATA = [
         content:"d",
         date:"2022/05/11 12:24 PM",
         state:0,
-        comment:null,
+        doctorId: 0,
+        comment: "Testing comments",
         symptoms:{
             symptom_id:55,
             cough:0,
@@ -32,6 +33,7 @@ export const POST_DATA = [
         content:"d",
         date:"2022/05/11 12:24 PM",
         state:0,
+        doctorId: null,
         comment:null,
         symptoms:{
             symptom_id:56,

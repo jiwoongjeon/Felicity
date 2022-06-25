@@ -51,6 +51,7 @@ const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, Cont
 
 export const BoardDetail = (props) => {
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const [isReply, setReplyState] = React.useState(false)
     const [content, setContent] = React.useState('');
 
@@ -58,7 +59,7 @@ export const BoardDetail = (props) => {
     const handleContent = (event) => { setContent(event.target.value); };
 
     if (content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
-    else { button = <SubmitBtn>Submit</SubmitBtn> }
+    else { button = <SubmitBtn onClick={() => props.sendComment(props.data.id, jwt, content)}>Submit</SubmitBtn> }
 
     return(
         <BoardContainer>

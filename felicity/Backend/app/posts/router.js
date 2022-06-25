@@ -78,8 +78,19 @@ function postPost(req, res) {
     // res.json("received")
 }
 
+function updateComment(req, res) {
+    console.log(req.body)
+    post.insertComment(req.body.postId, req.body.doctorId, req.body.comment, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.json({ errMsg: "Error: Failed on updating comments"})
+        }
+    })
+}
+
 router.get("/post-page", getPage);
 router.post("/read-post", getPosts);
 router.post("/write-post", postPost);
+router.post("/write-comment", updateComment);
 
 module.exports = router;
