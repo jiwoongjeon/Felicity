@@ -29,6 +29,8 @@ function StatusDoctor(props) {
   const [newestSelect, setNewest] = useState(true);
   const [oldestSelect, setOldest] = useState(false);
 
+  const [department, setDepartment] = useState(0)
+
   const [index, setIndex] = useState(0);
 
   const [posts, setPosts] = useState(POST_DATA);
@@ -47,7 +49,23 @@ function StatusDoctor(props) {
       setInternal(false)
       setOrthopedics(false)
       setUnknown(false)
-      setPosts(POST_DATA)
+      setPostLoad(0)
+      setPageLoad(0)  
+      setDepartment(0)
+      axios.post(`${API_URL}/read-post`, { targetPage: pages.current_page, department: 0})
+      .then((response) => {
+        setPosts(response.data)
+        setPostLoad(1)
+      })
+      axios.post(`${API_URL}/post-page`, { department: 0 })
+      .then((response) => {
+        setPages({
+          current_page: 1,
+          last_page: response.data
+        })
+        setPageLoad(1)
+      })
+
   }
 
   function setToEBin() {
@@ -56,7 +74,24 @@ function StatusDoctor(props) {
       setInternal(false)
       setOrthopedics(false)
       setUnknown(false)
-      setPosts(POST_DATA.filter(post => post.category === "Ear-Nose-And-Throat Department"))
+      setPostLoad(0)
+      setPageLoad(0)  
+      setDepartment(3)
+      axios.post(`${API_URL}/read-post`, { targetPage: pages.current_page, department: 3})
+      .then((response) => {
+        setPosts(response.data)
+        setPostLoad(1)
+      })
+      axios.post(`${API_URL}/post-page`, { department: 3 })
+      .then((response) => {
+        setPages({
+          current_page: 1,
+          last_page: response.data
+        })
+        setPageLoad(1)
+      })
+
+      // setPosts(POST_DATA.filter(post => post.category === "Ear"))
   }
 
   function setToInternal() {
@@ -65,7 +100,24 @@ function StatusDoctor(props) {
       setInternal(true)
       setOrthopedics(false)
       setUnknown(false)
-      setPosts(POST_DATA.filter(post => post.category === "Internal Medicine"))
+      setPostLoad(0)
+      setPageLoad(0)  
+      setDepartment(2)
+      axios.post(`${API_URL}/read-post`, { targetPage: pages.current_page, department: 2})
+      .then((response) => {
+        setPosts(response.data)
+        setPostLoad(1)
+      })
+      axios.post(`${API_URL}/post-page`, { department: 2 })
+      .then((response) => {
+        setPages({
+          current_page: 1,
+          last_page: response.data
+        })
+        setPageLoad(1)
+      })
+
+      // setPosts(POST_DATA.filter(post => post.category === "Internal"))
   }
 
   function setToOrthopedics() {
@@ -74,7 +126,24 @@ function StatusDoctor(props) {
       setInternal(false)
       setOrthopedics(true)
       setUnknown(false)
-      setPosts(POST_DATA.filter(post => post.category === "Orthopedics"))
+      setPostLoad(0)
+      setPageLoad(0)  
+      setDepartment(4)
+      axios.post(`${API_URL}/read-post`, { targetPage: pages.current_page, department: 4})
+      .then((response) => {
+        setPosts(response.data)
+        setPostLoad(1)
+      })
+      axios.post(`${API_URL}/post-page`, { department: 4 })
+      .then((response) => {
+        setPages({
+          current_page: 1,
+          last_page: response.data
+        })
+        setPageLoad(1)
+      })
+
+      // setPosts(POST_DATA.filter(post => post.category === "Ortho"))
   }
 
   function setToUnknown() {
@@ -83,7 +152,24 @@ function StatusDoctor(props) {
       setInternal(false)
       setOrthopedics(false)
       setUnknown(true)
-      setPosts(POST_DATA.filter(post => post.category === "Unknown"))
+      setPostLoad(0)
+      setPageLoad(0)  
+      setDepartment(1)
+      axios.post(`${API_URL}/read-post`, { targetPage: pages.current_page, department: 1})
+      .then((response) => {
+        setPosts(response.data)
+        setPostLoad(1)
+      })
+      axios.post(`${API_URL}/post-page`, { department: 1 })
+      .then((response) => {
+        setPages({
+          current_page: 1,
+          last_page: response.data
+        })
+        setPageLoad(1)
+      })
+
+      // setPosts(POST_DATA.filter(post => post.category === "Unknown"))
   }
 
   function setToNewest() {
@@ -119,14 +205,13 @@ function StatusDoctor(props) {
     setPostLoad(0)
     setPageLoad(0)
 
-    axios.post(`${API_URL}/read-post`, { targetPage: page, department: 0})
+    axios.post(`${API_URL}/read-post`, { targetPage: page, department: department})
       .then((response) => {
-        POST_DATA = response.data
-        setToAll()
+        setPosts(response.data)
         setPostLoad(1)
       })
 
-    axios.get(`${API_URL}/post-page`)
+    axios.post(`${API_URL}/post-page`, {department: department})
       .then((response) => {
         // console.log(response.data)
         setPages({
@@ -145,7 +230,7 @@ function StatusDoctor(props) {
         console.log(POST_DATA)
         setPostLoad(1)
       })
-    axios.get(`${API_URL}/post-page`)
+    axios.post(`${API_URL}/post-page`, {department: 0})
       .then((response) => {
         // console.log(response.data)
         setPages({

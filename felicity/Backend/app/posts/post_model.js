@@ -3,11 +3,21 @@ var post = module.exports;
 
 const getPageQry = "SELECT count(*) AS pages FROM post";
 
+const getPageCategoryQry = "SELECT count(*) AS pages FROM post WHERE category = ?";
+
 const readPostQry =
-    "SELECT post.id, symptom.id AS sid, symptom.category, post.title, post.content, " +
+    "SELECT post.id, symptom.id AS sid, post.category, post.title, post.content, " +
     "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') AS date, " +
     "post.is_replied AS state, post.comment FROM post " +
     "JOIN symptom ON post.symptom_id = symptom.id ORDER BY symptom_id DESC LIMIT ?, 5";
+
+const readPostCategoryQry =
+    "SELECT post.id, symptom.id AS sid, post.category, post.title, post.content, " +
+    "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') AS date, " +
+    "post.is_replied AS state, post.comment FROM post " +
+    "JOIN symptom ON post.symptom_id = symptom.id " +
+    "WHERE post.category = ? " + 
+    "ORDER BY symptom_id DESC LIMIT ?, 5";
 
 const readSymptomList =
     "SELECT * FROM symptom_list WHERE symptom_list.symptom_id IN (";
@@ -39,9 +49,26 @@ post.getPageNum = function getPageNum(callback) {
     });
 };
 
+post.getPageCategoryNum = function getPageCategoryNum(category, callback) {
+    config.db.query(getPageCategoryQry, category, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+};
+
 post.findPosts = function findPosts(targetPage, callback) {
     const targetIndex = (targetPage-1)*5
     config.db.query(readPostQry, targetIndex, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    })
+}
+
+post.findPostsCategory = function findPostsCategory(targetPage, category, callback) {
+    const targetIndex = (targetPage-1)*5
+    config.db.query(readPostCategoryQry, [category, targetIndex], (err, result) => {
         if (err) callback(err, null);
 
         callback(null, result);

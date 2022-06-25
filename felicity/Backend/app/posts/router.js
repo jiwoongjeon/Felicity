@@ -2,47 +2,99 @@ var post = require("./post_model");
 var router = require("express").Router();
 
 function getPage(req, res) {
-    post.getPageNum((err, result) => {
-        if (err) {
-            console.log(err);
-            res.json({ errMsg: "Error: Failed on getting the number of pages"});
-        }
-        else {
-            res.json(Math.ceil(result[0]["pages"]/5))
-        }
-    })
+    const category = req.body.department
+    // console.log(category)
+    if (category == 0) {
+        post.getPageNum((err, result) => {
+            if (err) {
+                console.log(err);
+                res.json({ errMsg: "Error: Failed on getting the number of pages"});
+            }
+            else {
+                res.json(Math.ceil(result[0]["pages"]/5))
+            }
+        })
+    }
+    else {
+        post.getPageCategoryNum(category, (err, result) => {
+            if (err) {
+                console.log(err);
+                res.json({ errMsg: "Error: Failed on getting the number of pages"});
+            }
+            else {
+                res.json(Math.ceil(result[0]["pages"]/5))
+            }
+        })
+
+    }
 }
 
 function getPosts(req, res) {
     // const data = req.body
     // console.log(req.body);
+    const category = req.body.department
     const targetPage = req.body.targetPage
     var symptomIds = [];
-    post.findPosts(targetPage, (err, result) => {
-        if (err) {
-            console.log(err);
-            res.json({ errMsg: "Error: Failed on getting posts." })
-        }
-        else {
-            for (i in result) {
-                symptomIds.push(result[i].sid);
+    if (category == 0) {
+        post.findPosts(targetPage, (err, result) => {
+            if (err) {
+                console.log(err);
+                res.json({ errMsg: "Error: Failed on getting posts." })
             }
-
-            post.findSymptoms(symptomIds, (error, symptoms) => {
-                if (error) {
-                    console.log(error);
-                    res.json({ errMsg: "Error: Failed on reading symptom list." })
+            else {
+                for (i in result) {
+                    symptomIds.push(result[i].sid);
+                }
+    
+                post.findSymptoms(symptomIds, (error, symptoms) => {
+                    if (error) {
+                        console.log(error);
+                        res.json({ errMsg: "Error: Failed on reading symptom list." })
+                    }
+                    else {
+                        // console.log(symptoms)
+                        for (i in symptoms) {
+                            result[i]["symptoms"] = symptoms[i];
+                        }
+                        res.json(result);
+                    }
+                })
+            }
+        });
+    }
+    else {
+        post.findPostsCategory(targetPage, category, (err, result) => {
+            if (err) {
+                console.log(err);
+                res.json({ errMsg: "Error: Failed on getting posts." })
+            }
+            else {
+                // console.log(result)
+                if (result.length == 0) {
+                    res.json({ msg: "No posts exists"})
                 }
                 else {
-                    // console.log(symptoms)
-                    for (i in symptoms) {
-                        result[i]["symptoms"] = symptoms[i];
+                    for (i in result) {
+                        symptomIds.push(result[i].sid);
                     }
-                    res.json(result);
+        
+                    post.findSymptoms(symptomIds, (error, symptoms) => {
+                        if (error) {
+                            console.log(error);
+                            res.json({ errMsg: "Error: Failed on reading symptom list." })
+                        }
+                        else {
+                            // console.log(symptoms)
+                            for (i in symptoms) {
+                                result[i]["symptoms"] = symptoms[i];
+                            }
+                            res.json(result);
+                        }
+                    })
                 }
-            })
-        }
-    });
+            }
+        });
+    }
 }
 
 function postPost(req, res) {
@@ -88,7 +140,7 @@ function updateComment(req, res) {
     })
 }
 
-router.get("/post-page", getPage);
+router.post("/post-page", getPage);
 router.post("/read-post", getPosts);
 router.post("/write-post", postPost);
 router.post("/write-comment", updateComment);

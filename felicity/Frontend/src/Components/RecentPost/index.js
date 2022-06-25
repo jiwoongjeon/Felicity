@@ -143,7 +143,7 @@ export const RecentPost = (props) => {
 
             <PostElementContainer>
                 <Divider />
-                {props.pageload > 0 & props.postload > 0 && props.postData.map((data, i) => (
+                {props.pageload > 0 && props.postload > 0 ? props.postData.map((data, i) => (
                     <PostElement onClick={({ target }) => board(i)}>
                         <Column>
                             <Id>{data.id}</Id>
@@ -159,13 +159,22 @@ export const RecentPost = (props) => {
                                     ))}
                                 </SymptomsContainer>
                             </ContentElement>
-                            <Date>{data.category}</Date>
+                            <Date>
+                                {data.category == "Unknown" ? "Unknown" : (
+                                    data.category == "Internal" ? "Internal Medicine" :(
+                                        data.category == "Ear" ? "Ear-Nose-And-Throat Department" : "Orthopedics"
+                                    )
+                                )}
+                            </Date>
                             <Date>{data.date}</Date>
                             { data.state === 1 && <State>Answered</State>}
                             { data.state === 0 && <UnState>Not Answered</UnState>}
                         </Column>
                         <Divider/>
-                    </PostElement> ))}
+                    </PostElement> )) 
+                    :
+                    "Loading..."
+                    }
 
                 {!props.postData[0] && <Column_alert>There is no post to show</Column_alert>}
 
