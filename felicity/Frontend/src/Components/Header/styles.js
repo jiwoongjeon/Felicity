@@ -38,3 +38,11 @@ export const MenuButton = styled(Link)`
     text-decoration:none;
     color:black;
 `;
+
+export const NavLink = styled(Link)`
+    color: black;
+`
+
+export const Badge = styled.div`
+margin-left: 19px;
+`

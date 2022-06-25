@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { Stack, Badge } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import needhelp from '../assets/needhelp_highres.png'
 import LogoImg from '../assets/telep_logo_horizon.png';
+import { i } from '../MeetingPage';
 //import react pro sidebar components
+
+
+
 import {
   ProSidebar,
   Menu,
@@ -22,6 +27,8 @@ import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 
 const { HelpContainer, MenuButton, ActiveButton } = require("./styles");
+export const count = 0;
+
 
 
 const Header = (props) => {
@@ -35,8 +42,14 @@ const Header = (props) => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+
+
+  
   return (
+   
+       
     <>
+   
       <div id="header">
         {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
@@ -51,8 +64,16 @@ const Header = (props) => {
             <Menu iconShape="square">
 
               {props.isDoctor &&
-                <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients
-                  <MenuButton to={`./Meeting`}></MenuButton></MenuItem>}
+                <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients  
+                  <MenuButton to={`./Meeting`}>
+                  
+        
+                  
+        
+                  </MenuButton>
+                  <Badge badgeContent = {count + 1} color = "secondary" />
+                  </MenuItem>}
+
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
                     <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}

@@ -3,6 +3,8 @@ import Slider from '@material-ui/core/Slider';
 import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer, Header, PostElementContainer, AvailContainer, Divider, AvailBubble, PostElement, HeaderColumn, Time, BodyColumn, No, Patient, Name, PhotoArea, UnavailableBubble, Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
 import { Redirect } from "react-router-dom";
 
+export const i = 0;
+
 const ActivateButton = (active, did, rid, func) => {
   if (active === 0) {
     return <UnavailableBubble>Already setted</UnavailableBubble>;
@@ -34,6 +36,7 @@ export const MeetingPage = (props) => {
           <PostElement>
             <BodyColumn>
               <No>{i + 1}</No>
+
               <PhotoArea img={data.img} />
 
               <Patient>
@@ -77,5 +80,7 @@ export const MeetingPage = (props) => {
       {props.reserved && <Redirect to="/Doctor/Home" />}
 
     </PostContainer>
+    
   );
+  
 };
