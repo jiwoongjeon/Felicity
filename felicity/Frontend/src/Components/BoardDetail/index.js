@@ -52,14 +52,13 @@ const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, Cont
 export const BoardDetail = (props) => {
 
     const [isReply, setReplyState] = React.useState(false)
-    const [title, setTitle] = React.useState('');
     const [content, setContent] = React.useState('');
 
     let button;
     const handleTitle = (event) => { setTitle(event.target.value); };
     const handleContent = (event) => { setContent(event.target.value); };
 
-    if (title == '' || content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
+    if (content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
     else { button = <SubmitBtn>Submit</SubmitBtn> }
 
     return(
