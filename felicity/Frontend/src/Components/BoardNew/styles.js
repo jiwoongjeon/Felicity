@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NewBoardContainer = styled.div`
@@ -34,8 +35,8 @@ export const ColumnTitle = styled.div`
 `;
 
 export const WriteContainer = styled.div`
-width: 90%;
-height: 70%;
+width: 95%;
+height: 80%;
 display: flex;
 flex-direction: column;
 border: 1px solid #0075FF;
@@ -105,7 +106,7 @@ margin-top:20px;
 `
 
 export const SubmitBtnDisabled = styled.div`
-height:45px;
+height:55px;
 width:120px;
 text-align:center;
 border: 1px solid #0075FF;
@@ -119,8 +120,8 @@ margin-bottom:1%;
 cursor: not-allowed; 
 `;
 
-export const SubmitBtn = styled.div`
-height:45px;
+export const SubmitBtn = styled(Link)`
+height:55px;
 width:120px;
 text-align:center;
 background-color: #0075FF;
@@ -132,4 +133,14 @@ font-weight: bold;
 color: white;
 margin-bottom:1%;
 cursor: pointer; 
+text-decoration:none;
+    white-space: nowrap;
+    &:hover {
+      color: white;
+      background-color: #3D7EFF;
+    }
+    &:active {
+      color: white;
+      background-color: #004FEB;
+    }
 `;

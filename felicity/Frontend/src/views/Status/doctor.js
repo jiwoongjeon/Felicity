@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import { useState } from "react";
 import Header from '../../Components/Header/Header';
 import {Mostouter,Cat,List,Directory,User} from './layout';
@@ -6,10 +6,13 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
 import RecentPost from "../../Components/RecentPost";
-//import { POST_DATA, PAGE_DATA } from "./tempData";
+import BoardDetail from "../../Components/BoardDetail";
 import UserRedirect from "../UserRedirect";
 import axios from "axios";
 import API_URL from "../../API/server-ip";
+import { BOARD_DATA, USER_DATA } from "./tempData";
+
+import { SocketContext } from "../../API/video";
 
 function StatusDoctor(props) {
     
@@ -30,9 +33,13 @@ function StatusDoctor(props) {
 
   const [posts, setPosts] = useState(POST_DATA);
   const [pages, setPages] = useState(PAGE_DATA);
+  const [board, setBoard] = useState([]);
+  const [isBoard, setIsBoard] =useState(false);
 
   const [postload, setPostLoad] = useState();
   const [pageload, setPageLoad] = useState();
+
+  const { sendComment } = useContext(SocketContext);
 
   function setToAll() {
       setAll(true)
@@ -97,39 +104,37 @@ function StatusDoctor(props) {
 
   
   function IndexIncrement() {
+    GetPage(((index + 1) * 5) + 1)
     setIndex(index + 1)
-    GetPage((index * 5) + 1)
   }
 
   function IndexReduction() {
+    GetPage(((index - 1) * 5) + 5)
     setIndex(index - 1)
-    GetPage((index * 5) + 5)
   }
 
   function GetPage(page) {
     console.log(page)
 
-    useEffect(() => {
-      setPostLoad(0)
-      setPageLoad(0)
+    setPostLoad(0)
+    setPageLoad(0)
 
-      axios.post(`${API_URL}/read-post`, { targetPage: page, department: 0})
-        .then((response) => {
-          POST_DATA = response.data
-          setToAll()
-          setPostLoad(1)
-        })
+    axios.post(`${API_URL}/read-post`, { targetPage: page, department: 0})
+      .then((response) => {
+        POST_DATA = response.data
+        setToAll()
+        setPostLoad(1)
+      })
 
-      axios.get(`${API_URL}/post-page`)
-        .then((response) => {
-          // console.log(response.data)
-          setPages({
-            current_page: page,
-            last_page: response.data
-          })
-          setPageLoad(1)
+    axios.get(`${API_URL}/post-page`)
+      .then((response) => {
+        // console.log(response.data)
+        setPages({
+          current_page: page,
+          last_page: response.data
         })
-    }, [])
+        setPageLoad(1)
+      })
   }
 
   useEffect(() => {
@@ -168,16 +173,22 @@ function StatusDoctor(props) {
     </User>
 
     <List>
-        <RecentPost
+        {!isBoard && <RecentPost
         setToAll={setToAll} setToEBin={setToEBin} setToInternal={setToInternal} setToOrthopedics={setToOrthopedics}
         setToNewest={setToNewest} setToOldest={setToOldest} setToUnknown={setToUnknown}
         allSelect={allSelect} internalSelect={internalSelect} EBinSelect={EBinSelect} orthopedicsSelect={orthopedicsSelect} 
         newestSelect={newestSelect} oldestSelect={oldestSelect} unknownSelect={unknownSelect}
         postData={posts} pageData={pages} index={index} setIndex={setIndex} GetPage={GetPage}
         IndexIncrement={IndexIncrement} IndexReduction={IndexReduction}
-        pageload={pageload} postload={postload}
+        pageload={pageload} postload={postload} setBoard={setBoard} setIsBoard={setIsBoard}
+        isDoctor={props.isDoctor}/>}
 
-        isDoctor={props.isDoctor}/>
+        {isBoard && <BoardDetail 
+          data={board}
+          setIsBoard={setIsBoard}
+          isDoctor={props.isDoctor}
+          sendComment={sendComment}
+        />}
     </List>
 
     </Mostouter>

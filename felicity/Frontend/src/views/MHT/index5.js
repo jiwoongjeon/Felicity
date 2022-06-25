@@ -34,8 +34,10 @@ function MHT5() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (5/6)</SubTitle>
-            <SubmitButton onClick={sessionStore} to={'/MHT6'}>
-                Next</SubmitButton>
+            <SubTitle>
+              <SubmitButton onClick={sessionStore} to={'/MHT6'}>Next</SubmitButton>
+              <SubmitButton to={'/MHT4'}>Previous</SubmitButton>
+            </SubTitle>
             <Label>5. Do you have any suspective reason why? (Optional)</Label>
             <RadioBox>
               <RadioButton

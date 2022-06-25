@@ -41,6 +41,9 @@ export const SubTitle = styled.div`
     font-size: 20px;
     margin-top: 10px;
     color: #002D84;
+    display:flex;
+    flex-direction:row;
+    width:100%;
 `;
 
 export const Label = styled.div`
@@ -52,12 +55,13 @@ export const Label = styled.div`
 `;
 
 export const SubmitButton = styled(Link)`
-    width: 500px;
+    width: 500px;   
     height: 40px;
     background-color: #0075FF;
     border-radius: 20px;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
     padding-top: 5px;
     border: 0;
     outline: 0;
@@ -67,6 +71,7 @@ export const SubmitButton = styled(Link)`
     font-weight: bold;
     font-size: 18px;
     text-decoration:none;
+    text-align:center;  
     &:hover {
       color: white;
       background-color: #3D7EFF;
@@ -83,7 +88,8 @@ export const SubmitButtonDisabled = styled.div`
     background-color: #cccccc;
     border-radius: 20px;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
     padding-top: 5px;
     border: 0;
     outline: 0;
@@ -93,6 +99,7 @@ export const SubmitButtonDisabled = styled.div`
     font-weight: bold;
     font-size: 18px;
     text-decoration:none;
+    text-align:center;
     cursor: not-allowed; 
     &:hover {
         color: white;
@@ -130,6 +137,33 @@ export const MoveButton = styled(Link)`
       background-color: #004FEB;
     }
 `;
+
+export const MoveButtonBig = styled(Link)`
+    width:95%;
+    height: 40px;
+    background-color: #0075FF;
+    border-radius: 20px;
+    margin-top:10px;
+    margin-left:5%;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration:none;
+    &:hover {
+      color: white;
+      background-color: #3D7EFF;
+    }
+    &:active {
+      color: white;
+      background-color: #004FEB;
+    }
+`;
+
 
 export const InputBox = styled.div`
     width: 100%;

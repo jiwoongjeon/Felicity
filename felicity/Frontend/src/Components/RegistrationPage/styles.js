@@ -66,6 +66,15 @@ export const Label = styled.div`
     margin-bottom:12px;
 `;
 
+export const Label1 = styled.div`
+    text-align: left;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom:12px;
+`;
+
 export const LabelRed = styled.div`
     text-align: left;
     font-family: Roboto;
@@ -168,7 +177,7 @@ export const SubmitButton = styled(Link)`
     background-color: #0075FF;
     border-radius: 20px;
     margin-top: 43px;
-    margin-bottom:40px;
+    margin-bottom:100px;
     padding-top: 5px;
     border: 0;
     outline: 0;
@@ -186,6 +195,29 @@ export const SubmitButton = styled(Link)`
       color: white;
       background-color: #004FEB;
     }
+`;
+
+export const SubmitButtonDisabled = styled(Link)`
+    width: 100%;
+    height: 40px;
+    background-color: #cccccc;
+    border-radius: 20px;
+    margin-top: 43px;
+    margin-bottom:100px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration:none;
+    cursor: not-allowed; 
+    &:hover {
+        color: white;
+        background-color: #cccccc;
+      }
 `;
 
 export const Signup = styled.div`

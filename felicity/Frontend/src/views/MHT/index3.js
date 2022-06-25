@@ -21,8 +21,11 @@ function MHT3() {
             <Logo src={LogoImg}></Logo>
             <Title>Welcome!</Title>
             <SubTitle>Please fill out medical history form below (3/6)</SubTitle>
-            {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
-            {next && <SubmitButton onClick={sessionStore} to={'/MHT4'}>Next</SubmitButton>}
+            <SubTitle>
+              {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
+              {next && <SubmitButton onClick={sessionStore} to={'/MHT4'}>Next</SubmitButton>}
+              <SubmitButton to={'/MHT2'}>Previous</SubmitButton>
+            </SubTitle>
             <Label>3. Where does the most severely hurt?  *</Label>
             <InputBox>
                 <BodyInput id="where" onChange={({target}) => setNext(target.value)}/>

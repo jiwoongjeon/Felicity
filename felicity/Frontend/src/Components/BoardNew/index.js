@@ -2,34 +2,48 @@ import React, { useContext } from "react";
 import { AiFillCamera } from "react-icons/ai";
 import { InputLabel, MenuItem, FormControl, Select, TextField } from '@mui/material';
 
-import { SocketContext } from "../../API/video";
-
 const { NewBoardContainer, Header, WriteContainer, WriteSubContainer, SubmitBtn, Column, Divider, ColumnTitle, SubmitBtnDisabled } = require('./styles')
 
 
-export const BoardNew = () => {
+export const BoardNew = ({ sendPost }) => {
+
+    let depart = sessionStorage.getItem("depart")
+    let why = sessionStorage.getItem("why")
+    let time
+    let time_index = sessionStorage.getItem("time")
+
+    if (time_index == 0) time = 'Less than 24 hours'
+    if (time_index == 1) time = 'Less than 3 days'
+    if (time_index == 2) time = 'Less than 1 week'
+    if (time_index == 3) time = 'Less than 1 month'
+    if (time_index == 4) time = 'More than 1 month'
 
     const [title, setTitle] = React.useState('');
-    const [category, setCategory] = React.useState('Select a category');
-    const [content, setContent] = React.useState('');
+    const [category, setCategory] = React.useState(depart);
+
+    if (!depart) depart = 'None'
+    if (!why) why = 'None'
+
+    const [content, setContent] = React.useState(
+        'Wounded area: ' + sessionStorage.getItem("where") + '\n' +
+        'Expected Department: ' + depart + '\n' +
+        'Injured time: ' + time + '\n' +
+        'Severity: ' + sessionStorage.getItem("level") + ' out of 10' + '\n' +
+        'Severity: ' + sessionStorage.getItem("level") + ' out of 10' + '\n' +
+        'Expected reason: ' + why + '\n'
+    );
 
     let button;
     const handleTitle = (event) => { setTitle(event.target.value); };
     const handleContent = (event) => { setContent(event.target.value); };
     const handleCategoryChange = (event) => { setCategory(event.target.value); };
 
-    const { sendPost } = useContext(SocketContext);
-
-    if (title == '' || content == '') {
-        button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
-    }
-    else {
-        button = <SubmitBtn onClick={() => sendPost(title, content)}> Submit</SubmitBtn >
-    }
+    if (title == '' || category == '') button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+    else button = <SubmitBtn onClick={() => sendPost(title, content, category)} to='/Patient/Home'>Submit</SubmitBtn >
 
     return (
         <NewBoardContainer>
-            <Header>New Question</Header>
+            <Header>Post a New Question</Header>
 
             <WriteContainer>
                 <ColumnTitle>
@@ -47,10 +61,10 @@ export const BoardNew = () => {
                     <InputLabel>Category</InputLabel>
                     <Select
                         value={category}
-                        label="Category"
+                        label="Select a category"
                         displayEmpty
                         onChange={handleCategoryChange}>
-                        <MenuItem value={1}>All Clinics</MenuItem>
+                        <MenuItem value={1}>Unknown</MenuItem>
                         <MenuItem value={2}>Internal Medicine</MenuItem>
                         <MenuItem value={3}>Ear-Nose-And-Throat Department</MenuItem>
                         <MenuItem value={4}>Orthopedics</MenuItem>

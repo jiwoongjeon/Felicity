@@ -40,7 +40,8 @@ const ContextProvider = ({ children }) => {
     ])
 
     const [userJoined, setUserJoined] = useState(false);
-    const [reserved, setReserved] = useState(false)
+    const [reserved, setReserved] = useState(false);
+    const [posted, setPosted] = useState(false);
 
     const myVideo = useRef();
     const userVideo = useRef();
@@ -49,6 +50,16 @@ const ContextProvider = ({ children }) => {
     function loginSessionStore(role, jwt) { //stores items in sessionStorage
         window.sessionStorage.setItem('role', JSON.stringify(role));
         window.sessionStorage.setItem('jwt', JSON.stringify(jwt));
+    }
+
+    function sessionClose() { //stores items in sessionStorage
+        window.sessionStorage.removeItem('hurt');
+        window.sessionStorage.removeItem('depart');
+        window.sessionStorage.removeItem('time');
+        window.sessionStorage.removeItem('where');
+        window.sessionStorage.removeItem('level');
+        window.sessionStorage.removeItem('why');
+        window.sessionStorage.removeItem('checklist');
     }
 
     const postPatientLogin = ({ email, password }) => async () => {
@@ -117,14 +128,27 @@ const ContextProvider = ({ children }) => {
         return MHTdata;
     }
 
-    const sendPost = (title, context) => {
+    const sendPost = (title, context, category) => {
+        // console.log(title, context, category)
         const mhtData = getMHTData();
         const postData = {
             title: title,
             context: context,
+            category: category,
             MHT: mhtData,
         }
-        Axios.post(`${API_URL}/post`, postData)
+        Axios.post(`${API_URL}/write-post`, postData)
+        sessionClose()
+    }
+
+    const sendComment = (postId, doctorId, comment) => {
+        console.log(postId, doctorId, comment)
+        const data = {
+            postId: postId,
+            doctorId: doctorId,
+            comment: comment
+        }
+        Axios.post(`${API_URL}/write-comment`, data)
     }
 
     const sendReservation = (departmentId, preferredDoctorId, date, time) => {
@@ -136,7 +160,8 @@ const ContextProvider = ({ children }) => {
             pDoc: preferredDoctorId,
             MHT: mhtData,
         }
-        Axios.post(`${API_URL}/create_schedule`, reservationData);
+        Axios.post(`${API_URL}/create_schedule`, reservationData)
+        sessionClose();
     }
 
     const acceptReservation = (doctorId, reservationId) => {
@@ -340,7 +365,8 @@ const ContextProvider = ({ children }) => {
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, send, sendPost,
-                sendReservation, acceptReservation, userJoined, setUserJoined
+                sendReservation, acceptReservation, userJoined, setUserJoined,
+                sendComment
             }}
         >
             {children}

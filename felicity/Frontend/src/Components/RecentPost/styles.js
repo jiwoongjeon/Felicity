@@ -31,11 +31,12 @@ flex-direction: column;
 overflow-y: auto;
 `;
 
-export const PostElement = styled(Link)`
+export const PostElement = styled.div`
   display: flex;
   flex-direction: column;
   text-decoration:none;
   align-items: center;
+  cursor:pointer;
 `;
 
 export const ContentElement = styled.div`
@@ -302,16 +303,15 @@ export const WriteButton = styled(Link)`
 `;
 
 export const PageContainer = styled.div`
-  flex:3;
+  flex:4;
   min-width:300px;
-  margin-top:15px;
   height: 50px;
   display: flex;
   flex-direction: row;
   background-color: white;
   box-sizing: border-box;
   border-radius: 15px;
-  justify-content:space-between;
+  justify-content:center;
 `;
 
 export const PageNavigatorLabel = styled.p`

@@ -46,11 +46,12 @@ function getPosts(req, res) {
 }
 
 function postPost(req, res) {
-    // console.log(req.body);
+    console.log(req.body);
     const postData = req.body;
     const MHTData = req.body.MHT;
     const checkList = MHTData.checklist;
     // console.log(MHTData);
+
     post.insertSymptom(MHTData, (error, result) => {
         if (error) {
             console.log(error);
@@ -73,11 +74,23 @@ function postPost(req, res) {
             })
         }
     })
+
     // res.json("received")
+}
+
+function updateComment(req, res) {
+    console.log(req.body)
+    post.insertComment(req.body.postId, req.body.doctorId, req.body.comment, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.json({ errMsg: "Error: Failed on updating comments"})
+        }
+    })
 }
 
 router.get("/post-page", getPage);
 router.post("/read-post", getPosts);
 router.post("/write-post", postPost);
+router.post("/write-comment", updateComment);
 
 module.exports = router;
