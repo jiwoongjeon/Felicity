@@ -139,8 +139,17 @@ const Schedule = ({ startCall, schedule_data}) => {
                             
                             
                             <AppointmentContainer> 
-                                
-                                {Click(data.reserved_date, data.reserved_time, data.past) && (
+                                <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
+                                        <Group>
+                                            <Date>{data.reserved_date}</Date> 
+                                            <TimeEmail>{data.reserved_time}</TimeEmail>
+                                        </Group>
+                                        <Group>
+                                            <DeleteIcon>DELETE</DeleteIcon>
+                                            <EditIcon>EDIT</EditIcon>
+                                        </Group>
+                                     </FstColumn>
+                                {/* {Click(data.reserved_date, data.reserved_time, data.past) && (
                                     <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
                                         <Group>
                                             <Date>{data.reserved_date}</Date> 
@@ -162,7 +171,7 @@ const Schedule = ({ startCall, schedule_data}) => {
                                             <DeleteIcon>DELETE</DeleteIcon>
                                             <EditIcon>EDIT</EditIcon>
                                         </Group>
-                                    </First>)}
+                                    </First>)} */}
 
                                 <Column>
                                     <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>

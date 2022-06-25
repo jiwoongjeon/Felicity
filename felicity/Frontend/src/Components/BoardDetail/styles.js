@@ -153,6 +153,13 @@ margin-bottom:50px;
 text-align:left;
 `;
 
+export const Comment = styled.p`
+width: 70%;
+min-width:500px;
+margin-bottom:50px;
+text-align:left;
+`;
+
 export const ReplyBtn = styled.div`
 height:36px;
 width:120px;
