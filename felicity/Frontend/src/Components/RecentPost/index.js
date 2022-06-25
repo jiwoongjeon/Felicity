@@ -49,6 +49,11 @@ const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider,
 
 export const RecentPost = (props) => {
 
+    function board(i) {
+        props.setBoard(props.postData[i])
+        props.setIsBoard(true)
+    }
+
     let page = props.pageData.current_page;
     let last = props.pageData.last_page;
     let index = props.index;
@@ -139,7 +144,7 @@ export const RecentPost = (props) => {
             <PostElementContainer>
                 <Divider />
                 {props.pageload > 0 & props.postload > 0 && props.postData.map((data, i) => (
-                    <PostElement to={'./Board?' + data.id}>
+                    <PostElement onClick={({ target }) => board(i)}>
                         <Column>
                             <Id>{data.id}</Id>
                             <ContentElement>
@@ -165,6 +170,7 @@ export const RecentPost = (props) => {
                 {!props.postData[0] && <Column_alert>There is no post to show</Column_alert>}
 
             </PostElementContainer>
+            <Divider/>
 
             <ColumnBottom>
                 {/* <Search>
@@ -172,9 +178,9 @@ export const RecentPost = (props) => {
                     <SearchContent />
                 </Search> */}
                 <PageContainer>
-                    <PageNavigatorLabel onClick={({target}) => props.GetPage(page--)}>Previous</PageNavigatorLabel>
+                    {/* <PageNavigatorLabel onClick={({target}) => props.PageIncrement()}>Previous</PageNavigatorLabel> */}
                         <PageButton />
-                    <PageNavigatorLabel onClick={({target}) => props.GetPage(page++)}>Next</PageNavigatorLabel>
+                    {/* <PageNavigatorLabel onClick={({target}) => props.PageReduction()}>Next</PageNavigatorLabel> */}
                 </PageContainer>
                 {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
             </ColumnBottom>

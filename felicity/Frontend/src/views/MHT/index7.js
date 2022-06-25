@@ -19,7 +19,7 @@ function MHT7() {
             <SubTitle>You can request an appointment or post a question to doctors</SubTitle>
             <Row>
                 <MoveButton to={`/Patient/Appointment`}>Request Appointment</MoveButton>
-                <MoveButton to={`/Patient/RecentPost`}>Post a question</MoveButton>
+                <MoveButton to={`/Patient/Newpost`}>Post a question</MoveButton>
             </Row>
             <MoveButtonBig to={`/MHT6`}> Previous</MoveButtonBig>
             

@@ -30,11 +30,11 @@ export const CV = (props) => {
                             props.data.stomachache, props.data.chills, props.data.muscle_sickness, props.data.other]).map((symptom) => (
                                 <Detail>{symptom} </Detail>
                             ))}
-                        <Row>
+                        {/* <Row>
                             <DetailLabel>Request: </DetailLabel>
                             {props.data.request && <Detail>{props.data.request}</Detail>}
                             {!props.data.request && <Detail>None</Detail>}
-                        </Row>
+                        </Row> */}
                         <Row>
                             <DetailLabel>Department: </DetailLabel>
                             {props.data.department && <Detail>{props.data.department}</Detail>}
