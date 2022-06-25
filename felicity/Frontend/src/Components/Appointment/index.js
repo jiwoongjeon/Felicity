@@ -11,15 +11,6 @@ export const AppointmentHolder = (props) => {
     const { sendReservation } = useContext(SocketContext);
 
     var today = new Date().toISOString().split('T')[0];
-    function sessionClose() { //stores items in sessionStorage
-        window.sessionStorage.removeItem('hurt');
-        window.sessionStorage.removeItem('depart');
-        window.sessionStorage.removeItem('time');
-        window.sessionStorage.removeItem('where');
-        window.sessionStorage.removeItem('level');
-        window.sessionStorage.removeItem('why');
-        window.sessionStorage.removeItem('checklist');
-    }
 
     const Checklist = JSON.parse(sessionStorage.getItem("checklist"));
     if (Checklist == null) {
@@ -80,7 +71,7 @@ export const AppointmentHolder = (props) => {
 
                 <Divider />
 
-                <Column>
+                {/* <Column>
                     <DetailLabel>Preferd Physician: </DetailLabel>
                     <FormControl sx={{ minWidth: 265, marginTop: 3, marginLeft: 3, textAlign: "left" }}>
                         <InputLabel>Preference</InputLabel>
@@ -97,7 +88,7 @@ export const AppointmentHolder = (props) => {
                     </FormControl>
                 </Column>
 
-                <Divider />
+                <Divider /> */}
 
                 <DetailLabel>Symptom: </DetailLabel>
 
@@ -130,7 +121,7 @@ export const AppointmentHolder = (props) => {
                 </SymptomsContainer>
                 <ColumnBottom>
                     {!department ? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
-                        : !preference ? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+                        // : !preference ? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
                             : !reserved_date ? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
                                 : !reserved_time ? <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
                                     : <SubmitBtn to='./Home' onClick={() => sendReservation(department, preference, reserved_date, reserved_time)} >Submit</SubmitBtn>}

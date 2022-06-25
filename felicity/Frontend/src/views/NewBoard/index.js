@@ -14,7 +14,7 @@ function NewBoard(props) {
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
   const written = JSON.parse(sessionStorage.getItem('level'));
 
-  const { sendPost } = useContext(SocketContext);
+  const { sendPost, posted } = useContext(SocketContext);
 
   return (
 

@@ -97,7 +97,6 @@ export const Title = styled.p`
   text-align: left;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
   color:black;
 `;   
 
@@ -142,10 +141,8 @@ export const UnState = styled.p`
 
 export const Date = styled.p`
   color: #718096;
-  margin-top: 10px;
-  margin-left: 30px;
-  margin-bottom: 25px;
   white-space: nowrap;
+  margin-top:-15px;
 `;
 
 export const Content = styled.p`
@@ -224,7 +221,7 @@ export const UnStateBottom = styled.p`
 
 export const WriteContainer = styled.div`
 width: 100%;
-height: 90%;
+height: 200px;
 display: flex;
 flex-direction: column;
 border: 1px solid #0075FF;
@@ -241,6 +238,7 @@ export const WriteSubContainer = styled.div`
 width: 100%;
 height: 100%;
 padding-left:2%;
+margin-top:10px;
 overflow-y:hidden;
 `;
 
@@ -253,7 +251,7 @@ export const ColumnTitle = styled.div`
 `;
 
 export const SubmitBtn = styled.div`
-height:45px;
+height:40px;
 width:120px;
 text-align:center;
 background-color: #0075FF;
@@ -267,8 +265,24 @@ margin-bottom:1%;
 cursor: pointer;
 `;
 
+export const BackButtom = styled.div`
+height:40px;
+width:120px;
+text-align:center;
+background-color: #0075FF;
+border-radius: 10px;
+margin-top:13px;
+margin-left:40px;
+padding-top: 5px;
+font-weight: bold;
+color: white;
+margin-bottom:1%;
+cursor: pointer;
+`;
+
+
 export const CancelBtn = styled.div`
-height:45px;
+height:40px;
 width:120px;
 text-align:center;
 border: 1px solid #0075FF;

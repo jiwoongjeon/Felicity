@@ -6,10 +6,11 @@ import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
 import RecentPost from "../../Components/RecentPost";
-//import { POST_DATA, PAGE_DATA } from "./tempData";
+import BoardDetail from "../../Components/BoardDetail";
 import UserRedirect from "../UserRedirect";
 import axios from "axios";
 import API_URL from "../../API/server-ip";
+import { BOARD_DATA, USER_DATA } from "./tempData";
 
 function StatusDoctor(props) {
     
@@ -30,6 +31,8 @@ function StatusDoctor(props) {
 
   const [posts, setPosts] = useState(POST_DATA);
   const [pages, setPages] = useState(PAGE_DATA);
+  const [board, setBoard] = useState([]);
+  const [isBoard, setIsBoard] =useState(false);
 
   const [postload, setPostLoad] = useState();
   const [pageload, setPageLoad] = useState();
@@ -166,16 +169,20 @@ function StatusDoctor(props) {
     </User>
 
     <List>
-        <RecentPost
+        {!isBoard && <RecentPost
         setToAll={setToAll} setToEBin={setToEBin} setToInternal={setToInternal} setToOrthopedics={setToOrthopedics}
         setToNewest={setToNewest} setToOldest={setToOldest} setToUnknown={setToUnknown}
         allSelect={allSelect} internalSelect={internalSelect} EBinSelect={EBinSelect} orthopedicsSelect={orthopedicsSelect} 
         newestSelect={newestSelect} oldestSelect={oldestSelect} unknownSelect={unknownSelect}
         postData={posts} pageData={pages} index={index} setIndex={setIndex} GetPage={GetPage}
         IndexIncrement={IndexIncrement} IndexReduction={IndexReduction}
-        pageload={pageload} postload={postload}
+        pageload={pageload} postload={postload} setBoard={setBoard} setIsBoard={setIsBoard}
+        isDoctor={props.isDoctor}/>}
 
-        isDoctor={props.isDoctor}/>
+        {isBoard && <BoardDetail 
+          data={board}
+          setIsBoard={setIsBoard}
+          isDoctor={props.isDoctor} />}
     </List>
 
     </Mostouter>
