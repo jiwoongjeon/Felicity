@@ -55,7 +55,6 @@ export const BoardDetail = (props) => {
     const [content, setContent] = React.useState('');
 
     let button;
-    const handleTitle = (event) => { setTitle(event.target.value); };
     const handleContent = (event) => { setContent(event.target.value); };
 
     if (content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
