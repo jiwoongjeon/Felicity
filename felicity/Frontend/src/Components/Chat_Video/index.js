@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './index.css';
 
-export const Chat = ( { context } ) => {
+export const Chat_Video = ( { context } ) => {
     const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send } = context;
 
     const nickname = useRef(null);
@@ -57,4 +57,4 @@ export const Chat = ( { context } ) => {
     )
 }
 
-export default Chat
+export default Chat_Video
