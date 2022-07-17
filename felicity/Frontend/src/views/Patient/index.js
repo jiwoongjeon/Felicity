@@ -27,7 +27,6 @@ import API_URL from "../../API/server-ip";
 import { SocketContext } from '../../API/video'
 
 function Patient() {
-
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
     const [scheduleData, setScheduleData] = React.useState([])

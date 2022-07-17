@@ -17,7 +17,7 @@ function getDoctorConvList(req, res) {
                 patientIds.push(result[i].patient_id);
                 patientNames.push(result[i].patient_name);
             }
-            res.json({convId: convIds, patientId: patientId});
+            res.json({ convId: convIds, patientId: patientIds, patientName: patientNames });
         }
     });
 }
@@ -112,6 +112,24 @@ function getDoctorList(req, res) {
     })
 }
 
+function getPatientList(req, res) {
+    const idArr = [];
+    const nameArr = [];
+    conv.findPatientList((err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on getting patient name." }) 
+        }
+        else {
+            for (i in result) {
+                idArr.push(result[i].patient_id);
+                nameArr.push(result[i].firstname + " " + result[i].lastname);
+            }
+            res.json({ idArr: idArr, nameArr: nameArr });
+        }
+    })
+}
+
 function getDoctorName(req, res) {
     const doctor_id = req.body.doctor_id;
     conv.findDoctorName(doctor_id, (err, result) => {
@@ -126,12 +144,28 @@ function getDoctorName(req, res) {
     })
 }
 
+function getPatientName(req, res) {
+    const patient_id = req.body.patient_id;
+    conv.findPatientName(patient_id, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on getting doctor name." }) 
+        }
+        else {
+            const name = result[0].firstname + " " + result[0].lastname;
+            res.json({ patient_name: name });
+        }
+    })
+}
+
 router.post("/doctor_conv", getDoctorConvList);
 router.post("/patient_conv", getPatientConvList);
 router.post("/get_chat_conv", getChats);
 router.post("/post_conv", postConvList);
 router.post("/post_chat_conv", postChat);
-router.post("/post_doctor_list", getDoctorList);
+router.post("/get_doctor_list", getDoctorList);
+router.post("/get_patient_list", getPatientList);
 router.post("/get_doctor_name", getDoctorName);
+router.post("/get_patient_name", getPatientName);
 
 module.exports = router;
