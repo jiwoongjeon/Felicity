@@ -31,3 +31,5 @@ function patientStatus(req, res) {
 
 router.post("/dstatus", doctorStatus);
 router.post("/pstatus", patientStatus);
+
+module.exports = router
