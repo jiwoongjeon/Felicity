@@ -28,6 +28,12 @@ function Profile(props) {
     }
     else {
       Axios.post(`${API_URL}/pstatus`, {patientId: jwt})
+      .then((response) => {
+        if (response.data) {
+          setName(response.data[0].fullname)
+          setEmail(response.data[0].email)
+        }
+      })
     }
   }, [])
 
