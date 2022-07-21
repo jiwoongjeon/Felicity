@@ -42,10 +42,14 @@ const ContextProvider = ({ children }) => {
     const [userJoined, setUserJoined] = useState(false);
     const [reserved, setReserved] = useState(false);
     const [posted, setPosted] = useState(false);
+    const [count, setCount] = useState(0);
 
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
+    
+
+
 
     function loginSessionStore(role, jwt) { //stores items in sessionStorage
         window.sessionStorage.setItem('role', JSON.stringify(role));

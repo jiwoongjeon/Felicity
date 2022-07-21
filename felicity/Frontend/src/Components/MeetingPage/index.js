@@ -1,22 +1,63 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import Slider from '@material-ui/core/Slider';
 import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer, Header, PostElementContainer, AvailContainer, Divider, AvailBubble, PostElement, HeaderColumn, Time, BodyColumn, No, Patient, Name, PhotoArea, UnavailableBubble, Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
 import { Redirect } from "react-router-dom";
+import { SocketContext } from "../../API/video";
+import { ISO_8601 } from "moment";
 
-export const i = 0;
+
+
+export var isEmpty = true;
+
+//export const count = 0;
+
+function Increment () {
+  const { count, setCount } = useContext(SocketContext);
+  
+
+
+  if (count >= 1){
+
+    setCount(count + 1 );
+
+    return true;
+  
+  }
+
+  else{
+    setCount(1);
+
+    return true;
+  }
+
+  
+}
+
+
+
+
 
 const ActivateButton = (active, did, rid, func) => {
   if (active === 0) {
     return <UnavailableBubble>Already setted</UnavailableBubble>;
   }
 
+
+
   return (
-    <AvailBubble onClick={() => { func(did, rid); active = 0; }} to={'/Doctor/Home'}>Set Appointment</AvailBubble>
+    <AvailBubble onClick={() => {func(did, rid); active = 0; }} to={'/Doctor/Home'}>Set Appointment</AvailBubble>
   );
 }
 
 
 export const MeetingPage = (props) => {
+
+
+  const { count, setCount } = useContext(SocketContext);
+
+  const { id } = React.useContext(SocketContext);
+
+
   return (
     <PostContainer>
 
@@ -29,13 +70,22 @@ export const MeetingPage = (props) => {
         <DepartLabel>LEVEL OF HURT</DepartLabel>
         <AvailLabel>APPOINTMENT</AvailLabel>
       </HeaderColumn>
-
       <PostElementContainer>
         <Divider />
-        {props.patientData.map((data, i) => (
+
+        
+        {Increment && props.patientData.map((data, count) => (
+          
+
           <PostElement>
             <BodyColumn>
-              <No>{i + 1}</No>
+
+   
+         
+
+              <No>{ count + 1 }</No>
+              {console.log("count" + count)}
+      
 
               <PhotoArea img={data.img} />
 
@@ -74,13 +124,16 @@ export const MeetingPage = (props) => {
             <Divider />
           </PostElement>
 
-
-        ))}
+        ))
+        }
       </PostElementContainer>
       {props.reserved && <Redirect to="/Doctor/Home" />}
 
     </PostContainer>
-    
+
   );
-  
+ 
+
 };
+
+export default MeetingPage;
