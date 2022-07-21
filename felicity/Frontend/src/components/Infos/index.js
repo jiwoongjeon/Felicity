@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./index.css";
 import Accordion from 'react-bootstrap/Accordion';
 import 'bootstrap/dist/css/bootstrap.css';
-import Chat from '../Chat';
+import Chat from '../Chat_Video';
 import { CONVERSATION_DATA } from "./tempData";
 import { Patient } from "../RecentPost/styles";
 

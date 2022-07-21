@@ -22,6 +22,8 @@ app.use(require("./doctorlogin/router"));   // "/dlogin"
 app.use(require("./patientlogin/router"));  // "/plogin"
 app.use(require("./posts/router"));         // "/post"
 app.use(require("./schedule/router"));      // "/patient_schedule" or "/doctor_schedule"
+app.use(require("./status/router"));        // "dstatus" or "pstatus"
+app.use(require("./conv/router"));
 
 // const login = require("./login.js")
 

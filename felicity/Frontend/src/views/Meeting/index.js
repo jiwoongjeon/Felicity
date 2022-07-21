@@ -14,12 +14,17 @@ function Meeting(props) {
     const jwt = JSON.parse(sessionStorage.getItem("jwt"));
     const [patientData, setPatientData] = React.useState([]);
 
-    const { acceptReservation, reserved } = React.useContext(SocketContext);
+    const { acceptReservation, reserved, UTCToLocal } = React.useContext(SocketContext);
 
     React.useEffect(() => {
         Axios.get(`${API_URL}/read_schedule`)
             .then((response) => {
                 console.log(response.data);
+                for (var i = 0; i < response.data.length; i++) {
+                    var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
+                    response.data[i].reserved_date = date
+                    response.data[i].reserved_time = time
+                }
                 setPatientData(response.data)
             })
     }, [])
