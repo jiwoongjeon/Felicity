@@ -117,6 +117,45 @@ const ContextProvider = ({ children }) => {
         }
     }
 
+    function LocalToUTC(date, time){
+        const dateFromUI = date; //"2022-06-12"
+        const timeFromUI = time; //"12:30"
+    
+        const dateParts = dateFromUI.split("-");
+        console.log(dateParts)
+        const timeParts = timeFromUI.split(":");
+        console.log(timeParts)
+        const localDate = new Date(dateParts[0], dateParts[1]-1, dateParts[2], timeParts[0], timeParts[1]);
+        const dtUTC = localDate.toISOString().split('T');
+        const [dateUTC, timeUTC] = [dtUTC[0] , dtUTC[1].slice(0,5)];
+        return [dateUTC, timeUTC]
+    } 
+
+    function UTCToLocal(reserved_date, reserved_time) {
+        var dateParts = reserved_date.split("-"); //reserved_date "05-13-2022" , time "12:30 PM"
+        const [time, modifier] = reserved_time.split(" ");
+        let [hours, minutes] = time.split(":");
+        if (hours === "12") {
+            hours = "00";
+        }   
+        if (modifier === "PM") {
+            hours = parseInt(hours, 10) + 12;
+        }
+        var ISOtime = `${hours}:${minutes}`;
+        var timeParts = ISOtime.split(":") //"14:30"
+    
+        var date = new Date(dateParts[2], dateParts[0]-1, dateParts[1], timeParts[0], timeParts[1]);
+        var newDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
+        var LocalDate = newDate.toLocaleDateString()
+        var LocalTime = newDate.toLocaleTimeString().slice(0,-3)
+
+        return [LocalDate, LocalTime]
+    }
+
+    const changeDoctorAvailableTime = () => {
+
+    }
+
     const getMHTData = () => {
 
         const MHTdata = {
@@ -157,10 +196,11 @@ const ContextProvider = ({ children }) => {
 
     const sendReservation = (departmentId, preferredDoctorId, date, time) => {
         const mhtData = getMHTData();
+        const [reserved_date, reserved_time] = LocalToUTC(date, time)
         const reservationData = {
             department: departmentId,
-            date: date,
-            time: time,
+            date: reserved_date,
+            time: reserved_time,
             pDoc: preferredDoctorId,
             MHT: mhtData,
         }
@@ -384,7 +424,7 @@ const ContextProvider = ({ children }) => {
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
-                sendComment
+                sendComment, UTCToLocal
             }}
         >
             {children}
