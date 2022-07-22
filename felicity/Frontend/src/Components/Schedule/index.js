@@ -67,6 +67,8 @@ const Click = (date, time, past) => {
             return true;
         }
     }
+
+
     // if (!past) {
     //     if (appointment > today) {
     //         isEmpty = false;
@@ -139,7 +141,7 @@ const Schedule = ({ startCall, schedule_data}) => {
                             
                             
                             <AppointmentContainer> 
-                                <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
+                                {/* <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
                                         <Group>
                                             <Date>{data.reserved_date}</Date> 
                                             <TimeEmail>{data.reserved_time}</TimeEmail>
@@ -148,8 +150,8 @@ const Schedule = ({ startCall, schedule_data}) => {
                                             <DeleteIcon>DELETE</DeleteIcon>
                                             <EditIcon>EDIT</EditIcon>
                                         </Group>
-                                     </FstColumn>
-                                {/* {Click(data.reserved_date, data.reserved_time, data.past) && (
+                                     </FstColumn> */}
+                                {Click(data.reserved_date, data.reserved_time, data.past) ? ((
                                     <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
                                         <Group>
                                             <Date>{data.reserved_date}</Date> 
@@ -159,9 +161,20 @@ const Schedule = ({ startCall, schedule_data}) => {
                                             <DeleteIcon>DELETE</DeleteIcon>
                                             <EditIcon>EDIT</EditIcon>
                                         </Group>
-                                     </FstColumn>)}
+                                     </FstColumn>)) 
+                                     :
+                                     (<First>
+                                        <Group>
+                                            <Date>{data.reserved_date}</Date>   
+                                            <TimeEmail>{data.reserved_time}</TimeEmail>
+                                         </Group>
+                                         <Group>
+                                            <DeleteIcon>DELETE</DeleteIcon>
+                                            <EditIcon>EDIT</EditIcon>
+                                        </Group>
+                                    </First>)}
                 
-                                {NonClick(data.reserved_date, data.reserved_time, data.past) && (
+                                {/* {NonClick(data.reserved_date, data.reserved_time, data.past) && (
                                     <First>
                                         <Group>
                                             <Date>{data.reserved_date}</Date>   
