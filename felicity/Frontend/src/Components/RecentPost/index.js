@@ -51,6 +51,8 @@ export const RecentPost = (props) => {
 
     function board(i) {
         props.setBoard(props.postData[i])
+        props.setPageLoad(0)
+        props.setPostLoad(0)
         props.setIsBoard(true)
     }
 

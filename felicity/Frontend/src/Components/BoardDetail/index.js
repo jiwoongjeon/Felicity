@@ -66,13 +66,18 @@ export const BoardDetail = (props) => {
         props.sendComment(props.data.id, jwt, content)
     }
 
+    function back() {
+        props.setIsBoard(false)
+        props.GetPage(props.page)
+    }
+
     if (content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
     else { button = <SubmitBtn onClick={() => sendComment()}>Submit</SubmitBtn> }
 
     return(
         <BoardContainer>
             <Column>
-                <BackButtom onClick={({ target }) => props.setIsBoard(false)}>Back</BackButtom>
+                <BackButtom onClick={({ target }) => back()}>Back</BackButtom>
             </Column>
             <Divider />
                 <ContentContainer>

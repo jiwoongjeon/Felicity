@@ -5,75 +5,31 @@ const { RecordContainer, Group, First, TimeEmail, Detail, Header, RecordList, Re
 
 var isEmpty = true;
 
-
-
-
-const isPast = (date, time, past) => {
+const isPast = (date, time) => {
     
     const today = moment().format("MM-DD-YYYY")
     const today_time = moment().add(10, 'M').format("HH:mm:ss a")
     const appointment = moment(date).format("MM-DD-YYYY")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
+    if (appointment < today) {
+        isEmpty = false;
+        return true;
+    }
+    else if (appointment > today) 
+        return false;
 
- 
-    // if (!past) {
-    //     if (appointment < today) {
-    //         isEmpty = false;
-    //         return true;
-    //     }
-    //     else if (appointment > today) 
-    //         return false;
-
-    //     else
-    //         if (app_time < today_time){
-    //             isEmpty = false;
-    //             return true;
-    //         }
-    //         else
-    //             return false;
-    // }
-
-    // else {
-    //     if (appointment > today) {
-    //         isEmpty = false;
-         
-    //         return true;
-    //     }
-    //     else if (appointment < today)
-    //         return false;
-    //     else
-    //         if (app_time > today_time){
-    //             isEmpty = false;
-              
-    //             return true;
-    //         }
-    //         else
-    //             return false;
-    // }
-
-        
-   
-        if (appointment < today) {
+    else
+        if (app_time < today_time){
             isEmpty = false;
             return true;
         }
-        else if (appointment > today) 
-            return false;
-
         else
-            if (app_time < today_time){
-                isEmpty = false;
-                return true;
-            }
-            else
-                return false;
+            return false;
     
 }
 
  const PatinetRecord = ({schedule_data}) => {
-
-    isEmpty = true;
 
     return (
         <RecordContainer>
@@ -84,7 +40,7 @@ const isPast = (date, time, past) => {
             <RecordList>
                 {schedule_data.map((data) => (
                     <>
-                    {isPast(data.reserved_date, data.reserved_time, data.past) && (
+                    {isPast(data.reserved_date, data.reserved_time) && (
                         <RecordElement>
                             <First>
                                 <Group>
