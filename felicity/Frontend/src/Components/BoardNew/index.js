@@ -29,7 +29,6 @@ export const BoardNew = ({ sendPost }) => {
         'Expected Department: ' + depart + '\n' +
         'Injured time: ' + time + '\n' +
         'Severity: ' + sessionStorage.getItem("level") + ' out of 10' + '\n' +
-        'Severity: ' + sessionStorage.getItem("level") + ' out of 10' + '\n' +
         'Expected reason: ' + why + '\n'
     );
 
@@ -39,7 +38,7 @@ export const BoardNew = ({ sendPost }) => {
     const handleCategoryChange = (event) => { setCategory(event.target.value); };
 
     if (title == '' || category == '') button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
-    else button = <SubmitBtn onClick={() => sendPost(title, content, category)} to='/Patient/Home'>Submit</SubmitBtn >
+    else button = <SubmitBtn onClick={() => sendPost(title, content, category)} to='/Patient/RecentPost'>Submit</SubmitBtn >
 
     return (
         <NewBoardContainer>
