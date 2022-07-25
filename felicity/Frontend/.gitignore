@@ -3,3 +3,4 @@
 !/node_modules/react-calendar
 !/node_modules/react-pro-sidebar
 /build
+/src/API/server-ip.js

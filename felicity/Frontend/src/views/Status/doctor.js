@@ -38,8 +38,8 @@ function StatusDoctor(props) {
   const [board, setBoard] = useState([]);
   const [isBoard, setIsBoard] =useState(false);
 
-  const [postload, setPostLoad] = useState();
-  const [pageload, setPageLoad] = useState();
+  const [postload, setPostLoad] = useState(0);
+  const [pageload, setPageLoad] = useState(0);
 
   const { sendComment } = useContext(SocketContext);
 
@@ -238,9 +238,7 @@ function StatusDoctor(props) {
           last_page: response.data
         })
         setPageLoad(1)
-      })
-  }, [])
-
+      })}, [])
 
   return (
     <Mostouter>
@@ -265,7 +263,7 @@ function StatusDoctor(props) {
         newestSelect={newestSelect} oldestSelect={oldestSelect} unknownSelect={unknownSelect}
         postData={posts} pageData={pages} index={index} setIndex={setIndex} GetPage={GetPage}
         IndexIncrement={IndexIncrement} IndexReduction={IndexReduction}
-        pageload={pageload} postload={postload} setBoard={setBoard} setIsBoard={setIsBoard}
+        pageload={pageload} postload={postload} setPageLoad={setPageLoad} setPostLoad={setPostLoad} setBoard={setBoard} setIsBoard={setIsBoard}
         isDoctor={props.isDoctor}/>}
 
         {isBoard && <BoardDetail 
@@ -273,6 +271,8 @@ function StatusDoctor(props) {
           setIsBoard={setIsBoard}
           isDoctor={props.isDoctor}
           sendComment={sendComment}
+          GetPage={GetPage}
+          page={pages.current_page}
         />}
     </List>
 
