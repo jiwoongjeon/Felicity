@@ -74,6 +74,10 @@ io.on("connection", async socket => {
         io.to(userToCall).emit("result", text)
     })
 
+    socket.on("reconnection", (data) => {
+        console.log(socket.id, data)
+    })
+
     console.log(socket.id);
 
     socket.on("login", (data) => {

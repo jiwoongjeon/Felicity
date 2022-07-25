@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import Header from '../../Components/Header/Header';
 import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -7,6 +7,7 @@ import { ProfilePage } from "../../Components/ProfilePage";
 import UserRedirect from "../UserRedirect";
 import Axios from "axios";
 import API_URL from "../../API/server-ip";
+import { SocketContext } from "../../API/video";
 
 function Profile(props) {
 
@@ -15,14 +16,19 @@ function Profile(props) {
   const [email, setEmail] = useState("")
   const [time, setTime] = useState("")
 
+  const { changeDoctorAvailableTime, UTCToLocal } = useContext(SocketContext);
+
   useEffect(() => {
     if (props.isDoctor) {
       Axios.post(`${API_URL}/dstatus`, {doctorId: jwt})
       .then((response) => {
         if (response.data) {
+          const [tmpDateA, LocalTimeA] = UTCToLocal("2022-06-12", response.data[0].timea)
+          const [tmpDateB, LocalTimeB] = UTCToLocal("2022-06-12", response.data[0].timeb)
+          const time = LocalTimeA + " ~ " + LocalTimeB
           setName(response.data[0].fullname)
           setEmail(response.data[0].email)
-          setTime(response.data[0].time)
+          setTime(time)
         }
       })
     }
@@ -56,7 +62,7 @@ function Profile(props) {
 
 
     <Video>
-      <ProfilePage name={name} email={email} time={time} isDoctor={props.isDoctor}/>
+      <ProfilePage name={name} email={email} time={time} isDoctor={props.isDoctor} jwt={jwt} changeTime={changeDoctorAvailableTime} />
     </Video>
 
 

@@ -10,6 +10,7 @@ export const ProfilePage = (props) => {
     const [fileImage, setFileImage] = React.useState("");
 
     function setTime() {
+        props.changeTime(props.jwt, start_time, end_time)
         changeTime(!isTime)
     }
 

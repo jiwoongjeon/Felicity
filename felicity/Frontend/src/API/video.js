@@ -15,6 +15,12 @@ const SocketContext = createContext();
 
 const socket = io(`${API_URL}`);
 
+let tmpId = sessionStorage.getItem("jwt")
+let tmpRole = sessionStorage.getItem("role")
+if (tmpId) {
+    socket.emit("reconnection", [tmpId, tmpRole])
+}
+
 let recordAudio;
 
 const ContextProvider = ({ children }) => {
@@ -152,8 +158,10 @@ const ContextProvider = ({ children }) => {
         return [LocalDate, LocalTime]
     }
 
-    const changeDoctorAvailableTime = () => {
-
+    const changeDoctorAvailableTime = (doctorId, timeA, timeB) => {
+        const [tmpDateA, UTCTimeA] = LocalToUTC("2022-06-02", timeA);
+        const [tmpDateB, UTCTimeB] = LocalToUTC("2022-06-02", timeB);
+        Axios.post(`${API_URL}/dstatustime`, { doctorId: doctorId, timeA: UTCTimeA, timeB: UTCTimeB })
     }
 
     const getMHTData = () => {
@@ -424,7 +432,7 @@ const ContextProvider = ({ children }) => {
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
-                sendComment, UTCToLocal
+                sendComment, UTCToLocal, changeDoctorAvailableTime
             }}
         >
             {children}

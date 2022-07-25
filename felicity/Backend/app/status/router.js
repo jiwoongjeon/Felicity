@@ -15,6 +15,22 @@ function doctorStatus(req, res) {
     })
 }
 
+function doctorAvailableTime(req, res) {
+    const doctorId = req.body.doctorId;
+    const timeA = req.body.timeA;
+    const timeB = req.body.timeB;
+
+    console.log(req.body)
+    console.log("router", doctorId, timeA, timeB)
+
+    status.updateDoctorTime(doctorId, timeA, timeB, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed updating doctor available time"})
+        }
+    })
+}
+
 function patientStatus(req, res) {
     const patientId = req.body.patientId;
 
@@ -31,5 +47,6 @@ function patientStatus(req, res) {
 
 router.post("/dstatus", doctorStatus);
 router.post("/pstatus", patientStatus);
+router.post("/dstatustime", doctorAvailableTime);
 
-module.exports = router
+module.exports = router;
