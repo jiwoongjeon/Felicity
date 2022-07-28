@@ -29,12 +29,12 @@ import {
 const sessionStore = role => {
     var timer_end = true;
     window.sessionStorage.setItem('show', timer_end);
-    if (role) {
-        window.location.replace("/Patient/Home");
-    }
-    else {
-        window.location.replace("/Doctor/Home");
-    }
+    // if (role) {
+    //     window.location.replace("/Patient/Home");
+    // }
+    // else {
+    //     window.location.replace("/Doctor/Home");
+    // }
 }
 
 const Video = ({ context }) => {
@@ -119,7 +119,7 @@ const Video = ({ context }) => {
                     <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                 </IconLeft>
                 <IconRight>
-                    <Phone onClick={() => sessionStore(role)}><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
+                    <Phone onClick={() => sessionStore(role)} to="../Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 </IconRight>
             </Setting>
 

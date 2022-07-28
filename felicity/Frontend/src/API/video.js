@@ -50,6 +50,7 @@ const ContextProvider = ({ children }) => {
     const [reserved, setReserved] = useState(false);
     const [posted, setPosted] = useState(false);
     const [count, setCount] = useState(0);
+    const [commentsLoad, setCommentsLoad] = useState(false);
 
     const myVideo = useRef();
     const userVideo = useRef();
@@ -192,8 +193,10 @@ const ContextProvider = ({ children }) => {
             category: category,
             MHT: mhtData,
         }
+        
         Axios.post(`${API_URL}/write-post`, postData)
         sessionClose()
+        document.location.href = '/#/Patient/RecentPost';
     }
 
     const sendComment = (postId, role, userId, comment) => {
@@ -209,7 +212,15 @@ const ContextProvider = ({ children }) => {
     const readComment = (postId, setComment) => {
         Axios.post(`${API_URL}/read-comment`, { postId: postId })
             .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    date = response.data[i].time.split("T")[0]
+                    time = response.data[i].time.split("T")[1].split(".")[0]
+                    var [date, time] = UTCToLocal(date, time)
+                    response.data[i].time = date + " " + time
+                }
+                console.log(response.data)
                 setComment(response.data)
+                setCommentsLoad(true)
             })
     }
 

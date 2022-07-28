@@ -151,6 +151,7 @@ min-width:500px;
 margin-top:50px;
 margin-bottom:50px;
 text-align:left;
+white-space:pre-wrap;
 `;
 
 export const Comment = styled.p`
@@ -158,6 +159,7 @@ width: 70%;
 min-width:500px;
 margin-bottom:50px;
 text-align:left;
+white-space: nowrap;
 `;
 
 export const ReplyBtn = styled.div`
