@@ -5,6 +5,7 @@ export const PostContainer = styled.div`
 width: 100%;
 height: 100%;
 display: flex;
+min-width:1000px;
 flex-direction: column;
 align-items: flex-start;
 padding: 10px;
@@ -103,7 +104,8 @@ align-items: center;
 export const AvailBubble = styled.button`
 
 height: 70%;
-display: flex;
+min-width:150px;
+text-align:center;
 background-color: #0075ff;
 border-radius: 8px;
 padding-top: 2px;
@@ -122,7 +124,8 @@ border: none;
 export const UnavailableBubble = styled.div`
 
 height:70%;
-display: flex;
+min-width:150px;
+text-align:center;
 background-color: #a0aec0;
 border-radius: 8px;
 padding-top: 2px;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 export const MainContainer = styled.div`
     width: 100%;
@@ -183,7 +184,7 @@ export const IconBox = styled.div`
     line-height: 50px;
 `;
 
-export const Phone = styled.button`
+export const Phone = styled(Link)`
     margin: 5px 0px 0px 20px;
     width: 52px;
     height: 52px;

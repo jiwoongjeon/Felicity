@@ -120,7 +120,7 @@ margin-bottom:1%;
 cursor: not-allowed; 
 `;
 
-export const SubmitBtn = styled(Link)`
+export const SubmitBtn = styled.div`
 height:55px;
 width:120px;
 text-align:center;

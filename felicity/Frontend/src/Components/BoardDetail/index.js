@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { IoMdSearch } from "react-icons/io";
-import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import TextField from '@mui/material/TextField';
+import moment from "moment";
 
 
 const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, ContentContainer, Title, ContentSubContainer, PhotoArea, WrittenBy, WrittenByLabel,
@@ -69,9 +68,10 @@ export const BoardDetail = (props) => {
     const handleContent = (event) => { setContent(event.target.value); };
 
     function sendComment() {
-        setComment(content)
         setReplyState(false)
+        if(props.data.state == 0) props.data.state = 1
         props.sendComment(props.data.id, role, jwt, content)
+        props.readComment(props.data.id, setComment)
     }
 
     function back() {
@@ -123,8 +123,13 @@ export const BoardDetail = (props) => {
 
                     <ContentSubContainer>
                         <State>Comment</State>
-                        {/* COMMENTS */}
-                        {/* <Comment>{comment[0].comment}</Comment> */}
+                        {(props.data.state === 1 && props.commentsLoad) ?? comment.map((c) => (
+                            <>
+                                {c.role === 1 && <State>Patient's Reply: {c.time}</State>}
+                                {c.role === 0 && <UnState>Doctor's reply: {c.time}</UnState>}
+                                <Comment>{c.comment}</Comment>
+                            </>
+                        ))}
                     </ContentSubContainer>
 
                     {props.isDoctor && 
