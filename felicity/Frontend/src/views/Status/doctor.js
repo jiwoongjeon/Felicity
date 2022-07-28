@@ -37,11 +37,12 @@ function StatusDoctor(props) {
   const [pages, setPages] = useState(PAGE_DATA);
   const [board, setBoard] = useState([]);
   const [isBoard, setIsBoard] =useState(false);
+  const [comments, setComments] = useState([])
 
   const [postload, setPostLoad] = useState(0);
   const [pageload, setPageLoad] = useState(0);
 
-  const { sendComment } = useContext(SocketContext);
+  const { sendComment, readComment } = useContext(SocketContext);
 
   function setToAll() {
       setAll(true)
@@ -272,6 +273,7 @@ function StatusDoctor(props) {
           isDoctor={props.isDoctor}
           sendComment={sendComment}
           GetPage={GetPage}
+          readComment={readComment}
           page={pages.current_page}
         />}
     </List>

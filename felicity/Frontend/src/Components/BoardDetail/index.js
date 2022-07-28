@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import TextField from '@mui/material/TextField';
@@ -53,9 +53,17 @@ const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, Cont
 export const BoardDetail = (props) => {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    const role = JSON.parse(sessionStorage.getItem("role"))
     const [isReply, setReplyState] = React.useState(false)
     const [content, setContent] = React.useState('');
-    const [comment, setComment] = React.useState('');
+    const [comment, setComment] = React.useState([]);
+
+    useEffect(() => {
+        if (props.data.state) {
+            console.log("DETAIL PAGE", props.data)
+            props.readComment(props.data.id, setComment)
+        }
+    }, [])
 
     let button;
     const handleContent = (event) => { setContent(event.target.value); };
@@ -63,7 +71,7 @@ export const BoardDetail = (props) => {
     function sendComment() {
         setComment(content)
         setReplyState(false)
-        props.sendComment(props.data.id, jwt, content)
+        props.sendComment(props.data.id, role, jwt, content)
     }
 
     function back() {
@@ -115,7 +123,8 @@ export const BoardDetail = (props) => {
 
                     <ContentSubContainer>
                         <State>Comment</State>
-                        <Comment>{comment}</Comment>
+                        {/* COMMENTS */}
+                        {/* <Comment>{comment[0].comment}</Comment> */}
                     </ContentSubContainer>
 
                     {props.isDoctor && 

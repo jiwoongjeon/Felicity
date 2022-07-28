@@ -196,14 +196,21 @@ const ContextProvider = ({ children }) => {
         sessionClose()
     }
 
-    const sendComment = (postId, doctorId, comment) => {
-        console.log(postId, doctorId, comment)
+    const sendComment = (postId, role, userId, comment) => {
         const data = {
             postId: postId,
-            doctorId: doctorId,
+            role: role,
+            userId: userId,
             comment: comment
         }
         Axios.post(`${API_URL}/write-comment`, data)
+    }
+
+    const readComment = (postId, setComment) => {
+        Axios.post(`${API_URL}/read-comment`, { postId: postId })
+            .then((response) => {
+                setComment(response.data)
+            })
     }
 
     const sendReservation = (departmentId, preferredDoctorId, date, time) => {
@@ -436,7 +443,7 @@ const ContextProvider = ({ children }) => {
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
-                sendComment, UTCToLocal, changeDoctorAvailableTime
+                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment
             }}
         >
             {children}
