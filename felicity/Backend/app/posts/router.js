@@ -135,6 +135,7 @@ function postPost(req, res) {
                     res.json({ errMsg: "Error: Failed on creating post" });
                 }
             })
+            res.json({ msg: 1})
         }
     })
 
