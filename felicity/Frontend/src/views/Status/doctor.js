@@ -41,7 +41,7 @@ function StatusDoctor(props) {
   const [postload, setPostLoad] = useState(0);
   const [pageload, setPageLoad] = useState(0);
 
-  const { sendComment, readComment } = useContext(SocketContext);
+  const { sendComment, readComment, commentsLoad, setCommentsLoad } = useContext(SocketContext);
 
   function setToAll() {
       setAll(true)
@@ -274,6 +274,8 @@ function StatusDoctor(props) {
           GetPage={GetPage}
           readComment={readComment}
           page={pages.current_page}
+          commentsLoad={commentsLoad}
+          setCommentsLoad={setCommentsLoad}
         />}
     </List>
 
