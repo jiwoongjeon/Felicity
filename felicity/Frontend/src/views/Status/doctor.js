@@ -37,7 +37,6 @@ function StatusDoctor(props) {
   const [pages, setPages] = useState(PAGE_DATA);
   const [board, setBoard] = useState([]);
   const [isBoard, setIsBoard] =useState(false);
-  const [comments, setComments] = useState([])
 
   const [postload, setPostLoad] = useState(0);
   const [pageload, setPageLoad] = useState(0);

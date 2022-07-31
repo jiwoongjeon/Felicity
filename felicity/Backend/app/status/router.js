@@ -20,9 +20,6 @@ function doctorAvailableTime(req, res) {
     const timeA = req.body.timeA;
     const timeB = req.body.timeB;
 
-    console.log(req.body)
-    console.log("router", doctorId, timeA, timeB)
-
     status.updateDoctorTime(doctorId, timeA, timeB, (err, result) => {
         if (err) {
             console.log(err);
