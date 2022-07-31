@@ -4,7 +4,8 @@ export const COMMENT_DATA = [
         post_id: 11,
         role: 0,
         user_id: 1,
-        username: "Doctor 1",
+        firstname: "Won",
+        lastname: "Lee",
         time: "2022-07-27 10:04:14",
         comment: "Comment 1"
     },
@@ -13,7 +14,8 @@ export const COMMENT_DATA = [
         post_id: 11,
         role: 1,
         user_id: 1,
-        username: "Patient 1",
+        firstname: null,
+        lastname: null,
         time: "2022-07-27 10:11:14",
         comment: "Comment 2"
     }

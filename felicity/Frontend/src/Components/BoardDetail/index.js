@@ -126,7 +126,7 @@ export const BoardDetail = (props) => {
                         {(props.data.state === 1 && props.commentsLoad) ?? comment.map((c) => (
                             <>
                                 {c.role === 1 && <State>Patient's Reply: {c.time}</State>}
-                                {c.role === 0 && <UnState>Doctor's reply: {c.time}</UnState>}
+                                {c.role === 0 && <UnState>Doctor {c.lastname}'s reply: {c.time}</UnState>}
                                 <Comment>{c.comment}</Comment>
                             </>
                         ))}

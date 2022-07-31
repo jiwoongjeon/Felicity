@@ -23,8 +23,10 @@ const readSymptomList =
     "SELECT * FROM symptom_list WHERE symptom_list.symptom_id IN (";
 
 const readPostCommentQry = 
-    "SELECT id, post_id, role, user_id, time, comment " + 
-    "FROM post_comment WHERE post_id = ?"
+    "SELECT post_comment.id, post_id, role, user_id, time, comment, firstname, lastname " +
+    "FROM post_comment " +
+    "LEFT JOIN doctor_profile ON role = 0 AND user_id = doctor_id " +
+    "WHERE post_id = ?"
 
 const insertPostQry =
     "INSERT INTO felicity.post " +
