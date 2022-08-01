@@ -1,3 +1,23 @@
+export const COMMENT_DATA = [
+    {
+        id: 1,
+        post_id: 11,
+        role: 0,
+        user_id: 1,
+        username: "Doctor 1",
+        time: "2022-07-27 10:04:14",
+        comment: "Comment 1"
+    },
+    {
+        id: 2,
+        post_id: 11,
+        role: 1,
+        user_id: 1,
+        username: "Patient 1",
+        time: "2022-07-27 10:11:14",
+        comment: "Comment 2"
+    }
+]
 export const POST_DATA = [
     {
         id:11,
@@ -6,9 +26,7 @@ export const POST_DATA = [
         title:"d",
         content:"d",
         date:"2022/05/11 12:24 PM",
-        state:0,
-        doctorId: 0,
-        comment: "Testing comments",
+        state: 1,
         symptoms:{
             symptom_id:55,
             cough:0,
@@ -33,8 +51,6 @@ export const POST_DATA = [
         content:"d",
         date:"2022/05/11 12:24 PM",
         state:0,
-        doctorId: null,
-        comment:null,
         symptoms:{
             symptom_id:56,
             cough:0,

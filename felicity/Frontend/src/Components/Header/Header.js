@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { Stack, Badge } from "@mui/material";
+import React, { useState, useContext } from "react";
+import { Badge, Stack} from "@mui/material";
+import { styled } from '@mui/material/styles';
 import { NavLink } from "react-router-dom";
 import needhelp from '../assets/needhelp_highres.png'
 import LogoImg from '../assets/telep_logo_horizon.png';
-import { i } from '../MeetingPage';
-//import react pro sidebar components
-
-
-
+import {i, isEmpty} from '../MeetingPage';
+import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import {
   ProSidebar,
   Menu,
@@ -25,14 +23,63 @@ import { MdFormatListBulleted } from "react-icons/md";
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
+import { SocketContext } from "../../API/video";
+import { StyledBadge } from "./styles.js"
+
 
 const { HelpContainer, MenuButton, ActiveButton } = require("./styles");
-export const count = 0;
 
 
+// const StyledBadge = styled(BadgeUnstyled)`
+// box-sizing: border-box;
+// margin: 0;
+// padding: 0;
+// font-size: 14px;
+// list-style: none;
+// font-family: IBM Plex Sans, sans-serif;
+// position: relative;
+// display: inline-block;
+// line-height: 1;
 
-const Header = (props) => {
 
+// & .${badgeUnstyledClasses.badge} {
+//   z-index: 1;
+//   min-width: 25px;
+//   height: 25px;
+//   padding: 0 0px;
+//   color: #fff;
+//   font-weight: 400;
+//   font-size: 15px;
+//   line-height: 25px;
+//   white-space: nowrap;
+//   text-align: center;
+//   background: #DF3E3F;
+//   border-radius: 30px;
+//   box-shadow: 0 0 0 0;
+//   position: absolute;
+//   top: 25px;
+//   right: -313px;
+//   transform: translate(50%, -50%);
+//   transform-origin: 100% 0;
+// }
+// `;
+
+
+function CheckCount(){
+
+  const { count, setCount } = useContext(SocketContext);
+  setCount(count);
+  
+  return true;
+  
+}
+
+export const Header = (props) => {
+
+  
+  const { count, setCount } = useContext(SocketContext);
+ 
+ 
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(false)
 
@@ -43,13 +90,11 @@ const Header = (props) => {
   };
 
 
-
-  
   return (
    
        
     <>
-   
+
       <div id="header">
         {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
@@ -60,20 +105,37 @@ const Header = (props) => {
               </MenuButton>
             </div>
           </SidebarHeader>
+
+          {props.isDoctor &&
+          <>
+          {CheckCount &&
+          <Stack spacing={4} direction="row">
+             <StyledBadge badgeContent={count}/>
+          </Stack>
+          }
+          </>
+          }
+
           <SidebarContent>
+          
             <Menu iconShape="square">
 
+             
               {props.isDoctor &&
+            
+           
+              
+              
+            
                 <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients  
+                  
                   <MenuButton to={`./Meeting`}>
+                  </MenuButton>          
                   
-        
+                  </MenuItem>
                   
-        
-                  </MenuButton>
-                  <Badge badgeContent = {count + 1} color = "secondary" />
-                  </MenuItem>}
-
+                  }
+                  
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
                     <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
@@ -81,14 +143,14 @@ const Header = (props) => {
               <MenuItem icon={<AiFillHome />}> <NavLink to='./Home' activeStyle={{color: '#0075FF'}} >Home</NavLink>
       
               </MenuItem>
-              <MenuItem icon={<AiOutlineBarChart />}><NavLink to='./Status' activeStyle={{color: '#0075FF'}} >Status</NavLink>
-
+              <MenuItem icon={<AiOutlineBarChart />}><NavLink to='./Status' activeStyle={{color: '#0075FF'}} >Board</NavLink>
+                  
               </MenuItem>
 
               {!props.isDoctor &&
                 <MenuItem icon={<MdFormatListBulleted />} ><NavLink to='./RecentPost' activeStyle={{color: '#0075FF'}} >Recent Post</NavLink>
                   </MenuItem>}
-              <MenuItem icon={<IoIosDocument />}><NavLink to='./Checklist' activeStyle={{color: '#0075FF'}} >My Checklist</NavLink>
+              <MenuItem icon={<IoIosDocument />}><NavLink to='./Checklist' activeStyle={{color: '#0075FF'}} >My Records</NavLink>
                 </MenuItem>
               <MenuItem icon={<IoMdPerson />}><NavLink to='./Profile' activeStyle={{color: '#0075FF'}} >Profile</NavLink>      
                 </MenuItem>
@@ -100,8 +162,9 @@ const Header = (props) => {
                 <MenuItem icon={<IoIosChatbubbles />}><NavLink to='./Doctor-Conversation' activeStyle={{color: '#0075FF'}} >Doctor Conversation</NavLink> 
                 </MenuItem>}
             </Menu>
-
+            
           </SidebarContent>
+       
           <SidebarFooter>
             {/* <HelpContainer img={needhelp}>
               <ActiveButton>Active</ActiveButton>
@@ -111,6 +174,7 @@ const Header = (props) => {
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
             </Menu> */}
           </SidebarFooter>
+          
         </ProSidebar>
       </div>
     </>

@@ -32,12 +32,18 @@ function Patient() {
     const [scheduleData, setScheduleData] = React.useState([])
     const [visible, setVisible] = useState(true)
 
-    const { startCall } = useContext(SocketContext);
+    const { startCall, UTCToLocal } = useContext(SocketContext);
 
     React.useEffect(() => {
         Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
             .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
+                    response.data[i].reserved_date = date
+                    response.data[i].reserved_time = time
+                }
                 setScheduleData(response.data)
+
             })
     }, [])
     console.log(scheduleData)

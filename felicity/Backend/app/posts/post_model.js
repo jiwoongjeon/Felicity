@@ -8,19 +8,23 @@ const getPageCategoryQry = "SELECT count(*) AS pages FROM post WHERE category = 
 const readPostQry =
     "SELECT post.id, symptom.id AS sid, post.category, post.title, post.content, " +
     "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') AS date, " +
-    "post.is_replied AS state, post.comment FROM post " +
+    "post.is_replied AS state FROM post " +
     "JOIN symptom ON post.symptom_id = symptom.id ORDER BY symptom_id DESC LIMIT ?, 5";
 
 const readPostCategoryQry =
     "SELECT post.id, symptom.id AS sid, post.category, post.title, post.content, " +
     "date_format((symptom.created_time), '%Y/%m/%d %l:%i %p') AS date, " +
-    "post.is_replied AS state, post.comment FROM post " +
+    "post.is_replied AS state FROM post " +
     "JOIN symptom ON post.symptom_id = symptom.id " +
     "WHERE post.category = ? " + 
     "ORDER BY symptom_id DESC LIMIT ?, 5";
 
 const readSymptomList =
     "SELECT * FROM symptom_list WHERE symptom_list.symptom_id IN (";
+
+const readPostCommentQry = 
+    "SELECT id, post_id, role, user_id, time, comment " + 
+    "FROM post_comment WHERE post_id = ?"
 
 const insertPostQry =
     "INSERT INTO felicity.post " +
@@ -39,7 +43,13 @@ const insertSymptomListQry =
     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
 const insertCommentQry = 
-    "UPDATE felicity.post SET `doctor_id` = ?, `comment` = ? WHERE (`id` = ?);"
+    // "UPDATE felicity.post SET `doctor_id` = ?, `comment` = ?, is_replied = 1 WHERE (`id` = ?);"
+    "INSERT INTO felicity.post_comment " + 
+    "(post_id, role, user_id, comment) VALUES " +
+    "(?, ?, ?, ?)";
+
+const updateIsRepliedQry = 
+    "UPDATE felicity.post SET is_replied = 1 WHERE id = ?"
 
 post.getPageNum = function getPageNum(callback) {
     config.db.query(getPageQry, (err, result) => {
@@ -84,6 +94,14 @@ post.findSymptoms = function findSymptoms(symptomIds, callback) {
     })
 }
 
+post.readPostComment = function readPostComment(postId, callback) {
+    config.db.query(readPostCommentQry, postId, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    })
+}
+
 post.insertPost = function insertPost(sid, data, callback) {
     const postList = [sid, data.MHT.patientId, data.title, data.context, 0, data.category];
     config.db.query(insertPostQry, postList, (err, result) => {
@@ -114,8 +132,16 @@ post.insertSymptomList = function insertSymptomList(sid, data, callback) {
     })
 }
 
-post.insertComment = function insertComment(postId, doctorId, comment, callback) {
-    config.db.query(insertCommentQry, [doctorId, comment, postId], (err, result) => {
+post.insertComment = function insertComment(postId, role, userId, comment, callback) {
+    config.db.query(insertCommentQry, [postId, role, userId, comment], (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    })
+}
+
+post.updateIsReplied = function updateIsReplied(postId, callback) {
+    config.db.query(updateIsRepliedQry, postId, (err, result) => {
         if (err) callback(err, null);
 
         callback(null, result);

@@ -97,8 +97,19 @@ function getPosts(req, res) {
     }
 }
 
+function getComment(req, res) {
+    post.readPostComment(req.body.postId, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.json({ errMsg: "Error: Failed on reading comments" });
+        }
+        else {
+            res.json(result);
+        }
+    })
+}
+
 function postPost(req, res) {
-    console.log(req.body);
     const postData = req.body;
     const MHTData = req.body.MHT;
     const checkList = MHTData.checklist;
@@ -124,6 +135,7 @@ function postPost(req, res) {
                     res.json({ errMsg: "Error: Failed on creating post" });
                 }
             })
+            res.json({ msg: 1})
         }
     })
 
@@ -132,7 +144,13 @@ function postPost(req, res) {
 
 function updateComment(req, res) {
     console.log(req.body)
-    post.insertComment(req.body.postId, req.body.doctorId, req.body.comment, (error, result) => {
+    post.updateIsReplied(req.body.postId, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.json({ errMsg: "Error: Failed on updating post comments"})
+        }
+    })
+    post.insertComment(req.body.postId, req.body.role, req.body.userId, req.body.comment, (error, result) => {
         if (error) {
             console.log(error);
             res.json({ errMsg: "Error: Failed on updating comments"})
@@ -142,6 +160,7 @@ function updateComment(req, res) {
 
 router.post("/post-page", getPage);
 router.post("/read-post", getPosts);
+router.post("/read-comment", getComment);
 router.post("/write-post", postPost);
 router.post("/write-comment", updateComment);
 

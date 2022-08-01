@@ -6,49 +6,28 @@ const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstCol
 var isEmpty = true;
 const counter = 0;
 
-const TimeCompare = (date, time, past) => {
+const TimeCompare = (date, time) => {
     
     const today = moment().format("MM-DD-YYYY")
     const today_time = moment().add(10, 'M').format("HH:mm:ss a")
     const appointment = moment(date).format("MM-DD-YYYY")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
- 
-    if (!past) {
-        if (appointment > today) {
+    if (appointment > today) {
+        isEmpty = false;
+        return true;
+    }
+    else if (appointment < today) 
+        return false;
+
+    else
+        if (app_time >= today_time){
             isEmpty = false;
+        
             return true;
         }
-        else if (appointment < today) 
-            return false;
-
         else
-            if (app_time >= today_time){
-                isEmpty = false;
-           
-                return true;
-            }
-            else
-                return false;
-    }
-
-    else {
-        if (appointment < today) {
-            isEmpty = false;
-         
-            return true;
-        }
-        else if (appointment > today)
             return false;
-        else
-            if (app_time < today_time){
-                isEmpty = false;
-              
-                return true;
-            }
-            else
-                return false;
-    }
 }
 
 
@@ -66,39 +45,10 @@ const Click = (date, time, past) => {
             isEmpty = false;
             return true;
         }
+        else {
+            return false
+        }
     }
-    // if (!past) {
-    //     if (appointment > today) {
-    //         isEmpty = false;
-    //         return true;
-    //     }
-    //     else if (appointment < today)
-    //         return false;
-    //     else
-    //         if (app_time <= click_time){
-    //             isEmpty = false;
-    //             return true;
-    //         }
-    //         else
-    //             return false;
-    // }
-
-    // else {
-    //     if (appointment < today) {
-    //         isEmpty = false;
-    //         return true;
-    //     }
-    //     else if (appointment > today)
-    //         return false;
-    //     else
-    //         if (app_time > click_time){
-    //             isEmpty = false;
-    //             return true;
-    //         }
-    //         else
-    //             return false;
-    // }
-    
 }
     
 const NonClick = (date, time, past) => {
@@ -134,55 +84,23 @@ const Schedule = ({ startCall, schedule_data}) => {
             <AppointmentList>           
                 {schedule_data.map((data) => (
                     <>
-                    
-                        {TimeCompare(data.reserved_date, data.reserved_time, data.past) && (
-                            
-                            
+                        {TimeCompare(data.reserved_date, data.reserved_time) &&
                             <AppointmentContainer> 
                                 <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
-                                        <Group>
-                                            <Date>{data.reserved_date}</Date> 
-                                            <TimeEmail>{data.reserved_time}</TimeEmail>
-                                        </Group>
-                                        <Group>
-                                            <DeleteIcon>DELETE</DeleteIcon>
-                                            <EditIcon>EDIT</EditIcon>
-                                        </Group>
-                                     </FstColumn>
-                                {/* {Click(data.reserved_date, data.reserved_time, data.past) && (
-                                    <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
-                                        <Group>
-                                            <Date>{data.reserved_date}</Date> 
-                                            <TimeEmail>{data.reserved_time}</TimeEmail>
-                                        </Group>
-                                        <Group>
-                                            <DeleteIcon>DELETE</DeleteIcon>
-                                            <EditIcon>EDIT</EditIcon>
-                                        </Group>
-                                     </FstColumn>)}
-                
-                                {NonClick(data.reserved_date, data.reserved_time, data.past) && (
-                                    <First>
-                                        <Group>
-                                            <Date>{data.reserved_date}</Date>   
-                                            <TimeEmail>{data.reserved_time}</TimeEmail>
-                                         </Group>
-                                         <Group>
-                                            <DeleteIcon>DELETE</DeleteIcon>
-                                            <EditIcon>EDIT</EditIcon>
-                                        </Group>
-                                    </First>)} */}
-
+                                    <Group>
+                                        <Date>{data.reserved_date}</Date> 
+                                        <TimeEmail>{data.reserved_time}</TimeEmail>
+                                    </Group>
+                                    <Group>
+                                        <DeleteIcon>DELETE</DeleteIcon>
+                                        <EditIcon>EDIT</EditIcon>
+                                    </Group>
+                                </FstColumn>
                                 <Column>
                                     <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
                                 </Column>           
-                            </AppointmentContainer>
-                            
-                            
-                        )} 
-                        
+                            </AppointmentContainer>}
                     </>
-
                 ))}
                 {isEmpty == true && <Column>There is no appointment.</Column>}
                     

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 
 export const HelpContainer = styled.div`
 width: 80%;
@@ -43,6 +44,37 @@ export const NavLink = styled(Link)`
     color: black;
 `
 
-export const Badge = styled.div`
-margin-left: 19px;
-`
+export const StyledBadge = styled(BadgeUnstyled)`
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-size: 14px;
+list-style: none;
+font-family: IBM Plex Sans, sans-serif;
+position: relative;
+display: inline-block;
+line-height: 1;
+
+
+& .${badgeUnstyledClasses.badge} {
+  z-index: 1;
+  min-width: 25px;
+  height: 25px;
+  padding: 0 0px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 25px;
+  white-space: nowrap;
+  text-align: center;
+  background: #DF3E3F;
+  border-radius: 30px;
+  box-shadow: 0 0 0 0;
+  position: absolute;
+  top: 25px;
+  right: -313px;
+  transform: translate(50%, -50%);
+  transform-origin: 100% 0;
+}
+`;
+

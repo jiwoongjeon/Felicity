@@ -10,6 +10,7 @@ export const ProfilePage = (props) => {
     const [fileImage, setFileImage] = React.useState("");
 
     function setTime() {
+        props.changeTime(props.jwt, start_time, end_time)
         changeTime(!isTime)
     }
 
@@ -48,7 +49,7 @@ export const ProfilePage = (props) => {
                             sx={{ width: 200, marginRight: 3, marginBottom:3 }}
                             InputLabelProps={{ shrink: true }}
                             inputProps={{ step: 300 }}
-                            onChange={(event) => {setStartTime(event.target.value)}}/>
+                            onChange={(event) => {setStartTime(event.target.value); console.log(event.target.value)}}/>
                         <TextField
                             value={end_time}
                             id="time"

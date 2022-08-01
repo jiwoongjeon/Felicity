@@ -1,7 +1,6 @@
-import React from "react";
-import { IoMdSearch } from "react-icons/io";
-import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
+import React, { useEffect } from "react";
 import TextField from '@mui/material/TextField';
+import moment from "moment";
 
 
 const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, ContentContainer, Title, ContentSubContainer, PhotoArea, WrittenBy, WrittenByLabel,
@@ -53,17 +52,31 @@ const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, Cont
 export const BoardDetail = (props) => {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    const role = JSON.parse(sessionStorage.getItem("role"))
     const [isReply, setReplyState] = React.useState(false)
     const [content, setContent] = React.useState('');
-    const [comment, setComment] = React.useState('');
+    const [comment, setComment] = React.useState([]);
+
+    useEffect(() => {
+        if (props.data.state) {
+            console.log("DETAIL PAGE", props.data)
+            props.readComment(props.data.id, setComment)
+        }
+    }, [])
 
     let button;
     const handleContent = (event) => { setContent(event.target.value); };
 
     function sendComment() {
-        setComment(content)
         setReplyState(false)
-        props.sendComment(props.data.id, jwt, content)
+        if(props.data.state == 0) props.data.state = 1
+        props.sendComment(props.data.id, role, jwt, content)
+        props.readComment(props.data.id, setComment)
+    }
+
+    function back() {
+        props.setIsBoard(false)
+        props.GetPage(props.page)
     }
 
     if (content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
@@ -72,7 +85,7 @@ export const BoardDetail = (props) => {
     return(
         <BoardContainer>
             <Column>
-                <BackButtom onClick={({ target }) => props.setIsBoard(false)}>Back</BackButtom>
+                <BackButtom onClick={({ target }) => back()}>Back</BackButtom>
             </Column>
             <Divider />
                 <ContentContainer>
@@ -110,7 +123,13 @@ export const BoardDetail = (props) => {
 
                     <ContentSubContainer>
                         <State>Comment</State>
-                        <Comment>{comment}</Comment>
+                        {(props.data.state === 1 && props.commentsLoad) ?? comment.map((c) => (
+                            <>
+                                {c.role === 1 && <State>Patient's Reply: {c.time}</State>}
+                                {c.role === 0 && <UnState>Doctor's reply: {c.time}</UnState>}
+                                <Comment>{c.comment}</Comment>
+                            </>
+                        ))}
                     </ContentSubContainer>
 
                     {props.isDoctor && 
