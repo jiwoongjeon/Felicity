@@ -158,6 +158,41 @@ function getPatientName(req, res) {
     })
 }
 
+function getDoctorChat(req, res) {
+    var nameArr = [];
+    // var profArr = [];
+    var chatArr = [];
+    var timeArr = [];
+    conv.findDoctorChat((err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on getting doctor name." }) 
+        }
+        else {
+            for (i in result) {
+                nameArr.push(result[i].name);
+                // profArr.push(result[i].profession);
+                chatArr.push(result[i].message);
+                timeArr.push(result[i].date);
+            }
+            res.json({ nameArr: nameArr, chatArr: chatArr, timeArr: timeArr });
+            // res.json({ nameArr: nameArr, profArr: profArr, chatArr: chatArr, timeArr: timeArr });
+        }
+    })
+}
+
+function postDoctorChat(req, res) {
+    const name = req.body.name;
+    const message = req.body.message;
+    const time = req.body.time;
+    conv.insertDoctorChat(name, message, time, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on creating conversation" })
+        }
+    });
+}
+
 router.post("/doctor_conv", getDoctorConvList);
 router.post("/patient_conv", getPatientConvList);
 router.post("/get_chat_conv", getChats);
@@ -167,5 +202,7 @@ router.post("/get_doctor_list", getDoctorList);
 router.post("/get_patient_list", getPatientList);
 router.post("/get_doctor_name", getDoctorName);
 router.post("/get_patient_name", getPatientName);
+router.post("/get_doctor_chat", getDoctorChat);
+router.post("/post_doctor_chat", postDoctorChat);
 
 module.exports = router;

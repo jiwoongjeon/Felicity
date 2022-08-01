@@ -274,6 +274,18 @@ const ContextProvider = ({ children }) => {
         }
     }
 
+    const docConvSend = (m) => {
+        if (m !== "") {
+            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
+            socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
+            Axios.post(`${API_URL}/post_doctor_chat`, {
+                name: name,
+                message: m,
+                time: currentTime
+            })
+        }
+    }
+
     useEffect(() => {
         socket.once("chatting", (data) => {
             const { name, msg, time } = data;
@@ -457,7 +469,7 @@ const ContextProvider = ({ children }) => {
                 postDoctorLogin, id, startCall, call, callAccepted, myVideo,
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
-                stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, sendPost,
+                stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, docConvSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment
             }}

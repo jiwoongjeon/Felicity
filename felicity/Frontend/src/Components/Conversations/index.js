@@ -20,7 +20,6 @@ export const Conversations = () => {
   const [other, setOther] = useState('');
   const [chatListData, setChatListData] = useState([]);
   const [chatListUpdate, setChatListUpdate] = useState(false);
-  const [plz, setPlz] = useState(false);
 
   const [popupOn, setPopupOn] = useState(false);
 
