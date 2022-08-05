@@ -35,15 +35,29 @@ const getDoctorListQry =
     "SELECT doctor_id, firstname, lastname, profession " +
     "FROM doctor_profile ";
 
+const getPatientListQry =
+    "SELECT patient_id, firstname, lastname " +
+    "FROM patient_profile ";
+
+
 const getDoctorNameQry =
     "SELECT firstname, lastname " +
     "FROM doctor_profile " +
     "WHERE doctor_id = (?)";
 
 const getPatientNameQry =
-    "SELECT patient_profile.firstname, patient_profile.lastname " +
+    "SELECT firstname, lastname " +
     "FROM patient_profile " +
-    "WHERE patient_profile.patient_id = (?)";
+    "WHERE patient_id = (?)";
+
+const getDoctorChatQry = 
+    "SELECT name, message, date_format((time), '%Y/%m/%d %l:%i:%p') AS date " +
+    "FROM doc_chats ";
+
+const insertDoctorChatQry =
+    "INSERT INTO felicity.doc_chats " +
+    "(`name`, `message`, `time`) " +
+    "VALUES (?, ?, ?)";
 
 conv.findDConvs = function findDConvs(doctor_id, callback) {
     config.db.query(readDConvQry, doctor_id, (err, result) => {
@@ -95,6 +109,14 @@ conv.findDoctorList = function findDoctorList(callback) {
     });
 }
 
+conv.findPatientList = function findPatientList(callback) {
+    config.db.query(getPatientListQry, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
 conv.findDoctorName = function findDoctorName(doctor_id, callback) {
     config.db.query(getDoctorNameQry, doctor_id, (err, result) => {
         if (err) callback(err, null);
@@ -103,10 +125,27 @@ conv.findDoctorName = function findDoctorName(doctor_id, callback) {
     });
 }
 
-// conv.findDoctorName = function findDoctorName(doctor_id, callback) {
-//     config.db.query(getDoctorNameQry, doctor_id, (err, result) => {
-//         if (err) callback(err, null);
+conv.findPatientName = function findPatientName(patient_id, callback) {
+    config.db.query(getPatientNameQry, patient_id, (err, result) => {
+        if (err) callback(err, null);
 
-//         callback(null, result);
-//     });
-// }
+        callback(null, result);
+    });
+}
+
+conv.findDoctorChat = function findDoctorChat(callback) {
+    config.db.query(getDoctorChatQry, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+conv.insertDoctorChat = function insertDoctorChat(name, message, time, callback) {
+    const chat = [name, message, time];
+    config.db.query(insertDoctorChatQry, chat, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
