@@ -69,7 +69,7 @@ function LoginPage({ patientL, doctorL }) {
             </Row>
           </LoginSubContainer>
         }
-        { id===0 && <LabelRecursive>Please enter valid User ID and Password</LabelRecursive>}
+        { (id===0 && isRole) && <LabelRecursive>Please enter valid User ID and Password</LabelRecursive>}
 
         {isRole &&
           <LoginSubContainer>
@@ -103,6 +103,8 @@ function LoginPage({ patientL, doctorL }) {
               <SubmitButton onClick={doctorL({ email, password })}>
                 Sign In
               </SubmitButton>}
+
+              <SubmitButton onClick={e => setIsRole(false)} margin={true} >Back</SubmitButton>
 
           </LoginSubContainer>
         }

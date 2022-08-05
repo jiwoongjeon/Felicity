@@ -197,11 +197,10 @@ const ContextProvider = ({ children }) => {
         Axios.post(`${API_URL}/write-post`, postData)
         .then((response) => {
             if (response.data.msg) {
-                // 여기에 작성하면 됩니다잉
+                sessionClose()
+                document.location.href = '/#/Patient/RecentPost';
             }
         })
-        sessionClose()
-        document.location.href = '/#/Patient/RecentPost';
     }
 
     const sendComment = (postId, role, userId, comment) => {

@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import moment from "moment";
+import { CacheProvider } from "@emotion/react";
 
 
 const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, ContentContainer, Title, ContentSubContainer, PhotoArea, WrittenBy, WrittenByLabel,
     State, UnState, Date, Content, ReplyBtn, Blank, BottomBoardContainer, WrittenByBottom, TitleBottom, DateBottom, StateBottom, UnStateBottom, WriteContainer,
     WriteSubContainer, ColumnTitle, SubmitBtn, CancelBtn, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, BackButtom,
-    Comment } = require('./styles')
+    Comment, 
+    DateComment} = require('./styles')
 
     function sy(array) {
         var array1 = []
@@ -92,13 +94,6 @@ export const BoardDetail = (props) => {
                     <ContentSubContainer>
                         <Title>Q: {props.data.title}</Title>
                         <Date>{props.data.category}</Date>
-                        {/* <Column>
-                            <PhotoArea img={data.img}/>
-                            <ContentSubContainer>
-                                <WrittenByLabel>Written By</WrittenByLabel>
-                                <WrittenBy>{data.writer}</WrittenBy>
-                            </ContentSubContainer>
-                        </Column> */}
                         <Column>
                             { props.data.state === 1 && <State>Answered</State>}
                             { props.data.state === 0 && <UnState>Not Answered</UnState>}
@@ -111,43 +106,47 @@ export const BoardDetail = (props) => {
                         <Content>{props.data.content}</Content>
                     </ContentSubContainer>
                     <ContentSubContainer>
-                        {sy([props.data.symptoms.cough, props.data.symptoms.vomit, props.data.symptoms.fever, props.data.symptoms.sore_throat,
-                            props.data.symptoms.phelgm, props.data.symptoms.runny_nose, props.data.symptoms.nauseous, props.data.symptoms.out_of_breath,
-                            props.data.symptoms.stomachache, props.data.symptoms.chills, props.data.symptoms.muscle_sickness,
-                            props.data.symptoms.other]).map((symptom) => (
-                            <SymptomsBubble>{symptom}</SymptomsBubble>
-                        ))}
+                        <Column>
+                            {sy([props.data.symptoms.cough, props.data.symptoms.vomit, props.data.symptoms.fever, props.data.symptoms.sore_throat,
+                                props.data.symptoms.phelgm, props.data.symptoms.runny_nose, props.data.symptoms.nauseous, props.data.symptoms.out_of_breath,
+                                props.data.symptoms.stomachache, props.data.symptoms.chills, props.data.symptoms.muscle_sickness,
+                                props.data.symptoms.other]).map((symptom) => (
+                                <SymptomsBubble>{symptom}</SymptomsBubble>
+                            ))}
+                        </Column>
                     </ContentSubContainer>
                     <Blank />
                     <Divider />
 
                     <ContentSubContainer>
-                        <State>Comment</State>
+                        <UnState>Comments</UnState>
                         {(props.data.state === 1 && props.commentsLoad) ?? comment.map((c) => (
                             <>
-                                {c.role === 1 && <State>Patient's Reply: {c.time}</State>}
-                                {c.role === 0 && <UnState>Doctor {c.lastname}'s reply: {c.time}</UnState>}
+                                <Column>
+                                    {c.role === 1 && <State>Patient's Reply: {c.username? c.username : "unknown user"}</State>}
+                                    {c.role === 0 && <UnState>Doctor's reply: {c.username? c.username : "unknown user"}</UnState>}
+                                    <DateComment>{c.time}</DateComment>
+                                </Column>
                                 <Comment>{c.comment}</Comment>
+                                <Divider />
                             </>
                         ))}
+                        <Column>
+                            {/* <PhotoArea img={props.userData.img}/> */}
+                            {!isReply && 
+                                <ReplyBtn onClick={({ target }) => setReplyState(!isReply)}>Reply</ReplyBtn>}
+                            {isReply && 
+                                <WriteContainer>
+                                    <WriteSubContainer>
+                                        <TextField rows={18} multiline fullWidth variant="standard" placeholder="Write Contents..." value={content} onChange={handleContent}/>
+                                    </WriteSubContainer>
+                                    <Divider />
+                                    {button}
+                                </WriteContainer>}
+                        </Column>
                     </ContentSubContainer>
 
-                    {props.isDoctor && 
-                        <Column>
-                        {/* <PhotoArea img={props.userData.img}/> */}
-                        {!isReply && 
-                            <ReplyBtn onClick={({ target }) => setReplyState(!isReply)}>
-                                Reply</ReplyBtn>}
-                        {isReply && 
-                            <WriteContainer>
-                                <WriteSubContainer>
-                                    <TextField rows={18} multiline fullWidth variant="standard" placeholder="Write Contents..." value={content} onChange={handleContent}/>
-                                </WriteSubContainer>
-                                <Divider />
-                                {button}
-                            </WriteContainer>}
-                        </Column>
-                    }
+
                 </ContentContainer>
             <Divider />
         </BoardContainer>
