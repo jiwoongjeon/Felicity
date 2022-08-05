@@ -5,6 +5,7 @@ import default_profile from '../assets/default_profile.png'
 export const BoardContainer = styled.div`
 width: 100%;
 height: 100%;
+min-width:500px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -113,10 +114,7 @@ export const PhotoArea = styled.div`
 `;
 
 export const WrittenByLabel = styled.p`
-  margin-top: 5px;
-  margin-left: 10px;
   text-align: left;
-  font-weight: bold;
   color:black;
 `;   
 
@@ -131,18 +129,29 @@ export const State = styled.p`
   color: #718096;
   font-weight: bold;
   margin-top: 10px;
+  white-space: nowrap;
 `;
 
 export const UnState = styled.p`
   color: #FF800B;
   font-weight: bold;
   margin-top: 10px;
+  white-space: nowrap;
 `;
 
 export const Date = styled.p`
   color: #718096;
   white-space: nowrap;
   margin-top:-15px;
+`;
+
+export const DateComment = styled.p`
+  flex:1;
+  color: #718096;
+  white-space: nowrap;
+  text-align:right;
+  margin-top: 10px;
+  margin-left:10px;
 `;
 
 export const Content = styled.p`
@@ -156,8 +165,8 @@ white-space:pre-wrap;
 
 export const Comment = styled.p`
 width: 70%;
-min-width:500px;
 margin-bottom:50px;
+min-width:500px;
 text-align:left;
 white-space: nowrap;
 `;
