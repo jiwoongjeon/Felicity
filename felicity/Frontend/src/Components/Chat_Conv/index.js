@@ -65,10 +65,12 @@ export const Chat_Conv = (props) => {
     }
 
     const handleOnClick = () => {
-        var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
-        convSend(props.convId, props.other, message.current.value);
-        chatData.push({ name: myName, msg: message.current.value, time: currentTime});
-        setSent(1);
+        if(message.current.value !== '') {
+            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
+            convSend(props.convId, props.other, message.current.value);
+            chatData.push({ name: myName, msg: message.current.value, time: currentTime});
+            setSent(1);
+        }
     }
 
     return (

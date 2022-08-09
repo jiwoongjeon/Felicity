@@ -6,7 +6,9 @@ import "./index.css";
 import Chat_Conv from "../Chat_Conv";
 import Axios from "axios";
 import API_URL from "../../API/server-ip";
-import { SocketContext } from '../../API/video'
+import { SocketContext } from '../../API/video';
+import { IoArrowBackOutline } from 'react-icons/io5';
+import { BiMessageRoundedAdd } from 'react-icons/bi';
 
 const otherList = [];
 var otherListLength = 0;
@@ -149,14 +151,18 @@ export const Conversations = () => {
     <Container>
       <HeaderContainer>
         <Header>Conversations</Header>
-        <AddChatRoom onClick={() => handleAddChatRoom()}></AddChatRoom>
+        <AddChatRoom onClick={() => handleAddChatRoom()}>
+          <BiMessageRoundedAdd fontSize={20}/>
+        </AddChatRoom>
       </HeaderContainer>
       <ConversationList>
       { popupOn ? <Popup /> : '' }
         { isChatting ?
         <ChattingContainer>
+          <BackBtn onClick={() => handleBtnClk(0)}>
+            <IoArrowBackOutline />
+          </BackBtn>
           <Chat_Conv convId={currentConvId} other={other}/>
-          <BackBtn onClick={() => handleBtnClk(0)}>Back</BackBtn>
         </ChattingContainer>
         :
         chatListData.map((chat, index) => (
