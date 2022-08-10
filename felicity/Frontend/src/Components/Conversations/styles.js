@@ -32,9 +32,10 @@ export const AddChatRoom = styled.button`
   margin-bottom: auto;
   margin-right: 5%;
   margin-left: auto;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 7px;
+  border: none;
 `;
 
 export const ConversationList = styled.div`
@@ -66,9 +67,11 @@ export const ChattingContainer = styled.div`
 `;
 
 export const BackBtn = styled.button`
-  width: 100%;
+  width: 10%;
   height: 30px;
   border-radius: 7px;
+  border: none;
+  background: #d6f9ff;
 `;
 
 export const PhotoArea = styled.div`

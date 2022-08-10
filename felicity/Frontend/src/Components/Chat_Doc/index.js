@@ -66,10 +66,12 @@ export const Chat_Doc = (props) => {
     }
 
     const handleOnClick = () => {
-        var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
-        docConvSend(messageBox.current.value);
-        chatData.push({ name: myName, msg: messageBox.current.value, time: currentTime});
-        setSent(1);
+        if(messageBox.current.value !== '') {
+            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
+            docConvSend(messageBox.current.value);
+            chatData.push({ name: myName, msg: messageBox.current.value, time: currentTime});
+            setSent(1);
+        }
     }
 
     return (
