@@ -55,7 +55,7 @@ const ContextProvider = ({ children }) => {
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
-    
+
 
 
 
@@ -128,19 +128,19 @@ const ContextProvider = ({ children }) => {
         }
     }
 
-    function LocalToUTC(date, time){
+    function LocalToUTC(date, time) {
         const dateFromUI = date; //"2022-06-12"
         const timeFromUI = time; //"12:30"
-    
+
         const dateParts = dateFromUI.split("-");
         console.log(dateParts)
         const timeParts = timeFromUI.split(":");
         console.log(timeParts)
-        const localDate = new Date(dateParts[0], dateParts[1]-1, dateParts[2], timeParts[0], timeParts[1]);
+        const localDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2], timeParts[0], timeParts[1]);
         const dtUTC = localDate.toISOString().split('T');
-        const [dateUTC, timeUTC] = [dtUTC[0] , dtUTC[1].slice(0,5)];
+        const [dateUTC, timeUTC] = [dtUTC[0], dtUTC[1].slice(0, 5)];
         return [dateUTC, timeUTC]
-    } 
+    }
 
     function UTCToLocal(reserved_date, reserved_time) {
         var dateParts = reserved_date.split("-"); //reserved_date "05-13-2022" , time "12:30 PM"
@@ -148,17 +148,17 @@ const ContextProvider = ({ children }) => {
         let [hours, minutes] = time.split(":");
         if (hours === "12") {
             hours = "00";
-        }   
+        }
         if (modifier === "PM") {
             hours = parseInt(hours, 10) + 12;
         }
         var ISOtime = `${hours}:${minutes}`;
         var timeParts = ISOtime.split(":") //"14:30"
-    
-        var date = new Date(dateParts[2], dateParts[0]-1, dateParts[1], timeParts[0], timeParts[1]);
-        var newDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
+
+        var date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1], timeParts[0], timeParts[1]);
+        var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
         var LocalDate = newDate.toLocaleDateString()
-        var LocalTime = newDate.toLocaleTimeString().slice(0,-3)
+        var LocalTime = newDate.toLocaleTimeString().slice(0, -3)
 
         return [LocalDate, LocalTime]
     }
@@ -193,14 +193,14 @@ const ContextProvider = ({ children }) => {
             category: category,
             MHT: mhtData,
         }
-        
+
         Axios.post(`${API_URL}/write-post`, postData)
-        .then((response) => {
-            if (response.data.msg) {
-                sessionClose()
-                document.location.href = '/#/Patient/RecentPost';
-            }
-        })
+            .then((response) => {
+                if (response.data.msg) {
+                    sessionClose()
+                    document.location.href = '/#/Patient/RecentPost';
+                }
+            })
     }
 
     const sendComment = (postId, role, userId, comment) => {
@@ -211,6 +211,11 @@ const ContextProvider = ({ children }) => {
             comment: comment
         }
         Axios.post(`${API_URL}/write-comment`, data)
+            .then((response) => {
+                if (response.data.msg) {
+                    // 여기에 적으시오
+                }
+            })
     }
 
     const readComment = (postId, setComment) => {

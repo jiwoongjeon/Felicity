@@ -8,10 +8,10 @@ function getPage(req, res) {
         post.getPageNum((err, result) => {
             if (err) {
                 console.log(err);
-                res.json({ errMsg: "Error: Failed on getting the number of pages"});
+                res.json({ errMsg: "Error: Failed on getting the number of pages" });
             }
             else {
-                res.json(Math.ceil(result[0]["pages"]/5))
+                res.json(Math.ceil(result[0]["pages"] / 5))
             }
         })
     }
@@ -19,10 +19,10 @@ function getPage(req, res) {
         post.getPageCategoryNum(category, (err, result) => {
             if (err) {
                 console.log(err);
-                res.json({ errMsg: "Error: Failed on getting the number of pages"});
+                res.json({ errMsg: "Error: Failed on getting the number of pages" });
             }
             else {
-                res.json(Math.ceil(result[0]["pages"]/5))
+                res.json(Math.ceil(result[0]["pages"] / 5))
             }
         })
 
@@ -45,7 +45,7 @@ function getPosts(req, res) {
                 for (i in result) {
                     symptomIds.push(result[i].sid);
                 }
-    
+
                 post.findSymptoms(symptomIds, (error, symptoms) => {
                     if (error) {
                         console.log(error);
@@ -71,13 +71,13 @@ function getPosts(req, res) {
             else {
                 // console.log(result)
                 if (result.length == 0) {
-                    res.json({ msg: "No posts exists"})
+                    res.json({ msg: "No posts exists" })
                 }
                 else {
                     for (i in result) {
                         symptomIds.push(result[i].sid);
                     }
-        
+
                     post.findSymptoms(symptomIds, (error, symptoms) => {
                         if (error) {
                             console.log(error);
@@ -135,7 +135,7 @@ function postPost(req, res) {
                     res.json({ errMsg: "Error: Failed on creating post" });
                 }
             })
-            res.json({ msg: 1})
+            res.json({ msg: 1 })
         }
     })
 
@@ -147,15 +147,16 @@ function updateComment(req, res) {
     post.updateIsReplied(req.body.postId, (error, result) => {
         if (error) {
             console.log(error);
-            res.json({ errMsg: "Error: Failed on updating post comments"})
+            res.json({ errMsg: "Error: Failed on updating post comments" })
         }
     })
     post.insertComment(req.body.postId, req.body.role, req.body.userId, req.body.comment, (error, result) => {
         if (error) {
             console.log(error);
-            res.json({ errMsg: "Error: Failed on updating comments"})
+            res.json({ errMsg: "Error: Failed on updating comments" })
         }
     })
+    res.json({ msg: "OK" })
 }
 
 router.post("/post-page", getPage);
