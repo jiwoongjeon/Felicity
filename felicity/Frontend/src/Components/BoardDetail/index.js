@@ -72,8 +72,7 @@ export const BoardDetail = (props) => {
     function sendComment() {
         setReplyState(false)
         if(props.data.state == 0) props.data.state = 1
-        props.sendComment(props.data.id, role, jwt, content)
-        props.readComment(props.data.id, setComment)
+        props.sendComment(props.data.id, role, jwt, content, setComment)
     }
 
     function back() {
