@@ -76,7 +76,19 @@ io.on("connection", async socket => {
     })
 
     socket.on("reconnection", (data) => {
-        console.log(socket.id, data)
+        console.log(socket.id, data, data[0], data[1])
+        if (data[1] == "false") {
+            console.log("Doctor: ", !data[1])
+            conn.doctorReconnection(socket, data[0], (err, result) => {
+                if (err) console.log(err);
+            })
+        }
+        else {
+            console.log("Patient: ", data[1])
+            conn.patientReconnection(socket, data[0], (err, result) => {
+                if (err) console.log(err);
+            })
+        }
     })
 
     console.log(socket.id);

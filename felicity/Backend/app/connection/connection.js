@@ -99,6 +99,44 @@ connection.socketPatientLogin = function socketPatientLogin(patientId, socket, i
     });
 }
 
+
+
+// When user reconnects to the server
+connection.doctorReconnection = function doctorReconnection(socket, doctorId, callback) {
+    conn.checkDoctorSocket(doctorId, (error, result) => {
+        if (error) callback(error, null);
+
+        // Normal case
+        if (result[0].socket == null) {
+            conn.updateDoctorSocket(socket.id, doctorId, (err, res) => {
+                if (err) callback(err, null);
+
+                callback(null, res);
+            })
+        }
+        // Else: Error case
+
+    })
+}
+
+connection.patientReconnection = function patientReconnection(socket, patientId, callback) {
+    conn.checkPatientSocket(patientId, (error, result) => {
+        if (error) callback(error, null);
+
+        // Normal case
+        if (result[0].socket == null) {
+            conn.updatePatientSocket(socket.id, patientId, (err, res) => {
+                if (err) callback(err, null);
+
+                callback(null, res);
+            })
+        }
+        // Else: Error case
+
+    })
+}
+
+
 // When user is disconnected
 connection.doctorDisconnection = function doctorDisconnection(socket, callback) {
     // Make sure the disconnected user is same with a user tracking from DB
