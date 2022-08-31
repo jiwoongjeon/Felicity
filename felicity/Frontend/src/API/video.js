@@ -139,6 +139,7 @@ const ContextProvider = ({ children }) => {
         const localDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2], timeParts[0], timeParts[1]);
         const dtUTC = localDate.toISOString().split('T');
         const [dateUTC, timeUTC] = [dtUTC[0], dtUTC[1].slice(0, 5)];
+
         return [dateUTC, timeUTC]
     }
 
@@ -158,7 +159,7 @@ const ContextProvider = ({ children }) => {
         var date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1], timeParts[0], timeParts[1]);
         var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
         var LocalDate = newDate.toLocaleDateString()
-        var LocalTime = newDate.toLocaleTimeString().slice(0, -3)
+        var LocalTime = newDate.toLocaleTimeString('it-IT')
 
         return [LocalDate, LocalTime]
     }
@@ -459,10 +460,17 @@ const ContextProvider = ({ children }) => {
         window.location.reload();
     }
 
+
     useEffect(() => {
         socket.on("result", (result) => {
             setText(result)
             console.log(result)
+        })
+        socket.on("new-login-attempt", (socketId) => {
+            console.log(socketId);
+            // If new login for a same user is detected, current user can choose yes/no.
+            // If yes, log out from this browser and login from another device.
+            // If no, keep the login status from this browser, and reject login from another device
         })
     })
 

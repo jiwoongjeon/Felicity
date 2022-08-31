@@ -3,6 +3,7 @@ const cors = require("cors");
 const config = require("./config")
 const socket = require("socket.io");
 const transcribe = require("../stt");
+const conn = require("./connection/connection")
 
 const app = express();
 app.use(cors());
@@ -85,8 +86,19 @@ io.on("connection", async socket => {
         const userid = data[0];
         const role = data[1];
 
+        if (!role) {
+            conn.socketDoctorLogin(userid, socket, io, (err, result) => {
+                if (err) console.log(err);
+            })
+        }
+        else {
+            conn.socketPatientLogin(userid, socket, io, (err, result) => {
+                if (err) console.log(err);
+            })
+        }
+
         if (userid != 0) {
-            const insertSocket = "INSERT INTO connection (role, user_id, socket_id) values (?, ?, ?)";
+            const insertSocket = "INSERT INTO connection (role, user_id, socket_id) VALUES (?, ?, ?)";
             config.db.query(insertSocket, [role, userid, socket.id], (err, result) => {
                 if (err) console.log(err);
             });
@@ -150,6 +162,14 @@ io.on("connection", async socket => {
 
     socket.on("disconnect", () => {
         console.log(`disconnected: ${socket.id}`);
+        conn.doctorDisconnection(socket, (err, result) => {
+            if (err) console.log(err);
+            else console.log(result);
+        })
+        conn.patientDisconnection(socket, (err, result) => {
+            if (err) console.log(err);
+            else console.log(result);
+        })
         const updateDisconQry = "UPDATE connection SET disconnected_time = NOW() WHERE (socket_id = ?)"
         config.db.query(updateDisconQry, socket.id, (err, result) => {
             if (err) console.log(err);
