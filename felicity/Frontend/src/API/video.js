@@ -204,7 +204,7 @@ const ContextProvider = ({ children }) => {
             })
     }
 
-    const sendComment = (postId, role, userId, comment) => {
+    const sendComment = (postId, role, userId, comment, setComment) => {
         const data = {
             postId: postId,
             role: role,
@@ -214,7 +214,7 @@ const ContextProvider = ({ children }) => {
         Axios.post(`${API_URL}/write-comment`, data)
             .then((response) => {
                 if (response.data.msg) {
-                    // 여기에 적으시오
+                    readComment(postId, setComment)
                 }
             })
     }
