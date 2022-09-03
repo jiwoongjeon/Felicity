@@ -1,41 +1,51 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Header from '../../Components/Header/Header';
-import {Mostouter,Cat,List,Directory,User} from './layout';
+import { Mostouter, Cat, List, Directory, User } from './layout';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
 import DoctorList from "../../Components/DoctorList";
 import UserRedirect from "../UserRedirect";
+import Axios from "axios";
+import API_URL from "../../API/server-ip";
 
 
 function StatusPatient() {
+  const [doctorList, setDoctorList] = useState([])
 
+  useEffect(() => {
+    Axios.get(`${API_URL}/available-doctor`)
+      .then((response) => {
+        console.log(response.data)
+        setDoctorList(response.data);
+      })
+  }, [])
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
-    return (
+  return (
 
-      <Mostouter>
-        {!jwt && <UserRedirect isRole={true}/>}
+    <Mostouter>
+      {!jwt && <UserRedirect isRole={true} />}
 
       <Cat>
-        <Header isDoctor={false}/>
+        <Header isDoctor={false} />
       </Cat>
       <Directory>
-        <Path directory="Doctor List"/>
+        <Path directory="Doctor List" />
       </Directory>
 
       <User>
-          <Login />
+        <Login />
       </User>
 
       <List>
-        <DoctorList />
+        <DoctorList doctorList={doctorList} />
       </List>
 
-      </Mostouter>
+    </Mostouter>
 
 
-    );
-  }
+  );
+}
 
 export default StatusPatient;

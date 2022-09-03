@@ -37,6 +37,7 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [someName, setSomeName] = useState("");
+    const [rid, setRid] = useState(0);
 
     const [isClicked, setIsClicked] = useState(false);
     const [text, setText] = useState([
@@ -303,6 +304,7 @@ const ContextProvider = ({ children }) => {
     })
 
     const startCall = (reservation_id) => {
+        setRid(reservation_id);
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then((currentStream) => {
                 setStream(currentStream);
@@ -310,7 +312,7 @@ const ContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.emit("start", { reservation_id });
+        socket.emit("start", { reservation_id, role });
 
         socket.on("me", ({ socketid, otherSocketId }) => {
             setMe(socketid);
@@ -451,13 +453,37 @@ const ContextProvider = ({ children }) => {
         text.translation = ""
     }
 
+    const stopBothVideoAndAudio = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == "live") {
+                track.stop();
+            }
+        });
+    }
+    const stopVideoOnly = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'video') {
+                track.stop();
+            }
+        });
+    }
+    const stopAudioOnly = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'audio') {
+                track.stop();
+            }
+        });
+    }
 
     const leaveCall = () => {
         setCallEnded(true);
 
+        console.log("Leaving call")
         connectionRef.current.destroy();
+        stopBothVideoAndAudio(myVideo.current.srcObject);
+        stopBothVideoAndAudio(userVideo.current.srcObject);
 
-        window.location.reload();
+        socket.emit("leavecall", { reservation_id: rid, role: role });
     }
 
 
