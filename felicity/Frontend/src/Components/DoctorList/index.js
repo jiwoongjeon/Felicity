@@ -1,24 +1,25 @@
 import React from "react";
 import { DOCTOR_DATA } from "./TempData";
 import {
-PostContainer,
-Header,
-PostElementContainer,
-AvailContainer,
-Divider,
-AvailBubble,
-PostElement,
-HeaderColumn,
-BodyColumn,
-No,
-Doctor,
-Name,
-PhotoArea,
-UnavailableBubble,
-Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, AvailTime} from "./styles";
+  PostContainer,
+  Header,
+  PostElementContainer,
+  AvailContainer,
+  Divider,
+  AvailBubble,
+  PostElement,
+  HeaderColumn,
+  BodyColumn,
+  No,
+  Doctor,
+  Name,
+  PhotoArea,
+  UnavailableBubble,
+  Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, AvailTime
+} from "./styles";
 
-const ActivateButton = ( active ) => {
-  if (active === 0) {
+const ActivateButton = (active) => {
+  if (active == null) {
     return <UnavailableBubble>Not Available</UnavailableBubble>;
   }
 
@@ -28,44 +29,44 @@ const ActivateButton = ( active ) => {
 }
 
 
-const DoctorList = () => {
+const DoctorList = ({ doctorList }) => {
   return (
-        <PostContainer>
+    <PostContainer>
 
-            <Header>Doctor List</Header>
+      <Header>Doctor List</Header>
 
-            <HeaderColumn>
-                    <NoLabel>NO</NoLabel>
-                    <PhotoLabel>DOCTOR</PhotoLabel>
-                    <DepartLabel>TIME STATUS</DepartLabel>
-                    <AvailLabel>APPOINTMENT</AvailLabel>
-            </HeaderColumn>
+      <HeaderColumn>
+        <NoLabel>NO</NoLabel>
+        <PhotoLabel>DOCTOR</PhotoLabel>
+        <DepartLabel>TIME STATUS</DepartLabel>
+        <AvailLabel>APPOINTMENT</AvailLabel>
+      </HeaderColumn>
 
-            <PostElementContainer>
-                <Divider />
-                {DOCTOR_DATA.map((data, i) => (
-                    <PostElement>
-                        <BodyColumn>
-                            <No>{i+1}</No>
-                            <PhotoArea img = {data.img}/>
-                            <Doctor>
-                                <Name>{data.name}</Name>
-                                <Department>{data.department}</Department>
-                            </Doctor>
-                            <AvailTime>{data.time}</AvailTime>
-                            <AvailContainer>
-                            {ActivateButton(data.available)}
-                            </AvailContainer>
+      <PostElementContainer>
+        <Divider />
+        {doctorList.map((data, i) => (
+          <PostElement>
+            <BodyColumn>
+              <No>{i + 1}</No>
+              <PhotoArea img={data.img} />
+              <Doctor>
+                <Name>{data.name}</Name>
+                <Department>{data.department}</Department>
+              </Doctor>
+              <AvailTime>{data.time}</AvailTime>
+              <AvailContainer>
+                {ActivateButton(data.available)}
+              </AvailContainer>
 
-                        </BodyColumn>
-                        <Divider></Divider>
-                    </PostElement>
+            </BodyColumn>
+            <Divider></Divider>
+          </PostElement>
 
 
-                    ))}
-            </PostElementContainer>
+        ))}
+      </PostElementContainer>
 
-        </PostContainer>
+    </PostContainer>
   );
 };
 
