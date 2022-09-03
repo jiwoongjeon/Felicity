@@ -3,36 +3,41 @@ import Slider from '@material-ui/core/Slider';
 import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer, Header, PostElementContainer, AvailContainer, Divider, AvailBubble, PostElement, HeaderColumn, Time, BodyColumn, No, Patient, Name, PhotoArea, UnavailableBubble, Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
 import { Redirect } from "react-router-dom";
 import { SocketContext } from "../../API/video";
+import Axios from 'axios';
+import Count from '../MeetingPage'
+import API from '../../API/video';
 import { ISO_8601 } from "moment";
 
 
 
-export var isEmpty = true;
+//export var isEmpty = true;
 
-//export const count = 0;
-
-function Increment () {
-  const { count, setCount } = useContext(SocketContext);
+function Increment (count, setCount) {
   
-
-
+  
   if (count >= 1){
 
     setCount(count + 1 );
-
-    return true;
-  
+     
   }
 
   else{
-    setCount(1);
-
-    return true;
+    setCount(1);  
   }
+  
+  return count + 1; 
 
   
 }
 
+
+// function GetCount () {
+//   axios.post(Count)
+//   .then(res => {
+//     const count = res.count;
+//     this.setState({count})
+//   })
+// }
 
 
 
@@ -55,6 +60,8 @@ export const MeetingPage = (props) => {
 
   const { count, setCount } = useContext(SocketContext);
 
+
+
   const { id } = React.useContext(SocketContext);
 
 
@@ -74,7 +81,7 @@ export const MeetingPage = (props) => {
         <Divider />
 
         
-        {Increment && props.patientData.map((data, count) => (
+        {props.patientData.map((data, count) => (
           
 
           <PostElement>
@@ -82,9 +89,9 @@ export const MeetingPage = (props) => {
 
    
          
-
-              <No>{ count + 1 }</No>
-              {console.log("count" + count)}
+            
+              <No>{Increment(count, setCount)}</No>
+         
       
 
               <PhotoArea img={data.img} />

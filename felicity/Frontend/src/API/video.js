@@ -483,7 +483,7 @@ const ContextProvider = ({ children }) => {
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, docConvSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
-                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment
+                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount
             }}
         >
             {children}
