@@ -121,6 +121,7 @@ io.on("connection", async socket => {
                 if (error) console.log(error);
             })
         }
+        // When patient enters the room
         else {
             videocall.patientEnterRoom(rid, (error, result) => {
                 if (error) console.log(error);
@@ -132,8 +133,22 @@ io.on("connection", async socket => {
 
     });
 
-    socket.on("disconnect", () => {
-        socket.broadcast.emit("callended");
+    socket.on("leavecall", (data) => {
+        const rid = data.reservation_id;
+        const role = data.role;
+
+        // When doctor leaves the room
+        if (!role) {
+            videocall.doctorLeaveRoom(rid, (err, result) => {
+                if (err) console.log(err);
+            })
+        }
+        // When patient leaves the room
+        else {
+            videocall.patientLeaveRoom(rid, (err, result) => {
+                if (err) console.log(err);
+            })
+        }
     });
 
     socket.on("calluser", ({ userToCall, signalData, from, someName }) => {

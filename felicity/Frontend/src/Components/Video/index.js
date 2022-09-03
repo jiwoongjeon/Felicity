@@ -38,7 +38,7 @@ const sessionStore = role => {
 }
 
 const Video = ({ context }) => {
-    const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = context;
+    const { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = context;
     const [visible, setVisible] = React.useState(true);
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
@@ -71,8 +71,8 @@ const Video = ({ context }) => {
                         {console.log(role)}
                         {!userJoined && <Button color="#bbbbbb">The patient didn't joined yet</Button>}
                         {userJoined && <Button onClick={() => { callUser(); setVisible(false); }}>
-                        {//userJoined && <Button onClick={() => { callUser(); setVisible(false); startTimer(); }}>
-                        }
+                            {//userJoined && <Button onClick={() => { callUser(); setVisible(false); startTimer(); }}>
+                            }
                             Let's start!
                         </Button>}
                     </Block>
@@ -104,11 +104,11 @@ const Video = ({ context }) => {
                 </RecordBox>
 
                 {mySpeech && <TextArea color='#ffff00'>
-                    {text[0].transcription}<br/>{text[0].translation}
-                </TextArea> }
+                    {text[0].transcription}<br />{text[0].translation}
+                </TextArea>}
 
                 {!mySpeech && <TextArea color='#ffffff'>
-                    {text[0].transcription}<br/>{text[0].translation}
+                    {text[0].transcription}<br />{text[0].translation}
                 </TextArea>}
             </SubtitleContainer>
 
@@ -119,7 +119,7 @@ const Video = ({ context }) => {
                     <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                 </IconLeft>
                 <IconRight>
-                    <Phone onClick={() => sessionStore(role)} to="../Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
+                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="../Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 </IconRight>
             </Setting>
 
