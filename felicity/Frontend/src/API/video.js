@@ -310,7 +310,7 @@ const ContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.emit("start", { reservation_id });
+        socket.emit("start", { reservation_id, role });
 
         socket.on("me", ({ socketid, otherSocketId }) => {
             setMe(socketid);

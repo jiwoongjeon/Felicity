@@ -4,6 +4,7 @@ const config = require("./config")
 const socket = require("socket.io");
 const transcribe = require("../stt");
 const conn = require("./connection/connection")
+const videocall = require("./videocall/videocall")
 
 const app = express();
 app.use(cors());
@@ -67,7 +68,6 @@ io.on("connection", async socket => {
         let fileBuffer = Buffer.from(dataURL, "base64")
         const result = await transcribe(fileBuffer)
         console.log(result)
-        // console.log(dataURL)
         socket.emit("result", result)
     })
 
@@ -78,13 +78,11 @@ io.on("connection", async socket => {
     socket.on("reconnection", (data) => {
         console.log(socket.id, data, data[0], data[1])
         if (data[1] == "false") {
-            console.log("Doctor: ", !data[1])
             conn.doctorReconnection(socket, data[0], (err, result) => {
                 if (err) console.log(err);
             })
         }
         else {
-            console.log("Patient: ", data[1])
             conn.patientReconnection(socket, data[0], (err, result) => {
                 if (err) console.log(err);
             })
@@ -108,47 +106,30 @@ io.on("connection", async socket => {
                 if (err) console.log(err);
             })
         }
-
-        if (userid != 0) {
-            const insertSocket = "INSERT INTO connection (role, user_id, socket_id) VALUES (?, ?, ?)";
-            config.db.query(insertSocket, [role, userid, socket.id], (err, result) => {
-                if (err) console.log(err);
-            });
-        }
     })
 
     socket.on("start", (data) => {
-        console.log(data)
         const rid = data.reservation_id;
-        const socketid = socket.id;
-        var otherSocketId;
+        const role = data.role;
 
-        const getSocketId =
-            "SELECT reservation.id, reservation.socket_id FROM reservation " +
-            "JOIN connection ON connection.disconnected_time IS NULL " +
-            "WHERE reservation.id = ? and reservation.socket_id = connection.socket_id";
-        config.db.query(getSocketId, rid, (err, result) => {
-            if (err) console.log(err);
+        // When doctor enters the room
+        if (!role) {
+            videocall.doctorEnterRoom(rid, (error, result) => {
+                if (error) console.log(error);
+            })
+            videocall.checkPatientInRoom(rid, io, socket, (error, result) => {
+                if (error) console.log(error);
+            })
+        }
+        else {
+            videocall.patientEnterRoom(rid, (error, result) => {
+                if (error) console.log(error);
+            })
+            videocall.checkDoctorInRoom(rid, io, socket, (error, result) => {
+                if (error) console.log(error);
+            })
+        }
 
-            else {
-                console.log(result);
-
-                if (result.length == 0) {
-                    const updateSocketId = "UPDATE reservation SET socket_id = ? WHERE (id = ?)"
-                    config.db.query(updateSocketId, [socketid, rid], (err, result) => {
-                        if (err) console.log(err);
-                    })
-                    socket.emit("me", ({ socketid, otherSocketId: null }))
-                    console.log("Updated reservation table")
-                }
-                else {
-                    otherSocketId = result[0].socket_id
-                    socket.emit("me", ({ socketid, otherSocketId }))
-                    io.to(otherSocketId).emit("room-entered", ({ socketid: socketid }))
-                    console.log("Sent socket id")
-                }
-            }
-        })
     });
 
     socket.on("disconnect", () => {
@@ -181,10 +162,6 @@ io.on("connection", async socket => {
         conn.patientDisconnection(socket, (err, result) => {
             if (err) console.log(err);
             else console.log(result);
-        })
-        const updateDisconQry = "UPDATE connection SET disconnected_time = NOW() WHERE (socket_id = ?)"
-        config.db.query(updateDisconQry, socket.id, (err, result) => {
-            if (err) console.log(err);
         })
     })
 })
