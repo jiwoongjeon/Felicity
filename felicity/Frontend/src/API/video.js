@@ -225,11 +225,11 @@ const ContextProvider = ({ children }) => {
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
                     date = response.data[i].time.split("T")[0]
+                    date = date.slice(5, 10) + "-" + date.slice(0, 4)
                     time = response.data[i].time.split("T")[1].split(".")[0]
                     var [date, time] = UTCToLocal(date, time)
                     response.data[i].time = date + " " + time
                 }
-                console.log(response.data)
                 setComment(response.data)
                 setCommentsLoad(true)
             })
