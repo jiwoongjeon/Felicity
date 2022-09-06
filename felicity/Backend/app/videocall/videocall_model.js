@@ -87,3 +87,4 @@ videocall.findPatientInfo = function findPatientInfo(patient_id, callback) {
 
         callback(null, result);
     });
+}
