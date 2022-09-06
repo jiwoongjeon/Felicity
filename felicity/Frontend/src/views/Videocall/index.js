@@ -14,8 +14,8 @@ function Videocall(props) {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
-  const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send, userJoined } = useContext(SocketContext);
-  const context = { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send, userJoined }
+  const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = useContext(SocketContext);
+  const context = { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined }
 
   // useEffect(() => startCall(), []);
 

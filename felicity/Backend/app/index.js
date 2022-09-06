@@ -24,6 +24,7 @@ app.use(require("./posts/router"));         // "/post"
 app.use(require("./schedule/router"));      // "/patient_schedule" or "/doctor_schedule"
 app.use(require("./status/router"));        // "dstatus" or "pstatus"
 app.use(require("./conv/router"));
+app.use(require("./videocall/router"));
 
 // const login = require("./login.js")
 
@@ -100,7 +101,7 @@ io.on("connection", async socket => {
         var otherSocketId;
 
         const getSocketId =
-            "SELECT reservation.id, reservation.socket_id FROM reservation " +
+            "SELECT reservation.id, reservation.patient_id, reservation.doctor_id, reservation.socket_id FROM reservation " +
             "JOIN connection ON connection.disconnected_time IS NULL " +
             "WHERE reservation.id = ? and reservation.socket_id = connection.socket_id";
         config.db.query(getSocketId, rid, (err, result) => {

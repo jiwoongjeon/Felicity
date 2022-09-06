@@ -63,6 +63,18 @@ const ContextProvider = ({ children }) => {
         window.sessionStorage.setItem('role', JSON.stringify(role));
         window.sessionStorage.setItem('jwt', JSON.stringify(jwt));
         window.sessionStorage.setItem('name', JSON.stringify(name));
+        if (role) {
+            window.sessionStorage.setItem('pid', JSON.stringify(jwt));
+            window.sessionStorage.setItem('did', 'null');
+            console.log('doc')
+        }
+        else {
+            window.sessionStorage.setItem('pid', 'null');
+            window.sessionStorage.setItem('did', JSON.stringify(jwt));
+            console.log('pat');
+        }
+        
+       
     }
 
     function sessionClose() { //stores items in sessionStorage
@@ -267,7 +279,7 @@ const ContextProvider = ({ children }) => {
     const convSend = (c, r, m) => {
         if (m !== "") {
             var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-            socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
+            // socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
             Axios.post(`${API_URL}/post_chat_conv`, {
                 conv_id: c,
                 name: name,
@@ -281,7 +293,7 @@ const ContextProvider = ({ children }) => {
     const docConvSend = (m) => {
         if (m !== "") {
             var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-            socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
+            // socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
             Axios.post(`${API_URL}/post_doctor_chat`, {
                 name: name,
                 message: m,
