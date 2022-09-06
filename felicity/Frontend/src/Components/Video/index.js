@@ -82,7 +82,6 @@ const Video = ({ context }) => {
             <Patient>
                 {stream && (
                     <VideoContainer playsInline muted ref={myVideo} autoPlay />
-
                 )}
                 <Name>
                     Mark Wilson

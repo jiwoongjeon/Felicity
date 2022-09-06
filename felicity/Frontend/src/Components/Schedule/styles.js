@@ -20,7 +20,7 @@ export const Header = styled.p`
   font-size: 20px;
 `;
 
-export const AppointmentContainer = styled.div`
+export const AppointmentContainer = styled(Link)`
   width: 90%;
   height: 35%;
   min-width:300px;
@@ -31,6 +31,8 @@ export const AppointmentContainer = styled.div`
   flex-direction: column;
   background-color: #F8F9FA;
   border-radius: 10px;
+  display:flex;
+  text-decoration:none;
 `;
 
 export const AppointmentList = styled.div`
@@ -43,12 +45,11 @@ overflow-y: auto;
 }
 `;
 
-export const FstColumn = styled(Link)`
+export const FstColumn = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 5px;
-  text-decoration:none;
 `;
 
 export const First = styled.div`

@@ -45,7 +45,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     background-color: rgba(36,36,36,0.6);
-    border-radius : 20px;
 `;
 
 export const Button = styled.button`
@@ -79,6 +78,5 @@ export const Block = styled.div`
     font-size: 15px;
     font-weight: 600;
     line-height: 10px;
-
 `;
 
