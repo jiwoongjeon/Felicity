@@ -39,7 +39,6 @@ const getPatientListQry =
     "SELECT patient_id, firstname, lastname " +
     "FROM patient_profile ";
 
-
 const getDoctorNameQry =
     "SELECT firstname, lastname " +
     "FROM doctor_profile " +

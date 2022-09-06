@@ -1,6 +1,8 @@
+var x = "hi";
+
 export const CONVERSATION_DATA = [
     {
-        patient: "Mark Willson",
+        patient: x,
         age_sex: "28/Male",
         disease: "COVID19",
 
@@ -34,7 +36,7 @@ export const CONVERSATION_DATA = [
         doctor: "Dr. Jiwoong Jeon",
         profession: "Urology",
         education: [
-            {id: "Ph.D in Computer Science, MIT, 2028<"},
+            {id: "Ph.D in Computer Science, MIT, 2028"},
             {id: "B.S. in Computer Science, Pennsylvania State University, 2022"}
         ],
         phone: "+1 123-456-7890",

@@ -76,7 +76,10 @@ const Schedule = ({ startCall, schedule_data}) => {
 
     isEmpty = true;
 
-    
+    function handleStartCall() {
+        window.sessionStorage.setItem('did', JSON.stringify(schedule_data[0].doctor_id));
+        startCall(schedule_data[0].rid);
+    }
 
     return (
         <ScheduleContainer>
@@ -86,7 +89,7 @@ const Schedule = ({ startCall, schedule_data}) => {
                     <>
                         {TimeCompare(data.reserved_date, data.reserved_time) &&
                             <AppointmentContainer> 
-                                <FstColumn onClick={() => startCall(data.rid)} to={"/Patient/videocall"}>
+                                <FstColumn onClick={() => handleStartCall()} to={"/Patient/videocall"}>
                                     <Group>
                                         <Date>{data.reserved_date}</Date> 
                                         <TimeEmail>{data.reserved_time}</TimeEmail>

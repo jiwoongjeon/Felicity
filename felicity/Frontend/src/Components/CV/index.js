@@ -3,6 +3,10 @@ const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divid
 
 //props.data[props.index]
 export const CV = (props) => {
+    function handleStartCall() {
+        window.sessionStorage.setItem('pid', JSON.stringify(props.scheduleData[0].patient_id));
+        props.startCall(props.data.rid);
+    }
 
     return (
         <PatientContainer>
@@ -63,7 +67,7 @@ export const CV = (props) => {
                     </Column>}
             </Column>
             <Divider />
-            {props.data.sex && !props.past && <Btn onClick={() => props.startCall(props.data.rid)} to={`./videocall`}>See your patient now</Btn>}
+            {props.data.sex && !props.past && <Btn onClick={() => handleStartCall()} to={`./videocall`}>See your patient now</Btn>}
         </PatientContainer>
     );
 }

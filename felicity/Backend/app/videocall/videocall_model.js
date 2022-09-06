@@ -14,6 +14,16 @@ const updatePatientInRoomQry = "UPDATE reservation SET p_in_room = ? WHERE (id =
 const getDoctorInRoomQry = "SELECT d_in_room FROM reservation WHERE id = ?";
 const getPatientInRoomQry = "SELECT p_in_room FROM reservation WHERE id = ?";
 
+const getDoctorInfoQry =
+    "SELECT firstname, lastname, profession, email " +
+    "FROM doctor_profile " +
+    "WHERE doctor_id = (?)";
+
+const getPatientInfoQry =
+    "SELECT firstname, lastname, date_format((birth), '%m-%d-%Y') as birth, sex " +
+    "FROM patient_profile " +
+    "WHERE patient_id = (?)";
+
 // Get doctor's socket id from reservation table
 videocall.getDoctorSocket = function getDoctorSocket(rid, callback) {
     config.db.query(getDoctorSocketQry, rid, (err, result) => {
@@ -62,3 +72,18 @@ videocall.getPatientInRoom = function getPatientInRoom(rid, callback) {
         callback(null, result);
     })
 }
+
+videocall.findDoctorInfo = function findDoctorInfo(doctor_id, callback) {
+    config.db.query(getDoctorInfoQry, doctor_id, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+videocall.findPatientInfo = function findPatientInfo(patient_id, callback) {
+    config.db.query(getPatientInfoQry, patient_id, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
