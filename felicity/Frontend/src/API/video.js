@@ -37,6 +37,7 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [someName, setSomeName] = useState("");
+    const [rid, setRid] = useState(0);
 
     const [isClicked, setIsClicked] = useState(false);
     const [text, setText] = useState([
@@ -151,6 +152,7 @@ const ContextProvider = ({ children }) => {
         const localDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2], timeParts[0], timeParts[1]);
         const dtUTC = localDate.toISOString().split('T');
         const [dateUTC, timeUTC] = [dtUTC[0], dtUTC[1].slice(0, 5)];
+
         return [dateUTC, timeUTC]
     }
 
@@ -170,7 +172,7 @@ const ContextProvider = ({ children }) => {
         var date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1], timeParts[0], timeParts[1]);
         var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
         var LocalDate = newDate.toLocaleDateString()
-        var LocalTime = newDate.toLocaleTimeString().slice(0, -3)
+        var LocalTime = newDate.toLocaleTimeString('it-IT')
 
         return [LocalDate, LocalTime]
     }
@@ -235,11 +237,11 @@ const ContextProvider = ({ children }) => {
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
                     date = response.data[i].time.split("T")[0]
+                    date = date.slice(5, 10) + "-" + date.slice(0, 4)
                     time = response.data[i].time.split("T")[1].split(".")[0]
                     var [date, time] = UTCToLocal(date, time)
                     response.data[i].time = date + " " + time
                 }
-                console.log(response.data)
                 setComment(response.data)
                 setCommentsLoad(true)
             })
@@ -314,6 +316,7 @@ const ContextProvider = ({ children }) => {
     })
 
     const startCall = (reservation_id) => {
+        setRid(reservation_id);
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then((currentStream) => {
                 setStream(currentStream);
@@ -321,7 +324,7 @@ const ContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.emit("start", { reservation_id });
+        socket.emit("start", { reservation_id, role });
 
         socket.on("me", ({ socketid, otherSocketId }) => {
             setMe(socketid);
@@ -462,19 +465,50 @@ const ContextProvider = ({ children }) => {
         text.translation = ""
     }
 
+    const stopBothVideoAndAudio = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == "live") {
+                track.stop();
+            }
+        });
+    }
+    const stopVideoOnly = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'video') {
+                track.stop();
+            }
+        });
+    }
+    const stopAudioOnly = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'audio') {
+                track.stop();
+            }
+        });
+    }
 
     const leaveCall = () => {
         setCallEnded(true);
 
+        console.log("Leaving call")
         connectionRef.current.destroy();
+        stopBothVideoAndAudio(myVideo.current.srcObject);
+        stopBothVideoAndAudio(userVideo.current.srcObject);
 
-        window.location.reload();
+        socket.emit("leavecall", { reservation_id: rid, role: role });
     }
+
 
     useEffect(() => {
         socket.on("result", (result) => {
             setText(result)
             console.log(result)
+        })
+        socket.on("new-login-attempt", (socketId) => {
+            console.log(socketId);
+            // If new login for a same user is detected, current user can choose yes/no.
+            // If yes, log out from this browser and login from another device.
+            // If no, keep the login status from this browser, and reject login from another device
         })
     })
 

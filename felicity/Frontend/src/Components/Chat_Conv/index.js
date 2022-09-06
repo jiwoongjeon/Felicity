@@ -9,7 +9,7 @@ import { render } from 'react-dom';
 
 const moment = require("moment");
 
-const socket = io(`${API_URL}`);
+// const socket = io(`${API_URL}`);
 
 export const Chat_Conv = (props) => {
     const { convSend } = useContext(SocketContext);
@@ -37,16 +37,18 @@ export const Chat_Conv = (props) => {
         displayContainer.current.scrollTo(0, displayContainer.current.scrollHeight);
         message.current.value = null;
         setSent(0);
-    }, [sent]); 
+    }, [sent]);
 
     useEffect(() => {
         Axios.post(`${API_URL}/get_chat_conv`, { "conv_id": props.convId })
             .then((response) => {
                 let cd = [];
-                for (let i=0; i < response.data.nameArr.length; i++) {
-                    cd.push({ name: response.data.nameArr[i].sender,
-                                     msg: response.data.chatArr[i],
-                                    time: response.data.timeArr[i] });
+                for (let i = 0; i < response.data.nameArr.length; i++) {
+                    cd.push({
+                        name: response.data.nameArr[i].sender,
+                        msg: response.data.chatArr[i],
+                        time: response.data.timeArr[i]
+                    });
                 }
                 setChatData(prev => [...prev, ...cd]);
                 displayContainer.current.scrollTo(0, displayContainer.current.scrollHeight);
@@ -57,7 +59,7 @@ export const Chat_Conv = (props) => {
     }, []);
 
 
-    
+
     const handleKeyDown = (e) => {
         if (e.keyCode === 13) {
             handleOnClick();
@@ -65,44 +67,44 @@ export const Chat_Conv = (props) => {
     }
 
     const handleOnClick = () => {
-        if(message.current.value !== '') {
+        if (message.current.value !== '') {
             var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
             convSend(props.convId, props.other, message.current.value);
-            chatData.push({ name: myName, msg: message.current.value, time: currentTime});
+            chatData.push({ name: myName, msg: message.current.value, time: currentTime });
             setSent(1);
         }
     }
 
     return (
-    <div className="wrapper">
-        <div ref={displayContainer} className="display-container">
-            <ul ref={chatList} className="chatting-list">
-                {chatData.map((item, index) => {
-                    return(
-                        <div key={index} className={item.name === myName ? "sent" : "received"}>
-                            <span className="profile">
-                                <span className="user">{item.name}</span>
-                                {/* <img className="image" src="https://i.imgur.com/mNJWYVi.png" alt="any"></img> */}
-                            </span>
-                            <span className="mt">
-                                <span className="message">{item.msg}</span>
-                                <span className="times">{item.time}</span>
-                            </span>
-                        </div>
+        <div className="wrapper">
+            <div ref={displayContainer} className="display-container">
+                <ul ref={chatList} className="chatting-list">
+                    {chatData.map((item, index) => {
+                        return (
+                            <div key={index} className={item.name === myName ? "sent" : "received"}>
+                                <span className="profile">
+                                    <span className="user">{item.name}</span>
+                                    {/* <img className="image" src="https://i.imgur.com/mNJWYVi.png" alt="any"></img> */}
+                                </span>
+                                <span className="mt">
+                                    <span className="message">{item.msg}</span>
+                                    <span className="times">{item.time}</span>
+                                </span>
+                            </div>
                         );
                     })
-                }           
-            </ul>
+                    }
+                </ul>
+            </div>
+            <div className="input-container">
+                <span>
+                    <input ref={message} type="text" className="chatting-input" onKeyDown={handleKeyDown} placeholder='enter your message'></input>
+                    <button onClick={() => handleOnClick()}
+                        className="send-button"
+                        value={""}>Send</button>
+                </span>
+            </div>
         </div>
-        <div className="input-container">
-            <span>
-                <input ref={message} type="text" className="chatting-input" onKeyDown={handleKeyDown} placeholder='enter your message'></input>
-                <button onClick={() => handleOnClick()}
-                className="send-button" 
-                value={""}>Send</button>
-            </span>
-        </div>
-    </div>
     )
 }
 

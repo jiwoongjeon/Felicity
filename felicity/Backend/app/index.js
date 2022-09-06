@@ -3,6 +3,8 @@ const cors = require("cors");
 const config = require("./config")
 const socket = require("socket.io");
 const transcribe = require("../stt");
+const conn = require("./connection/connection")
+const videocall = require("./videocall/videocall")
 
 const app = express();
 app.use(cors());
@@ -25,6 +27,7 @@ app.use(require("./schedule/router"));      // "/patient_schedule" or "/doctor_s
 app.use(require("./status/router"));        // "dstatus" or "pstatus"
 app.use(require("./conv/router"));
 app.use(require("./videocall/router"));
+app.use(require("./availabledoctor/router"));      // "/available-doctor"
 
 // const login = require("./login.js")
 
@@ -67,7 +70,6 @@ io.on("connection", async socket => {
         let fileBuffer = Buffer.from(dataURL, "base64")
         const result = await transcribe(fileBuffer)
         console.log(result)
-        // console.log(dataURL)
         socket.emit("result", result)
     })
 
@@ -76,7 +78,17 @@ io.on("connection", async socket => {
     })
 
     socket.on("reconnection", (data) => {
-        console.log(socket.id, data)
+        console.log(socket.id, data, data[0], data[1])
+        if (data[1] == "false") {
+            conn.doctorReconnection(socket, data[0], (err, result) => {
+                if (err) console.log(err);
+            })
+        }
+        else {
+            conn.patientReconnection(socket, data[0], (err, result) => {
+                if (err) console.log(err);
+            })
+        }
     })
 
     console.log(socket.id);
@@ -86,50 +98,59 @@ io.on("connection", async socket => {
         const userid = data[0];
         const role = data[1];
 
-        if (userid != 0) {
-            const insertSocket = "INSERT INTO connection (role, user_id, socket_id) values (?, ?, ?)";
-            config.db.query(insertSocket, [role, userid, socket.id], (err, result) => {
+        if (!role) {
+            conn.socketDoctorLogin(userid, socket, io, (err, result) => {
                 if (err) console.log(err);
-            });
+            })
+        }
+        else {
+            conn.socketPatientLogin(userid, socket, io, (err, result) => {
+                if (err) console.log(err);
+            })
         }
     })
 
     socket.on("start", (data) => {
-        console.log(data)
         const rid = data.reservation_id;
-        const socketid = socket.id;
-        var otherSocketId;
+        const role = data.role;
 
-        const getSocketId =
-            "SELECT reservation.id, reservation.patient_id, reservation.doctor_id, reservation.socket_id FROM reservation " +
-            "JOIN connection ON connection.disconnected_time IS NULL " +
-            "WHERE reservation.id = ? and reservation.socket_id = connection.socket_id";
-        config.db.query(getSocketId, rid, (err, result) => {
-            if (err) console.log(err);
+        // When doctor enters the room
+        if (!role) {
+            videocall.doctorEnterRoom(rid, (error, result) => {
+                if (error) console.log(error);
+            })
+            videocall.checkPatientInRoom(rid, io, socket, (error, result) => {
+                if (error) console.log(error);
+            })
+        }
+        // When patient enters the room
+        else {
+            videocall.patientEnterRoom(rid, (error, result) => {
+                if (error) console.log(error);
+            })
+            videocall.checkDoctorInRoom(rid, io, socket, (error, result) => {
+                if (error) console.log(error);
+            })
+        }
 
-            else {
-                console.log(result);
-
-                if (result.length == 0) {
-                    const updateSocketId = "UPDATE reservation SET socket_id = ? WHERE (id = ?)"
-                    config.db.query(updateSocketId, [socketid, rid], (err, result) => {
-                        if (err) console.log(err);
-                    })
-                    socket.emit("me", ({ socketid, otherSocketId: null }))
-                    console.log("Updated reservation table")
-                }
-                else {
-                    otherSocketId = result[0].socket_id
-                    socket.emit("me", ({ socketid, otherSocketId }))
-                    io.to(otherSocketId).emit("room-entered", ({ socketid: socketid }))
-                    console.log("Sent socket id")
-                }
-            }
-        })
     });
 
-    socket.on("disconnect", () => {
-        socket.broadcast.emit("callended");
+    socket.on("leavecall", (data) => {
+        const rid = data.reservation_id;
+        const role = data.role;
+
+        // When doctor leaves the room
+        if (!role) {
+            videocall.doctorLeaveRoom(rid, (err, result) => {
+                if (err) console.log(err);
+            })
+        }
+        // When patient leaves the room
+        else {
+            videocall.patientLeaveRoom(rid, (err, result) => {
+                if (err) console.log(err);
+            })
+        }
     });
 
     socket.on("calluser", ({ userToCall, signalData, from, someName }) => {
@@ -151,9 +172,13 @@ io.on("connection", async socket => {
 
     socket.on("disconnect", () => {
         console.log(`disconnected: ${socket.id}`);
-        const updateDisconQry = "UPDATE connection SET disconnected_time = NOW() WHERE (socket_id = ?)"
-        config.db.query(updateDisconQry, socket.id, (err, result) => {
+        conn.doctorDisconnection(socket, (err, result) => {
             if (err) console.log(err);
+            else console.log(result);
+        })
+        conn.patientDisconnection(socket, (err, result) => {
+            if (err) console.log(err);
+            else console.log(result);
         })
     })
 })
