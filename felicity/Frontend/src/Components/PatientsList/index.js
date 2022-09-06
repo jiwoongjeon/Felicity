@@ -1,4 +1,4 @@
-
+import React, { useState, useCallback } from 'react';
 import Calen from "../CalenDoctor";
 import moment from "moment";
 const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
@@ -42,6 +42,17 @@ const TimeCompare = (date, time, past) => {
                 return false;
     }
 }
+    
+const IsToday = (date) => {
+    const [value, setValue] = useState(new Date());
+    var result = [];
+    const appointment = moment(date).format("MM-DD-YYYY");
+    const checked = result.find(x=>x===moment(date).format("MM-DD-YYYY"));
+   
+        if(moment(Calen.value).format("MM-DD-YYYY") == appointment){
+            return true;
+        }
+    }
 
 const PatientsList = (props) => {
 
@@ -58,7 +69,8 @@ const PatientsList = (props) => {
             <PatientElementContainer>
                 {props.data.map((data, i) => (
                     <>
-                        {TimeCompare(data.reserved_date, data.reserved_time, props.past) && (
+                        {IsToday(data.reserved_date) && (
+                        
                             <Column>
                                 <PatientElement onClick={({ target }) => props.setFunction(props.data[i])}
                                 displayed={props.clicked} clicked={data}>
