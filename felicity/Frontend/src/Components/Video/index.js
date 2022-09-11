@@ -102,13 +102,18 @@ const Video = ({ context }) => {
                     </div>
                 </RecordBox>
 
-                {mySpeech && <TextArea color='#ffff00'>
+                {mySpeech & text[0].transcription && <TextArea color='#ffff00'>
                     {text[0].transcription}<br />{text[0].translation}
                 </TextArea>}
 
-                {!mySpeech && <TextArea color='#ffffff'>
+                {mySpeech & text[0].transcription == '' && <TextArea color='#ffff00'>
+                    Error with translating the speech. Please try again.
+                </TextArea>}
+
+                {!mySpeech  && <TextArea color='#ffffff'>
                     {text[0].transcription}<br />{text[0].translation}
                 </TextArea>}
+                
             </SubtitleContainer>
 
             <Setting>
