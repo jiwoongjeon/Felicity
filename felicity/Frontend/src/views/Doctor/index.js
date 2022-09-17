@@ -20,6 +20,7 @@ import UserRedirect from "../UserRedirect";
 
 import API_URL from "../../API/server-ip";
 import { SocketContext } from "../../API/video";
+import MultiLogin from "../UserRedirect/multilogin";
 
 
 
@@ -99,7 +100,6 @@ function Doctor(props) {
         <Mostouter>
             {!jwt && <UserRedirect isRole={false} />}
 
-
             <Cat>
                 <Header isDoctor={true} />
             </Cat>
@@ -114,7 +114,8 @@ function Doctor(props) {
 
 
             <Video>
-                {visible && show && <Container>
+                {visible && show && 
+                <Container>
                     <Block>Video call Ended
                         <Button onClick={() => { CloseSession(); setVisible(false); }}>
                             Okay
@@ -132,7 +133,7 @@ function Doctor(props) {
                 </ContentLayout>
             </Video>
 
-
+            
 
         </Mostouter>
 

@@ -88,8 +88,8 @@ const Schedule = ({ startCall, schedule_data}) => {
                 {schedule_data.map((data) => (
                     <>
                         {TimeCompare(data.reserved_date, data.reserved_time) &&
-                            <AppointmentContainer> 
-                                <FstColumn onClick={() => handleStartCall()} to={"/Patient/videocall"}>
+                            <AppointmentContainer onClick={() => handleStartCall()} to={"/Patient/videocall"}> 
+                                <FstColumn >
                                     <Group>
                                         <Date>{data.reserved_date}</Date> 
                                         <TimeEmail>{data.reserved_time}</TimeEmail>

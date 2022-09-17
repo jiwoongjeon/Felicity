@@ -25,6 +25,7 @@ import Registration from "./views/Registration"
 import Meeting from "./views/Meeting";
 import PatientChat from "./views/PatientChat";
 import DoctorChat from "./views/DoctorChat";
+import MultiLogin from "./views/UserRedirect/multilogin";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
@@ -60,6 +61,8 @@ const ROUTES = [
   { path: "/MHT5", key: "video", component: () => <MHT5 /> },
   { path: "/MHT6", key: "video", component: () => <MHT6 /> },
   { path: "/MHT7", key: "video", component: () => <MHT7 /> },
+
+  { path: "/MultiLogin", key: "video", component: () => <MultiLogin /> },
 
 
 ];

@@ -6,6 +6,8 @@ import needhelp from '../assets/needhelp_highres.png'
 import LogoImg from '../assets/telep_logo_horizon.png';
 import {i, isEmpty} from '../MeetingPage';
 import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
+import Axios from "axios";
+import API_URL from "../../API/server-ip";
 import {
   ProSidebar,
   Menu,
@@ -66,19 +68,29 @@ const { HelpContainer, MenuButton, ActiveButton } = require("./styles");
 
 
 function CheckCount(){
-
   const { count, setCount } = useContext(SocketContext);
-  setCount(count);
+ 
+  if (count >= 1){
+    return true;
+  }
+
+  else{
+    return false;
+  }
+
   
-  return true;
-  
+}
+
+function PutCount(){
+  const { count, setCount } = useContext(SocketContext);
+  return count;
 }
 
 export const Header = (props) => {
 
   
   const { count, setCount } = useContext(SocketContext);
- 
+
  
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(false)
@@ -89,6 +101,33 @@ export const Header = (props) => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    const show = JSON.parse(sessionStorage.getItem("show"))
+    const [scheduleData, setScheduleData] = React.useState([])
+    const [visible, setVisible] = useState(true)
+
+    const { startCall, UTCToLocal } = useContext(SocketContext);
+
+
+    // Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
+    //     .then((response) => {
+    //         for (var i = 0; i < response.data.length; i++) {
+    //             var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
+    //             response.data[i].reserved_date = date
+    //             response.data[i].reserved_time = time
+    //             count += 1;
+    //             console.log(count)
+    //         }
+    //         setScheduleData(response.data)
+
+    //     })
+
+   
+
+// if (scheduleData){
+//   count += 1
+// }
 
   return (
    
@@ -110,7 +149,7 @@ export const Header = (props) => {
           <>
           {CheckCount &&
           <Stack spacing={4} direction="row">
-             <StyledBadge badgeContent={count}/>
+             <StyledBadge badgeContent={PutCount()}/>
           </Stack>
           }
           </>
