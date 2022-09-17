@@ -161,11 +161,7 @@ export const Header = (props) => {
 
              
               {props.isDoctor &&
-            
-           
-              
-              
-            
+ 
                 <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients  
                   
                   <MenuButton to={`./Meeting`}>
