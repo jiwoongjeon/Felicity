@@ -95,8 +95,7 @@ const Schedule = ({ startCall, schedule_data}) => {
                                         <TimeEmail>{data.reserved_time}</TimeEmail>
                                     </Group>
                                     <Group>
-                                        <DeleteIcon>DELETE</DeleteIcon>
-                                        <EditIcon>EDIT</EditIcon>
+
                                     </Group>
                                 </FstColumn>
                                 <Column>
