@@ -9,35 +9,35 @@ import { render } from 'react-dom';
 
 const moment = require("moment");
 
-// const socket = io(`${API_URL}`);
+const socket = io(`${API_URL}`);
 
 export const Chat_Doc = (props) => {
     const { docConvSend } = useContext(SocketContext);
 
     const myName = JSON.parse(sessionStorage.getItem("name"));
 
-    const [sent, setSent] = useState(0);
     const [chatData, setChatData] = useState([]);
 
 
     const messageBox = useRef(null);
+    const fileBox = useRef(null);
     const chatList = useRef(null);
     const displayContainer = useRef(null);
 
-    // useEffect(() => {
-    //     socket.once("chatting", (data) => {
-    //         setReceived(1);
-    //     });
-    //     return (() => {
-    //         socket.off("chatting");
-    //     })
-    // })
+    useEffect(() => {
+        socket.once("doctorchatting", (data) => {
+            const { name, msg, time } = data;
+            setChatData(prev => [...prev, ...[{ name: name, msg: msg, time: time }]]);
+        });
+        return (() => {
+            socket.off("doctorchatting");
+        })
+    })
 
     useEffect(() => {
         displayContainer.current.scrollTo(0, displayContainer.current.scrollHeight);
         messageBox.current.value = null;
-        setSent(0);
-    }, [sent]);
+    }, [chatData]);
 
     useEffect(() => {
         Axios.post(`${API_URL}/get_doctor_chat`)
@@ -68,10 +68,7 @@ export const Chat_Doc = (props) => {
 
     const handleOnClick = () => {
         if (messageBox.current.value !== '') {
-            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
             docConvSend(messageBox.current.value);
-            chatData.push({ name: myName, msg: messageBox.current.value, time: currentTime });
-            setSent(1);
         }
     }
 
@@ -99,6 +96,7 @@ export const Chat_Doc = (props) => {
             <div className="input-container">
                 <span>
                     <input ref={messageBox} type="text" className="chatting-input" onKeyDown={handleKeyDown} placeholder='enter your message'></input>
+                    <input ref={fileBox} type="file" className="chatting-file-input"></input>
                     <button onClick={() => handleOnClick()}
                         className="send-button"
                         value={""}>Send</button>

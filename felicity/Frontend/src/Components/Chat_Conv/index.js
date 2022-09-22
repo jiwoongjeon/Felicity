@@ -9,14 +9,13 @@ import { render } from 'react-dom';
 
 const moment = require("moment");
 
-// const socket = io(`${API_URL}`);
+const socket = io(`${API_URL}`);
 
 export const Chat_Conv = (props) => {
     const { convSend } = useContext(SocketContext);
 
     const myName = JSON.parse(sessionStorage.getItem("name"));
 
-    const [sent, setSent] = useState(0);
     const [chatData, setChatData] = useState([]);
 
 
@@ -24,20 +23,20 @@ export const Chat_Conv = (props) => {
     const chatList = useRef(null);
     const displayContainer = useRef(null);
 
-    // useEffect(() => {
-    //     socket.once("chatting", (data) => {
-    //         setReceived(1);
-    //     });
-    //     return (() => {
-    //         socket.off("chatting");
-    //     })
-    // })
+    useEffect(() => {
+        socket.once("convchatting", (data) => {
+            const { name, msg, time } = data;
+            setChatData(prev => [...prev, ...[{ name: name, msg: msg, time: time }]]);
+        });
+        return (() => {
+            socket.off("convchatting");
+        })
+    })
 
     useEffect(() => {
         displayContainer.current.scrollTo(0, displayContainer.current.scrollHeight);
         message.current.value = null;
-        setSent(0);
-    }, [sent]);
+    }, [chatData]);
 
     useEffect(() => {
         Axios.post(`${API_URL}/get_chat_conv`, { "conv_id": props.convId })
@@ -68,10 +67,7 @@ export const Chat_Conv = (props) => {
 
     const handleOnClick = () => {
         if (message.current.value !== '') {
-            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm A");
             convSend(props.convId, props.other, message.current.value);
-            chatData.push({ name: myName, msg: message.current.value, time: currentTime });
-            setSent(1);
         }
     }
 
