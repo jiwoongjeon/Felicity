@@ -64,13 +64,17 @@ html, body {
     background: #ececec;
     font-size: 12px;
     height: 100%;
-    flex: 8;
+    border: none;
+    padding: 5pt;
+}
+
+.chatting-file-input {
+    font-size: 12px;
     border: none;
     padding: 5pt;
 }
 
 .send-button {
-    flex: 1;
     background: #d6f9ff;
     border: none;
     height: 100%;

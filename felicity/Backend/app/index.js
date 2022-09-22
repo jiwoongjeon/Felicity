@@ -170,6 +170,22 @@ io.on("connection", async socket => {
         })
     })
 
+    socket.on("doctorChatSend", ({ name, msg, time }) => {
+        io.emit("doctorchatting", {
+            name,
+            msg,
+            time
+        })
+    })
+
+    socket.on("convChatSend", ({ name, msg, time }) => {
+        io.emit("convchatting", {
+            name,
+            msg,
+            time
+        })
+    })
+
     socket.on("disconnect", () => {
         console.log(`disconnected: ${socket.id}`);
         conn.doctorDisconnection(socket, (err, result) => {

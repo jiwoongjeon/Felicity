@@ -281,7 +281,7 @@ const ContextProvider = ({ children }) => {
     const convSend = (c, r, m) => {
         if (m !== "") {
             var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-            // socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
+            socket.emit("convChatSend", { name: name, msg: m, time: currentTime });
             Axios.post(`${API_URL}/post_chat_conv`, {
                 conv_id: c,
                 name: name,
@@ -295,7 +295,7 @@ const ContextProvider = ({ children }) => {
     const docConvSend = (m) => {
         if (m !== "") {
             var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-            // socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: currentTime });
+            socket.emit("doctorChatSend", { name: name, msg: m, time: currentTime });
             Axios.post(`${API_URL}/post_doctor_chat`, {
                 name: name,
                 message: m,
