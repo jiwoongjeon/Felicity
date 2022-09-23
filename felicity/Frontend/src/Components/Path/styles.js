@@ -17,16 +17,18 @@ export const Directory = styled.div`
 `;
 
 export const ParentDirectory = styled.div`
-    font-size: 12px;
+    font-size: 150%;
     color: #A0AEC0;
-    font-weight: 500;
+    font-weight: 300;
+    margin-top: 20px;
 `;
 
 export const CurrentDirectory = styled.div`
-    font-size: 12px;
-    color: #2D3748;
+    font-size: 150%;
+    color: #000000;
     padding-left: 5px;
-    font-weight: 500;
+    font-weight: bold;
+    margin-top: 20px;
 `;
 
 export const Title = styled.div`

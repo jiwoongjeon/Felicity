@@ -1,14 +1,13 @@
 import React, { useState, useCallback } from 'react';
-import Calen from "../CalenDoctor";
 import moment from "moment";
 const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
 let isEmpty = true;
 
 const TimeCompare = (date, time, past) => {
 
-    const today = moment().format("MM-DD-YYYY")
+    const today = moment().format("YYYY-MM-DD")
     const today_time = moment().add(10, 'M').format("HH:mm:ss a")
-    const appointment = moment(date).format("MM-DD-YYYY")
+    const appointment = moment(date).format("YYYY-MM-DD")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
     
     if (!past) {
@@ -43,16 +42,16 @@ const TimeCompare = (date, time, past) => {
     }
 }
     
-const IsToday = (date) => {
-    const [value, setValue] = useState(new Date());
-    var result = [];
-    const appointment = moment(date).format("MM-DD-YYYY");
-    const checked = result.find(x=>x===moment(date).format("MM-DD-YYYY"));
+// const IsToday = (date) => {
+//     const [value, setValue] = useState(new Date());
+//     var result = [];
+//     const appointment = moment(date).format("MM-DD-YYYY");
+//     const checked = result.find(x=>x===moment(date).format("MM-DD-YYYY"));
    
-        if(moment(Calen.value).format("MM-DD-YYYY") == appointment){
-            return true;
-        }
-    }
+//         if(moment(Calen.value).format("MM-DD-YYYY") == appointment){
+//             return true;
+//         }
+//     }
 
 const PatientsList = (props) => {
 
@@ -60,16 +59,13 @@ const PatientsList = (props) => {
 
     return (
         <PatientContainer>
-            <CalenderBox>
-                <Calen data={props.data} />
-            </CalenderBox>
             {!props.past && <Title>Upcoming Patients</Title>}
             {props.past && <Title>Past Patients</Title>}
             <Divider />
             <PatientElementContainer>
                 {props.data.map((data, i) => (
                     <>
-                        {IsToday(data.reserved_date) && (
+                        {TimeCompare(data.reserved_date, data.reserved_time, props.past) && (
                         
                             <Column>
                                 <PatientElement onClick={({ target }) => props.setFunction(props.data[i])}

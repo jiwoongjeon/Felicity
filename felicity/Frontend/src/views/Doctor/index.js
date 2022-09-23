@@ -17,7 +17,7 @@ import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 import Axios from "axios";
 import UserRedirect from "../UserRedirect";
-
+import Calen from "../../Components/CalenDoctor";
 import API_URL from "../../API/server-ip";
 import { SocketContext } from "../../API/video";
 import MultiLogin from "../UserRedirect/multilogin";
