@@ -7,7 +7,7 @@ var isEmpty = true;
 const counter = 0;
 
 const TimeCompare = (date, time) => {
-    
+
     const today = moment().format("MM-DD-YYYY")
     const today_time = moment().add(10, 'M').format("HH:mm:ss a")
     const appointment = moment(date).format("MM-DD-YYYY")
@@ -17,13 +17,13 @@ const TimeCompare = (date, time) => {
         isEmpty = false;
         return true;
     }
-    else if (appointment < today) 
+    else if (appointment < today)
         return false;
 
     else
-        if (app_time >= today_time){
+        if (app_time >= today_time) {
             isEmpty = false;
-        
+
             return true;
         }
         else
@@ -38,10 +38,10 @@ const Click = (date, time, past) => {
     const appointment = moment(date).format("MM-DD-YYYY")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
- 
-    
-    if (appointment == today){
-        if (app_time <= click_time){
+
+
+    if (appointment == today) {
+        if (app_time <= click_time) {
             isEmpty = false;
             return true;
         }
@@ -50,7 +50,7 @@ const Click = (date, time, past) => {
         }
     }
 }
-    
+
 const NonClick = (date, time, past) => {
 
     const today = moment().format("MM-DD-YYYY")
@@ -58,40 +58,39 @@ const NonClick = (date, time, past) => {
     const appointment = moment(date).format("MM-DD-YYYY")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
-    if (appointment < today){
+    if (appointment < today) {
         return false;
     }
-    else if (appointment == today){
-        if(app_time <= click_time){
+    else if (appointment == today) {
+        if (app_time <= click_time) {
             return false;
         }
     }
-    else 
+    else
         isEmpty = false;
-        return true;
-    
+    return true;
+
 }
 
-const Schedule = ({ startCall, schedule_data}) => {
+const Schedule = ({ startCall, schedule_data }) => {
 
     isEmpty = true;
 
     function handleStartCall() {
         window.sessionStorage.setItem('did', JSON.stringify(schedule_data[0].doctor_id));
-        startCall(schedule_data[0].rid);
     }
 
     return (
         <ScheduleContainer>
             <Header>My Schedule</Header>
-            <AppointmentList>           
+            <AppointmentList>
                 {schedule_data.map((data) => (
                     <>
                         {TimeCompare(data.reserved_date, data.reserved_time) &&
-                            <AppointmentContainer onClick={() => handleStartCall()} to={"/Patient/videocall"}> 
+                            <AppointmentContainer onClick={() => { handleStartCall(); startCall(data.rid) }} to={"/Patient/videocall"}>
                                 <FstColumn >
                                     <Group>
-                                        <Date>{data.reserved_date}</Date> 
+                                        <Date>{data.reserved_date}</Date>
                                         <TimeEmail>{data.reserved_time}</TimeEmail>
                                     </Group>
                                     <Group>
@@ -100,12 +99,12 @@ const Schedule = ({ startCall, schedule_data}) => {
                                 </FstColumn>
                                 <Column>
                                     <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
-                                </Column>           
+                                </Column>
                             </AppointmentContainer>}
                     </>
                 ))}
                 {isEmpty == true && <Column>There is no appointment.</Column>}
-                    
+
 
             </AppointmentList>
         </ScheduleContainer>

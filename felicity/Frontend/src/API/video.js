@@ -64,18 +64,18 @@ const ContextProvider = ({ children }) => {
         window.sessionStorage.setItem('role', JSON.stringify(role));
         window.sessionStorage.setItem('jwt', JSON.stringify(jwt));
         window.sessionStorage.setItem('name', JSON.stringify(name));
-        if (role) {
+        if (role) { // Patient
             window.sessionStorage.setItem('pid', JSON.stringify(jwt));
             window.sessionStorage.setItem('did', 'null');
             console.log('doc')
         }
-        else {
+        else {  // Doctor
             window.sessionStorage.setItem('pid', 'null');
             window.sessionStorage.setItem('did', JSON.stringify(jwt));
             console.log('pat');
         }
-        
-       
+
+
     }
 
     function sessionClose() { //stores items in sessionStorage
@@ -460,9 +460,11 @@ const ContextProvider = ({ children }) => {
     }
 
     const sendAudio = () => {
-        socket.emit("send-transcription", { userToCall, text })
-        text.transcription = ""
-        text.translation = ""
+        socket.emit("send-transcription", { userToCall: userToCall, text: text })
+        setText({
+            transcription: "",
+            translation: ""
+        })
     }
 
     const stopBothVideoAndAudio = (stream) => {
@@ -501,8 +503,12 @@ const ContextProvider = ({ children }) => {
 
     useEffect(() => {
         socket.on("result", (result) => {
-            setText(result)
             console.log(result)
+            setText(result[0])
+        })
+        socket.on("reresult", (result) => {
+            console.log(result)
+            setText(result)
         })
         socket.on("new-login-attempt", (socketId) => {
             console.log(socketId);

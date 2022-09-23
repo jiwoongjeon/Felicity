@@ -74,7 +74,7 @@ io.on("connection", async socket => {
     })
 
     socket.on("send-transcription", ({ userToCall, text }) => {
-        io.to(userToCall).emit("result", text)
+        io.to(userToCall).emit("reresult", text)
     })
 
     socket.on("reconnection", (data) => {

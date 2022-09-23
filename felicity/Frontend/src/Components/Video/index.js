@@ -43,6 +43,8 @@ const Video = ({ context }) => {
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
 
+    const roleA = JSON.parse(sessionStorage.getItem("role"));
+
     const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
     return (
         <MainContainer>
@@ -55,7 +57,7 @@ const Video = ({ context }) => {
             )}
 
             {visible && <Container id='container'>
-                {(role) ? (
+                {(roleA) ? (
                     call.isReceivedCall && !callAccepted && (
                         <Block>
                             Are you ready to meet your doctor?
@@ -102,18 +104,18 @@ const Video = ({ context }) => {
                     </div>
                 </RecordBox>
 
-                {mySpeech & text[0].transcription && <TextArea color='#ffff00'>
-                    {text[0].transcription}<br />{text[0].translation}
+                {mySpeech && text.transcription && <TextArea color='#ffff00'>
+                    {text.transcription}<br />{text.translation}
                 </TextArea>}
 
-                {mySpeech & text[0].transcription == '' && <TextArea color='#ffff00'>
+                {mySpeech && text.transcription == '' && <TextArea color='#ffff00'>
                     Error with translating the speech. Please try again.
                 </TextArea>}
 
-                {!mySpeech  && <TextArea color='#ffffff'>
-                    {text[0].transcription}<br />{text[0].translation}
+                {!mySpeech && <TextArea color='#ffffff'>
+                    {text.transcription}<br />{text.translation}
                 </TextArea>}
-                
+
             </SubtitleContainer>
 
             <Setting>
