@@ -14,16 +14,16 @@ function Videocall(props) {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
-  const { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send } = useContext(SocketContext);
-  const context = { myVideo, role, startCall, callUser, answerCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, chatArr, send }
+  const { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send, userJoined } = useContext(SocketContext);
+  const context = { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send, userJoined }
 
-  useEffect(() => startCall(), []);
+  // useEffect(() => startCall(), []);
 
   return (
     <Mostouter>
 
-      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
-      
+      {!jwt && <UserRedirect isRole={!props.isDoctor} />}
+
       <Cat>
         <Header isDoctor={props.isDoctor} />
       </Cat>

@@ -1,72 +1,106 @@
+export const COMMENT_DATA = [
+    {
+        id: 1,
+        post_id: 11,
+        role: 0,
+        user_id: 1,
+        firstname: "Won",
+        lastname: "Lee",
+        time: "2022-07-27 10:04:14",
+        comment: "Comment 1"
+    },
+    {
+        id: 2,
+        post_id: 11,
+        role: 1,
+        user_id: 1,
+        firstname: null,
+        lastname: null,
+        time: "2022-07-27 10:11:14",
+        comment: "Comment 2"
+    }
+]
 export const POST_DATA = [
     {
-        id: 168,
-        category: "Internal Medicine",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/22 10:20",
-        state: false
+        id:11,
+        sid:55,
+        category:"other",
+        title:"d",
+        content:"d",
+        date:"2022/05/11 12:24 PM",
+        state: 1,
+        symptoms:{
+            symptom_id:55,
+            cough:0,
+            vomit:1,
+            fever:0,
+            sore_throat:0,
+            phlegm:0,
+            runny_nose:0,
+            nauseous:0,
+            out_of_breath:0,
+            stomachache:0,
+            chills:0,
+            muscle_sickness:0,
+            other:""
+        }
     },
     {
-        id: 167,
-        category: "Ear-Nose-And-Throat Department",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/21 10:20",
-        state: true
-    },
-    {
-        id: 166,
-        category: "Orthopedics",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/20 10:20",
-        state: false
-    },
-    {
-        id: 165,
-        category: "All Clinics",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/19 10:20",
-        state: true
-    },
-    {
-        id: 164,
-        category: "All Clinics",
-        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        symptoms: [
-            {id:"High Fever"}
-            ,
-            {id:"Cough"}
-        ],
-        date: "2022/01/18 10:20",
-        state: false
-    },
-];
+        id:12,
+        sid:55,
+        category:"other",
+        title:"d",
+        content:"d",
+        date:"2022/05/11 12:24 PM",
+        state:0,
+        symptoms:{
+            symptom_id:56,
+            cough:0,
+            vomit:1,
+            fever:0,
+            sore_throat:0,
+            phlegm:0,
+            runny_nose:0,
+            nauseous:0,
+            out_of_breath:0,
+            stomachache:0,
+            chills:0,
+            muscle_sickness:0,
+            other:""
+        }
+    }
+]
 
 export const PAGE_DATA = {
     current_page: 1,
-    last_page: 158
+    last_page: 7
+}
+
+export const BOARD_DATA = [
+    {
+        title: 'I got a bruise, and this is a title!',
+        writer: 'Sun Ho Kim',
+        img: 'https://i.imgur.com/T3tayIx.jpg',
+        state: true,
+        date: '2022.01.30 23:37',
+        content:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        "a": 1,
+        "b": 0,
+        "c": 1,
+        "d": 0,
+        "e": 0,
+        "f": 0,
+        "g": 0,
+        "h": 0,
+        "i": 0,
+        "j": 0,
+        "k": 0,
+        "l": null,
+    }
+]
+
+export const USER_DATA = 
+{
+    id: 'Dr.Lee',
+    img: 'https://i.imgur.com/CK4gqz3.jpg'
 }

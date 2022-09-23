@@ -1,10 +1,36 @@
 
 import React from "react";
 import moment from "moment";
-const { RecordContainer, Header, RecordList, RecordElement, Date_Id, Doctor, Column, Detail, HeaderText, ViewAll } = require("./styles");
-const counter = 0;
-const today = moment().format("MM-DD-YYYY");
-export const PatinetRecord = (props) => {
+const { RecordContainer, Group, First, TimeEmail, Detail, Header, RecordList, RecordElement, Date, Doctor, Column,  HeaderText, ViewAll } = require("./styles");
+
+var isEmpty = true;
+
+const isPast = (date, time) => {
+    
+    const today = moment().format("MM-DD-YYYY")
+    const today_time = moment().add(10, 'M').format("HH:mm:ss a")
+    const appointment = moment(date).format("MM-DD-YYYY")
+    const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
+
+    if (appointment < today) {
+        isEmpty = false;
+        return true;
+    }
+    else if (appointment > today) 
+        return false;
+
+    else
+        if (app_time < today_time){
+            isEmpty = false;
+            return true;
+        }
+        else
+            return false;
+    
+}
+
+ const PatinetRecord = ({schedule_data}) => {
+
     return (
         <RecordContainer>
             <Header>
@@ -12,19 +38,30 @@ export const PatinetRecord = (props) => {
                 <ViewAll>View All</ViewAll>
             </Header>
             <RecordList>
-            {moment(props.date).format("MM-DD-YYYY") < today && props.patient_data.map((data) => (
-                <RecordElement>
-                {counter += 1}
-                    <Column>
-                        <Date_Id>{data.id} - {data.date}</Date_Id>
-                        <Doctor>{data.doctor}</Doctor>
-                    </Column>
-                    <Detail>See Detail</Detail>
+                {schedule_data.map((data) => (
+                    <>
+                    {isPast(data.reserved_date, data.reserved_time) && (
+                        <RecordElement>
+                            <First>
+                                <Group>
+                                    <Date>{data.reserved_date}</Date>
+                                    <TimeEmail>{data.reserved_time}</TimeEmail>
+                                </Group>
+                                <Group>
+                                    <Detail>View Detail</Detail>
+                                </Group>
+                                
+                            </First>
+                            <Column>
+                                <Doctor>Doctor: {data.firstname} {data.lastname}</Doctor>   
+                            </Column>
+                        </RecordElement>)}
+
                     
-                </RecordElement>
-                
-            ))}
-           {counter == 0 && <Column>There is no recent record</Column>}
+                    </>    
+                ))}
+            
+           {isEmpty == true && <Column>There is no recent record</Column>}
             </RecordList>
         </RecordContainer>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -24,19 +24,26 @@ import Axios from "axios";
 import UserRedirect from "../UserRedirect"
 
 import API_URL from "../../API/server-ip";
-import moment from "moment";
+import { SocketContext } from '../../API/video'
 
 function Patient() {
-
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
     const [scheduleData, setScheduleData] = React.useState([])
     const [visible, setVisible] = useState(true)
 
+    const { startCall, UTCToLocal } = useContext(SocketContext);
+
     React.useEffect(() => {
         Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
             .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
+                    response.data[i].reserved_date = date
+                    response.data[i].reserved_time = time
+                }
                 setScheduleData(response.data)
+
             })
     }, [])
     console.log(scheduleData)
@@ -78,11 +85,11 @@ function Patient() {
                     </EmergencyBox>
 
                     <ScheduleBox>
-                        <Schedule schedule_data={scheduleData} />
+                        <Schedule startCall={startCall} schedule_data={scheduleData} />
                     </ScheduleBox>
 
                     <RecordBox>
-                        <PatientRecord />
+                        <PatientRecord schedule_data = {scheduleData} />
                     </RecordBox>
 
                     <PrescriptionBox>

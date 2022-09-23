@@ -10,6 +10,7 @@ export const ProfilePage = (props) => {
     const [fileImage, setFileImage] = React.useState("");
 
     function setTime() {
+        props.changeTime(props.jwt, start_time, end_time)
         changeTime(!isTime)
     }
 
@@ -32,12 +33,24 @@ export const ProfilePage = (props) => {
             </PictureContainer>
             <Divider/>
             <InfoContainer>
-                <Label>USER NAME</Label>
+                <Label>NAME</Label>
                 <Content>{props.name}</Content>
+                <Label>Date of birth</Label>
+                <Label>Sex</Label>
                 <Label>EMAIL</Label>
                 <Content>{props.email}</Content>
+                {props.isDoctor && <Label>Profession</Label>}
+            
+                {props.isDoctor && <Label>Education</Label>}
+                {props.isDoctor && <Label>Phone</Label>}
+                
+                
                 {props.isDoctor && <Label>AVAILABLE TIME</Label>}
                 {props.isDoctor && <Content>{props.time}</Content>}
+                {!props.isDoctor && <Label>Underlying Disease</Label>}
+                {!props.isDoctor && <Label>Past medical record</Label>}
+
+
                 {isTime &&
                     <Row>
                         <TextField
@@ -48,7 +61,7 @@ export const ProfilePage = (props) => {
                             sx={{ width: 200, marginRight: 3, marginBottom:3 }}
                             InputLabelProps={{ shrink: true }}
                             inputProps={{ step: 300 }}
-                            onChange={(event) => {setStartTime(event.target.value)}}/>
+                            onChange={(event) => {setStartTime(event.target.value); console.log(event.target.value)}}/>
                         <TextField
                             value={end_time}
                             id="time"

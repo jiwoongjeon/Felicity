@@ -5,6 +5,7 @@ import default_profile from '../assets/default_profile.png'
 export const BoardContainer = styled.div`
 width: 100%;
 height: 100%;
+min-width:500px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -97,7 +98,6 @@ export const Title = styled.p`
   text-align: left;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
   color:black;
 `;   
 
@@ -107,7 +107,6 @@ export const PhotoArea = styled.div`
   min-width:60px;
   min-height:60px;
   border-radius: 40px;
-  background-color: #ff0000;
   background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
@@ -115,10 +114,7 @@ export const PhotoArea = styled.div`
 `;
 
 export const WrittenByLabel = styled.p`
-  margin-top: 5px;
-  margin-left: 10px;
   text-align: left;
-  font-weight: bold;
   color:black;
 `;   
 
@@ -133,20 +129,29 @@ export const State = styled.p`
   color: #718096;
   font-weight: bold;
   margin-top: 10px;
+  white-space: nowrap;
 `;
 
 export const UnState = styled.p`
   color: #FF800B;
   font-weight: bold;
   margin-top: 10px;
+  white-space: nowrap;
 `;
 
 export const Date = styled.p`
   color: #718096;
-  margin-top: 10px;
-  margin-left: 30px;
-  margin-bottom: 25px;
   white-space: nowrap;
+  margin-top:-15px;
+`;
+
+export const DateComment = styled.p`
+  flex:1;
+  color: #718096;
+  white-space: nowrap;
+  text-align:right;
+  margin-top: 10px;
+  margin-left:10px;
 `;
 
 export const Content = styled.p`
@@ -155,6 +160,15 @@ min-width:500px;
 margin-top:50px;
 margin-bottom:50px;
 text-align:left;
+white-space:pre-wrap;
+`;
+
+export const Comment = styled.p`
+width: 70%;
+margin-bottom:50px;
+min-width:500px;
+text-align:left;
+white-space: nowrap;
 `;
 
 export const ReplyBtn = styled.div`
@@ -225,7 +239,7 @@ export const UnStateBottom = styled.p`
 
 export const WriteContainer = styled.div`
 width: 100%;
-height: 90%;
+height: 200px;
 display: flex;
 flex-direction: column;
 border: 1px solid #0075FF;
@@ -242,6 +256,7 @@ export const WriteSubContainer = styled.div`
 width: 100%;
 height: 100%;
 padding-left:2%;
+margin-top:10px;
 overflow-y:hidden;
 `;
 
@@ -254,7 +269,7 @@ export const ColumnTitle = styled.div`
 `;
 
 export const SubmitBtn = styled.div`
-height:45px;
+height:40px;
 width:120px;
 text-align:center;
 background-color: #0075FF;
@@ -268,8 +283,24 @@ margin-bottom:1%;
 cursor: pointer;
 `;
 
+export const BackButtom = styled.div`
+height:40px;
+width:120px;
+text-align:center;
+background-color: #0075FF;
+border-radius: 10px;
+margin-top:13px;
+margin-left:40px;
+padding-top: 5px;
+font-weight: bold;
+color: white;
+margin-bottom:1%;
+cursor: pointer;
+`;
+
+
 export const CancelBtn = styled.div`
-height:45px;
+height:40px;
 width:120px;
 text-align:center;
 border: 1px solid #0075FF;
@@ -281,4 +312,42 @@ font-weight: bold;
 color: #0075FF;
 margin-bottom:1%;
 cursor: pointer;
+`;
+
+export const SymptomsContainer = styled.div`
+width:100%;
+max-width:340px;
+margin-top:10px;
+margin-bottom:20px;
+display: flex;
+flex-direction: row;
+overflow:hidden;
+`;
+
+export const SymptomsBubble = styled.div`
+height:100%;
+display: flex;
+border: 2px solid #CBD5E0;
+border-radius: 8px;
+padding-top: 1px;
+padding-bottom: 1px;
+padding-left: 15px;
+padding-right: 15px;
+margin-right: 10px;
+font-weight: bold;
+color: #0047D2;
+`;
+
+export const OtherBox = styled.div`
+width: 650px;
+height: 40px;
+border: 0.5px solid #E2E8F0;
+padding-top:5px;
+padding-left:20px;
+box-sizing: border-box;
+border-radius:15px;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+background-color: white;
 `;

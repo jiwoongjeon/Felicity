@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NewBoardContainer = styled.div`
@@ -26,16 +27,16 @@ export const Column = styled.div`
 `;
 
 export const ColumnTitle = styled.div`
-  height:30px;
+  height:50px;
   display: flex;
   flex-direction: column;
-  margin: 10px 0px 10px 30px;
+  margin: 10px 20px 10px 20px;
   overflow-y:hidden;
 `;
 
 export const WriteContainer = styled.div`
-width: 90%;
-height: 70%;
+width: 95%;
+height: 80%;
 display: flex;
 flex-direction: column;
 border: 1px solid #0075FF;
@@ -49,6 +50,7 @@ box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1)
 export const WriteSubContainer = styled.div`
 width: 100%;
 height: 100%;
+padding-top:20px;
 padding-left:2%;
 overflow-y:hidden;
 `;
@@ -104,7 +106,7 @@ margin-top:20px;
 `
 
 export const SubmitBtnDisabled = styled.div`
-height:45px;
+height:55px;
 width:120px;
 text-align:center;
 border: 1px solid #0075FF;
@@ -115,10 +117,11 @@ padding-top: 5px;
 font-weight: bold;
 color: #0075FF;
 margin-bottom:1%;
+cursor: not-allowed; 
 `;
 
 export const SubmitBtn = styled.div`
-height:45px;
+height:55px;
 width:120px;
 text-align:center;
 background-color: #0075FF;
@@ -129,4 +132,15 @@ padding-top: 5px;
 font-weight: bold;
 color: white;
 margin-bottom:1%;
+cursor: pointer; 
+text-decoration:none;
+    white-space: nowrap;
+    &:hover {
+      color: white;
+      background-color: #3D7EFF;
+    }
+    &:active {
+      color: white;
+      background-color: #004FEB;
+    }
 `;

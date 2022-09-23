@@ -1,0 +1,4 @@
+input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+}

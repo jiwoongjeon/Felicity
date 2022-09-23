@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components";
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
@@ -11,7 +11,8 @@ import {
     InfoBox,
     Button,
     Block,
-    Container
+    Container,
+    CalendarBox
 } from "./layout";
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
@@ -19,11 +20,14 @@ import Axios from "axios";
 import UserRedirect from "../UserRedirect";
 
 import API_URL from "../../API/server-ip";
+import Calen from "../../Components/CalenDoctor";
+import { SocketContext } from "../../API/video";
+import MultiLogin from "../UserRedirect/multilogin";
 
 
 
 
-function Doctor() {
+function Doctor(props) {
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
@@ -32,9 +36,16 @@ function Doctor() {
     const [displayedData, setDisplay] = React.useState({})
     const [visible, setVisible] = useState(true)
 
+    const { startCall, UTCToLocal } = useContext(SocketContext);
+
     React.useEffect(() => {
         Axios.post(`${API_URL}/doctor_schedule`, { "doctor_id": jwt })
             .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
+                    response.data[i].reserved_date = date
+                    response.data[i].reserved_time = time
+                }
                 setScheduleData(response.data)
             })
     }, [])
@@ -75,7 +86,7 @@ function Doctor() {
         if (array[10] === 1) {
             array1.push("Muscle Sickness")
         }
-        if (array[11] != null) {
+        if (array[11] != "") {
             array1.push(array[11])
         }
         return array1
@@ -98,7 +109,7 @@ function Doctor() {
             </Cat>
 
             <Directory>
-                <Path directory="Home" />
+                <Path directory={props.past? "Past Patients" : "Home"} />
             </Directory>
 
             <User>
@@ -115,13 +126,14 @@ function Doctor() {
                     </Block>
                 </Container>}
                 <ContentLayout>
-                    <PatientBox>
-                        <PatientList data={scheduleData} setFunction={setDisplay} symptoms={sy} />
+                    <CalendarBox>
+                        <Calen data = {scheduleData}/>
+                    </CalendarBox>
+                    <PatientBox>   
+                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
                     </PatientBox>
-
-
                     <InfoBox>
-                        <CV data={displayedData} symptoms={sy} />
+                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} />
                     </InfoBox>
 
                 </ContentLayout>

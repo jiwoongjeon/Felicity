@@ -13,7 +13,7 @@ export const Mostouter = styled.div`
         "cat video video"
         "cat video video"
         "cat video video";
-    gap : 10px;
+    gap : 15px;
     background-color : #F8F9FA;
 `;
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import default_profile from '../assets/default_profile.png'
 
@@ -36,7 +37,6 @@ overflow-y: auto;
 export const PostElement = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
 
 export const HeaderColumn = styled.div`
@@ -49,7 +49,6 @@ export const HeaderColumn = styled.div`
 
 export const BodyColumn = styled.div`
   width:100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   vertical-align:center;
@@ -103,7 +102,7 @@ justify-content: center;
 align-items: center;
 `;
 
-export const AvailBubble = styled.button`
+export const AvailBubble = styled(Link)`
 height: 50px;
 display: flex;
 background-color: #0075ff;
@@ -117,13 +116,14 @@ font-weight: bold;
 font-size:14px;
 color: white;
 line-height: 45px;
+text-decoration:none;
 border: none;
    &:hover {
       background-color: #268aff;
     }
+text-decoration:none;
 `;
 export const UnavailableBubble = styled.div`
-
 height:50px;
 display: flex;
 background-color: #a0aec0;
@@ -167,7 +167,7 @@ export const Patient = styled.p`
 `;
 
 export const TimeLabel = styled.p`
-  flex: 4.8;
+  flex: 4;
   text-align: left;
   font-weight: bold;
 `;

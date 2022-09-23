@@ -72,6 +72,18 @@ const Timer = ({role}) => {
         <button className="time" disabled={disable} onClick={() => {handleStart(900); setDisable(true)}}>Start Timer</button>
         <button className="time" onClick={() => handleComplete(300)}>Extends +5min</button>
         </div>
+
+      {/* //With external function to extand time
+      {(role) ? (
+                  <div className="button_container">
+                  <button className="time" disabled={true}>Extends +50sec</button>
+                  </div>
+                ) : (
+                  <div className="button_container">
+                  <button className="time" onClick={() => extandTimer()}>Extends +50sec</button>
+                  </div>
+                )} */}
+ 
   </div>
 
   );

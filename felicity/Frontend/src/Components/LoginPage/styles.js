@@ -185,7 +185,8 @@ export const SubmitButton = styled.button`
     height: 40px;
     background-color: #0075FF;
     border-radius: 20px;
-    margin-top: 43px;
+    margin-top: ${props =>
+        props.margin? '10px':'40px'};
     padding-top: 5px;
     border: 0;
     outline: 0;
@@ -205,7 +206,7 @@ export const SubmitButton = styled.button`
     }
 `;
 
-export const RoleSubmitButton = styled.div`
+export const RoleSubmitButton = styled(Link)`
     flex:1;
     width: 40%;
     height: 40px;

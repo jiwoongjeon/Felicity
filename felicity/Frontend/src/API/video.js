@@ -15,10 +15,17 @@ const SocketContext = createContext();
 
 const socket = io(`${API_URL}`);
 
+let tmpId = sessionStorage.getItem("jwt")
+let tmpRole = sessionStorage.getItem("role")
+if (tmpId) {
+    socket.emit("reconnection", [tmpId, tmpRole])
+}
+
 let recordAudio;
 
 const ContextProvider = ({ children }) => {
     const [id, setId] = useState();
+    const [name, setName] = useState();
     const [role, setRole] = useState(true); // true: p, false: d
     const [userToCall, setUserToCall] = useState("");
 
@@ -30,6 +37,7 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [someName, setSomeName] = useState("");
+    const [rid, setRid] = useState(0);
 
     const [isClicked, setIsClicked] = useState(false);
     const [text, setText] = useState([
@@ -39,13 +47,45 @@ const ContextProvider = ({ children }) => {
         }
     ])
 
+    const [userJoined, setUserJoined] = useState(false);
+    const [reserved, setReserved] = useState(false);
+    const [posted, setPosted] = useState(false);
+    const [count, setCount] = useState(0);
+    const [commentsLoad, setCommentsLoad] = useState(false);
+
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
 
-    function loginSessionStore(role, jwt) { //stores items in sessionStorage
+
+
+
+    function loginSessionStore(role, jwt, name) { //stores items in sessionStorage
         window.sessionStorage.setItem('role', JSON.stringify(role));
         window.sessionStorage.setItem('jwt', JSON.stringify(jwt));
+        window.sessionStorage.setItem('name', JSON.stringify(name));
+        if (role) {
+            window.sessionStorage.setItem('pid', JSON.stringify(jwt));
+            window.sessionStorage.setItem('did', 'null');
+            console.log('doc')
+        }
+        else {
+            window.sessionStorage.setItem('pid', 'null');
+            window.sessionStorage.setItem('did', JSON.stringify(jwt));
+            console.log('pat');
+        }
+        
+       
+    }
+
+    function sessionClose() { //stores items in sessionStorage
+        window.sessionStorage.removeItem('hurt');
+        window.sessionStorage.removeItem('depart');
+        window.sessionStorage.removeItem('time');
+        window.sessionStorage.removeItem('where');
+        window.sessionStorage.removeItem('level');
+        window.sessionStorage.removeItem('why');
+        window.sessionStorage.removeItem('checklist');
     }
 
     const postPatientLogin = ({ email, password }) => async () => {
@@ -59,12 +99,14 @@ const ContextProvider = ({ children }) => {
             }).then((response) => {
                 if (response.data.errMsg) {
                     console.log("Incorrect email or password")
+                    setId(0);
                 }
                 else {
                     socket.emit("login", [response.data[0].user_id, true]);
                     if (response.data[0].user_id) {
-                        loginSessionStore(true, response.data[0].user_id)
+                        loginSessionStore(true, response.data[0].user_id, response.data[0].nickname);
                         setId(response.data[0].user_id);
+                        setName(response.data[0].nickname);
                     }
                 }
             });
@@ -83,12 +125,14 @@ const ContextProvider = ({ children }) => {
             }).then((response) => {
                 if (response.data.errMsg) {
                     console.log("Incorrect email or password")
+                    setId(0);
                 }
                 else {
                     socket.emit("login", [response.data[0].doctor_id, false]);
                     if (response.data[0].doctor_id) {
-                        loginSessionStore(false, response.data[0].doctor_id)
+                        loginSessionStore(false, response.data[0].doctor_id, response.data[0].nickname)
                         setId(response.data[0].doctor_id);
+                        setName(response.data[0].nickname);
                     }
                 }
             });
@@ -97,10 +141,166 @@ const ContextProvider = ({ children }) => {
         }
     }
 
-    const send = (n, m) => {
+    function LocalToUTC(date, time) {
+        const dateFromUI = date; //"2022-06-12"
+        const timeFromUI = time; //"12:30"
+
+        const dateParts = dateFromUI.split("-");
+        console.log(dateParts)
+        const timeParts = timeFromUI.split(":");
+        console.log(timeParts)
+        const localDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2], timeParts[0], timeParts[1]);
+        const dtUTC = localDate.toISOString().split('T');
+        const [dateUTC, timeUTC] = [dtUTC[0], dtUTC[1].slice(0, 5)];
+
+        return [dateUTC, timeUTC]
+    }
+
+    function UTCToLocal(reserved_date, reserved_time) {
+        var dateParts = reserved_date.split("-"); //reserved_date "05-13-2022" , time "12:30 PM"
+        const [time, modifier] = reserved_time.split(" ");
+        let [hours, minutes] = time.split(":");
+        if (hours === "12") {
+            hours = "00";
+        }
+        if (modifier === "PM") {
+            hours = parseInt(hours, 10) + 12;
+        }
+        var ISOtime = `${hours}:${minutes}`;
+        var timeParts = ISOtime.split(":") //"14:30"
+
+        var date = new Date(dateParts[2], dateParts[0] - 1, dateParts[1], timeParts[0], timeParts[1]);
+        var newDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000);
+        var LocalDate = newDate.toLocaleDateString()
+        var LocalTime = newDate.toLocaleTimeString('it-IT')
+
+        return [LocalDate, LocalTime]
+    }
+
+    const changeDoctorAvailableTime = (doctorId, timeA, timeB) => {
+        const [tmpDateA, UTCTimeA] = LocalToUTC("2022-06-02", timeA);
+        const [tmpDateB, UTCTimeB] = LocalToUTC("2022-06-02", timeB);
+        Axios.post(`${API_URL}/dstatustime`, { doctorId: doctorId, timeA: UTCTimeA, timeB: UTCTimeB })
+    }
+
+    const getMHTData = () => {
+
+        const MHTdata = {
+            patientId: sessionStorage.getItem("jwt"),
+            hurt: sessionStorage.getItem("hurt"),
+            department: sessionStorage.getItem("depart"),
+            time: sessionStorage.getItem("time"),
+            where: sessionStorage.getItem("where"),
+            level: sessionStorage.getItem("level"),
+            why: sessionStorage.getItem("why"),
+            checklist: JSON.parse(sessionStorage.getItem("checklist")),
+        }
+        return MHTdata;
+    }
+
+    const sendPost = (title, context, category) => {
+        // console.log(title, context, category)
+        const mhtData = getMHTData();
+        const postData = {
+            title: title,
+            context: context,
+            category: category,
+            MHT: mhtData,
+        }
+
+        Axios.post(`${API_URL}/write-post`, postData)
+            .then((response) => {
+                if (response.data.msg) {
+                    sessionClose()
+                    document.location.href = '/#/Patient/RecentPost';
+                }
+            })
+    }
+
+    const sendComment = (postId, role, userId, comment, setComment) => {
+        const data = {
+            postId: postId,
+            role: role,
+            userId: userId,
+            comment: comment
+        }
+        Axios.post(`${API_URL}/write-comment`, data)
+            .then((response) => {
+                if (response.data.msg) {
+                    readComment(postId, setComment)
+                }
+            })
+    }
+
+    const readComment = (postId, setComment) => {
+        Axios.post(`${API_URL}/read-comment`, { postId: postId })
+            .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    date = response.data[i].time.split("T")[0]
+                    date = date.slice(5, 10) + "-" + date.slice(0, 4)
+                    time = response.data[i].time.split("T")[1].split(".")[0]
+                    var [date, time] = UTCToLocal(date, time)
+                    response.data[i].time = date + " " + time
+                }
+                setComment(response.data)
+                setCommentsLoad(true)
+            })
+    }
+
+    const sendReservation = (departmentId, preferredDoctorId, date, time) => {
+        const mhtData = getMHTData();
+        const [reserved_date, reserved_time] = LocalToUTC(date, time)
+        const reservationData = {
+            department: departmentId,
+            date: reserved_date,
+            time: reserved_time,
+            pDoc: preferredDoctorId,
+            MHT: mhtData,
+        }
+        Axios.post(`${API_URL}/create_schedule`, reservationData)
+        sessionClose();
+    }
+
+    const acceptReservation = (doctorId, reservationId) => {
+        Axios.post(`${API_URL}/accept_request`, {
+            doctor_id: doctorId,
+            reservation_id: reservationId
+        }).then((response) => {
+            setReserved(true);
+            setReserved(false);
+        });
+    }
+
+    const videoCallSend = (m) => {
         if (m !== "") {
-            socket.emit("chat", { userToCall: userToCall, name: n, msg: m, time: moment(new Date()).format("h:mm A") });
-            setChatArr([...chatArr, { name: n, msg: m, time: moment(new Date()).format("h:mm A") }]);
+            socket.emit("chat", { userToCall: userToCall, name: name, msg: m, time: moment(new Date()).format("h:mm A") });
+            setChatArr([...chatArr, { name: name, msg: m, time: moment(new Date()).format("h:mm A") }]);
+        }
+    }
+
+    const convSend = (c, r, m) => {
+        if (m !== "") {
+            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
+            socket.emit("convChatSend", { name: name, msg: m, time: currentTime });
+            Axios.post(`${API_URL}/post_chat_conv`, {
+                conv_id: c,
+                name: name,
+                receiver: r,
+                message: m,
+                time: currentTime
+            })
+        }
+    }
+
+    const docConvSend = (m) => {
+        if (m !== "") {
+            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
+            socket.emit("doctorChatSend", { name: name, msg: m, time: currentTime });
+            Axios.post(`${API_URL}/post_doctor_chat`, {
+                name: name,
+                message: m,
+                time: currentTime
+            })
         }
     }
 
@@ -115,7 +315,8 @@ const ContextProvider = ({ children }) => {
         })
     })
 
-    const startCall = () => {
+    const startCall = (reservation_id) => {
+        setRid(reservation_id);
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then((currentStream) => {
                 setStream(currentStream);
@@ -123,19 +324,29 @@ const ContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.emit("start", { id, role });
+        socket.emit("start", { reservation_id, role });
 
-        socket.on("me", ({ socketid, otherUserId, otherSocketId }) => {
-            console.log("other socket id: %s", otherSocketId);
-            console.log("other user id: %d", otherUserId);
-            console.log("my socket id: %s", socketid);
+        socket.on("me", ({ socketid, otherSocketId }) => {
             setMe(socketid);
-            setUserToCall(otherSocketId);
+            if (otherSocketId == null) {
+                console.log("Waiting for other user to join the room")
+                socket.on("room-entered", ({ socketid }) => {
+                    setUserToCall(socketid);
+                    setUserJoined(true);
+                    console.log("User joined the room")
+                })
+            }
+            else {
+                setUserToCall(otherSocketId);
+                setUserJoined(true);
+                console.log("Joining the room");
+                console.log(userToCall);
+            }
         });
 
 
         socket.on("calluser", ({ from, someName: callerName, signal }) => {
-            console.log("calling")
+            console.log("calling");
             setCall({ isReceivedCall: true, from, someName: callerName, signal });
         });
     }
@@ -248,19 +459,56 @@ const ContextProvider = ({ children }) => {
         })
     }
 
+    const sendAudio = () => {
+        socket.emit("send-transcription", { userToCall, text })
+        text.transcription = ""
+        text.translation = ""
+    }
+
+    const stopBothVideoAndAudio = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == "live") {
+                track.stop();
+            }
+        });
+    }
+    const stopVideoOnly = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'video') {
+                track.stop();
+            }
+        });
+    }
+    const stopAudioOnly = (stream) => {
+        stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'audio') {
+                track.stop();
+            }
+        });
+    }
 
     const leaveCall = () => {
         setCallEnded(true);
 
+        console.log("Leaving call")
         connectionRef.current.destroy();
+        stopBothVideoAndAudio(myVideo.current.srcObject);
+        stopBothVideoAndAudio(userVideo.current.srcObject);
 
-        window.location.reload();
+        socket.emit("leavecall", { reservation_id: rid, role: role });
     }
+
 
     useEffect(() => {
         socket.on("result", (result) => {
             setText(result)
             console.log(result)
+        })
+        socket.on("new-login-attempt", (socketId) => {
+            console.log(socketId);
+            // If new login for a same user is detected, current user can choose yes/no.
+            // If yes, log out from this browser and login from another device.
+            // If no, keep the login status from this browser, and reject login from another device
         })
     })
 
@@ -271,7 +519,9 @@ const ContextProvider = ({ children }) => {
                 postDoctorLogin, id, startCall, call, callAccepted, myVideo,
                 userVideo, stream, someName, setSomeName, callEnded, me,
                 callUser, leaveCall, answerCall, isClicked, getAudio,
-                stopAudio, text, recordAudio, chatArr, send
+                stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, docConvSend, sendPost,
+                sendReservation, acceptReservation, userJoined, setUserJoined,
+                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount
             }}
         >
             {children}

@@ -16,10 +16,11 @@ export const Checklists = (props) => {
     };
 
     let time = sessionStorage.getItem('time');
+    let written = JSON.parse(sessionStorage.getItem('level'));
 
     return (
         <ChecklistsContainer>
-        {time &&
+        {written &&
             <ChecklistsElementContainer>
                 <Title>Medical History Form Review</Title>
                 <SubTitle>Patient: Gaebiscon</SubTitle>

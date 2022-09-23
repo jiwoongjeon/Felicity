@@ -12,7 +12,7 @@ import Checklists from "../../Components/Checklists";
 import { propTypes } from "react-bootstrap/esm/Image";
 import UserRedirect from "../UserRedirect";
 
-function Checklist(props) {
+function Conv(props) {
   
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
   
@@ -45,4 +45,4 @@ function Checklist(props) {
   );
 }
 
-export default Checklist;
+export default Conv;

@@ -11,36 +11,41 @@ export const MainContainer = styled.div`
     vertical-align: middle;
 `;
 
-
-
 export const Account = styled(Link)`
     width: 150px;
     height: 16px;
     text-decoration:none;
+    margin-top: 5%;
 `;
 
 export const AccountIcon = styled.div`
     background-color: #F8F9FA;
-    color: #718096;
+    color: #0075FF;
     font-weight: Bold;
-    padding: 9px;
+    // padding: 9px;
     cursor: pointer;
+    margin-right: -40%;
 `;
 
 export const Setting = styled.button`
-    background-color:  #F8F9FA;
+    background-color: #F8F9FA;
     border: none;
     outline: none;
     cursor: pointer;
     margin-left:20px;
+    margin-top: 5%;
+
 `;
 
 export const Noti = styled.button`
-    background-color:  #F8F9FA;
+    background-color: #F8F9FA;
     border: none;
     outline: none;
     cursor: pointer;
     margin-left:10px;
+    margin-right: 5%;
+    margin-top: 5%;
+
 `;
 
 

@@ -31,17 +31,17 @@ flex-direction: column;
 overflow-y: auto;
 `;
 
-export const PostElement = styled(Link)`
+export const PostElement = styled.div`
   display: flex;
   flex-direction: column;
   text-decoration:none;
   align-items: center;
+  cursor:pointer;
 `;
 
 export const ContentElement = styled.div`
-  flex: 10;
+  flex: 9;
   display: flex;
-  margin-left: 1%;
   flex-direction: column;
 `;
 
@@ -68,6 +68,7 @@ export const ColumnBottom = styled.div`
   display: flex;
   flex-direction: row;
   padding: 5px;
+  align-items:center;
   justify-content:space-between;
   flex-wrap: wrap;
 `;
@@ -214,6 +215,17 @@ export const Date = styled.p`
   justify-content: center;
   align-items: center;
 `;
+export const Id = styled.p`
+  display:flex;
+  flex: 1;
+  color: #718096;
+  font-weight: bold;
+  white-space: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1%;
+  margin-right: 1%;
+`;
 export const State = styled.p`
   display:flex;
   flex: 1.5;
@@ -291,18 +303,15 @@ export const WriteButton = styled(Link)`
 `;
 
 export const PageContainer = styled.div`
-  flex:3;
+  flex:4;
   min-width:300px;
-  height: 40px;
+  height: 50px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   background-color: white;
   box-sizing: border-box;
   border-radius: 15px;
-  justify-content:flex-start;
-  overflow-x:hidden;
-  overflow-y:hidden;
+  justify-content:center;
 `;
 
 export const PageNavigatorLabel = styled.p`
@@ -310,14 +319,17 @@ export const PageNavigatorLabel = styled.p`
   font-weight: bold;
   color: #0075FF;
   padding: 5px 0px 5px 0px;
+  border-radius: 10px;
   margin-left:30px;
   margin-right:30px;
   cursor:pointer;
   &:hover {
-    color: #3D7EFF;
+    color: white;
+    background-color: #3D7EFF;
   }
   &:active {
-    color: #004FEB;
+    color: white;
+    background-color: #004FEB;
   }
 `;
 

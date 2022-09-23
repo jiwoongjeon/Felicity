@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, HashRouter as Router } from "react-router-dom";
 
 import Doctor from "./views/Doctor";
 import Patient from "./views/Patient";
@@ -23,16 +23,36 @@ import NewBoard from "./views/NewBoard";
 import Appointment from "./views/Appointment";
 import Registration from "./views/Registration"
 import Meeting from "./views/Meeting";
-import { io } from "socket.io-client";
-import LoginRedirect from "./views/UserRedirect/login";
+import PatientChat from "./views/PatientChat";
+import DoctorChat from "./views/DoctorChat";
+import MultiLogin from "./views/UserRedirect/multilogin";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
-  { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
-  { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
-  { path: "/Doctor/Home", key: "video", component: () => <Doctor /> },
-  { path: "/Patient/Home", key: "video", component: () => <Patient /> },
   { path: "/registeration", key: "ROOT", component: () => <Registration /> },
+
+  { path: "/Doctor/Board", key: "video", component: () => <Board isDoctor={true}/> },
+  { path: "/Doctor/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
+  { path: "/Doctor/Checklist", key: "video", component: () => <Doctor past={true}/> },
+  { path: "/Doctor/Doctor-Conversation", key: "video", component: () => <DoctorChat isDoctor={true}/> },
+  { path: "/Doctor/Home", key: "video", component: () => <Doctor past={false}/> },
+  { path: "/Doctor/NewPost", key: "video", component: () => <NewBoard isDoctor={true}/> },
+  { path: "/Doctor/Meeting", key: "PS", component: () => <Meeting isDoctor={true}/> },
+  { path: "/Doctor/Patient-Conversation", key: "video", component: () => <PatientChat isDoctor={true}/> },
+  { path: "/Doctor/Profile", key: "video", component: () => <Profile isDoctor={true}/> },
+  { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor isDoctor={true}/> },
+  { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
+  
+  { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
+  { path: "/Patient/Board", key: "video", component: () => <Board isDoctor={false}/> },
+  { path: "/Patient/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
+  { path: "/Patient/Checklist", key: "video", component: () => <Checklist isDoctor={false}/> },
+  { path: "/Patient/Home", key: "video", component: () => <Patient /> },
+  { path: "/Patient/NewPost", key: "video", component: () => <NewBoard isDoctor={false}/> },
+  { path: "/Patient/Profile", key: "video", component: () => <Profile isDoctor={false}/> },
+  { path: "/Patient/RecentPost", key: "PS", component: () => <StatusDoctor isDoctor={false}/> },
+  { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
+  { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
 
   { path: "/MHT1", key: "video", component: () => <MHT1 /> },
   { path: "/MHT2", key: "video", component: () => <MHT2 /> },
@@ -42,25 +62,9 @@ const ROUTES = [
   { path: "/MHT6", key: "video", component: () => <MHT6 /> },
   { path: "/MHT7", key: "video", component: () => <MHT7 /> },
 
-  { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor isDoctor={true}/> },
-  { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
-  { path: "/Doctor/Checklist", key: "video", component: () => <Checklist isDoctor={true}/> },
-  { path: "/Patient/Checklist", key: "video", component: () => <Checklist isDoctor={false}/> },
-  { path: "/Doctor/Profile", key: "video", component: () => <Profile isDoctor={true}/> },
-  { path: "/Patient/Profile", key: "video", component: () => <Profile isDoctor={false}/> },
+  { path: "/MultiLogin", key: "video", component: () => <MultiLogin /> },
 
-  { path: "/Doctor/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
-  { path: "/Patient/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
 
-  { path: "/Doctor/Board", key: "video", component: () => <Board isDoctor={true}/> },
-  { path: "/Patient/Board", key: "video", component: () => <Board isDoctor={false}/> },
-  { path: "/Doctor/NewPost", key: "video", component: () => <NewBoard isDoctor={true}/> },
-  { path: "/Patient/NewPost", key: "video", component: () => <NewBoard isDoctor={false}/> },
-
-  { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
-  { path: "/Patient/RecentPost", key: "PS", component: () => <StatusDoctor isDoctor={false}/> },
-
-  { path: "/Doctor/Meeting", key: "PS", component: () => <Meeting isDoctor={true}/> },
 ];
 
 export default ROUTES;
@@ -71,17 +75,22 @@ function RouteWithSubRoutes(route) {
       path={route.path}
       exact={route.exact}
       render={(props) => <route.component {...props} routes={route.routes} />}
+      
+      
     />
   );
 }
 
 export function RenderRoutes({ routes }) {
   return (
-    <Switch>
-      {routes.map((route, i) => {
-        return <RouteWithSubRoutes key={route.key} {...route} />;
-      })}
-      <Route component={() => <Login/>} />
-    </Switch>
+    <Router>
+      <Switch>
+        {routes.map((route, i) => {
+          return <RouteWithSubRoutes key={route.key} {...route} />;
+        })}
+        <Route component={() => <Login/>} />
+      
+      </Switch>
+    </Router>
   );
 }
