@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HelpContainer = styled.div`
-width: 80%;
-height: 200px;
+width: 100%;
+height: 100%;
 display: flex;
 flex-direction: column;
-margin: 30px;
-margin-right: 30px;
+margin: auto;
+margin-top: 350px;
 background-image: url(${props => props.img});
 background-position: center;
 background-repeat: no-repeat;

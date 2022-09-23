@@ -1,6 +1,3 @@
-
-import Calen from "../CalenDoctor";
-
 const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
 
 
@@ -9,9 +6,6 @@ const PatientsList = (props) => {
 
     return (
         <PatientContainer>
-            <CalenderBox>
-                <Calen data = {props.data}/>
-            </CalenderBox>
             <Title>Upcoming Patients</Title>
             <Divider />
             <PatientElementContainer>

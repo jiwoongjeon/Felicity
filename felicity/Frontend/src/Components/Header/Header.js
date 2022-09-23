@@ -70,13 +70,15 @@ const Header = (props) => {
                 <MenuButton to={`./Checklist`}></MenuButton></MenuItem>
               <MenuItem icon={<IoMdPerson />}>Profile
                 <MenuButton to={`./Profile`}></MenuButton></MenuItem>
+
+              <HelpContainer img={needhelp}>
+                <ActiveButton>Active</ActiveButton>
+              </HelpContainer>
             </Menu>
 
           </SidebarContent>
           <SidebarFooter>
-            <HelpContainer img={needhelp}>
-              <ActiveButton>Active</ActiveButton>
-            </HelpContainer>
+            
             {/*<img  src={needhelp} alt=""/>*/}
             {/* <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
