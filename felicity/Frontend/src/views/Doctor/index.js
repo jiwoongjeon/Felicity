@@ -11,7 +11,8 @@ import {
     InfoBox,
     Button,
     Block,
-    Container
+    Container,
+    CalendarBox
 } from "./layout";
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
@@ -123,6 +124,9 @@ function Doctor(props) {
                     </Block>
                 </Container>}
                 <ContentLayout>
+                    <CalendarBox>
+                        <Calen data = {scheduleData}/>
+                    </CalendarBox>
                     <PatientBox>
                         <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
                     </PatientBox>
