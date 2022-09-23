@@ -11,13 +11,14 @@ import {
     InfoBox,
     Button,
     Block,
-    Container
+    Container,
+    CalendarBox
 } from "./layout";
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 import Axios from "axios";
 import UserRedirect from "../UserRedirect";
-
+import Calen from "../../Components/CalenDoctor";
 import API_URL from "../../API/server-ip";
 import { SocketContext } from "../../API/video";
 import MultiLogin from "../UserRedirect/multilogin";
@@ -123,6 +124,9 @@ function Doctor(props) {
                     </Block>
                 </Container>}
                 <ContentLayout>
+                    <CalendarBox>
+                        <Calen data = {scheduleData}/>
+                    </CalendarBox>
                     <PatientBox>
                         <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
                     </PatientBox>
