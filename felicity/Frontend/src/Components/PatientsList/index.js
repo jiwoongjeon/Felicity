@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import moment from "moment";
-const { CalenderBox, PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
+const { PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
 let isEmpty = true;
 
 const TimeCompare = (date, time, past) => {
@@ -61,7 +61,6 @@ const PatientsList = (props) => {
         <PatientContainer>
             {!props.past && <Title>Upcoming Patients</Title>}
             {props.past && <Title>Past Patients</Title>}
-            <Divider />
             <PatientElementContainer>
                 {props.data.map((data, i) => (
                     <>
@@ -72,22 +71,23 @@ const PatientsList = (props) => {
                                 displayed={props.clicked} clicked={data}>
 
                                     <PatientImage img={data.img} />
-                                    <Column>
-                                        <PatientInfoContainer>
-                                            <Patient>{data.firstname} {data.lastname}</Patient>
-                                            <Bio>{data.sex}, {data.birth}</Bio>
-                                        </PatientInfoContainer>
-                                        <Time>Meeting time: {data.reserved_date} {data.reserved_time}</Time>
-                                        <SymptomsContainer>
+                                    
+                                    <PatientInfoContainer>
+                                        <Patient>{data.firstname} {data.lastname}</Patient>
+                                        {/* <Bio>{data.sex}, {data.birth}</Bio> */}
+                                        <Time>{data.reserved_time}</Time>
+                                    </PatientInfoContainer>
+                                    
+                                        {/*  */}
+                                        {/* <SymptomsContainer>
                                             {props.symptoms([data.cough, data.vomit, data.fever, data.sore_throat,
                                             data.phelgm, data.runny_nose, data.nauseous, data.out_of_breath, data.stomachache,
                                             data.chills, data.muscle_sickness, data.other]).map((symptom) => (
                                                 <SymptomsBubble>{symptom}</SymptomsBubble>
                                             ))}
-                                        </SymptomsContainer>
-                                    </Column>
+                                        </SymptomsContainer> */}
+                                    
                                 </PatientElement>
-                                <Divider />
                             </Column>
 
                         )}

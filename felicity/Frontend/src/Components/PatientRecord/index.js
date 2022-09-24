@@ -7,9 +7,9 @@ var isEmpty = true;
 
 const isPast = (date, time) => {
     
-    const today = moment().format("MM-DD-YYYY")
+    const today = moment().format("YYYY-MM-DD")
     const today_time = moment().add(10, 'M').format("HH:mm:ss a")
-    const appointment = moment(date).format("MM-DD-YYYY")
+    const appointment = moment(date).format("YYYY-MM-DD")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
     if (appointment < today) {

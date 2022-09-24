@@ -125,7 +125,7 @@ const Video = ({ context }) => {
                     <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                 </IconLeft>
                 <IconRight>
-                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="../Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
+                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="./Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 </IconRight>
             </Setting>
 
