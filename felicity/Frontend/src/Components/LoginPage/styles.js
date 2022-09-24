@@ -7,50 +7,69 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color : #F8F9FA;
+    allign-items: center;
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attatchment: fixed;
+    background-position: center;
 `;
+
+
 
 export const LoginContainer = styled.div`
-    width: 500px;
+    width: 800px;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 10%;
+    align-self: center;
+    background-color: white;
+    border-radius: 30px;
 `;
 
+
+
 export const LoginSubContainer = styled.div`
-    width: 500px;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    
+    align-self:center;
 `;
 
 export const Logo = styled.img`
-    height: 38px;
-    width: 35.67px;
+    display:flex;
+    align-self:center;
+    width: 53ppx;
+    height: 59px;
+    margin-top: 60px;
+    background-position: center;
 `;
 
 export const Title = styled.div`
-    text-align: left;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
-    font-size: 30px;
-    margin-top: 40px;
-    color: #002D84;
+    font-size: 25px;
+    line-height: 38px;
+    margin-bottom:50px;
+    margin-top: 8px;
 
 `;
 
 export const SubTitle = styled.div`
-    text-align: left;
+    text-align: middle;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 13px;
+    margin-top: 25px;
     margin-bottom: 10px;
     color: #002D84;
 `;
+
 
 
 export const RadioWrapper = styled.div`
@@ -80,7 +99,8 @@ export const Label = styled.div`
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
-    margin-top: 12px;
+    margin-left: 13px;
+    margin-bottom: 3px;
 `;
 
 export const LabelRecursive = styled.div`
@@ -95,7 +115,7 @@ export const LabelRecursive = styled.div`
 
 export const LoginInput =  styled.input.attrs(({ type }) => ({
   type:  type || "text",
-  placeholder: "avgsdf@email.com"
+  placeholder: ''
 }))`
     width: 95%;
     height: 80%;
@@ -106,13 +126,14 @@ export const LoginInput =  styled.input.attrs(({ type }) => ({
     font-style: normal;
     font-weight: normal;
     color: black;
+    background-color: #F0F0F0;
 `;
 
 
 
 export const PwInput = styled.input.attrs(({ type }) => ({
   type:  type || "password",
-  placeholder: "password"
+  placeholder: ""
 }))`
     width: 95%;
     height: 80%;
@@ -123,6 +144,7 @@ export const PwInput = styled.input.attrs(({ type }) => ({
     font-style: normal;
     font-weight: normal;
     color: black;
+    background-color: #F0F0F0;
 `;
 
 export const Rowbox = styled.div`
@@ -131,8 +153,8 @@ export const Rowbox = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-top: 24px;
-    margin-bottom: 8px;
-
+    margin-bottom: 4px;
+    text-align: left;
 `;
 
 export const PwLabel = styled.div`
@@ -141,6 +163,9 @@ export const PwLabel = styled.div`
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
+    margin-left: 13px;
+    margin-bottom: 0px;
+    
 `;
 
 export const UrlLink = styled.a`
@@ -181,12 +206,11 @@ border:1px solid #0075FF;
 `;
 
 export const SubmitButton = styled.button`
-    width: 100%;
-    height: 40px;
-    background-color: #0075FF;
+    width: 100px;
+    height: 35px;
+    align-self: center;
+    background: linear-gradient(99.09deg, #010F98 0%, #6CBEDC 100%);
     border-radius: 20px;
-    margin-top: ${props =>
-        props.margin? '10px':'40px'};
     padding-top: 5px;
     border: 0;
     outline: 0;
@@ -194,7 +218,7 @@ export const SubmitButton = styled.button`
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     text-decoration:none;
     &:hover {
       color: white;
@@ -206,6 +230,106 @@ export const SubmitButton = styled.button`
     }
 `;
 
+export const RoleButton = styled.button`
+    width: 300px;
+    height: 50px;
+    align-self: center;
+    background: #F0F0F0;
+    border-radius: 10px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: black;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration:none;
+    margin-top: 20px;
+
+`;
+
+export const LangButton = styled.button`
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    bottom: 7.5%;
+    right: 170px;
+
+
+    align-self: right;
+    background: #F0F0F0;
+    border-radius: 10px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration:none;
+    background: #6CBEDC;
+
+
+`;
+
+export const GrayContainer = styled.div`
+
+    height: 100vh;
+    width: 100%;
+    background: rgba(135, 135, 135, 0.45);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    allign-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attatchment: fixed;
+    background-position: center;
+
+
+`;
+
+export const LangButton2 = styled.button`
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    bottom: 7.5%;
+    right: 50px;
+
+
+    align-self: right;
+    background: #F0F0F0;
+    border-radius: 10px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: black;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration:none;
+
+`;
+
+
+
+
+
+export const Divider = styled.div`
+    align-self: center;
+    width: 250px;
+    border: 0.5px solid #000000;
+    margin-top: 30px;
+
+
+
+
+`
 export const RoleSubmitButton = styled(Link)`
     flex:1;
     width: 40%;
@@ -249,7 +373,9 @@ export const Signup = styled.div`
     font-weight: 600;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.5);
-    margin-top: 12px;
+    margin-top: 32px;
+    
+
 `;
 
 export const SignupLink = styled(Link)`
@@ -257,7 +383,7 @@ export const SignupLink = styled(Link)`
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgb(255,0,0);
 `;
 
 export const Icon = styled.div`
@@ -277,6 +403,6 @@ export const InputBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    background-color: white;
+    background-color: #F0F0F0;
 `;
 

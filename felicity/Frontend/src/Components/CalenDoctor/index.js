@@ -3,8 +3,8 @@ import Calendar from 'react-calendar';
 import './Calendar.css';
 import Axios from "axios";
 
-const moment= require('moment') 
 
+const moment= require('moment') 
 
 
 export const Calen = (props) => {

@@ -3,27 +3,17 @@ import default_profile from '../assets/default_profile.png'
 
 export const PatientContainer = styled.div`
   width: 100%;
-  height: 95%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
   background: white;
   border-radius: 20px;
+  box-shadow: 0px 4px 5px 0px #EDEEEF;
   justify-content: center;
-`;
-
-export const CalenderBox = styled.div`
-width: 80%;
-margin: auto;
-margin-top: 2%;
-height: 600px;
-overflow-y:auto;
-&::-webkit-scrollbar {
-  width: 10px;
-}
 `;
 
 export const Column = styled.div`
@@ -36,20 +26,21 @@ export const Title = styled.p`
   flex:1
   text-align: left;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin: 10px;
   font-size:20px;
 `;
 
 
-export const Divider = styled.div`
-  width:100%;
-  display: flex;
-  background: #E3E8F0;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 1px;
-  border-radius: 2px;
-`;
+// export const Divider = styled.div`
+//   width:100%;
+//   display: flex;
+//   background: #E3E8F0;
+//   margin-top: 5px;
+//   margin-bottom: 5px;
+//   padding: 1px;
+//   border-radius: 2px;
+// `;
 
 export const PatientElementContainer = styled.div`
 margin-top: 0px;
@@ -68,9 +59,13 @@ display: flex;
 flex-direction: row;
 cursor:pointer;
 overflow:hidden;
+background-color: #F9F9F9;
+padding: 20px;
+border-radius: 20px;
 `;
 
 export const PatientInfoContainer = styled.div`
+width: 80%;
 display: flex;
 flex-direction: row;
 `;
@@ -97,10 +92,10 @@ font-weight: bold;
 color: white;
 `;
 
-// 이거 프로필 컨테이너 사이즈 자체를 줄이고 싶은데 어케 하는건지 몰르겟습니다
 export const PatientImage = styled.div`
-  flex: 2.7;
-  min-width: 80px;
+  // flex: 2.7;
+  height: 80px;
+  width: 80px;
   border-radius: 20px;
   background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
@@ -113,8 +108,10 @@ export const PatientImage = styled.div`
 export const Patient = styled.p`
   text-align: left;
   font-weight: bold;
-  margin-top: 0px
   font-size: 100%;
+  align-self: center;
+  margin-left: 50px;
+  flex: 2.5;
 `;
 
 export const Bio = styled.p`
@@ -126,12 +123,15 @@ export const Bio = styled.p`
 `;
 
 export const Time = styled.p`
-  min-width:350px;
-  text-align: left;
-  font-weight: regular;
-  margin-top: -20px;
+  text-align: center;
+  font-weight: bold;
   word-break: keep-all;
-  color:#0075ff;
+  color: white;
+  align-self: center;
+  background-color: #6CBEDC;
+  border-radius: 10px;
+  padding: 10px;
+  flex: 1;
 `;
 
 export const Detail = styled.p`

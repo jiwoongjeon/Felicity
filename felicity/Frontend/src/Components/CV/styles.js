@@ -5,7 +5,7 @@ import default_profile from '../assets/default_profile.png'
 
 export const PatientContainer = styled.div`
   width: 100%;
-  height: 95%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -16,6 +16,7 @@ export const PatientContainer = styled.div`
   border-radius: 20px;
   justify-content: center;
   ovrflow-y:auto;
+  box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const Column = styled.div`
@@ -34,6 +35,14 @@ export const Row = styled.div`
   flex-direction: row;
   `;
 
+export const Note = styled.div`
+  width: 100%;
+  height: 500px;
+  align-self: center;
+  border-radius: 20px;
+  background-color: #F9F9F9;
+`;
+
 export const Divider = styled.div`
   width:100%;
   display: flex;
@@ -44,36 +53,50 @@ export const Divider = styled.div`
 `;
 
 export const PatientImage = styled.div`
-  width:100%;
-  height:200px;
-  min-height:200px;
-  border-radius: 8px;
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  margin-bottom: 50px;
+  margin-top: 30px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 20px;
   background-image: url(${props => props.img? props.img : default_profile });
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-right: 10px;
-  margin-bottom: 5px;
+  align-content: space-evenly;
+`;
+
+export const Title = styled.p`
+  text-align: left;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 20px;
+  padding-left: 10px;
 `;
 
 export const Patient = styled.p`
   text-align: left;
   font-weight: bold;
-  margin-top: 0px;
   font-size: 20px;
-  padding-left: 10px;
-`;
+  `;
 
 export const Bio = styled.p`
-  flex:1;
-  text-align: right;
-  color: #a0aec0;
-  margin-top:0px;
-  margin-right: 10px;
+  // flex:1;
+  text-align: left;
+  color: black;
   font-size: 20px;
+`;
+
+export const Box = styled.p`
+  align-self: center;
+  padding-left: 50px;
 `;
 
 export const DetailLabel = styled.p`
+  font-size: 18px;
   font-weight: bold;
   text-align: left;
   min-width: 150px;
@@ -103,9 +126,8 @@ export const Btn = styled(Link)`
 
 export const DefaultLabel = styled.p`
   text-align: center;
-  font-weight: bold;
-  font-family: Roboto;
+  font-weight: regular;
   color: #aaaaaa;
-  margin-top: 10%;
+  margin-top: 20%;
   font-size: 20px;
 `;
