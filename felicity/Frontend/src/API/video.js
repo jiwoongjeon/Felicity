@@ -51,6 +51,8 @@ const ContextProvider = ({ children }) => {
     const [reserved, setReserved] = useState(false);
     const [posted, setPosted] = useState(false);
     const [count, setCount] = useState(0);
+    const [boardCount, setboardCount] = useState(0);
+    const [boardChecked, setboardChecked] = useState(0);
     const [commentsLoad, setCommentsLoad] = useState(false);
 
     const myVideo = useRef();
@@ -527,7 +529,8 @@ const ContextProvider = ({ children }) => {
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, docConvSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
-                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount
+                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
+                , boardChecked, setboardChecked
             }}
         >
             {children}
