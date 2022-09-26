@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { IoMdSearch } from "react-icons/io";
+import {SocketContext} from "../../API/video";
 
 const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider, SymptomsBubble, CategoryContainer, CategoryBubble,
     PostElement, Column, Date, NewestLabel, DateLabel, StateLabel, OldestLabel, Title, Content, ContentElement, State, UnState,
@@ -47,7 +48,30 @@ const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider,
         return array1
     };
 
+
+function SaveID (boardCount, setboardCount) {
+   
+    if (boardCount >= 1){
+        setboardCount(boardCount);
+    }
+
+    else{
+        setboardCount(1);
+    }
+    
+    
+}
+
+export function updateCount (boardChecked, setboardChecked){
+
+    setboardChecked(boardChecked);
+}
+
 export const RecentPost = (props) => {
+
+    const{boardCount, setboardCount} = useContext(SocketContext);
+    const{boardChecked, setboardChecked} = useContext(SocketContext);
+    
 
     function board(i) {
         props.setBoard(props.postData[i])
@@ -92,7 +116,11 @@ export const RecentPost = (props) => {
         )
     }
 
+
+    
+   
     return (
+
         <PostContainer>
 
             <Header>Recent Posts</Header>
@@ -148,7 +176,9 @@ export const RecentPost = (props) => {
                 {props.pageload > 0 && props.postload > 0 ? props.postData.map((data, i) => (
                     <PostElement onClick={({ target }) => board(i)}>
                         <Column>
-                            <Id>{data.id}</Id>
+                        {SaveID(data.id, setboardCount)}
+                        {updateCount(data.id, setboardChecked)}
+                            <Id>{data.id}</Id>       
                             <ContentElement>
                                 <Title>{data.title}</Title>
                                 <Content>{data.content}</Content>
@@ -195,7 +225,7 @@ export const RecentPost = (props) => {
                 </PageContainer>
                 {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
             </ColumnBottom>
-
+                    
         </PostContainer>
     );
 }
