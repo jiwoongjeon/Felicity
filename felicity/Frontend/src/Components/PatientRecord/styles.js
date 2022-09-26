@@ -10,6 +10,7 @@ align-items: flex-start;
 padding: 10px;
 background: white;
 border-radius: 20px;
+box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const Header = styled.div`
