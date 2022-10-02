@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const MainContainer = styled.div`
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
@@ -15,10 +15,8 @@ export const MainContainer = styled.div`
     background-position: center;
 `;
 
-
-
 export const LoginContainer = styled.div`
-    width: 800px;
+    width: 650px;
     height: 85%;
     display: flex;
     flex-direction: column;
@@ -28,40 +26,33 @@ export const LoginContainer = styled.div`
     border-radius: 30px;
 `;
 
-
-
 export const LoginSubContainer = styled.div`
     width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
     align-self:center;
 `;
 
 export const Logo = styled.img`
     display:flex;
     align-self:center;
-    width: 53ppx;
-    height: 59px;
+    width: 60px;
+    height: auto;
     margin-top: 60px;
-    background-position: center;
 `;
 
 export const Title = styled.div`
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
-    font-size: 25px;
-    line-height: 38px;
+    font-size: 30px;
     margin-bottom:50px;
-    margin-top: 8px;
-
+    margin-top: 15px;
+    letter-spacing: 2px;
 `;
 
 export const SubTitle = styled.div`
     text-align: middle;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -95,7 +86,6 @@ export const RadioButton =  styled.input.attrs(({ type }) => ({
 
 export const Label = styled.div`
     text-align: left;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -105,7 +95,6 @@ export const Label = styled.div`
 
 export const LabelRecursive = styled.div`
     text-align: left;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -122,7 +111,6 @@ export const LoginInput =  styled.input.attrs(({ type }) => ({
     border: none;
     outline: none;
     font-size: 12px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     color: black;
@@ -140,7 +128,6 @@ export const PwInput = styled.input.attrs(({ type }) => ({
     border: none;
     outline: none;
     font-size: 12px;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     color: black;
@@ -159,7 +146,6 @@ export const Rowbox = styled.div`
 
 export const PwLabel = styled.div`
     text-align: left;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -169,7 +155,6 @@ export const PwLabel = styled.div`
 `;
 
 export const UrlLink = styled.a`
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -178,7 +163,6 @@ export const UrlLink = styled.a`
 `;
 
 export const TextLink = styled.a`
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -215,7 +199,6 @@ export const SubmitButton = styled.button`
     border: 0;
     outline: 0;
     color: white;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -240,7 +223,6 @@ export const RoleButton = styled.button`
     border: 0;
     outline: 0;
     color: black;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -264,7 +246,6 @@ export const LangButton = styled.button`
     border: 0;
     outline: 0;
     color: white;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -308,7 +289,6 @@ export const LangButton2 = styled.button`
     border: 0;
     outline: 0;
     color: black;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -316,20 +296,13 @@ export const LangButton2 = styled.button`
 
 `;
 
-
-
-
-
 export const Divider = styled.div`
     align-self: center;
     width: 250px;
     border: 0.5px solid #000000;
     margin-top: 30px;
+`;
 
-
-
-
-`
 export const RoleSubmitButton = styled(Link)`
     flex:1;
     width: 40%;
@@ -343,7 +316,6 @@ export const RoleSubmitButton = styled(Link)`
     margin-left:10px;
     margin-right:10px;
     color: white;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -362,13 +334,12 @@ export const Row = styled.div`
     display:flex;
     width:100%
     flex-align:row;
-`
+`;
 
 export const Signup = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -379,7 +350,6 @@ export const Signup = styled.div`
 `;
 
 export const SignupLink = styled(Link)`
-    font-family: Roboto;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -397,9 +367,8 @@ export const InputBox = styled.div`
     width: 100%;
     height: 40px;
     padding-top: 5px;
-    border: 0.5px solid #E2E8F0;
     box-sizing: border-box;
-    border-radius:15px;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
