@@ -1,6 +1,6 @@
 import React from "react";
 
-import LogoImg from '../../Components/assets/Logo.png';
+import LogoImg from '../../Components/assets/square_logo.png';
 import RadioButton from "../../Components/LoginPage/Radiobox";
 import UserRedirect from "../UserRedirect";
 import { BodyInput, DepartmentInput, InputBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, RadioBox, SubmitButtonDisabled } from "./styles";
