@@ -1,6 +1,8 @@
 import React from "react";
 import { TextField } from '@mui/material';
 import { TimeButton, Content, Divider, InfoContainer, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton } from "./styles";
+import moment from "moment-timezone";
+
 
 export const ProfilePage = (props) => {
 
@@ -24,6 +26,10 @@ export const ProfilePage = (props) => {
         setFileImage("");
       };
     
+    var starttime = moment(props.time, "HH:mm:ss").tz("Asia/Vientiane").format("HH:mm:ss")
+    var endtime = moment(props.time, "~ HH:mm:ss").tz("Asia/Vientiane").format("HH:mm:ss")
+
+
     return(
         <ProfileContainer>
             <PictureContainer>
@@ -46,7 +52,9 @@ export const ProfilePage = (props) => {
                 
                 
                 {props.isDoctor && <Label>AVAILABLE TIME</Label>}
-                {props.isDoctor && <Content>{props.time}</Content>}
+                {props.isDoctor && <Content>Local: {props.time} <br></br>
+                Laos: {starttime} ~ {endtime}</Content>}
+                {props.isDoctor && <Content></Content>}
                 {!props.isDoctor && <Label>Underlying Disease</Label>}
                 {!props.isDoctor && <Label>Past medical record</Label>}
 
