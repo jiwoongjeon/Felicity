@@ -1,16 +1,14 @@
-import React from "react";
-
 import {
     Container,
     TitleContext,
 } from "./styles";
 
-const Title = () => {
+const Title = (props) => {
   return (
     <Container>
 
     <TitleContext>
-    Dr. Daniel Thomas’s room with Mark Wilson
+    Dr.{props.doctorName}'s room with {props.patientName}
     </TitleContext>
 
 
