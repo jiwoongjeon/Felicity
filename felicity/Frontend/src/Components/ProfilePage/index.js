@@ -45,7 +45,7 @@ export const ProfilePage = (props) => {
                 {props.isDoctor && <Label>Phone</Label>}
                 
                 
-                {props.isDoctor && <Label>AVAILABLE TIME</Label>}
+                {props.isDoctor && <Label>AVAILABLE TIME</Label>}aaaa
                 {props.isDoctor && <Content>{props.time}</Content>}
                 {!props.isDoctor && <Label>Underlying Disease</Label>}
                 {!props.isDoctor && <Label>Past medical record</Label>}
