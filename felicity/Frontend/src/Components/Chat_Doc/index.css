@@ -114,6 +114,13 @@ html, body {
     flex-direction: row;
 }
 
+.files {
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 12px;
+    margin: 0 5px;
+}
+
 .message {
     border-radius: 5px;
     padding: 0.5rem;
@@ -145,6 +152,12 @@ html, body {
 .sent .message {
     background: #d6f9ff;
 }
+.sent .files {
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 1240px;
+    max-height: 1748px; 
+}
 
 .received {
     width: 100%;
@@ -161,4 +174,11 @@ html, body {
 
 .received .message {
     background: #eeeeee;
+}
+
+.received .files {
+    display: flex;
+    flex-direction: row;
+    max-width: 1240px;
+    max-height: 1748px; 
 }

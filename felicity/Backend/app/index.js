@@ -5,6 +5,7 @@ const socket = require("socket.io");
 const transcribe = require("../stt");
 const conn = require("./connection/connection")
 const videocall = require("./videocall/videocall")
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.use(require("./status/router"));        // "dstatus" or "pstatus"
 app.use(require("./conv/router"));
 app.use(require("./videocall/router"));
 app.use(require("./availabledoctor/router"));      // "/available-doctor"
+app.use("/uploads", express.static("uploads"));
 
 // const login = require("./login.js")
 
@@ -38,6 +40,10 @@ app.get("/", (req, res) => {
 // const port = 3001;
 const server = app.listen(config.express.port, () => {
     console.log(`Server running on Port ${config.express.port}`);
+    const dir = "./uploads";
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
 });
 
 //login using jwt
@@ -170,11 +176,12 @@ io.on("connection", async socket => {
         })
     })
 
-    socket.on("doctorChatSend", ({ name, msg, time }) => {
+    socket.on("doctorChatSend", ({ name, msg, time, file }) => {
         io.emit("doctorchatting", {
             name,
             msg,
-            time
+            time,
+            file
         })
     })
 
