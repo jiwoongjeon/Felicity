@@ -303,6 +303,9 @@ const ContextProvider = ({ children }) => {
         if (data !== "") {
             console.log(data.file);
             var currentTime = moment(new Date()).format("YYYY/MM/DD hh:mm");
+            if (data.file_name !== "") {
+                await Axios.post(`${API_URL}/post_file`, data.file, config);
+            }
             socket.emit("doctorChatSend", { name: name, msg: data.msg, time: currentTime, file: data.file_name});
             Axios.post(`${API_URL}/post_doctor_chat`, {
                 name: name,
@@ -310,9 +313,6 @@ const ContextProvider = ({ children }) => {
                 time: currentTime,
                 file_name: data.file_name
             });
-            if (data.file_name !== "") {
-                await Axios.post(`${API_URL}/post_file`, data.file, config);
-            }
         }
     }
 
