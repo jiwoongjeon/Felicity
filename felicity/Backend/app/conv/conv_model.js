@@ -50,13 +50,13 @@ const getPatientNameQry =
     "WHERE patient_id = (?)";
 
 const getDoctorChatQry = 
-    "SELECT name, message, date_format((time), '%Y/%m/%d %l:%i:%p') AS date " +
+    "SELECT name, message, date_format((time), '%Y/%m/%d %l:%i:%p') AS date, file " +
     "FROM doc_chats ";
 
 const insertDoctorChatQry =
     "INSERT INTO felicity.doc_chats " +
-    "(`name`, `message`, `time`) " +
-    "VALUES (?, ?, ?)";
+    "(`name`, `message`, `time`, `file`) " +
+    "VALUES (?, ?, ?, ?)";
 
 conv.findDConvs = function findDConvs(doctor_id, callback) {
     config.db.query(readDConvQry, doctor_id, (err, result) => {
@@ -140,8 +140,8 @@ conv.findDoctorChat = function findDoctorChat(callback) {
     });
 }
 
-conv.insertDoctorChat = function insertDoctorChat(name, message, time, callback) {
-    const chat = [name, message, time];
+conv.insertDoctorChat = function insertDoctorChat(name, message, time, file_name, callback) {
+    const chat = [name, message, time, file_name];
     config.db.query(insertDoctorChatQry, chat, (err, result) => {
         if (err) callback(err, null);
 

@@ -6,6 +6,7 @@ import API_URL from "../../API/server-ip";
 import Axios from "axios";
 import { ServerStyleSheet } from 'styled-components';
 import { render } from 'react-dom';
+import axios from 'axios';
 
 const moment = require("moment");
 
@@ -17,7 +18,9 @@ export const Chat_Doc = (props) => {
     const myName = JSON.parse(sessionStorage.getItem("name"));
 
     const [chatData, setChatData] = useState([]);
-
+    const [file, setFile] = useState();
+    const [fileName, setFileName] = useState("");
+    const [view, setView] = useState("");
 
     const messageBox = useRef(null);
     const fileBox = useRef(null);
@@ -26,8 +29,8 @@ export const Chat_Doc = (props) => {
 
     useEffect(() => {
         socket.once("doctorchatting", (data) => {
-            const { name, msg, time } = data;
-            setChatData(prev => [...prev, ...[{ name: name, msg: msg, time: time }]]);
+            const { name, msg, time, file } = data;
+            setChatData(prev => [...prev, ...[{ name: name, msg: msg, time: time, file: file }]]);
         });
         return (() => {
             socket.off("doctorchatting");
@@ -37,6 +40,7 @@ export const Chat_Doc = (props) => {
     useEffect(() => {
         displayContainer.current.scrollTo(0, displayContainer.current.scrollHeight);
         messageBox.current.value = null;
+        fileBox.current.value = null;
     }, [chatData]);
 
     useEffect(() => {
@@ -47,7 +51,8 @@ export const Chat_Doc = (props) => {
                     cd.push({
                         name: response.data.nameArr[i],
                         msg: response.data.chatArr[i],
-                        time: response.data.timeArr[i]
+                        time: response.data.timeArr[i],
+                        file: response.data.fileArr[i]
                     });
                 }
                 setChatData(prev => [...prev, ...cd]);
@@ -58,8 +63,6 @@ export const Chat_Doc = (props) => {
             })
     }, []);
 
-
-
     const handleKeyDown = (e) => {
         if (e.keyCode === 13) {
             handleOnClick();
@@ -67,9 +70,20 @@ export const Chat_Doc = (props) => {
     }
 
     const handleOnClick = () => {
-        if (messageBox.current.value !== '') {
-            docConvSend(messageBox.current.value);
+        if (messageBox.current.value !== '' || fileBox.current.value !== '') {
+            docConvSend({ msg: messageBox.current.value, file: file, file_name: fileName });
+            setFile();
+            setFileName("");
         }
+    }
+
+    const handleUpload = (e) => {
+        let fd = new FormData();
+        var ext = e.target.files[0].name.split(".").pop();
+        var file_name = "file" + "-" + Date.now() + "." + ext;
+        fd.append('file', e.target.files[0], file_name);
+        setFile(fd);
+        setFileName(file_name);
     }
 
     return (
@@ -83,6 +97,13 @@ export const Chat_Doc = (props) => {
                                     <span className="user">{item.name}</span>
                                     {/* <img className="image" src="https://i.imgur.com/mNJWYVi.png" alt="any"></img> */}
                                 </span>
+                                {item.file === "" ?
+                                    ""
+                                    :
+                                    <span className='files'>
+                                        <img className="image" src={API_URL + "/uploads/" + item.file} alt="any"></img>
+                                    </span>
+                                }
                                 <span className="mt">
                                     <span className="message">{item.msg}</span>
                                     <span className="times">{item.time}</span>
@@ -96,7 +117,7 @@ export const Chat_Doc = (props) => {
             <div className="input-container">
                 <span>
                     <input ref={messageBox} type="text" className="chatting-input" onKeyDown={handleKeyDown} placeholder='enter your message'></input>
-                    <input ref={fileBox} type="file" className="chatting-file-input"></input>
+                    <input ref={fileBox} type="file" className="chatting-file-input" onChange={handleUpload}></input>
                     <button onClick={() => handleOnClick()}
                         className="send-button"
                         value={""}>Send</button>

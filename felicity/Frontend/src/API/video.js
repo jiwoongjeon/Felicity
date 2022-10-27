@@ -294,15 +294,25 @@ const ContextProvider = ({ children }) => {
         }
     }
 
-    const docConvSend = (m) => {
-        if (m !== "") {
-            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-            socket.emit("doctorChatSend", { name: name, msg: m, time: currentTime });
+    const docConvSend = async (data) => {
+        const config = {
+            header: {
+                'content-type': 'multipart/form-data'
+            },
+        };
+        if (data !== "") {
+            console.log(data.file);
+            var currentTime = moment(new Date()).format("YYYY/MM/DD hh:mm");
+            socket.emit("doctorChatSend", { name: name, msg: data.msg, time: currentTime, file: data.file_name});
             Axios.post(`${API_URL}/post_doctor_chat`, {
                 name: name,
-                message: m,
-                time: currentTime
-            })
+                message: data.msg,
+                time: currentTime,
+                file_name: data.file_name
+            });
+            if (data.file_name !== "") {
+                await Axios.post(`${API_URL}/post_file`, data.file, config);
+            }
         }
     }
 
