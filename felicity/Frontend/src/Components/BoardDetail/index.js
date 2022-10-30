@@ -102,7 +102,7 @@ export const BoardDetail = (props) => {
                     <Divider />
 
                     <ContentSubContainer>
-                        <Content>{props.data.content}</Content>
+                        <Content>{props.data.symptoms.cough}</Content>
                     </ContentSubContainer>
                     <ContentSubContainer>
                         <Column>

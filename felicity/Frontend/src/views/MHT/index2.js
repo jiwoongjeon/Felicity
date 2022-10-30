@@ -1,6 +1,6 @@
 import React from "react";
 
-import LogoImg from '../../Components/assets/Logo.png';
+import LogoImg from '../../Components/assets/square_logo.png';
 import { Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, SubmitButtonDisabled } from "./styles";
 import UserRedirect from "../UserRedirect";
 

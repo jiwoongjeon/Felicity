@@ -30,7 +30,7 @@ min-width: 350px;
 height: 100%;
 grid-area: calen;
 z-index: 200;
-position: relative;
+// position: relative;
 box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 

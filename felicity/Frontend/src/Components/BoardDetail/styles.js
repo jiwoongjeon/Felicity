@@ -11,6 +11,7 @@ flex-direction: column;
 align-items: flex-start;
 background: white;
 border-radius: 20px;
+box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const ContentContainer = styled.div`
