@@ -13,7 +13,7 @@ export const Mostouter = styled.div`
         "cat list list"
         "cat list list"
         "cat list list";
-    gap : 10px;
+    gap : 15px;
     background-color : #F8F9FA;
 `;
 
@@ -28,7 +28,7 @@ export const List = styled.div`
     grid-area: list;
     margin-left: 20px;
     margin-right: 10px;
-    margin-bottom: 2%;
+    margin-bottom: 0.5%;
 `;
 
 export const Directory = styled.div`

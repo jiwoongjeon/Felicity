@@ -13,6 +13,7 @@ padding-left: 20px;
 padding-right: 30px;
 background: white;
 border-radius: 20px;
+box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const Header = styled.p`
@@ -20,7 +21,7 @@ export const Header = styled.p`
   font-weight: bold;
   font-size: 18px;
   text-align: left;
-  margin-top:20px;
+  margin-top: 20px;
 `;
 
 export const PostElementContainer = styled.div`

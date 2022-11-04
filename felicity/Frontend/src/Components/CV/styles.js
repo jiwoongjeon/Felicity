@@ -37,10 +37,13 @@ export const Row = styled.div`
 
 export const Note = styled.div`
   width: 100%;
-  height: 500px;
-  align-self: center;
+  height: 300px;
   border-radius: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
   background-color: #F9F9F9;
+  margin: 10px 0px 10px 0px;
+  overflow: hidden;
 `;
 
 export const Divider = styled.div`
@@ -84,7 +87,6 @@ export const Patient = styled.p`
   `;
 
 export const Bio = styled.p`
-  // flex:1;
   text-align: left;
   color: black;
   font-size: 20px;
@@ -96,6 +98,7 @@ export const Box = styled.p`
 `;
 
 export const DetailLabel = styled.p`
+  flex: 1;
   font-size: 18px;
   font-weight: bold;
   text-align: left;
@@ -104,6 +107,7 @@ export const DetailLabel = styled.p`
 `;
 
 export const Detail = styled.p`
+  flex: 4;
   text-align: left;
   margin-left: 7px;
   padding-left: 10px;
@@ -115,7 +119,8 @@ export const Btn = styled(Link)`
   height: 50px;
   background: #0075ff;
   border-radius: 10px;
-  font-weight: 550;
+  font-weight: bold;
+  margin-bottom: 10px;
   color: white;
   padding-top: 10px;
   text-decoration:none;
@@ -130,4 +135,18 @@ export const DefaultLabel = styled.p`
   color: #aaaaaa;
   margin-top: 20%;
   font-size: 20px;
+`;
+
+export const SaveBtn = styled(Link)`
+  width: 100px;
+  height: 40px;
+  background: #FF800B;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 0.5em;
+  &:hover {
+    color: white
+  }
 `;

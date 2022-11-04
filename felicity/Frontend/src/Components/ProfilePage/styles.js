@@ -8,10 +8,11 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 background: white;
-border-radius: 50px;
+border-radius: 20px;
 allign-self: center;
 padding-left:50px;
 padding-right:50px;
+box-shadow: 0px 4px 5px 0px #EDEEEF;
 `
 
 export const PictureContainer = styled.div`

@@ -1,4 +1,5 @@
-const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box } = require("./styles");
+import TextField from '@mui/material/TextField';
+const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn } = require("./styles");
 
 
 //props.data[props.index]
@@ -73,11 +74,12 @@ export const CV = (props) => {
 
                         <Row>
                             <DetailLabel>Note</DetailLabel>
+                            <SaveBtn>Save</SaveBtn>
                         </Row>
 
                         <Row>
                             <Note>
-                                <DefaultLabel>Type here</DefaultLabel>
+                                <TextField rows={18} multiline fullWidth variant="standard" placeholder="Type Here ..."/>
                             </Note>
                         </Row>
 
