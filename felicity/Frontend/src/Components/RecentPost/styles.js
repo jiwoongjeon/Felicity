@@ -33,6 +33,7 @@ overflow-y: auto;
 `;
 
 export const PostElement = styled.div`
+  max-height:300px;
   display: flex;
   flex-direction: column;
   text-decoration:none;
@@ -172,7 +173,6 @@ export const StateLabel = styled.p`
 `;
   
 export const SymptomsContainer = styled.div`
-height: 200px;
 flex: 7;
 display: flex;
 flex-direction: row;
@@ -180,7 +180,6 @@ margin-bottom: 10px;
 `;
 
 export const SymptomsBubble = styled.div`
-height:100%;
 display: flex;
 border: 2px solid #CBD5E0;
 border-radius: 8px;
@@ -191,6 +190,7 @@ padding-right: 15px;
 margin-right: 10px;
 font-weight: bold;
 color: #0047D2;
+height:35px;
 `;
 export const Title = styled.p`
   max-height: 25px;
