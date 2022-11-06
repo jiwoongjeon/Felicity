@@ -1,4 +1,6 @@
 import TextField from '@mui/material/TextField';
+import {useContext, useState, useEffect} from "react";
+import {SocketContext} from '../../API/video'
 const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn } = require("./styles");
 
 
@@ -6,7 +8,10 @@ const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divid
 export const CV = (props) => {
     function handleStartCall() {
         window.sessionStorage.setItem('pid', JSON.stringify(props.scheduleData[0].patient_id));
+        
+        window.sessionStorage.setItem('pinfo', JSON.stringify([props.data.firstname, props.data.lastname, props.data.sex, props.data.birth, props.data.a]));
     }
+    
     return (
         <PatientContainer>
             <Column>
@@ -18,7 +23,7 @@ export const CV = (props) => {
                             <PatientImage img={props.data.img}/>
                             <Box>
                                 <Patient>{props.data.firstname} {props.data.lastname}</Patient>
-                                <Bio>{props.data.sex} {props.data.birthday}</Bio>
+                                <Bio>{props.data.sex} {props.data.birth}</Bio>
                             </Box>
                         </Row>
 
@@ -85,7 +90,7 @@ export const CV = (props) => {
 
                     </Column>}
             </Column>
-            {props.data.sex && <Btn onClick={() => { handleStartCall(); props.startCall(props.data.rid); }} to={`./videocall`}>See your patient now</Btn>}
+            {props.data.sex && <Btn onClick={() => { handleStartCall();  props.startCall(props.data.rid);window.sessionStorage.setItem('rid', JSON.stringify(props.data.rid))}} to={`./videocall`}>See your patient now</Btn>}
         </PatientContainer>
     );
 }
