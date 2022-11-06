@@ -1,14 +1,15 @@
 import React from "react";
 import { TextField } from '@mui/material';
 import { TimeButton, Content, Divider, InfoContainer, DoctorLabel, PatientLabel, Header, Button, DoctorLabel2, ProfileContainer, Row, DeleteButton, EducationBox } from "./styles";
-
+import moment from "moment";
+import {LocalToUTC} from "../../API/video"
 export const ProfilePage2 = (props) => {
 
     const [start_time, setStartTime] = React.useState('');
     const [end_time, setEndTime] = React.useState('');
     const [isTime, changeTime] = React.useState(false);
     const [fileImage, setFileImage] = React.useState("");
-
+ 
     function setTime() {
         props.changeTime(props.jwt, start_time, end_time)
         changeTime(!isTime)
@@ -34,7 +35,9 @@ export const ProfilePage2 = (props) => {
                 {props.isDoctor &&<Divider></Divider>}
                 {props.isDoctor &&<DoctorLabel2>Available Time</DoctorLabel2>}
                 {props.isDoctor &&<Divider></Divider>}
-                {props.isDoctor && <Content>{props.time}</Content>}
+                {/* {props.isDoctor && <Content>{props.time}</Content>} */}
+                {props.isDoctor && <Content><br></br>Local Time: {moment().format("HH:mm")} <br></br>
+                Laos Local Time: {moment().add(7, "hours").toISOString().substr(0,16).substr(11,16)}</Content>}
                 {isTime &&
                     <Row>
                         <TextField
