@@ -100,6 +100,7 @@ const Schedule = ({ startCall, schedule_data }) => {
                                 <Column>
                                     <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
                                 </Column>
+                                
                             </AppointmentContainer>}
                     </>
                 ))}

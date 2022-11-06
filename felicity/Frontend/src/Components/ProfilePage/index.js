@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Divider, InfoContainer, Button, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName } from "./styles";
+import { TimeButton, Content, Divider, InfoContainer, Button, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
 
 export const ProfilePage = (props) => {
 
@@ -8,6 +8,7 @@ export const ProfilePage = (props) => {
     const [end_time, setEndTime] = React.useState('');
     const [isTime, changeTime] = React.useState(false);
     const [fileImage, setFileImage] = React.useState("");
+    const [username, setUserName] = React.useState('');
 
     function setTime() {
         props.changeTime(props.jwt, start_time, end_time)
@@ -26,22 +27,24 @@ export const ProfilePage = (props) => {
     
     return(
         <ProfileContainer>
+            
+                
             <Button>Edit</Button>
             <PictureContainer>
                 <PhotoArea img={fileImage}/>
                 {/* <input type='file' className='imgInput' id='logoImg' accept='image/*' name='file' onChange={saveFileImage}/>
                 {fileImage && <DeleteButton onClick={deleteFileImage}>Delete image</DeleteButton>} */}
             </PictureContainer>
-            <Divider/>
-            <UserName>Name</UserName>
+                
+            <UserName>{props.name}</UserName>
             <InfoContainer>
-            <Label>E-mail:</Label>
+                <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
                 <Divider></Divider>
-                <Label>D.O.B:</Label>
+                <Bar><Label>D.O.B:</Label><Label>N/A</Label></Bar>
                 <Divider></Divider>
-                <Label>Sex:</Label>
+                <Bar><Label>Sex:</Label><Label>N/A</Label></Bar>
             </InfoContainer>
-
+                
         </ProfileContainer>
     );
 }

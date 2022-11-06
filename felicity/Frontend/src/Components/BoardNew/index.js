@@ -37,8 +37,7 @@ export const BoardNew = ({ sendPost }) => {
     const handleContent = (event) => { setContent(event.target.value); };
     const handleCategoryChange = (event) => { setCategory(event.target.value); };
 
-    if (title == '' || category == '') button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
-    else button = <SubmitBtn onClick={() => sendPost(title, content, category)}>Submit</SubmitBtn >
+    //if (title == '' || category == '') button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
 
     return (
         <NewBoardContainer>
@@ -90,7 +89,8 @@ export const BoardNew = ({ sendPost }) => {
 
                 </WriteSubContainer>
                 <Divider />
-                {button}
+                <SubmitBtn onClick={() => sendPost(title, content, category)}>Submit</SubmitBtn >
+
 
             </WriteContainer>
 

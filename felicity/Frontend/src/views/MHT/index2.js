@@ -22,13 +22,13 @@ function MHT2() {
         <Title>Welcome!</Title>
         <SubTitle>Please fill out medical history form below (2/6)</SubTitle>
         <SubTitle>
-          {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>}
-          {next && <SubmitButton onClick={sessionStore} to={'/MHT3'}>Next</SubmitButton>}
+          {/* {!next && <SubmitButtonDisabled>Next</SubmitButtonDisabled>} */}
+          <SubmitButton onClick={sessionStore} to={'/MHT3'}>Next</SubmitButton>
           <SubmitButton to={'/MHT1'}>Previous</SubmitButton>
         </SubTitle>
         <Label>2. How long does the hurt last? *</Label>
 
-        <select id="time" onClick={e => setNext(e.target.value)}>
+        <select id="time" onClick={e => setNext(true)}>
           <option key="hours" value={0}>Less than 24 hours</option>
           <option key="days" value={1}>Less than 3 days</option>
           <option key="week" value={2}>Less than 1 week</option>

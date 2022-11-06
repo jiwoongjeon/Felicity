@@ -51,7 +51,7 @@ export const Divider = styled.div`
   
   width: 130%;
   height: 0px;
-  margin-top -2%;
+  margin-top -4%;
   border: 2px solid rgba(0, 0, 0, 0.15);
 `;
 
@@ -80,15 +80,21 @@ margin-top: 20%;
 `;
 
 export const Content = styled.p`
+  margin-top: 3%;
   font-weight: bold;
+  font-size: 150%;
   text-align: left;
   margin-bottom:50px;
+
 `;
 
 export const TimeButton = styled.div`
     width: 25%;
-    height: 10%;
+    height: 50px;
     allign-self: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #FF800B;
     border-radius: 20px;
     border: 0;
@@ -97,7 +103,7 @@ export const TimeButton = styled.div`
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 90%;
+    font-size: 100%;
     margin-top: 25%;
     &:hover {
       color: white;
