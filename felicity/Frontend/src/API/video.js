@@ -54,7 +54,7 @@ const ContextProvider = ({ children }) => {
     const [boardCount, setboardCount] = useState(0);
     const [boardChecked, setboardChecked] = useState(0);
     const [commentsLoad, setCommentsLoad] = useState(false);
-
+    const [rid2, setRid2] = useState(0);
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
