@@ -2,7 +2,7 @@ const config = require("../config");
 var schedule = module.exports;
 
 const pScheduleQry =
-    "SELECT reservation.id as rid, reservation.doctor_id, " +
+    "SELECT reservation.id as rid, reservation.doctor_id, reservation.canceled, " +
     "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
     "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
     "doctor_profile.firstname, doctor_profile.lastname, symptom.*, symptom_list.* " +
@@ -13,7 +13,7 @@ const pScheduleQry =
     "WHERE reservation.patient_id = ? and reserved_date > timestamp(now())";
 
 const dScheduleQry =
-    "SELECT reservation.id as rid, reservation.patient_id, patient_profile.firstname, " +
+    "SELECT reservation.id as rid, reservation.patient_id, patient_profile.firstname, reservation.canceled, " +
     "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
     "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
     "patient_profile.lastname, sex, date_format((birth), '%m-%d-%Y') as birth, symptom.*, symptom_list.* " +
