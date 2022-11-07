@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import moment from "moment";
-const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, First, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement } = require("./styles");
+const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, First, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement, CancelButton } = require("./styles");
 
 var isEmpty = true;
 const counter = 0;
@@ -93,13 +93,14 @@ const Schedule = ({ startCall, schedule_data }) => {
                                         <Date>{data.reserved_date}</Date>
                                         <TimeEmail>{data.reserved_time}</TimeEmail>
                                     </Group>
-                                    <Group>
-
-                                    </Group>
                                 </FstColumn>
-                                <Column>
-                                    <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
-                                </Column>
+                                
+                                <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
+                                
+                                
+                                <CancelButton>Cancel</CancelButton>
+                                
+                                
                                 
                             </AppointmentContainer>}
                     </>

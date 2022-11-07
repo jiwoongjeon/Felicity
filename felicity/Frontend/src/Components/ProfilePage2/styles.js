@@ -52,7 +52,7 @@ export const Divider = styled.div`
   width: 130%;
   height: 0px;
   margin-top -4%;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
 `;
 
 export const PatientLabel = styled.p`

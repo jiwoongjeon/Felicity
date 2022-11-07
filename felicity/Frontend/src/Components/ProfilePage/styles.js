@@ -51,10 +51,8 @@ export const Divider = styled.div`
 width: 100%;
 height: 0px;
 margin-bottom:5%;
-left: 580px;
-top: 746px;
 align-self: center;
-border: 1.5px solid rgba(0, 0, 0, 0.15);
+border: 0.5px solid rgba(0, 0, 0, 0.15);
 `;
 
 export const Label = styled.p`
