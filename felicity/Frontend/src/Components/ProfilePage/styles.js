@@ -18,7 +18,7 @@ box-shadow: 0px 4px 5px 0px #EDEEEF;
 export const PictureContainer = styled.div`
 width: 25%;
 min-width: 350px;
-padding-top: 20px;
+padding-top: 10%;
 margin-top: 1%;
 display: flex;
 flex-direction: column;
@@ -28,16 +28,16 @@ color: black;
 `
 
 export const InfoContainer = styled.div`
-width: 70%;
-padding-top: 8%;
+width: 80%;
+padding-top: 10%;
 display: flex;
 flex-direction: column;
 align-self: center;
 `
 
 export const PhotoArea = styled.div`
-width: 250px;
-height: 250px;
+width: 300px;
+height: 300px;
 border-radius: 50%;
 background-image: url(${props => props.img? props.img : default_profile });
 background-position: center;
@@ -45,7 +45,8 @@ background-repeat: no-repeat;
 background-size: cover;
 margin-bottom:10px;
 margin-bottom:1%;
-align-self: center;`
+align-self: center;
+`
 
 export const Divider = styled.div`
 width: 100%;
@@ -54,14 +55,14 @@ margin-bottom:5%;
 left: 580px;
 top: 746px;
 align-self: center;
-border: 1.5px solid rgba(0, 0, 0, 0.15);
+border: 0.5px solid rgba(0, 0, 0, 0.15);
 `;
 
 export const Label = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 100%;
+font-size: 80%;
 margin-bottom: 5%;
 `;
 
@@ -119,8 +120,9 @@ export const DeleteButton = styled.div`
 `;
 
 export const Button = styled.div`
+  display: flex;
   width: 20%;
-  height: 5%;
+  height: 4%;
   align-self: flex-end;
   background: blue;
   border-radius: 20px;
@@ -131,7 +133,8 @@ export const Button = styled.div`
   color: white;
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 100%;
+  font-family: Roboto;
   text-decoration:none;
   &:hover {
     color: white;
@@ -142,10 +145,19 @@ export const Button = styled.div`
     background-color: #004FEB;
   }
   margin-right: 10%;
+  align-items: center;
+  justify-content: center;
+  `
+export const Bar = styled.div`
+    display: flex;
+    width: 100%;
+    height: 30%;
+    justify-content: space-between;
 `
 
 export const UserName = styled.div`
     font-size: 200%;
     color: black;
-    margin-bottom: 5%;
+    margin-top: 5%;
+    align-self: center;
     `

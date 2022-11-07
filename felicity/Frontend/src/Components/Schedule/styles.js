@@ -29,7 +29,7 @@ export const AppointmentContainer = styled(Link)`
   margin-bottom: 10px;
   padding: 20px;
   border: 3px;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #F8F9FA;
   border-radius: 10px;
   display:flex;
@@ -38,7 +38,7 @@ export const AppointmentContainer = styled(Link)`
 
 export const AppointmentList = styled.div`
 width: 100%;
-height: 300px;
+height: 50%;
 flex-direction: column;
 overflow-y: auto;
 &::-webkit-scrollbar {
@@ -46,11 +46,19 @@ overflow-y: auto;
 }
 `;
 
+export const CancelButton = styled.div`
+flex:1;
+width: 10%;
+height: 50%
+color: white;
+border-radius: 10px;
+}
+`;
+
 export const FstColumn = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 5px;
 `;
 
 export const First = styled.div`
@@ -78,6 +86,7 @@ export const Group = styled.div`
 `;
 
 export const Date = styled.div`
+  flex:1;
   margin: 0px;
   margin-right: 15px;
   font-weight: bold;
@@ -85,8 +94,9 @@ export const Date = styled.div`
 `;
 
 export const TimeEmail = styled.p`
-  margin: 0px;
+flex:1;
   color: rgba(107, 114, 128);
+  text-align:left;
 //   font-size: 14px;
 `;
 
@@ -111,8 +121,9 @@ export const EditIcon = styled.button`
 `;
 
 export const DoctorEmail = styled.p`
-  margin: 0px;
+flex:5;
   color: rgba(156, 163, 175);
   margin-right: 3px;
 //   font-size: 14px;
+text-align:left;
 `;

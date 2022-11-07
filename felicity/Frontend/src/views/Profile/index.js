@@ -71,10 +71,10 @@ function Profile(props) {
     <Video>
       <ContentLayout>
         <UserInfo>
-          <ProfilePage isDoctor={props.isDoctor}></ProfilePage>
+          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email}></ProfilePage>
         </UserInfo>
         <UserInfo2>
-          <ProfilePage2 isDoctor={props.isDoctor}></ProfilePage2>
+          <ProfilePage2 isDoctor={props.isDoctor} time = {time} changeTime={changeDoctorAvailableTime}></ProfilePage2>
         </UserInfo2>
       </ContentLayout>
     </Video>
