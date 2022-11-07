@@ -4,10 +4,17 @@ import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mo
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 import { ProfilePage } from "../../Components/ProfilePage";
+import { ProfilePage2 } from "../../Components/ProfilePage2";
 import UserRedirect from "../UserRedirect";
 import Axios from "axios";
 import API_URL from "../../API/server-ip";
 import { SocketContext } from "../../API/video";
+import {
+  ContentLayout,
+  Container,
+  UserInfo,
+  UserInfo2
+} from "./layout"
 
 function Profile(props) {
 
@@ -62,7 +69,14 @@ function Profile(props) {
 
 
     <Video>
-      <ProfilePage name={name} email={email} time={time} isDoctor={props.isDoctor} jwt={jwt} changeTime={changeDoctorAvailableTime} />
+      <ContentLayout>
+        <UserInfo>
+          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email}></ProfilePage>
+        </UserInfo>
+        <UserInfo2>
+          <ProfilePage2 isDoctor={props.isDoctor} time = {time} changeTime={changeDoctorAvailableTime}></ProfilePage2>
+        </UserInfo2>
+      </ContentLayout>
     </Video>
 
 

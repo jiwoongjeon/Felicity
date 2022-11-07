@@ -1,16 +1,16 @@
 import { useState } from "react";
 import React from "react";
 import moment from "moment";
-const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, First, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement } = require("./styles");
+const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, First, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement, CancelButton } = require("./styles");
 
 var isEmpty = true;
 const counter = 0;
 
 const TimeCompare = (date, time) => {
 
-    const today = moment().format("MM-DD-YYYY")
+    const today = moment().format("YYYY-MM-DD")
     const today_time = moment().add(10, 'M').format("HH:mm:ss a")
-    const appointment = moment(date).format("MM-DD-YYYY")
+    const appointment = moment(date).format("YYYY-MM-DD")
     const app_time = moment(time, "hh:mm:ss").format("HH:mm:ss a")
 
     if (appointment > today) {
@@ -88,18 +88,10 @@ const Schedule = ({ startCall, schedule_data }) => {
                     <>
                         {TimeCompare(data.reserved_date, data.reserved_time) &&
                             <AppointmentContainer onClick={() => { handleStartCall(); startCall(data.rid) }} to={"/Patient/videocall"}>
-                                <FstColumn >
-                                    <Group>
-                                        <Date>{data.reserved_date}</Date>
-                                        <TimeEmail>{data.reserved_time}</TimeEmail>
-                                    </Group>
-                                    <Group>
-
-                                    </Group>
-                                </FstColumn>
-                                <Column>
-                                    <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
-                                </Column>
+                                <Date>{data.reserved_date}</Date>
+                                <TimeEmail>{data.reserved_time}</TimeEmail>
+                                <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
+                                <CancelButton>Cancel</CancelButton>
                             </AppointmentContainer>}
                     </>
                 ))}

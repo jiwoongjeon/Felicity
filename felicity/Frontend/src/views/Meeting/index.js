@@ -64,7 +64,7 @@ function Meeting(props) {
         if (array[10] === 1) {
             array1.push("Muscle Sickness")
         }
-        if (array[11] != null) {
+        if (array[11] != "") {
             array1.push(array[11])
         }
         return array1

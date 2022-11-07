@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from '@material-ui/core/Slider';
 
-import LogoImg from '../../Components/assets/Logo.png';
+import LogoImg from '../../Components/assets/square_logo.png';
 import { Label, Logo, MainContainer, QuestionContainer, SliderBox, SubmitButton, SubTitle, Title, SubmitButtonDisabled } from "./styles";
 import UserRedirect from "../UserRedirect";
 

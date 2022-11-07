@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-
-
 import { IoMdVideocam } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardVoice } from "react-icons/md";
 import { BsFillChatSquareFill } from "react-icons/bs";
-
 import {
     MainContainer,
     MainVideoContainer,
@@ -42,10 +39,10 @@ const Video = ({ context }) => {
     const [visible, setVisible] = React.useState(true);
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
-
     const roleA = JSON.parse(sessionStorage.getItem("role"));
-
+    const name = JSON.parse(sessionStorage.getItem("name"))
     const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
+
     return (
         <MainContainer>
 
@@ -86,7 +83,7 @@ const Video = ({ context }) => {
                     <VideoContainer playsInline muted ref={myVideo} autoPlay />
                 )}
                 <Name>
-                    Mark Wilson
+                    {name}
                 </Name>
             </Patient>
             <SubtitleContainer>
@@ -125,7 +122,7 @@ const Video = ({ context }) => {
                     <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                 </IconLeft>
                 <IconRight>
-                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="../Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
+                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="./Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
                 </IconRight>
             </Setting>
 

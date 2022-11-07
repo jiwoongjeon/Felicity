@@ -25,7 +25,7 @@ export const Logo = styled.img`
 
 export const Title = styled.div`
     text-align: left;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -35,7 +35,7 @@ export const Title = styled.div`
 
 export const SubTitle = styled.div`
     text-align: left;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -48,7 +48,7 @@ export const SubTitle = styled.div`
 
 export const Label = styled.div`
     text-align: left;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     margin-top: 5%;
@@ -66,7 +66,7 @@ export const SubmitButton = styled(Link)`
     border: 0;
     outline: 0;
     color: white;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -94,7 +94,7 @@ export const SubmitButtonDisabled = styled.div`
     border: 0;
     outline: 0;
     color: white;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -123,7 +123,7 @@ export const MoveButton = styled(Link)`
     border: 0;
     outline: 0;
     color: white;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -149,7 +149,7 @@ export const MoveButtonBig = styled(Link)`
     border: 0;
     outline: 0;
     color: white;
-    font-family: Roboto;
+    // font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -211,7 +211,7 @@ export const BodyInput =  styled.input.attrs(({ type }) => ({
       border: none;
       outline: none;
       font-size: 12px;
-      font-family: Roboto;
+      // font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       color: black;
@@ -227,7 +227,7 @@ export const ReasonInput =  styled.input.attrs(({ type }) => ({
       border: none;
       outline: none;
       font-size: 12px;
-      font-family: Roboto;
+      // font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       color: black;
@@ -242,7 +242,7 @@ export const ReasonInput =  styled.input.attrs(({ type }) => ({
       border: none;
       outline: none;
       font-size: 12px;
-      font-family: Roboto;
+      // font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       color: black;
@@ -257,7 +257,7 @@ export const ReasonInput =  styled.input.attrs(({ type }) => ({
       border: none;
       outline: none;
       font-size: 12px;
-      font-family: Roboto;
+      // font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       color: black;

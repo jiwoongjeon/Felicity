@@ -159,10 +159,26 @@ function updateComment(req, res) {
     res.json({ msg: "OK" })
 }
 
+function cancelReservation(req, res) {
+    const id = req.body.id;
+    const cancelUser = req.body.cancelUser;
+    //console.log(id, cancelUser)
+    post.cancelReservation (id, cancelUser, (error, result) => {
+        if (error) {
+            console.log(error);
+            res.json({ errMsg: 'Error: Failed on canceling reservation'});
+        }
+        else {
+            res.json({ Msg: 'reservation has been successfully canceled'})
+        }
+    })
+}
+
 router.post("/post-page", getPage);
 router.post("/read-post", getPosts);
 router.post("/read-comment", getComment);
 router.post("/write-post", postPost);
 router.post("/write-comment", updateComment);
+router.post("/cancel-reservation", cancelReservation);
 
 module.exports = router;

@@ -51,8 +51,10 @@ const ContextProvider = ({ children }) => {
     const [reserved, setReserved] = useState(false);
     const [posted, setPosted] = useState(false);
     const [count, setCount] = useState(0);
+    const [boardCount, setboardCount] = useState(0);
+    const [boardChecked, setboardChecked] = useState(0);
     const [commentsLoad, setCommentsLoad] = useState(false);
-
+    const [rid2, setRid2] = useState(0);
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
@@ -292,15 +294,25 @@ const ContextProvider = ({ children }) => {
         }
     }
 
-    const docConvSend = (m) => {
-        if (m !== "") {
-            var currentTime = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-            socket.emit("doctorChatSend", { name: name, msg: m, time: currentTime });
+    const docConvSend = async (data) => {
+        const config = {
+            header: {
+                'content-type': 'multipart/form-data'
+            },
+        };
+        if (data !== "") {
+            console.log(data.file);
+            var currentTime = moment(new Date()).format("YYYY/MM/DD hh:mm");
+            if (data.file_name !== "") {
+                await Axios.post(`${API_URL}/post_file`, data.file, config);
+            }
+            socket.emit("doctorChatSend", { name: name, msg: data.msg, time: currentTime, file: data.file_name});
             Axios.post(`${API_URL}/post_doctor_chat`, {
                 name: name,
-                message: m,
-                time: currentTime
-            })
+                message: data.msg,
+                time: currentTime,
+                file_name: data.file_name
+            });
         }
     }
 
@@ -527,7 +539,8 @@ const ContextProvider = ({ children }) => {
                 callUser, leaveCall, answerCall, isClicked, getAudio,
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, docConvSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
-                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount
+                sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
+                , boardChecked, setboardChecked
             }}
         >
             {children}

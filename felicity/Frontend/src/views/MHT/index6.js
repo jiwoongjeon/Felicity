@@ -1,6 +1,6 @@
 import React from "react";
 
-import LogoImg from '../../Components/assets/Logo.png';
+import LogoImg from '../../Components/assets/square_logo.png';
 import Checkbox from "../../Components/LoginPage/Checkbox";
 import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput, SubmitButtonDisabled } from "./styles";
 import UserRedirect from "../UserRedirect";

@@ -53,6 +53,20 @@ const insertCommentQry =
 const updateIsRepliedQry = 
     "UPDATE felicity.post SET is_replied = 1 WHERE id = ?"
 
+//id 에 해당하는 row 의 예약취소상태를 1로 변경하고 예약 취소한 유저가 의사인지 환자인지 저장
+const updateCancelation = 
+    "UPDATE felicity.reservation SET canceled = 1, cancelUser = ? WHERE id = ?"
+
+post.cancelReservation = function cancelReservation(id, cancelUser, callback) {
+    const cancelInfo = [cancelUser, id]
+    config.db.query(updateCancelation, cancelInfo, (err,result) => {
+        if (err){
+            callback(err,null);
+        }
+        callback(null, result);
+    });
+};
+
 post.getPageNum = function getPageNum(callback) {
     config.db.query(getPageQry, (err, result) => {
         if (err) callback(err, null);

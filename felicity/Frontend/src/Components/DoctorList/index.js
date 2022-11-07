@@ -44,7 +44,7 @@ const DoctorList = ({ doctorList }) => {
 
       <PostElementContainer>
         <Divider />
-        {doctorList.map((data, i) => (
+        {doctorList.slice(0).reverse().map((data, i) => (
           <PostElement>
             <BodyColumn>
               <No>{i + 1}</No>

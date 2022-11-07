@@ -1,24 +1,25 @@
 import styled from "styled-components";
 
 export const ContentLayout = styled.div`
-    width : 100%;
-    min-width: 900px;
-    height: 100%;
-    min-height: 700px;
-    display: grid;
+width : 100%;
+min-width: 900px;
+height: 100%;
+min-height: 700px;
 
-    grid-template-columns: 1fr 1.3fr;
-    grid-template-rows: 1fr 1fr 8fr;
-    grid-template-areas:
-    "calen info"
-    "list info"
-    "list info";
+display: grid;
+grid-template-columns: 0.8fr 0.02fr 1.4fr;
+grid-template-rows: 1fr 0.25fr 1fr 8fr 0.25fr;
+grid-template-areas:
+"calen . info"
+". . info"
+"list . info"
+"list . info"
+". . .";
+
 background-color : #F8F9FA;
-gap: 10px;
-padding-right: 20px;
+// gap: 2%
 position: relative;
 `;
-
 
 export const CalendarBox = styled.div`
 background-color: #FFFFFF;
@@ -27,9 +28,10 @@ width: 100%;
 hegiht: 100%;
 min-width: 350px;
 height: 100%;
-grid-are: calen;
+grid-area: calen;
 z-index: 200;
-position: relative;
+// position: relative;
+box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const InfoBox = styled.div`
@@ -39,6 +41,7 @@ min-width: 350px;
 grid-area:info;
 position: relative;
 z-index: 200;
+padding-right: 20px;
 `;
 
 export const PatientBox = styled.div`
@@ -57,7 +60,6 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(36,36,36,0.6);
 `;
 
 export const Button = styled.button`

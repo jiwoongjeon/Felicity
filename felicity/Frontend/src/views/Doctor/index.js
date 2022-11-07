@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react"
-import styled from "styled-components";
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -93,7 +92,6 @@ function Doctor(props) {
 
     function CloseSession() {
         window.sessionStorage.removeItem('show');
-
     }
 
     return (

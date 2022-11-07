@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Divider, InfoContainer, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton } from "./styles";
+import { TimeButton, Content, Divider, InfoContainer, Button, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
 
 export const ProfilePage = (props) => {
 
@@ -8,6 +8,7 @@ export const ProfilePage = (props) => {
     const [end_time, setEndTime] = React.useState('');
     const [isTime, changeTime] = React.useState(false);
     const [fileImage, setFileImage] = React.useState("");
+    const [username, setUserName] = React.useState('');
 
     function setTime() {
         props.changeTime(props.jwt, start_time, end_time)
@@ -26,55 +27,20 @@ export const ProfilePage = (props) => {
     
     return(
         <ProfileContainer>
+            <Button>Edit</Button>
             <PictureContainer>
                 <PhotoArea img={fileImage}/>
-                <input type='file' className='imgInput' id='logoImg' accept='image/*' name='file' onChange={saveFileImage}/>
-                {fileImage && <DeleteButton onClick={deleteFileImage}>Delete image</DeleteButton>}
+                {/* <input type='file' className='imgInput' id='logoImg' accept='image/*' name='file' onChange={saveFileImage}/>
+                {fileImage && <DeleteButton onClick={deleteFileImage}>Delete image</DeleteButton>} */}
             </PictureContainer>
             <Divider/>
+            <UserName>{props.name}</UserName>
             <InfoContainer>
-                <Label>NAME</Label>
-                <Content>{props.name}</Content>
-                <Label>Date of birth</Label>
-                <Label>Sex</Label>
-                <Label>EMAIL</Label>
-                <Content>{props.email}</Content>
-                {props.isDoctor && <Label>Profession</Label>}
-            
-                {props.isDoctor && <Label>Education</Label>}
-                {props.isDoctor && <Label>Phone</Label>}
-                
-                
-                {props.isDoctor && <Label>AVAILABLE TIME</Label>}
-                {props.isDoctor && <Content>{props.time}</Content>}
-                {!props.isDoctor && <Label>Underlying Disease</Label>}
-                {!props.isDoctor && <Label>Past medical record</Label>}
-
-
-                {isTime &&
-                    <Row>
-                        <TextField
-                            value={start_time}
-                            id="time"
-                            label="Available from..."
-                            type="time"
-                            sx={{ width: 200, marginRight: 3, marginBottom:3 }}
-                            InputLabelProps={{ shrink: true }}
-                            inputProps={{ step: 300 }}
-                            onChange={(event) => {setStartTime(event.target.value); console.log(event.target.value)}}/>
-                        <TextField
-                            value={end_time}
-                            id="time"
-                            label="Available by..."
-                            type="time"
-                            sx={{ width: 200, marginRight: 3, marginBottom:3 }}
-                            InputLabelProps={{ shrink: true }}
-                            inputProps={{ step: 300 }}
-                            onChange={(event) => {setEndTime(event.target.value)}}/>
-                    </Row>}
-                {props.isDoctor && !isTime && <TimeButton onClick={(e) => {changeTime(!isTime)}}>Change time</TimeButton>}
-                {props.isDoctor && isTime && start_time && end_time && <TimeButton onClick={setTime}>Confirm</TimeButton>}
-                {props.isDoctor && isTime && (!start_time || !end_time) && <TimeButton onClick={(e) => {changeTime(!isTime)}}>Cancel</TimeButton>}
+            <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
+            <Divider></Divider>
+            <Bar><Label>D.O.B:</Label><Label>N/A</Label></Bar>
+            <Divider></Divider>
+            <Bar><Label>Sex:</Label><Label>N/A</Label></Bar>
             </InfoContainer>
 
         </ProfileContainer>

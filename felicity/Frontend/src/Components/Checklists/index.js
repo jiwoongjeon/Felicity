@@ -1,9 +1,10 @@
-import React from "react";
 import Slider from '@material-ui/core/Slider';
 import Checkbox from "../LoginPage/Checkbox";
-
 import { MHT_DATA } from "./tempData";
 import { Title, SubTitle, SliderBox, } from "../../views/MHT/styles";
+import axios from "axios";
+import API_URL from "../../API/server-ip";
+import React, { useState, useEffect } from "react"
 
 const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, CheckboxBox, SymptomsContainer, SymptomsBubble, Divider, SymptomsBubbleUnchecked, OtherBox } = require("./styles");
 
@@ -18,12 +19,22 @@ export const Checklists = (props) => {
     let time = sessionStorage.getItem('time');
     let written = JSON.parse(sessionStorage.getItem('level'));
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    const [name, setName] = useState("")
+
+    useEffect(() => {
+    axios.post(`${API_URL}/pstatus`, {patientId: jwt})
+    .then((response) => {
+        if (response.data) {
+          setName(response.data[0].fullname)
+        }})},[])
+
     return (
         <ChecklistsContainer>
         {written &&
             <ChecklistsElementContainer>
                 <Title>Medical History Form Review</Title>
-                <SubTitle>Patient: Gaebiscon</SubTitle>
+                <SubTitle>Patient: {name} </SubTitle>
                 <Divider />
                 <Label>1. Where does it hurt?  *</Label>
                 <Answers>{sessionStorage.getItem('hurt')}</Answers>
