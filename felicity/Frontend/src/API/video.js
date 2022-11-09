@@ -512,6 +512,32 @@ const ContextProvider = ({ children }) => {
         socket.emit("leavecall", { reservation_id: rid, role: role });
     }
 
+    const updateProfileImage = (data) => {
+        const config = {
+            header: {
+                'content-type': 'multipart/form-data'
+            },
+        };
+        socket.emit("changeProfileImage1", { file: data.file_name });
+        Axios.post(`${API_URL}/post_profile_image`, data.file, config);
+        Axios.post(`${API_URL}/post_profile_image_path`, {
+            role: role,
+            id: id,
+            file_name: data.file_name
+        });
+        if (data.old_file_name !== "") {
+            deleteProfileImage(1, data.old_file_name);
+        }
+    }
+
+    const deleteProfileImage = (n, file_name) => {
+        Axios.post(`${API_URL}/remove_profile_image`, {
+            n: n,
+            role: role,
+            id: id,
+            file_name: file_name
+        });
+    }
 
     useEffect(() => {
         socket.on("result", (result) => {
@@ -540,7 +566,7 @@ const ContextProvider = ({ children }) => {
                 stopAudio, sendAudio, text, recordAudio, chatArr, videoCallSend, convSend, docConvSend, sendPost,
                 sendReservation, acceptReservation, userJoined, setUserJoined,
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
-                , boardChecked, setboardChecked
+                , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
             }}
         >
             {children}

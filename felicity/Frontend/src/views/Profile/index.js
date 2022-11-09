@@ -21,6 +21,7 @@ function Profile(props) {
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [profileImage, setProfileImage] = useState("")
   const [time, setTime] = useState("")
 
   const { changeDoctorAvailableTime, UTCToLocal } = useContext(SocketContext);
@@ -35,6 +36,7 @@ function Profile(props) {
           const time = LocalTimeA + " ~ " + LocalTimeB
           setName(response.data[0].fullname)
           setEmail(response.data[0].email)
+          setProfileImage(response.data[0].profile_image)
           setTime(time)
         }
       })
@@ -45,6 +47,7 @@ function Profile(props) {
         if (response.data) {
           setName(response.data[0].fullname)
           setEmail(response.data[0].email)
+          setProfileImage(response.data[0].profile_image)
         }
       })
     }
@@ -71,7 +74,7 @@ function Profile(props) {
     <Video>
       <ContentLayout>
         <UserInfo>
-          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email}></ProfilePage>
+          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email} profileImage = {profileImage}></ProfilePage>
         </UserInfo>
         <UserInfo2>
           <ProfilePage2 isDoctor={props.isDoctor} time = {time} changeTime={changeDoctorAvailableTime}></ProfilePage2>
