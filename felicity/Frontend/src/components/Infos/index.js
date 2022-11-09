@@ -8,6 +8,7 @@ import { Patient } from "../RecentPost/styles";
 import Axios from "axios";
 import API_URL from "../../API/server-ip";
 import { SocketContext } from '../../API/video'
+import { TextField } from "@mui/material";
 
 export const Infos = ({ context }) => {
     const [data, setData] = useState();
@@ -134,6 +135,14 @@ export const Infos = ({ context }) => {
                     <Accordion.Body>
                         <div className="chat">
                             <Chat context={context}/>
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>Note</Accordion.Header>
+                    <Accordion.Body>
+                        <div className="note">
+                            <TextField rows={15} multiline fullWidth variant="standard" placeholder="Type Here ..."/>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>

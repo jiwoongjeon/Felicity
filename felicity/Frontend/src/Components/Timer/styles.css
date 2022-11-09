@@ -1,5 +1,5 @@
 h1 {
-  font-family: "Roboto";
+  /* font-family: "Roboto"; */
   text-align: center;
   margin-bottom: 40px;
 }
@@ -28,7 +28,7 @@ h1 {
     background: none;
     color: #0075FF;
     font-size: 20px;
-    font-family: "Montserrat";
+    /* font-family: "Montserrat"; */
     font-weight: 500;
 }
 
@@ -42,7 +42,7 @@ button[disabled=disabled], button:disabled {
 }
 
 .timer {
-  font-family: "Montserrat";
+  /* font-family: "Montserrat"; */
   display: flex;
   flex-direction: column;
   align-items: center;
