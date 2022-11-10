@@ -54,3 +54,13 @@
     width: 100%;
     height: 450px;
 }
+
+.note {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    background-color: #F9F9F9;
+    overflow: hidden;
+}
