@@ -30,6 +30,7 @@ app.use(require("./conv/router"));
 app.use(require("./videocall/router"));
 app.use(require("./availabledoctor/router"));      // "/available-doctor"
 app.use("/uploads", express.static("uploads"));
+app.use(require("./doctornote/router"));
 
 // const login = require("./login.js")
 
