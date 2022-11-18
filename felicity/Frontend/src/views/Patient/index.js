@@ -45,6 +45,9 @@ function Patient() {
                 setScheduleData(response.data)
 
             })
+        
+        
+
     }, [])
     console.log(scheduleData)
 
@@ -85,11 +88,11 @@ function Patient() {
                     </EmergencyBox>
 
                     <ScheduleBox>
-                        <Schedule startCall={startCall} schedule_data={scheduleData} />
+                        <Schedule startCall={startCall} schedule_data={scheduleData}/>
                     </ScheduleBox>
 
                     <RecordBox>
-                        <PatientRecord schedule_data = {scheduleData} />
+                        <PatientRecord schedule_data = {scheduleData}/>
                     </RecordBox>
 
                     <PrescriptionBox>

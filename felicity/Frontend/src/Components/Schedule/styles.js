@@ -23,7 +23,7 @@ export const Header = styled.p`
 
 export const AppointmentContainer = styled(Link)`
   width: 90%;
-  height: 35%;
+  max-height: 65px;
   min-width:300px;
   margin-left: 40px;
   margin-bottom: 10px;
@@ -34,11 +34,12 @@ export const AppointmentContainer = styled(Link)`
   border-radius: 10px;
   display:flex;
   text-decoration:none;
+  align-self: start;
 `;
 
 export const AppointmentList = styled.div`
 width: 100%;
-height: 50%;
+height: 80%;
 flex-direction: column;
 overflow-y: auto;
 &::-webkit-scrollbar {
@@ -46,12 +47,13 @@ overflow-y: auto;
 }
 `;
 
-export const CancelButton = styled.div`
+export const CancelButton = styled(Link)`
 flex:1;
 width: 10%;
 height: 50%
 color: white;
 border-radius: 10px;
+
 }
 `;
 
