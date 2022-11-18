@@ -6,7 +6,6 @@ import API_URL from "../../API/server-ip";
 import Axios from "axios";
 import { ServerStyleSheet } from 'styled-components';
 import { render } from 'react-dom';
-import axios from 'axios';
 
 const moment = require("moment");
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import moment from "moment";
+import Axios from "axios";
+import API_URL from "../../API/server-ip";
 const { ScheduleContainer, Header, AppointmentContainer, AppointmentList, FstColumn, First, Column, Group, Date, TimeEmail, EditIcon, DeleteIcon, DoctorEmail, ScheduleElement, CancelButton } = require("./styles");
 
 var isEmpty = true;
@@ -72,6 +74,11 @@ const NonClick = (date, time, past) => {
 
 }
 
+const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+
+
+
+
 const Schedule = ({ startCall, schedule_data }) => {
 
     isEmpty = true;
@@ -85,14 +92,16 @@ const Schedule = ({ startCall, schedule_data }) => {
             <Header>My Schedule</Header>
             <AppointmentList>
                 {schedule_data.map((data) => (
-                    <>
-                        {TimeCompare(data.reserved_date, data.reserved_time) &&
+                    <>  
+                        {TimeCompare(data.reserved_date, data.reserved_time) && data.canceled == 0 &&
                             <AppointmentContainer onClick={() => { handleStartCall(); startCall(data.rid) }} to={"/Patient/videocall"}>
                                 <Date>{data.reserved_date}</Date>
                                 <TimeEmail>{data.reserved_time}</TimeEmail>
                                 <DoctorEmail>Doctor: {data.firstname} {data.lastname}</DoctorEmail>
-                                <CancelButton>Cancel</CancelButton>
+                                <CancelButton onClick ={() => {Axios.post(`${API_URL}/cancel-reservation`, { "id": data.rid, "cancelUser": 0 }); data.canceled = 1}}>Cancel</CancelButton>
+                                
                             </AppointmentContainer>}
+                            
                     </>
                 ))}
                 {isEmpty == true && <Column>There is no appointment.</Column>}

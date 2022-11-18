@@ -29,8 +29,10 @@ app.use(require("./status/router"));        // "dstatus" or "pstatus"
 app.use(require("./conv/router"));
 app.use(require("./videocall/router"));
 app.use(require("./availabledoctor/router"));      // "/available-doctor"
+app.use(require("./profile/router"));
 app.use("/uploads", express.static("uploads"));
 app.use(require("./doctornote/router"));
+app.use("/profile_images", express.static("profile_images"));
 
 // const login = require("./login.js")
 
@@ -41,9 +43,13 @@ app.get("/", (req, res) => {
 // const port = 3001;
 const server = app.listen(config.express.port, () => {
     console.log(`Server running on Port ${config.express.port}`);
-    const dir = "./uploads";
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
+    const dir1 = "./uploads";
+    if (!fs.existsSync(dir1)) {
+        fs.mkdirSync(dir1);
+    }
+    const dir2 = "./profile_images";
+    if (!fs.existsSync(dir2)) {
+        fs.mkdirSync(dir2);
     }
 });
 
@@ -192,6 +198,10 @@ io.on("connection", async socket => {
             msg,
             time
         })
+    })
+
+    socket.on("changeProfileImage1", ({ file }) => {
+        io.emit("changeProfileImage2", { file })
     })
 
     socket.on("disconnect", () => {
