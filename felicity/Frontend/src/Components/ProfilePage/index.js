@@ -76,11 +76,6 @@ export const ProfilePage = (props) => {
             setProfileImage("");
         }
     }
-
-    // const deleteFileImage = () => {
-    //     URL.revokeObjectURL(fileImage);
-    //     setFileImage("");
-    // };
     
     return(
         <ProfileContainer>

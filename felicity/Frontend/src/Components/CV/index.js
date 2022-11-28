@@ -6,10 +6,22 @@ const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divid
 
 //props.data[props.index]
 export const CV = (props) => {
-    function handleStartCall() {
-        window.sessionStorage.setItem('pid', JSON.stringify(props.scheduleData[0].patient_id));
+    const { setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea } = useContext(SocketContext);
+    const symptoms = props.symptoms([props.data.cough, props.data.vomit, props.data.fever, props.data.sore_throat,
+        props.data.phlegm, props.data.runny_nose, props.data.nauseous, props.data.out_of_breath,
+        props.data.stomachache, props.data.chills, props.data.muscle_sickness, props.data.other]).join(', ')
+
+    function handleStartCall() {   
+        setdid(JSON.parse(sessionStorage.getItem("jwt")));
         
-        window.sessionStorage.setItem('pinfo', JSON.stringify([props.data.firstname, props.data.lastname, props.data.sex, props.data.birth, props.data.a]));
+        setpid(props.data.patient_id)
+        setPsex(props.data.sex)
+        setPname(props.data.firstname + " " + props.data.lastname);
+        setPbirth(props.data.birth);
+        setSymptoms(symptoms);
+        setArea(props.data.wounded_area);
+        
+        props.startCall(props.data.rid);
     }
     
     return (
@@ -35,12 +47,7 @@ export const CV = (props) => {
 
                         <Row>
                             <DetailLabel>Symptoms</DetailLabel>
-                            {props.symptoms(
-                                [props.data.a, props.data.b, props.data.c, props.data.d,
-                                props.data.e, props.data.f, props.data.g, props.data.h,
-                                props.data.i, props.data.j, props.data.k, props.data.l]).map((symptom) => (
-                                    <Detail>{symptom} </Detail>
-                                ))}
+                            <Detail>{symptoms}</Detail>
                             
                         </Row>
 
@@ -90,7 +97,7 @@ export const CV = (props) => {
 
                     </Column>}
             </Column>
-            {props.data.sex && <Btn onClick={() => { handleStartCall();  props.startCall(props.data.rid);window.sessionStorage.setItem('rid', JSON.stringify(props.data.rid))}} to={`./videocall`}>See your patient now</Btn>}
+            {props.data.sex && <Btn onClick={handleStartCall} to={`./videocall`}>See your patient now</Btn>}
         </PatientContainer>
     );
 }

@@ -6,6 +6,7 @@ export const ScheduleContainer = styled.div`
   margin-right: 30px;
   width: 100%;
   height: 100%;
+  min-width:500px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,7 +24,7 @@ export const Header = styled.p`
 
 export const AppointmentContainer = styled(Link)`
   width: 90%;
-  height: 35%;
+  height: 65px;
   min-width:300px;
   margin-left: 40px;
   margin-bottom: 10px;
@@ -38,7 +39,7 @@ export const AppointmentContainer = styled(Link)`
 
 export const AppointmentList = styled.div`
 width: 100%;
-height: 50%;
+height: 100%;
 flex-direction: column;
 overflow-y: auto;
 &::-webkit-scrollbar {
@@ -87,6 +88,7 @@ export const Group = styled.div`
 
 export const Date = styled.div`
   flex:1;
+  min-width:100px;
   margin: 0px;
   margin-right: 15px;
   font-weight: bold;
@@ -123,7 +125,7 @@ export const EditIcon = styled.button`
 export const DoctorEmail = styled.p`
 flex:5;
   color: rgba(156, 163, 175);
-  margin-right: 3px;
+  margin-left: 10px;
 //   font-size: 14px;
 text-align:left;
 `;
