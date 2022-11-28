@@ -148,14 +148,13 @@ export const Header = (props) => {
 
 
 
-          
+
           {props.isDoctor &&
-          <>
-          
+        
           <Stack spacing={4} direction="row">
              <StyledBadge badgeContent={Check()}/>
           </Stack> 
-          </>
+          
           }
 
           <SidebarContent>
@@ -182,15 +181,17 @@ export const Header = (props) => {
       
               </MenuItem>
 
-              {props.isDoctor &&
+              {/* {props.isDoctor &&
               <>
-                {CheckBoardNew() &&
+       
                   <Stack spacing={4} direction="row" varient = "dot">
                   <StyledBadge2 />
                   </Stack>
-                }
+
+           
               </>
-              }
+              } */}
+              
               <MenuItem icon={<AiOutlineBarChart />}><NavLink to='./Status' activeStyle={{color: '#0075FF'}} >Board</NavLink>
                   
               </MenuItem>
@@ -204,15 +205,24 @@ export const Header = (props) => {
                 </MenuItem>
 
               {props.isDoctor &&
+       
                 <MenuItem icon={<IoIosChatboxes />}><NavLink to='./Patient-Conversation' activeStyle={{color: '#0075FF'}} >Patient Conversation</NavLink> 
-                </MenuItem>}
+                </MenuItem>
+              
+              
+              }
+
               {props.isDoctor &&
                 <MenuItem icon={<IoIosChatbubbles />}><NavLink to='./Doctor-Conversation' activeStyle={{color: '#0075FF'}} >Doctor Conversation</NavLink> 
                 </MenuItem>}
+               
+
+                
             </Menu>
             
+           
           </SidebarContent>
-       
+      
           <SidebarFooter>
             {/* <HelpContainer img={needhelp}>
               <ActiveButton>Active</ActiveButton>
@@ -225,7 +235,10 @@ export const Header = (props) => {
           
         </ProSidebar>
       </div>
+
+      
     </>
+    
   );
 };
 
