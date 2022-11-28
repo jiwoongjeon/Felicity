@@ -54,8 +54,8 @@ width: 10%;
 height: 50%
 color: white;
 border-radius: 10px;
-
-}
+font-weight:bold;
+text-decoration:none;
 `;
 
 export const FstColumn = styled.div`

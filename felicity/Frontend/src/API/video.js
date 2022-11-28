@@ -66,6 +66,7 @@ const ContextProvider = ({ children }) => {
     const [pbirth, setPbirth] = useState("");
     const [symptoms, setSymptoms] = useState("");
     const [wounded_area, setArea] = useState("");
+    const [scheduleCount, setScheduleCount] = useState(false);
 
 
     function loginSessionStore(role, jwt, name) { //stores items in sessionStorage
@@ -574,6 +575,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
+                , scheduleCount, setScheduleCount
             }}
         >
             {children}

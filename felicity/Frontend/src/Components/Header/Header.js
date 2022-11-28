@@ -28,62 +28,32 @@ import "./Header.css";
 import { SocketContext } from "../../API/video";
 import { StyledBadge, StyledBadge2, Divider } from "./styles.js"
 
-
 const { HelpContainer, MenuButton, ActiveButton } = require("./styles");
-
-
-
-function updateCount (boardChecked, setboardChecked){
-
-  setboardChecked(boardChecked);
-}
-
-
-
-function Check() {
-  const [Count, setCount] = React.useState([]);
-  
-  React.useEffect(() => {
-    Axios.get(`${API_URL}/read_schedule`)
-        .then((response) => {
-     
-           setCount(response.data.length)
-        })
-}, [])
-
-  return Count
-}
-
-
-          
-
-function CheckBoardNew(){
-
-  const [postCount, setpostCount] = React.useState([]);
-  const{boardCount, setboardCount} = useContext(SocketContext);
-  React.useEffect(() => {
-    Axios.get(`${API_URL}/read-post`)
-        .then((response) => {
-
-            setpostCount(response.data)
-        })
-}, [])
-  console.log(postCount)
-  setboardCount(postCount)
-  console.log("bC:",boardCount)
-
-
-
-
-}
-
 
 export const Header = (props) => {
 
-  
+  const { boardChecked, setboardChecked } = useContext(SocketContext);
+  const { boardCount, setboardCount } = useContext(SocketContext);
+  const { scheduleCount, setScheduleCount } = useContext(SocketContext);
 
-  const {boardChecked, setboardChecked} = useContext(SocketContext);
-  const{boardCount, setboardCount} = useContext(SocketContext);
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const show = JSON.parse(sessionStorage.getItem("show"))
+
+  const [scheduleData, setScheduleData] = React.useState([])
+  const [visible, setVisible] = useState(true)
+
+  function Check() {
+    const [Count, setCount] = React.useState(0);
+    if (!scheduleCount) {
+        setScheduleCount(true)
+        Axios.get(`${API_URL}/read_schedule`)
+            .then((response) => {
+               setCount(response.data.length)
+            })
+        setScheduleCount(false)
+        }
+      return Count
+  }
 
  
   //create initial menuCollapse state using useState hook
@@ -95,40 +65,8 @@ export const Header = (props) => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
-
-  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-    const show = JSON.parse(sessionStorage.getItem("show"))
-    const [scheduleData, setScheduleData] = React.useState([])
-    const [visible, setVisible] = useState(true)
-
-    const { startCall, UTCToLocal } = useContext(SocketContext);
-
-
-    // Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
-    //     .then((response) => {
-    //         for (var i = 0; i < response.data.length; i++) {
-    //             var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
-    //             response.data[i].reserved_date = date
-    //             response.data[i].reserved_time = time
-    //             count += 1;
-    //             console.log(count)
-    //         }
-    //         setScheduleData(response.data)
-
-    //     })
-
-   
-
-// if (scheduleData){
-//   count += 1
-// }
-
   return (
-   
-       
     <>
- 
-
       <div id="header">
         {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
@@ -140,87 +78,49 @@ export const Header = (props) => {
             </div>
           </SidebarHeader>
 
-        
-  
-        
-          {console.log("boardchecked", boardChecked)}
-          {console.log("boardCount", boardCount)}
-
-
-
+          {props.isDoctor && console.log("boardchecked", boardChecked)}
+          {props.isDoctor && console.log("boardCount", boardCount)}
 
           {props.isDoctor &&
-        
-          <Stack spacing={4} direction="row">
-             <StyledBadge badgeContent={Check()}/>
-          </Stack> 
-          
+            <Stack spacing={4} direction="row">
+              <StyledBadge badgeContent={Check()}/>
+            </Stack> 
           }
 
           <SidebarContent>
-          
             <Menu iconShape="square">
 
-             
               {props.isDoctor &&
- 
                 <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients  
-                  
-                  <MenuButton to={`./Meeting`}>
-                  </MenuButton>          
-                  
-                  </MenuItem>
-                  
-                  }
+                  <MenuButton to={`./Meeting`}></MenuButton>          
+                </MenuItem>}
                   
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor
                     <MenuButton to={`/MHT1`}></MenuButton></MenuItem>}
 
-              <MenuItem icon={<AiFillHome />}> <NavLink to='./Home' activeStyle={{color: '#0075FF'}} >Home</NavLink>
-      
-              </MenuItem>
-
-              {/* {props.isDoctor &&
-              <>
-       
-                  <Stack spacing={4} direction="row" varient = "dot">
-                  <StyledBadge2 />
-                  </Stack>
-
-           
-              </>
-              } */}
-              
-              <MenuItem icon={<AiOutlineBarChart />}><NavLink to='./Status' activeStyle={{color: '#0075FF'}} >Board</NavLink>
-                  
-              </MenuItem>
+              <MenuItem icon={<AiFillHome />}> <NavLink to='./Home' activeStyle={{color: '#0075FF'}} >Home</NavLink></MenuItem>
+              <MenuItem icon={<AiOutlineBarChart />}><NavLink to='./Status' activeStyle={{color: '#0075FF'}} >Board</NavLink></MenuItem>
 
               {!props.isDoctor &&
                 <MenuItem icon={<MdFormatListBulleted />} ><NavLink to='./RecentPost' activeStyle={{color: '#0075FF'}} >Recent Post</NavLink>
                   </MenuItem>}
+
               <MenuItem icon={<IoIosDocument />}><NavLink to='./Checklist' activeStyle={{color: '#0075FF'}} >My Records</NavLink>
                 </MenuItem>
               <MenuItem icon={<IoMdPerson />}><NavLink to='./Profile' activeStyle={{color: '#0075FF'}} >Profile</NavLink>      
                 </MenuItem>
 
               {props.isDoctor &&
-       
                 <MenuItem icon={<IoIosChatboxes />}><NavLink to='./Patient-Conversation' activeStyle={{color: '#0075FF'}} >Patient Conversation</NavLink> 
-                </MenuItem>
-              
-              
-              }
+                </MenuItem>}
 
               {props.isDoctor &&
                 <MenuItem icon={<IoIosChatbubbles />}><NavLink to='./Doctor-Conversation' activeStyle={{color: '#0075FF'}} >Doctor Conversation</NavLink> 
                 </MenuItem>}
-               
 
-                
             </Menu>
-            
-           
+
           </SidebarContent>
       
           <SidebarFooter>
