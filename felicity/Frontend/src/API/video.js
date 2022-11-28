@@ -59,7 +59,13 @@ const ContextProvider = ({ children }) => {
     const userVideo = useRef();
     const connectionRef = useRef();
 
-
+    const [did, setdid] = useState(0);
+    const [pid, setpid] = useState(0);
+    const [psex, setPsex] = useState(0);
+    const [pname, setPname] = useState("");
+    const [pbirth, setPbirth] = useState("");
+    const [symptoms, setSymptoms] = useState("");
+    const [wounded_area, setArea] = useState("");
 
 
     function loginSessionStore(role, jwt, name) { //stores items in sessionStorage
@@ -567,6 +573,7 @@ const ContextProvider = ({ children }) => {
                 sendReservation, acceptReservation, userJoined, setUserJoined,
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
+                , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
             }}
         >
             {children}
