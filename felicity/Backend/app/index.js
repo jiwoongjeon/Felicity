@@ -31,6 +31,7 @@ app.use(require("./videocall/router"));
 app.use(require("./availabledoctor/router"));      // "/available-doctor"
 app.use(require("./profile/router"));
 app.use("/uploads", express.static("uploads"));
+app.use(require("./doctornote/router"));
 app.use("/profile_images", express.static("profile_images"));
 
 // const login = require("./login.js")

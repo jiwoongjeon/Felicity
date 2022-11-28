@@ -162,7 +162,7 @@ function updateComment(req, res) {
 function cancelReservation(req, res) {
     const id = req.body.id;
     const cancelUser = req.body.cancelUser;
-    //console.log(id, cancelUser)
+    console.log(id, cancelUser)
     post.cancelReservation (id, cancelUser, (error, result) => {
         if (error) {
             console.log(error);
