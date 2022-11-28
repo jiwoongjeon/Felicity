@@ -121,7 +121,7 @@ export const Infos = ({ context }) => {
 
     return (
         <Accordion defaultActiveKey="0">
-            {CONVERSATION_DATA.map((data) => (
+            {patientData.pageload > 0 && patientData.postload > 0 ? patientData.CONVERSATION_DATA.map((data) => (
             <div className="acc">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Patient Info</Accordion.Header>
@@ -195,7 +195,9 @@ export const Infos = ({ context }) => {
                     </Accordion.Body>
                 </Accordion.Item>
             </div>
-        ))}
+        ))
+        :
+        "Loading..."}
         </Accordion>        
     );
 }
