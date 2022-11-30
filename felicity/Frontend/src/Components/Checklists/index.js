@@ -6,7 +6,8 @@ import axios from "axios";
 import API_URL from "../../API/server-ip";
 import React, { useState, useEffect } from "react"
 
-const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, CheckboxBox, SymptomsContainer, SymptomsBubble, Divider, SymptomsBubbleUnchecked, OtherBox } = require("./styles");
+
+const { ChecklistsContainer, ChecklistsElementContainer, Answers, Label, CheckboxBox, SymptomsContainer, SymptomsBubble, Divider, SymptomsBubbleUnchecked, OtherBox, Undo } = require("./styles");
 
 
 export const Checklists = (props) => {
@@ -93,11 +94,13 @@ export const Checklists = (props) => {
                     {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
                 </SymptomsContainer>
                 
+            <Undo to='./Appointment'>View</Undo>
             </ChecklistsElementContainer>}
             {!sessionStorage.getItem('checklist') && 
                 <ChecklistsElementContainer>
                     <Title>Medical History Form Review</Title>
                     <SubTitle>You haven't submit your medical health form yet!</SubTitle>
+                    
                 </ChecklistsElementContainer>}
         </ChecklistsContainer>
     );
