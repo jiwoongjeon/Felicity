@@ -7,6 +7,7 @@ export const ContentLayout = styled.div`
     min-width: 900px;
     height: 95%;
     min-height: 700px;
+    max-height:700px;
     display: grid;
 
     grid-template-columns: 75% 25%;
