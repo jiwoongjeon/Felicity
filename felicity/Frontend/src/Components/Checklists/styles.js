@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ChecklistsContainer = styled.div`
 width: 100%;
@@ -14,35 +15,35 @@ border-radius: 20px;
 `;
 
 export const Label = styled.div`
-    text-align: left;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    margin-top:2%;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:2%;
 `;
 
 export const ChecklistsElementContainer = styled.div`
-width: 100%;
-height: 100%;
-display: flex;
-flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Answers =  styled.div`
-    width: 95%;
-    height: 40px;
-    border: 0.5px solid #E2E8F0;
-    padding-top:5px;
-    padding-left:15px;
-    box-sizing: border-box;
-    border-radius:15px;
-    display: flex;
-    align-items: flex-start;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    color: black;
-    font-align:left;
+  width: 95%;
+  height: 40px;
+  border: 0.5px solid #E2E8F0;
+  padding-top:5px;
+  padding-left:15px;
+  box-sizing: border-box;
+  border-radius:15px;
+  display: flex;
+  align-items: flex-start;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  color: black;
+  font-align:left;
 `;
 
 export const Divider = styled.div`
@@ -56,7 +57,7 @@ export const Divider = styled.div`
 export const SymptomsContainer = styled.div`
 width: 95%;
 height: 10%;
-margin-bottom:10%;
+margin-bottom:5%;
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
@@ -108,3 +109,23 @@ flex-direction: row;
 align-items: flex-start;
 background-color: white;
 `;
+
+export const Undo = styled(Link)`
+    display: flex;
+    width: 13%;
+    height: 6%;
+    font-style: normal;
+    font-size: 18px;
+    text-decoration:none;
+    color:black;
+    background: lightgray;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: black;
+    font-weight: bold; 
+    margin-left: auto;
+   
+
+`;
+

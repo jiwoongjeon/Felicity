@@ -30,6 +30,7 @@ const ActivateButton = (active) => {
 
 
 const DoctorList = ({ doctorList }) => {
+
   return (
     <PostContainer>
 
@@ -44,8 +45,13 @@ const DoctorList = ({ doctorList }) => {
 
       <PostElementContainer>
         <Divider />
-        {doctorList.slice(0).reverse().map((data, i) => (
-          <PostElement>
+        
+        
+
+        {doctorList.slice(0).reverse().map((data, i) => {
+          if (!data.department.includes('Test') && !data.department.includes('test')) {
+          return(
+            <PostElement>
             <BodyColumn>
               <No>{i + 1}</No>
               <PhotoArea img={data.img} />
@@ -60,10 +66,10 @@ const DoctorList = ({ doctorList }) => {
 
             </BodyColumn>
             <Divider></Divider>
-          </PostElement>
-
-
-        ))}
+          </PostElement>)}
+          
+          
+})}
       </PostElementContainer>
 
     </PostContainer>
