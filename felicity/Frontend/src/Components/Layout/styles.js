@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import temp_image from '../assets/MaskGroup.png';
-import temp_image2 from '../assets/patient.png';
 
 export const ContentLayout = styled.div`
     width : 100%;
     min-width: 900px;
     height: 95%;
     min-height: 700px;
+    max-height:700px;
     display: grid;
 
     grid-template-columns: 75% 25%;
-    grid-template-rows: 7% 15% 78%;
+    grid-template-rows: 10% 10% 15% 65%;
     grid-template-areas:
         "title empty"
         "video empty"
+        "video callend"
         "video info";
     background-color : #F8F9FA;
     gap: 10px;
@@ -21,10 +21,17 @@ export const ContentLayout = styled.div`
     //border:1px solid;
 `;
 
+export const CallEnd = styled.div`
+    grid-area: callend;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const Empty = styled.div`
     grid-area:empty;
     height: 100%;
-    min-height: 300px;
     background-color: #F8F9FA;
 `;
 
