@@ -15,11 +15,11 @@ const Layout = ({ context }) => {
     useEffect(() => {
       const doctorId = JSON.parse(sessionStorage.getItem("did"))
       const patientId = JSON.parse(sessionStorage.getItem("pid"))
-      Axios.post(`${API_URL}/doctor_info`, { "doctor_id": doctorId})
+      Axios.post(`${API_URL}/dstatus`, { "doctorId": doctorId})
             .then((response) => {
               setDoctorName(response.data[0].lastname)
             })
-      Axios.post(`${API_URL}/patient_info`, { "patient_id": patientId})
+      Axios.post(`${API_URL}/pstatus`, { "patientId": patientId})
             .then((response) => {
               setPatientName(response.data[0].firstname + " " + response.data[0].lastname)
             })

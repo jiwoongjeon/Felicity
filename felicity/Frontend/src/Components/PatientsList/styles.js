@@ -11,9 +11,8 @@ export const PatientContainer = styled.div`
   padding-left: 25px;
   padding-right: 25px;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0px 4px 5px 0px #EDEEEF;
   justify-content: center;
+  border-radius: 20px;
 `;
 
 export const Column = styled.div`
@@ -23,24 +22,13 @@ export const Column = styled.div`
 `;
 
 export const Title = styled.p`
-  flex:1
+  flex: 1;
   text-align: left;
+  font-size: 20px;
   font-weight: bold;
   margin-top: 20px;
   margin: 10px;
-  font-size:20px;
 `;
-
-
-// export const Divider = styled.div`
-//   width:100%;
-//   display: flex;
-//   background: #E3E8F0;
-//   margin-top: 5px;
-//   margin-bottom: 5px;
-//   padding: 1px;
-//   border-radius: 2px;
-// `;
 
 export const PatientElementContainer = styled.div`
 margin-top: 0px;

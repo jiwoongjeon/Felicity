@@ -1,62 +1,47 @@
 import styled from "styled-components";
 
 export const ContentLayout = styled.div`
-width : 100%;
-min-width: 900px;
-height: 100%;
-min-height: 700px;
-
-display: grid;
-grid-template-columns: 0.8fr 0.02fr 1.4fr;
-grid-template-rows: 1fr 0.25fr 1fr 8fr 0.25fr;
-grid-template-areas:
-"calen . info"
-". . info"
-"list . info"
-"list . info"
-". . .";
-
-background-color : #F8F9FA;
-// gap: 2%
-position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "calen info"
+    "plist info";
+    grid-gap: 15px;
 `;
 
 export const CalendarBox = styled.div`
-background-color: #FFFFFF;
-border-radius: 20px;
-width: 100%;
-hegiht: 100%;
-min-width: 350px;
-height: 100%;
-grid-area: calen;
-z-index: 200;
-// position: relative;
-box-shadow: 0px 4px 5px 0px #EDEEEF;
+    grid-area: calen;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 350px;
+    box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const InfoBox = styled.div`
-width: 100%;
-height: 100%;
-min-width: 350px;
-grid-area:info;
-position: relative;
-z-index: 200;
-padding-right: 20px;
+    grid-area: info;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const PatientBox = styled.div`
-min-width: 350px;
-height: 100%;
-grid-area: list;
-position: relative;
-z-index: 200;
+    grid-area: plist;
+    border-radius: 20px;
+    box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const Container = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: 300;
+
     display: flex;
     align-items: center;
     justify-content: center;
