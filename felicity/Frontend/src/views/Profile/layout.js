@@ -12,7 +12,6 @@ export const ContentLayout = styled.div`
         "info info2";
     background-color : #F8F9FA;
     gap: 25px;
-    padding-right: 3%;
     position: relative;
 `;
 

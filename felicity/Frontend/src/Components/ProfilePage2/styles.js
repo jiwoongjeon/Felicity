@@ -2,13 +2,13 @@ import styled from "styled-components";
 import default_profile from '../assets/default_profile.png'
 
 export const ProfileContainer = styled.div`
-width: 100%;
-height: 100%;
+width: 600px;
+height: 800px;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 align-items: flex-start;
 background: white;
-border-radius: 20px;
+border-radius: 50px;
 padding-left: 40px;
 box-shadow: 0px 4px 5px 0px #EDEEEF;
 `
@@ -34,6 +34,37 @@ align-items: flex-start;
 border-radius: 50px;
 `
 
+export const Language = styled.div`
+width: 100%;
+height: 3%;
+display: flex;
+flex-direction: column;
+align-items: center;
+`
+
+export const LangLabel = styled.div`
+display: flex;
+width: 100px;
+height: 30px;
+align-self: center;
+background: blue;
+border-radius: 20px;
+margin-top: 100%;
+border: 0;
+outline: 0;
+color: white;
+font-style: normal;
+font-weight: bold;
+font-size: 100%;
+font-family: Roboto;
+text-decoration:none;
+
+
+align-items: center;
+justify-content: center;
+margin-bottom: 1%;
+`
+
 
 export const PhotoArea = styled.div`
   width:100px;
@@ -52,7 +83,6 @@ export const Divider = styled.div`
   
   width: 130%;
   height: 0px;
-  margin-top -4%;
   border: 0.5px solid rgba(0, 0, 0, 0.15);
 `;
 
@@ -60,8 +90,9 @@ export const PatientLabel = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 35px;
+font-size: 200%;
 margin-top 5%;
+white-space: nowrap;
 `;
 
 export const DoctorLabel = styled.p`
