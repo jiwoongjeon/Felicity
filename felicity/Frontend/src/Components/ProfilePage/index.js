@@ -3,7 +3,7 @@ import { SocketContext } from '../../API/video'
 import { io } from "socket.io-client";
 import API_URL from "../../API/server-ip";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Divider, InfoContainer, Button, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
+import { TimeButton, Content, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
 
 const socket = io(`${API_URL}`);
 
@@ -76,27 +76,31 @@ export const ProfilePage = (props) => {
             setProfileImage("");
         }
     }
+
+    
     
     return(
         <ProfileContainer>
             <Button>Edit</Button>
             <PictureContainer>
                 <PhotoArea img={profileImage}/>
-                <input ref={imageBox} type='file' className='imgInput' id='logoImg' accept='image/*' name='file' onChange={uploadFileImage}/>
-                <Button onClick={handleOnClickChange}>Change</Button>
-                <Button onClick={handleOnClickDelete}>Delect</Button>
-                {/* {fileImage && <DeleteButton onClick={deleteFileImage}>Delete image</DeleteButton>} */}
+                <Settings>
+                    <input ref={imageBox} type='file' className='imgInput' id='logoImg' accept='image/*' name='file' onChange={uploadFileImage}/>
+                    <Button2 onClick={handleOnClickChange}>Change</Button2>
+                    <Button2 onClick={handleOnClickDelete}>Delete</Button2>
+                    {/* {fileImage && <DeleteButton onClick={deleteFileImage}>Delete image</DeleteButton>} */}
+                </Settings>
             </PictureContainer>
-            <Divider/>
+            <Divider></Divider>
             <UserName>{props.name}</UserName>
             <InfoContainer>
-            <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
-            <Divider></Divider>
-            <Bar><Label>D.O.B:</Label><Label>N/A</Label></Bar>
-            <Divider></Divider>
-            <Bar><Label>Sex:</Label><Label>N/A</Label></Bar>
+                <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
+                <Divider></Divider>
+                <Bar><Label>D.O.B:</Label><Label>N/A</Label></Bar>
+                <Divider></Divider>
+                <Bar><Label>Sex:</Label><Label>N/A</Label></Bar>
             </InfoContainer>
-
+            
         </ProfileContainer>
     );
 }
