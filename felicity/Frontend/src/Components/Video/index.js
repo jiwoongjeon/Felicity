@@ -121,9 +121,9 @@ const Video = ({ context }) => {
                     <IconBox><MdKeyboardVoice style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                     <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
                 </IconLeft>
-                <IconRight>
+                {/* <IconRight>
                     <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="./Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
-                </IconRight>
+                </IconRight> */}
             </Setting>
 
         </MainContainer>

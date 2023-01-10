@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Divider, InfoContainer, DoctorLabel, PatientLabel, Header, Button, DoctorLabel2, ProfileContainer, Row, DeleteButton, EducationBox } from "./styles";
+import { TimeButton, Content, Divider, Language, LangLabel, InfoContainer, DoctorLabel, PatientLabel, Header, Button, DoctorLabel2, ProfileContainer, Row, DeleteButton, EducationBox } from "./styles";
 import moment from "moment";
 import {LocalToUTC} from "../../API/video"
 export const ProfilePage2 = (props) => {
@@ -24,7 +24,7 @@ export const ProfilePage2 = (props) => {
         URL.revokeObjectURL(fileImage);
         setFileImage("");
       };
-
+      const [next, setNext] = React.useState(false);
     return(
         <ProfileContainer>
             <InfoContainer>
@@ -63,7 +63,17 @@ export const ProfilePage2 = (props) => {
                 {props.isDoctor && isTime && start_time && end_time && <TimeButton onClick={setTime}>Confirm</TimeButton>}
                 {props.isDoctor && isTime && (!start_time || !end_time) && <TimeButton onClick={(e) => {changeTime(!isTime)}}>Cancel</TimeButton>}
             </InfoContainer> 
-
+            <LangLabel>Language</LangLabel>
+            <Language>
+                <select id="time" onClick={e => setNext(e.target.value)}>
+                    <option key="hours" value={0}>English</option>
+                    <option key="days" value={1}>ພາສາລາວ</option>
+                </select>
+            </Language>
+            
+            
         </ProfileContainer>
+
+        
     );
 }

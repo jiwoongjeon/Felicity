@@ -16,6 +16,7 @@ export const QuestionContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 5%;
+    
 `;
 
 export const Logo = styled.img`

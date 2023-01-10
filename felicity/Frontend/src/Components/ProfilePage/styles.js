@@ -2,17 +2,18 @@ import styled from "styled-components";
 import default_profile from '../assets/default_profile.png'
 
 export const ProfileContainer = styled.div`
-width: 100%;
-height: 100%;
+width: 600px;
+height: 800px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 background: white;
-border-radius: 20px;
+border-radius: 50px;
 allign-self: center;
 padding-left:50px;
 padding-right:50px;
 box-shadow: 0px 4px 5px 0px #EDEEEF;
+
 `
 
 export const PictureContainer = styled.div`
@@ -20,6 +21,7 @@ width: 25%;
 min-width: 350px;
 padding-top: 10%;
 margin-top: 1%;
+margin-bottom: 5%;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -29,7 +31,7 @@ color: black;
 
 export const InfoContainer = styled.div`
 width: 80%;
-padding-top: 10%;
+padding-top: 5%;
 display: flex;
 flex-direction: column;
 align-self: center;
@@ -51,7 +53,7 @@ align-self: center;
 export const Divider = styled.div`
 width: 100%;
 height: 0px;
-margin-bottom:5%;
+margin-bottom:2%;
 left: 580px;
 top: 746px;
 align-self: center;
@@ -62,8 +64,8 @@ export const Label = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 80%;
-margin-bottom: 5%;
+font-size: 120%;
+margin-bottom: 2%;
 `;
 
 export const Content = styled.p`
@@ -121,13 +123,12 @@ export const DeleteButton = styled.div`
 
 export const Button = styled.div`
   display: flex;
-  width: 20%;
-  height: 4%;
+  width: 60px;
+  height: 30px;
   align-self: flex-end;
   background: blue;
   border-radius: 20px;
-  padding-top: 5px;
-  margin-top: 7%;
+  margin-top: 5%;
   border: 0;
   outline: 0;
   color: white;
@@ -144,9 +145,37 @@ export const Button = styled.div`
     color: white;
     background-color: #004FEB;
   }
-  margin-right: 10%;
+  
   align-items: center;
   justify-content: center;
+  `
+  export const Button2 = styled.div`
+  display: flex;
+  width: 90px;
+  height: 35px;
+  align-self: flex-end;
+  background: blue;
+  border-radius: 20px;
+  border: 0;
+  outline: 0;
+  color: white;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 90%;
+  font-family: Roboto;
+  text-decoration:none;
+  &:hover {
+    color: white;
+    background-color: #3D7EFF;
+  }
+  &:active {
+    color: white;
+    background-color: #004FEB;
+  }
+  align-items: center;
+  justify-content: center;
+  margin-left: 2%;
+  
   `
 export const Bar = styled.div`
     display: flex;
@@ -156,8 +185,16 @@ export const Bar = styled.div`
 `
 
 export const UserName = styled.div`
-    font-size: 200%;
+    font-size: 300%;
     color: black;
-    margin-top: 5%;
+    
     align-self: center;
+    font-weight: 600;
     `
+export const Settings = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+`
