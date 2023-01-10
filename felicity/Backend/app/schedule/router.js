@@ -85,25 +85,24 @@ function acceptRequest(req, res) {
     })
 }
 
-//symptom_id는 foreign key 이기 때문에 symptom table의 id와 매칭이 맞아야 insert 가능합니다.
 function addNewDocNotes(req, res) {
-    const pid = req.body.patient_id;
-    const did = req.body.doctor_id;
+    const rid = req.body.reservation_id;
     const sid = req.body.symptom_id;
     const diagnosis = req.body.diagnosis;
     const special_note = req.body.special_note;
     const created_time = req.body.created_time;
-    const new_record = [pid, did, sid, diagnosis, special_note, created_time]
+    const new_record = [rid, sid, diagnosis, special_note, created_time]
     schedule.addNewDocNotes(new_record, (err, result) => {
         if (err) {
             console.log(err);
-            res.json({ errMsg: "Error: Failed on adding new doctor notes" })
+            res.json({ errMsg: "Error: Failed on adding the new doctor note" })
         }
         else {
-            res.json({ msg: "Successfully inserted a new doctor note."})
+            res.json({ msg: "Successfully inserted the new doctor note."})
         }
     })
 }
+
 router.post("/patient_schedule", readPatientSchedule);
 router.post("/doctor_schedule", readDoctorSchedule);
 router.post("/create_schedule", postSchedule);

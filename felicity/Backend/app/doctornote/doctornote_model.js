@@ -1,14 +1,24 @@
 const config = require("../config");
 var docnotes = module.exports;
+ 
+ 
+const editDocNotesQry =
+"UPDATE felicity.med_record SET special_note = ? WHERE reservation_id = ?";
 
-const editNewDocNotesQry = 
-"UPDATE felicity.med_record SET special_note = ? WHERE patient_id = ? AND doctor_id = ?";
+const readDocNotesQry = 
+"SELECT special_note FROM med_record WHERE reservation_id = ?";
+ 
+ 
+docnotes.editDocNotes = function editDocNotes(special_note, reservation_id, callback) {
+    config.db.query(editDocNotesQry, [special_note, reservation_id], (err, result) =>{
+        if (err) callback(err, null);
+        callback(null, result);
+    })
+}
 
-//노트만 업데이트
-
-docnotes.postDocNotes = function postDocNotes(special_note, patient_id, doctor_id, callback) {
-    config.db.query(editNewDocNotesQry, [special_note, patient_id, doctor_id], (err, result) =>{
-        if (err) callback(err, null); 
+docnotes.readDocNotes = function readDocNotes(reservation_id, callback) {
+    config.db.query(readDocNotesQry, reservation_id, (err, result) =>{
+        if (err) callback(err, null);
         callback(null, result);
     })
 }
