@@ -13,6 +13,7 @@ export const MainContainer = styled.div`
     background-repeat: no-repeat;
     background-attatchment: fixed;
     background-position: center;
+    min-height: 800px;
 `;
 
 export const LoginContainer = styled.div`
@@ -24,6 +25,7 @@ export const LoginContainer = styled.div`
     align-self: center;
     background-color: white;
     border-radius: 30px;
+    min-height: 800px;
 `;
 
 export const LoginSubContainer = styled.div`
@@ -270,7 +272,7 @@ export const GrayContainer = styled.div`
     background-repeat: no-repeat;
     background-attatchment: fixed;
     background-position: center;
-
+    min-height: 800px;
 
 `;
 
