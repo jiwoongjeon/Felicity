@@ -13,7 +13,7 @@ export const CV = (props) => {
 
     function handleStartCall() {   
         setdid(JSON.parse(sessionStorage.getItem("jwt")));
-        
+        window.sessionStorage.setItem("pid", JSON.stringify(props.data.patient_id));
         setpid(props.data.patient_id)
         setPsex(props.data.sex)
         setPname(props.data.firstname + " " + props.data.lastname);

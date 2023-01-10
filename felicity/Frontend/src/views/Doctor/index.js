@@ -3,16 +3,7 @@ import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
-
-import {
-    ContentLayout,
-    PatientBox,
-    InfoBox,
-    Button,
-    Block,
-    Container,
-    CalendarBox
-} from "./layout";
+import { ContentLayout, PatientBox, InfoBox, Button, Block, Container, CalendarBox } from "./layout";
 import PatientList from '../../Components/PatientsList';
 import CV from '../../Components/CV';
 import Axios from "axios";
@@ -21,8 +12,6 @@ import Calen from "../../Components/CalenDoctor";
 import API_URL from "../../API/server-ip";
 import { SocketContext } from "../../API/video";
 import MultiLogin from "../UserRedirect/multilogin";
-
-
 
 function Doctor(props) {
 
@@ -102,15 +91,12 @@ function Doctor(props) {
             <Cat>
                 <Header isDoctor={true} />
             </Cat>
-
             <Directory>
                 <Path directory={props.past? "Past Patients" : "Home"} />
             </Directory>
-
             <User>
                 <Login />
             </User>
-
 
             <Video>
                 {visible && show && 
@@ -131,15 +117,9 @@ function Doctor(props) {
                     <InfoBox>
                         <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} />
                     </InfoBox>
-
                 </ContentLayout>
             </Video>
-
-            
-
         </Mostouter>
-
-
     );
 }
 

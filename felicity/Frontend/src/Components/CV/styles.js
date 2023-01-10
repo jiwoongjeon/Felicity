@@ -15,8 +15,7 @@ export const PatientContainer = styled.div`
   background: white;
   border-radius: 20px;
   justify-content: center;
-  ovrflow-y:auto;
-  box-shadow: 0px 4px 5px 0px #EDEEEF;
+  overflow-y:auto;
 `;
 
 export const Column = styled.div`
@@ -25,6 +24,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   overflow:auto;
+  
   &::-webkit-scrollbar {
     width: 10px;
   }

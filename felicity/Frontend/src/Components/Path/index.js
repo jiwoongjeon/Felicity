@@ -20,7 +20,6 @@ const Path = (props) => {
       <Title>{props.title}</Title>}
       
   </MainContainer>
-
   );
 };
 

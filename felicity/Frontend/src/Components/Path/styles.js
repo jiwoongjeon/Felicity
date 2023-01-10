@@ -5,8 +5,8 @@ export const MainContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin-left: 20px;
-    padding-top: 20px;
 `;
 
 export const Directory = styled.div`

@@ -1,46 +1,32 @@
 import styled from "styled-components";
 
 export const Mostouter = styled.div`
-    width : 100%;
+    width : 100vw;
     height: 100vh;
     display: grid;
-    overflow: auto;
-
-    grid-template-columns: 0.5fr 2fr 1fr;
-    grid-template-rows: 1fr 1fr 7fr 2fr;
+    grid-template-columns: 0.02fr 0.5fr 2fr 1fr 0.02fr;
+    grid-template-rows: 0.5fr 1fr 0.02fr;
     grid-template-areas:
-        "cat path login"
-        "cat video video"
-        "cat video video"
-        "cat video video";
-    gap : 15px;
+        ". cat path login ."
+        ". cat video video ."
+        ". . . . .";
+    grid-gap: 15px;
     background-color : #F8F9FA;
+    overflow: scroll;
 `;
-
 
 export const Directory = styled.div`
-    grid-area:path;
-    background-color: #F8F9FA;
-`;
-export const Empty = styled.div`
-    grid-area:empty;
-    background-color: #F8F9FA;
+    grid-area: path;
 `;
 
 export const User = styled.div`
-    grid-area:login;
-    background-color: #F8F9FA;
+    grid-area: login;
 `;
 
 export const Cat = styled.div`
-    grid-area:cat;
-    background-color: #F8F9FA;
-    margin-left: 20px;
-    margin-right: 10px;
+    grid-area: cat;
 `;
 
 export const Video = styled.div`
     grid-area: video;
-    margin-left: 20px;
-    margin-right: 10px;
 `;
