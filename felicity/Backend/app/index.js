@@ -11,8 +11,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
     extended: false
@@ -126,7 +124,7 @@ io.on("connection", async socket => {
     socket.on("start", (data) => {
         const rid = data.reservation_id;
         const role = data.role;
-
+        
         // When doctor enters the room
         if (!role) {
             videocall.doctorEnterRoom(rid, (error, result) => {
