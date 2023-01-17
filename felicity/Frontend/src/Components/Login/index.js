@@ -1,18 +1,9 @@
 import React from "react";
-
 import { IoMdSettings, IoIosNotifications, IoMdSearch } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { SocketContext } from "../../API/video"
 import {IconContext} from "react-icons"
-
-
-import {
-MainContainer,
-Account,
-AccountIcon,
-Setting,
-Noti,
-} from "./styles";
+import { MainContainer, Account, AccountIcon, Setting, Noti } from "./styles";
 
 const Login = () => {
 
@@ -28,11 +19,10 @@ const Login = () => {
         <AccountIcon> <IoPerson style={{color: '#0075FF', fontSize: '15px', marginRight: '5px'}} />Log Out</AccountIcon>
     </Account>
 
-    <Setting><IoMdSettings style={{color: '#718096', fontSize: '20px'}}/></Setting>
-    <Noti><IoIosNotifications style={{color: '#718096', fontSize: '20px'}}/></Noti>
+    {/* <Setting><IoMdSettings style={{color: '#718096', fontSize: '20px'}}/></Setting>
+    <Noti><IoIosNotifications style={{color: '#718096', fontSize: '20px'}}/></Noti> */}
 
   </MainContainer>
-
   );
 };
 

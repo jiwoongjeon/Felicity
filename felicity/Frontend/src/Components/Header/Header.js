@@ -4,7 +4,7 @@ import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { NavLink } from "react-router-dom";
 import needhelp from '../assets/needhelp_highres.png'
 import LogoImg from '../assets/telep_logo_horizon.png';
-import {i, isEmpty} from '../MeetingPage';
+import {i, isEmpty} from '../../views/Doctor/Meeting/MeetingPage';
 import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import Axios from "axios";
 import API_URL from "../../API/server-ip";

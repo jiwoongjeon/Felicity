@@ -3,10 +3,10 @@ import { propTypes } from "react-bootstrap/esm/Image";
 import { Container, HeaderContainer, ConversationContainer, ConversationList, Header, IconArea, InfoArea, ChattingContainer, BackBtn, AddChatRoom, PhotoArea, Preview, ReplyBtn, Username, PopupBox, Doctor, NP, Name, Profession, StartChat } from "./styles";
 import moment from "moment";
 import "./index.css";
-import Chat_Conv from "../Chat_Conv";
+import Chat_Conv from "../../../../Components/Chat_Conv";
 import Axios from "axios";
-import API_URL from "../../API/server-ip";
-import { SocketContext } from '../../API/video';
+import API_URL from "../../../../API/server-ip";
+import { SocketContext } from '../../../../API/video';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import { BiMessageRoundedAdd } from 'react-icons/bi';
 

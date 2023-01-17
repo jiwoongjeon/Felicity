@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import default_profile from '../assets/default_profile.png'
+import default_profile from "../../../../Components/assets/default_profile.png";
 
 export const PatientContainer = styled.div`
   width: 100%;

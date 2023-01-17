@@ -1,12 +1,5 @@
 import React from "react";
-
-import {
-MainContainer,
-ParentDirectory,
-CurrentDirectory,
-Directory,
-Title,
-} from "./styles";
+import { MainContainer, ParentDirectory, CurrentDirectory, Directory, Title } from "./styles";
 
 const Path = (props) => {
   return (
@@ -16,9 +9,7 @@ const Path = (props) => {
         <CurrentDirectory>{props.directory}</CurrentDirectory>
     </Directory>
 
-    {props.meeting &&
-      <Title>{props.title}</Title>}
-      
+    {props.meeting && <Title>{props.title}</Title>}
   </MainContainer>
   );
 };

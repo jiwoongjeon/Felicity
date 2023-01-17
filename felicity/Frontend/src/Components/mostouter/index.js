@@ -5,7 +5,7 @@ export const Mostouter = styled.div`
     height: 100vh;
     display: grid;
     grid-template-columns: 0.02fr 0.5fr 2fr 1fr 0.02fr;
-    grid-template-rows: 0.5fr 1fr 0.02fr;
+    grid-template-rows: 0.1fr 1fr 0.02fr;
     grid-template-areas:
         ". cat path login ."
         ". cat video video ."
