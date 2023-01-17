@@ -2,10 +2,10 @@ import React, {useContext, useState} from "react";
 import Slider from '@material-ui/core/Slider';
 import { LevelLabel, SymptomsContainer, SymptomsBubble, PostContainer, Header, PostElementContainer, AvailContainer, Divider, AvailBubble, PostElement, HeaderColumn, Time, BodyColumn, No, Patient, Name, PhotoArea, UnavailableBubble, Department, NoLabel, PhotoLabel, DepartLabel, AvailLabel, TimeLabel } from "./styles";
 import { Redirect } from "react-router-dom";
-import { SocketContext } from "../../API/video";
+import { SocketContext } from "../../../../API/video";
 import Axios from 'axios';
-import Count from '../MeetingPage'
-import API from '../../API/video';
+import Count from '.'
+import API from '../../../../API/video';
 import { ISO_8601 } from "moment";
 
 

@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField';
 import {useContext, useState, useEffect} from "react";
-import {SocketContext} from '../../API/video'
+import {SocketContext} from '../../../../API/video'
 const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn } = require("./styles");
 
 

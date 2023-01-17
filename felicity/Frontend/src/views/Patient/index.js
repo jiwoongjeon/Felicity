@@ -16,7 +16,7 @@ import {
     Container
 } from "./layout"
 import Schedule from "../../Components/Schedule";
-import Conversations from "../../Components/Conversations";
+import Conversations from "../Doctor/PatientChat/Conversations";
 import Emergency from "../../Components/Emergency";
 import PatientRecord from "../../Components/PatientRecord";
 import RecentPrescription from "../../Components/RecentPrescription";

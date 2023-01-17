@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, HashRouter as Router } from "react-router-dom";
 
-import Doctor from "./views/Doctor";
+import Doctor from "./views/Doctor/DoctorHome";
 import Patient from "./views/Patient";
 import Videocall from "./views/Videocall";
 import Login from "./views/Login";
@@ -22,9 +22,9 @@ import Board from "./views/Board";
 import NewBoard from "./views/NewBoard";
 import Appointment from "./views/Appointment";
 import Registration from "./views/Registration"
-import Meeting from "./views/Meeting";
-import PatientChat from "./views/PatientChat";
-import DoctorChat from "./views/DoctorChat";
+import Meeting from "./views/Doctor/Meeting";
+import PatientChat from "./views/Doctor/PatientChat";
+import DoctorChat from "./views/Doctor/DoctorChat";
 import MultiLogin from "./views/UserRedirect/multilogin";
 
 const ROUTES = [

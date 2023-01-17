@@ -1,7 +1,6 @@
 import React from "react";
-
 import LogoImg from '../../Components/assets/square_logo.png';
-import { Row } from "../../Components/CV/styles";
+import { Row } from "../../views/Doctor/DoctorHome/CV/styles";
 import { CheckboxBox, Label, Logo, MainContainer, QuestionContainer, SubmitButton, SubTitle, Title, InputBox, OtherInput, MoveButton, MoveButtonBig } from "./styles";
 import UserRedirect from "../UserRedirect";
 
