@@ -4,7 +4,7 @@ import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mo
 import Chat_Doc from "../../Components/Chat_Doc";
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
-import { ProfilePage } from "../../Components/ProfilePage";
+import { ProfilePage } from "../General/Profile/ProfilePage";
 import UserRedirect from "../UserRedirect";
 
 

@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import 'bootstrap/dist/css/bootstrap.css';
 import Chat from '../Chat_Video';
 import { CONVERSATION_DATA } from "./tempData";
-import { Patient } from "../RecentPost/styles";
+import { Patient } from "../../views/General/RecentPost/styles";
 import Axios from "axios";
 import API_URL from "../../API/server-ip";
 import { SocketContext } from '../../API/video'

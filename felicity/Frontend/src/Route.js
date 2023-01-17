@@ -2,28 +2,28 @@ import React from "react";
 import { Route, Switch, HashRouter as Router } from "react-router-dom";
 
 import Doctor from "./views/Doctor";
-import Patient from "./views/Patient";
-import Videocall from "./views/Videocall";
-import Login from "./views/Login";
-import MHT1 from "./views/MHT/index1";
-import MHT2 from "./views/MHT/index2";
-import MHT3 from "./views/MHT/index3";
-import MHT4 from "./views/MHT/index4";
-import MHT5 from "./views/MHT/index5";
-import MHT6 from "./views/MHT/index6";
-import MHT7 from "./views/MHT/index7";
+import Patient from "./views/Patients/Home";
+import Videocall from "./views/General/Videocall";
+import Login from "./views/General/Login";
+import MHT1 from "./views/Patients/MHT/index1";
+import MHT2 from "./views/Patients/MHT/index2";
+import MHT3 from "./views/Patients/MHT/index3";
+import MHT4 from "./views/Patients/MHT/index4";
+import MHT5 from "./views/Patients/MHT/index5";
+import MHT6 from "./views/Patients/MHT/index6";
+import MHT7 from "./views/Patients/MHT/index7";
 
-import StatusDoctor from "./views/Status/doctor";
-import StatusPatient from "./views/Status/patient";
-import Checklist from "./views/Checklist/Checklist";
-import Profile from "./views/Profile";
-import Chatting from "./views/Chatting";
-import Board from "./views/Board";
-import NewBoard from "./views/NewBoard";
-import Appointment from "./views/Appointment";
-import Registration from "./views/Registration"
-import Meeting from "./views/Meeting";
-import PatientChat from "./views/PatientChat";
+import StatusDoctor from "./views/General/Status/doctor";
+import StatusPatient from "./views/General/Status/patient";
+import Checklist from "./views/General/Checklist/Checklist";
+import Profile from "./views/General/Profile";
+import Chatting from "./views/General/Chatting";
+import Board from "./views/General/Board";
+import NewBoard from "./views/General/NewBoard";
+import Appointment from "./views/General/Appointment";
+import Registration from "./views/General/Registration"
+import Meeting from "./views/General/Meeting";
+import PatientChat from "./views/Patients/PatientChat";
 import DoctorChat from "./views/DoctorChat";
 import MultiLogin from "./views/UserRedirect/multilogin";
 
