@@ -1,26 +1,33 @@
-import React from "react"
+import React, { useContext } from "react"
 import Header from '../../Components/Header/Header';
 import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
-import Chat_Doc from "./Chat_Doc";
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
+import { BoardNew } from "./BoardNew";
 import UserRedirect from "../../Components/UserRedirect";
+import MHTRedirect from "../../Components/UserRedirect/MHT";
 
-function DoctorChat(props) {
+import { SocketContext } from "../../../API/video";
+
+function NewBoard(props) {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+  const written = JSON.parse(sessionStorage.getItem('level'));
+
+  const { sendPost, posted } = useContext(SocketContext);
 
   return (
 
     <Mostouter>
-      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
-      
+      {!jwt && <UserRedirect isRole={true}/>}
+      {!written && <MHTRedirect />}
+
     <Cat>
         <Header isDoctor={props.isDoctor}/>
     </Cat>
 
     <Directory>
-        <Path directory="Doctor-Conversation"/>
+        <Path directory="Board"/>
     </Directory>
 
     <User>
@@ -29,7 +36,7 @@ function DoctorChat(props) {
 
 
     <Video>
-      <Chat_Doc />
+        <BoardNew sendPost={sendPost} />
     </Video>
 
 
@@ -40,4 +47,4 @@ function DoctorChat(props) {
   );
 }
 
-export default DoctorChat;
+export default NewBoard;

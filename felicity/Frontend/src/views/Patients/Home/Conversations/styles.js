@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import default_profile from "../../../Components/assets/default_profile.png";
+import default_profile from '../../../Components/assets/default_profile.png'
 
 export const Container = styled.div`
   width: 100%;
@@ -88,11 +88,11 @@ export const PhotoArea = styled.div`
 
 export const InfoArea = styled.div`
   flex: 8;
-  max-width: 80%;
+  max-width:80%
   display: flex;
   flex-direction: column;
   padding-left: 10px;
-  overflow-y: hidden;
+  overflow-y:hidden;
 `;
 
 export const Username = styled.p`
@@ -178,4 +178,5 @@ export const Profession = styled.div`
   margin: 4px;
   text-align: left;
   font-size: 10pt;
-`;
+`
+
