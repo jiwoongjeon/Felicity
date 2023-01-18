@@ -1,10 +1,10 @@
 import React from "react"
-import Header from '../../../Components/Header/Header';
-import { Mostouter, Directory, User, Cat, Title, Video } from '../../../Components/mostouter';
-import Path from '../../../Components/Path';
-import Login from '../../../Components/Login';
+import Header from '../../Components/Header/Header';
+import { Mostouter, Directory, User, Cat, Title, Video } from '../../Components/mostouter';
+import Path from '../../Components/Path';
+import Login from '../../Components/Login';
 import { MeetingPage } from "./MeetingPage";
-import UserRedirect from "../../UserRedirect";
+import UserRedirect from "../../Components/UserRedirect";
 import Axios from "axios";
 import API_URL from "../../../API/server-ip";
 import { SocketContext } from "../../../API/video";

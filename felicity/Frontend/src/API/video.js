@@ -7,7 +7,7 @@ import RecordRTC, { StereoAudioRecorder } from "recordrtc";
 
 import API_URI from "./server-ip";
 import { render } from "react-dom";
-import LoginRedirect from "../views/UserRedirect/login";
+import LoginRedirect from "../views/Components/UserRedirect/login";
 import API_URL from "./server-ip";
 
 const moment = require("moment");

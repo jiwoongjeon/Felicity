@@ -1,38 +1,45 @@
 import React from "react"
 import Header from '../../Components/Header/Header';
 import {Mostouter, Directory, User, Cat, Title ,Video} from '../../Components/mostouter';
-import Conversations from "./Conversations";
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
+import { AppointmentHolder } from "./Appointment";
+import Axios from "axios";
 import UserRedirect from "../../Components/UserRedirect";
 
 
-function Conv(props) {
+function Appointment() {
 
   const jwt = JSON.parse(sessionStorage.getItem("jwt"))
 
   return (
+
     <Mostouter>
-      {!jwt && <UserRedirect isRole={!props.isDoctor}/>}
-      
-      <Cat>
-        <Header isDoctor={props.isDoctor}/>
-      </Cat>
+      {!jwt && <UserRedirect isRole={true}/>}
 
-      <Directory>
-        <Path directory="Patient-Conversation"/>
-      </Directory>
+    <Cat>
+        <Header isDoctor={false}/>
+    </Cat>
 
-      <User>
+    <Directory>
+        <Path directory="Appointment"/>
+    </Directory>
+
+    <User>
         <Login />
-      </User>
+    </User>
 
-      <Video>
-        <Conversations />
-      </Video>
+
+    <Video>
+      <AppointmentHolder />
+    </Video>
+
+
 
     </Mostouter>
+
+
   );
 }
 
-export default Conv;
+export default Appointment;

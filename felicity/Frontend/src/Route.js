@@ -2,37 +2,36 @@ import React from "react";
 import { Route, Switch, HashRouter as Router } from "react-router-dom";
 
 import Doctor from "./views/Doctor/DoctorHome";
-import Patient from "./views/Patient";
-import Videocall from "./views/Videocall";
-import Login from "./views/Login";
-import MHT1 from "./views/MHT/index1";
-import MHT2 from "./views/MHT/index2";
-import MHT3 from "./views/MHT/index3";
-import MHT4 from "./views/MHT/index4";
-import MHT5 from "./views/MHT/index5";
-import MHT6 from "./views/MHT/index6";
-import MHT7 from "./views/MHT/index7";
+import Patient from "./views/Patients/Home";
 
-import StatusDoctor from "./views/Status/doctor";
-import StatusPatient from "./views/Status/patient";
-import Checklist from "./views/Checklist/Checklist";
-import Profile from "./views/Profile";
-import Chatting from "./views/Chatting";
-import Board from "./views/Board";
-import NewBoard from "./views/NewBoard";
-import Appointment from "./views/Appointment";
-import Registration from "./views/Registration"
+import Login from "./views/General/Login";
+import Profile from "./views/General/Profile";
+import Videocall from "./views/General/Videocall";
+import RecentPostPage from "./views/General/RecentPost";
+import MultiLogin from "./views/Components/UserRedirect/multilogin";
+
+import MHT1 from "./views/Patients/MHT/index1";
+import MHT2 from "./views/Patients/MHT/index2";
+import MHT3 from "./views/Patients/MHT/index3";
+import MHT4 from "./views/Patients/MHT/index4";
+import MHT5 from "./views/Patients/MHT/index5";
+import MHT6 from "./views/Patients/MHT/index6";
+import MHT7 from "./views/Patients/MHT/index7";
+
+import NewBoard from "./views/Patients/NewBoard";
+import Appointment from "./views/Patients/Appointment";
+import Registration from "./views/General/Registration";
+import DoctorListPage from "./views/Patients/DoctorList";
+import ChecklistPage from "./views/Patients/Checklist/Checklist";
+
 import Meeting from "./views/Doctor/Meeting";
 import PatientChat from "./views/Doctor/PatientChat";
 import DoctorChat from "./views/Doctor/DoctorChat";
-import MultiLogin from "./views/UserRedirect/multilogin";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/registeration", key: "ROOT", component: () => <Registration /> },
 
-  { path: "/Doctor/Board", key: "video", component: () => <Board isDoctor={true}/> },
-  { path: "/Doctor/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
   { path: "/Doctor/Checklist", key: "video", component: () => <Doctor past={true}/> },
   { path: "/Doctor/Doctor-Conversation", key: "video", component: () => <DoctorChat isDoctor={true}/> },
   { path: "/Doctor/Home", key: "video", component: () => <Doctor past={false}/> },
@@ -40,18 +39,16 @@ const ROUTES = [
   { path: "/Doctor/Meeting", key: "PS", component: () => <Meeting isDoctor={true}/> },
   { path: "/Doctor/Patient-Conversation", key: "video", component: () => <PatientChat isDoctor={true}/> },
   { path: "/Doctor/Profile", key: "video", component: () => <Profile isDoctor={true}/> },
-  { path: "/Doctor/Status", key: "video", component: () => <StatusDoctor isDoctor={true}/> },
+  { path: "/Doctor/RecentPost", key: "video", component: () => <RecentPostPage isDoctor={true}/> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
   
   { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
-  { path: "/Patient/Board", key: "video", component: () => <Board isDoctor={false}/> },
-  { path: "/Patient/Chatting", key: "video", component: () => <Chatting isDoctor={false}/> },
-  { path: "/Patient/Checklist", key: "video", component: () => <Checklist isDoctor={false}/> },
+  { path: "/Patient/Checklist", key: "video", component: () => <ChecklistPage isDoctor={false}/> },
   { path: "/Patient/Home", key: "video", component: () => <Patient /> },
   { path: "/Patient/NewPost", key: "video", component: () => <NewBoard isDoctor={false}/> },
   { path: "/Patient/Profile", key: "video", component: () => <Profile isDoctor={false}/> },
-  { path: "/Patient/RecentPost", key: "PS", component: () => <StatusDoctor isDoctor={false}/> },
-  { path: "/Patient/Status", key: "PS", component: () => <StatusPatient /> },
+  { path: "/Patient/RecentPost", key: "PS", component: () => <RecentPostPage isDoctor={false}/> },
+  { path: "/Patient/DoctorList", key: "PS", component: () => <DoctorListPage /> },
   { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
 
   { path: "/MHT1", key: "video", component: () => <MHT1 /> },
