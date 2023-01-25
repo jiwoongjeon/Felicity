@@ -30,6 +30,46 @@ function readDoctorSchedule(req, res) {
     });
 }
 
+function readPatientScheduleWithDate(req, res){
+    const patientId = req.body.patient_id;
+    const year = req.body.year;
+    const month = req.body.month;
+    const date = year + "-" + month + "-01 00:00:00";
+    console.log(date);
+    const data = [patientId, date, date]
+
+    schedule.patientScheduleWithDate(data, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on reading schedule." });
+        }
+        else {
+            res.json(result);
+        }
+    });
+}
+
+function readDoctorScheduleWithDate(req, res){
+    const doctorId = req.body.doctor_id;
+    const year = req.body.year;
+    const month = req.body.month;
+    const date = year + "-" + month + "-01 00:00:00";
+    console.log(date);
+    const data = [doctorId, date, date]
+    console.log(data);
+
+    schedule.doctorScheduleWithDate(data, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({ errMsg: "Error: Failed on reading schedule." });
+        }
+        else {
+            res.json(result);
+        }
+    });
+}
+
+
 function postSchedule(req, res) {
     const scheduleData = req.body;
     console.log(scheduleData)
@@ -109,5 +149,7 @@ router.post("/create_schedule", postSchedule);
 router.get("/read_schedule", readSchedule);
 router.post("/accept_request", acceptRequest);
 router.post("/add_docnote", addNewDocNotes);
+router.post("/patient_schedule_with_date", readPatientScheduleWithDate);
+router.post("/doctor_schedule_with_date", readDoctorScheduleWithDate);
 
 module.exports = router;

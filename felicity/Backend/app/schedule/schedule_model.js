@@ -58,6 +58,46 @@ const addNewDocNotesQry =
     "INSERT INTO felicity.med_record (`reservation_id`, `symptom_id`, `trans_id`, `diagnosis`, `special_note`, `created_time`)" +
     "VALUES (?,?, NULL, ?,?,?)";
 
+const pDateScheduleQry = 
+    "SELECT reservation.id as rid, reservation.doctor_id, reservation.canceled, " +
+    "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
+    "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
+    "doctor_profile.firstname, doctor_profile.lastname, symptom.*, symptom_list.* " +
+    "FROM reservation " +
+    "JOIN doctor_profile on reservation.doctor_id = doctor_profile.doctor_id " +
+    "JOIN symptom on symptom.id = reservation.symptom_id " +
+    "JOIN symptom_list on symptom_list.symptom_id = reservation.symptom_id " +
+    "WHERE reservation.patient_id = ? and reserved_date BETWEEN ? AND ? + INTERVAL 1 MONTH " +
+    "ORDER BY reserved_date DESC";
+
+
+const dDateScheduleQry = 
+    "SELECT reservation.id as rid, reservation.patient_id, patient_profile.firstname, reservation.canceled, " +
+    "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
+    "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
+    "patient_profile.lastname, symptom.*, symptom_list.* " +
+    "FROM reservation " +
+    "JOIN patient_profile ON reservation.patient_id = patient_profile.patient_id " +
+    "JOIN symptom on symptom.id = reservation.symptom_id " +
+    "JOIN symptom_list on symptom_list.symptom_id = reservation.symptom_id " +
+    "WHERE reservation.doctor_id = ? and reserved_date BETWEEN ? AND ? + INTERVAL 1 MONTH " +
+    "ORDER BY reserved_date DESC";
+
+
+schedule.patientScheduleWithDate = function patientScheduleWithDate(data, callback) {
+    config.db.query(pDateScheduleQry, [data[0], data[1], data[2]], (err, result) => {
+        if(err) callback(err,null);
+        callback(null, result);
+    });
+}
+    
+schedule.doctorScheduleWithDate = function doctorScheduleWithDate(data, callback) {
+    config.db.query(dDateScheduleQry, [data[0], data[1], data[2]], (err, result) => {
+        if(err) callback(err,null);
+        callback(null, result);
+    });
+}
+
 schedule.patientSchedule = function patientSchedule(id, callback) {
     config.db.query(pScheduleQry, id, (err, result) => {
 
