@@ -7,10 +7,7 @@ import { SocketContext } from "../../../API/video"
 function Registration() {
   const { postPatientLogin, postDoctorLogin } = useContext(SocketContext);
   return (
-
     <RegistrationPage patientL={postPatientLogin} doctorL={postDoctorLogin} />
-
-
   );
 }
 

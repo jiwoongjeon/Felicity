@@ -40,7 +40,6 @@ const Schedule = ({ startCall, schedule_data, symptoms }) => {
 
     function handleStartCall(did, symptoms, wounded_area, rid) {
         setdid(did);
-        
         setpid(JSON.parse(sessionStorage.getItem("jwt")))
         //setPsex(sex)
         setPname(JSON.parse(sessionStorage.getItem("name")));
