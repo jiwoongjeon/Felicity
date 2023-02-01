@@ -1,12 +1,15 @@
 import React from "react";
 import { Button } from "./styles";
+import {NavLink} from "react-router-dom"
 
 const CallEndButton = ({context}) => {
     const { leaveCall } = context;
 
     return (
-        <Button onClick={() => {leaveCall();}} to="/Home"> 
+        <Button onClick={() => {leaveCall();}}>
+            <NavLink to="./rating"> 
             End Call
+            </NavLink>
         </Button>
     );
 };
