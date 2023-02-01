@@ -31,12 +31,12 @@ export const UserInfo = styled.div`
     grid-area:info;
     width:100%;
     height: 90%;
+    margin-left: 30px;
 `;
 
 export const UserInfo2 = styled.div`
     grid-area:info2;
     width:100%;
     height: 90%;
-    
 `;
 

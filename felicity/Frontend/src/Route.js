@@ -22,7 +22,7 @@ import NewBoard from "./views/Patients/NewBoard";
 import Appointment from "./views/Patients/Appointment";
 import Registration from "./views/General/Registration";
 import DoctorListPage from "./views/Patients/DoctorList";
-import ChecklistPage from "./views/Patients/Checklist/Checklist";
+import ChecklistPage from "./views/Patients/MHTreview/MHTreview";
 
 import Meeting from "./views/Doctor/Meeting";
 import PatientChat from "./views/Doctor/PatientChat";

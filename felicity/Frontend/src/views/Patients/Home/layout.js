@@ -14,6 +14,7 @@ export const ContentLayout = styled.div`
     gap: 10px;
     padding-bottom: 20px;
     padding-right: 20px;
+    margin-left: 30px;
 
 `;
 

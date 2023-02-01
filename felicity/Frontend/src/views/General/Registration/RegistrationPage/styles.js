@@ -18,6 +18,14 @@ export const LoginContainer = styled.div`
     margin-top: 10%;
 `;
 
+export const reCaptchaWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: black;
+    
+`;
+
 export const Logo = styled.img`
     height: 38px;
     width: 35.67px;
@@ -41,6 +49,7 @@ export const RadioWrapper = styled.div`
     flex-direction: row;
     margin-top: 24px;
     padding-left: 5px;
+    margin-bottom: 30px;
 `;
 
 export const CheckboxWrapper = styled.div`

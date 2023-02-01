@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   MainContainer,
   LoginContainer,
@@ -23,7 +24,8 @@ import {
   LabelRed,
   ConsentBox,
   Label1,
-  SubmitButtonDisabled
+  SubmitButtonDisabled,
+  reCaptchaWrapper
 } from "./styles";
 
 import RadioButton from "./Radiobox.js";
@@ -37,6 +39,7 @@ function RegistrationPage({ patientL, doctorL }) {
     const [value, setCheckbox] = useState(true);
     const [lang,setLang] = useState(true);
     const [consent,setConsent] = useState(false);
+    const [captcha,setCaptcha] = useState(false);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -187,8 +190,14 @@ function RegistrationPage({ patientL, doctorL }) {
 
                 {/* {radioValue && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
                 {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
-                {consent && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
-                {!consent && <SubmitButtonDisabled to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButtonDisabled>}
+                <reCaptchaWrapper>
+                    <ReCAPTCHA
+                        sitekey="6Lc6zEQkAAAAANIjwX-eBux6HkxHz1ZV1rPB25-L"
+                        onChange={({ target }) => setCaptcha(true)}
+                    />
+                </reCaptchaWrapper>
+                {captcha && consent && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
+                {(!captcha || !consent) && <SubmitButtonDisabled to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButtonDisabled>}
 
             </LoginContainer>
         </MainContainer>

@@ -7,7 +7,8 @@ export const ContentLayout = styled.div`
 
     background-color : #F8F9FA;
     padding-bottom: 20px;
-    padding-right: 20px;
+    margin-left: 30px;
+
 `;
 
 

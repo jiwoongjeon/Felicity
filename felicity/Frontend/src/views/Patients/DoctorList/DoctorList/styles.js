@@ -13,6 +13,8 @@ padding-left: 20px;
 padding-right: 30px;
 background: white;
 border-radius: 20px;
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
 `;
 
 export const Header = styled.p`
