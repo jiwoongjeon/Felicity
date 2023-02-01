@@ -10,6 +10,7 @@ import Videocall from "./views/General/Videocall";
 import RecentPostPage from "./views/General/RecentPost";
 import MultiLogin from "./views/Components/UserRedirect/multilogin";
 
+
 import MHT1 from "./views/Patients/MHT/index1";
 import MHT2 from "./views/Patients/MHT/index2";
 import MHT3 from "./views/Patients/MHT/index3";
@@ -17,6 +18,7 @@ import MHT4 from "./views/Patients/MHT/index4";
 import MHT5 from "./views/Patients/MHT/index5";
 import MHT6 from "./views/Patients/MHT/index6";
 import MHT7 from "./views/Patients/MHT/index7";
+import Starrating from "./views/General/StarRating/app";
 
 import NewBoard from "./views/Patients/NewBoard";
 import Appointment from "./views/Patients/Appointment";
@@ -41,6 +43,7 @@ const ROUTES = [
   { path: "/Doctor/Profile", key: "video", component: () => <Profile isDoctor={true}/> },
   { path: "/Doctor/RecentPost", key: "video", component: () => <RecentPostPage isDoctor={true}/> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
+  { path: "/Doctor/rating", key: "video", component: () => <Starrating />},
   
   { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
   { path: "/Patient/Checklist", key: "video", component: () => <ChecklistPage isDoctor={false}/> },
@@ -50,6 +53,7 @@ const ROUTES = [
   { path: "/Patient/RecentPost", key: "PS", component: () => <RecentPostPage isDoctor={false}/> },
   { path: "/Patient/DoctorList", key: "PS", component: () => <DoctorListPage /> },
   { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
+  { path: "/Patient/rating", key: "video", component: () => <Starrating />},
 
   { path: "/MHT1", key: "video", component: () => <MHT1 /> },
   { path: "/MHT2", key: "video", component: () => <MHT2 /> },
