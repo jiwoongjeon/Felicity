@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import RECAP from "../../../../API/recap.js";
 import {
   MainContainer,
   LoginContainer,
@@ -23,7 +25,9 @@ import {
   LabelRed,
   ConsentBox,
   Label1,
-  SubmitButtonDisabled
+  reCapWrapper,
+  SubmitButtonDisabled,
+  
 } from "./styles";
 
 import RadioButton from "./Radiobox.js";
@@ -31,12 +35,15 @@ import LogoImg from '../../../Components/assets/Logo.png';
 import ConsentForm from './consentform.pdf';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
+import RecaptchaWrapper from "react-google-recaptcha/lib/recaptcha-wrapper";
+
 
 function RegistrationPage({ patientL, doctorL }) {
     const [radioValue, setRadio] = useState(true);
     const [value, setCheckbox] = useState(true);
     const [lang,setLang] = useState(true);
     const [consent,setConsent] = useState(false);
+    const [captcha,setCaptcha] = useState(false);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -184,11 +191,17 @@ function RegistrationPage({ patientL, doctorL }) {
                         onChange={({ target }) => setConsent(false)}
                     />
                 </RadioWrapper>
-
+                
                 {/* {radioValue && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
                 {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
-                {consent && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
-                {!consent && <SubmitButtonDisabled to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButtonDisabled>}
+                <reCapWrapper>
+                    <ReCAPTCHA 
+                            sitekey = {RECAP}
+                            onChange={({ target }) => setCaptcha(true)} 
+                        />
+                </reCapWrapper>
+                {captcha && consent && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
+                {(!captcha || !consent) && <SubmitButtonDisabled to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButtonDisabled>}
 
             </LoginContainer>
         </MainContainer>
