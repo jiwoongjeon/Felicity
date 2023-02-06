@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import RECAP from "../../../../API/recap.js";
 import {
   MainContainer,
   LoginContainer,
@@ -195,7 +196,7 @@ function RegistrationPage({ patientL, doctorL }) {
                 {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
                 <reCapWrapper>
                     <ReCAPTCHA 
-                            sitekey="0"
+                            sitekey = {RECAP}
                             onChange={({ target }) => setCaptcha(true)} 
                         />
                 </reCapWrapper>
