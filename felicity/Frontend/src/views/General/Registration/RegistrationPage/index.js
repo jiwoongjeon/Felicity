@@ -195,7 +195,7 @@ function RegistrationPage({ patientL, doctorL }) {
                 {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
                 <reCapWrapper>
                     <ReCAPTCHA 
-                            sitekey=""
+                            sitekey="0"
                             onChange={({ target }) => setCaptcha(true)} 
                         />
                 </reCapWrapper>
