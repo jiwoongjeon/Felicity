@@ -18,11 +18,9 @@ export const LoginContainer = styled.div`
     margin-top: 10%;
 `;
 
-export const reCaptchaWrapper = styled.div`
+export const reCapWrapper = styled.div`
     width: 100%;
-    height: 100%;
-    display: flex;
-    background-color: black;
+    background-color: gray;
     
 `;
 
@@ -227,7 +225,9 @@ export const SubmitButtonDisabled = styled(Link)`
         color: white;
         background-color: #cccccc;
       }
+      pointer-events: none;
 `;
+
 
 export const Signup = styled.div`
     display: flex;

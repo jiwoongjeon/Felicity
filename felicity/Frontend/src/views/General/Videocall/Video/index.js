@@ -33,7 +33,6 @@ const sessionStore = role => {
     //     window.location.replace("/Doctor/Home");
     // }
 }
-
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = context;
     const [visible, setVisible] = React.useState(true);

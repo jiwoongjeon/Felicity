@@ -24,8 +24,9 @@ import {
   LabelRed,
   ConsentBox,
   Label1,
+  reCapWrapper,
   SubmitButtonDisabled,
-  reCaptchaWrapper
+  
 } from "./styles";
 
 import RadioButton from "./Radiobox.js";
@@ -33,6 +34,8 @@ import LogoImg from '../../../Components/assets/Logo.png';
 import ConsentForm from './consentform.pdf';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
+import RecaptchaWrapper from "react-google-recaptcha/lib/recaptcha-wrapper";
+
 
 function RegistrationPage({ patientL, doctorL }) {
     const [radioValue, setRadio] = useState(true);
@@ -187,15 +190,15 @@ function RegistrationPage({ patientL, doctorL }) {
                         onChange={({ target }) => setConsent(false)}
                     />
                 </RadioWrapper>
-
+                
                 {/* {radioValue && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
                 {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
-                <reCaptchaWrapper>
-                    <ReCAPTCHA
-                        sitekey="6Lc6zEQkAAAAANIjwX-eBux6HkxHz1ZV1rPB25-L"
-                        onChange={({ target }) => setCaptcha(true)}
-                    />
-                </reCaptchaWrapper>
+                <reCapWrapper>
+                    <ReCAPTCHA 
+                            sitekey=""
+                            onChange={({ target }) => setCaptcha(true)} 
+                        />
+                </reCapWrapper>
                 {captcha && consent && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
                 {(!captcha || !consent) && <SubmitButtonDisabled to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButtonDisabled>}
 
