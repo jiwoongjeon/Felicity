@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const { rejects } = require('assert');
 const { resolve } = require('path');
 const patientSignUp = require('../signup/signup_model')
+require("dotenv").config();
 
 const insertPatientEmailCodeQry = 
     "INSERT INTO patient_email_validation (email, code) VALUES (?, ?);";
@@ -75,14 +76,14 @@ async function sendEmail(email, callback) {
             host: 'smpt.naver.com',
             port: '587',
             auth: {
-                user: 'gkwlgns74',
-                pass: 'gkwlsdud74'
+                user: process.env.NAVER_USERID,
+                pass: process.env.NAVER_PW
             }
         });
 
         transporter.sendMail(
             {
-                from: 'gkwlgns74@naver.com',
+                from: process.env.NAVER_EMAIL,
                 to: email,
                 subject: '[example] 회원가입 인증메일입니다.',
                 text: code,
