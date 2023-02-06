@@ -174,39 +174,42 @@ function RecentPostPage(props) {
   function setToNewest() {
       setNewest(true)
       setOldest(false)
-      setPosts(posts.sort((a,b) => {
-          return a.id < b.id ? 1 : -1
-      }))
+      GetPage(1, true)
   }
 
   function setToOldest() {
       setNewest(false)
       setOldest(true)
-      setPosts(posts.sort((a,b) => {
-        return a.id > b.id ? 1 : -1
-    }))
+      GetPage(pages.last_page, false)
   }
 
   
   function IndexIncrement() {
-    GetPage(((index + 1) * 5) + 1)
+    GetPage(((index + 1) * 5) + 1, newestSelect)
     setIndex(index + 1)
   }
 
   function IndexReduction() {
-    GetPage(((index - 1) * 5) + 5)
+    GetPage(((index - 1) * 5) + 5, newestSelect)
     setIndex(index - 1)
   }
 
-  function GetPage(page) {
+  function GetPage(page, order) {
     console.log(page)
 
     setPostLoad(0)
     setPageLoad(0)
 
     axios.post(`${API_URL}/read-post`, { targetPage: page, department: department})
-      .then((response) => {
-        setPosts(response.data)
+      .then((response) => { 
+        if (order) {
+          setPosts(response.data)
+        }
+        else {
+          setPosts(response.data.sort((a,b) => {
+            return a.id > b.id ? 1 : -1
+          }))
+        }
         setPostLoad(1)
       })
 
@@ -217,6 +220,12 @@ function RecentPostPage(props) {
           current_page: page,
           last_page: response.data
         })
+        if (page % 5) {
+          setIndex((page - (page % 5)) / 5)
+        }
+        else {
+          setIndex(page / 5 - 1)
+        }
         setPageLoad(1)
       })
   }
@@ -231,7 +240,7 @@ function RecentPostPage(props) {
       })
     axios.post(`${API_URL}/post-page`, {department: 0})
       .then((response) => {
-        // console.log(response.data)
+        console.log(response.data)
         setPages({
           current_page: 1,
           last_page: response.data

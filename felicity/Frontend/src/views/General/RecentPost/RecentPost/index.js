@@ -91,25 +91,26 @@ export const RecentPost = (props) => {
         return (
             <PageNumberContainer>
                 {index > 0 && <PageNumber onClick={props.IndexReduction}>...</PageNumber>}
+                
                 {page_index === 1 && <PageNumberLabel >{page}</PageNumberLabel>}
                 {page_index !== 1 && 
-                    <PageNumber onClick={({target}) => props.GetPage(offset + 1)}>{offset + 1}</PageNumber>}
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 1, props.newestSelect)}>{offset + 1}</PageNumber>}
 
                 {page_index === 2 && <PageNumberLabel>{page}</PageNumberLabel>}
                 {page_index !== 2 && offset + 2 <= last && 
-                    <PageNumber onClick={({target}) => props.GetPage(offset + 2)}>{offset + 2}</PageNumber>}
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 2, props.newestSelect)}>{offset + 2}</PageNumber>}
 
                 {page_index === 3 && <PageNumberLabel>{page}</PageNumberLabel>}
                 {page_index !== 3 && offset + 3 <= last && 
-                    <PageNumber onClick={({target}) => props.GetPage(offset + 3)}>{offset + 3}</PageNumber>}
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 3, props.newestSelect)}>{offset + 3}</PageNumber>}
 
                 {page_index === 4 && <PageNumberLabel>{page}</PageNumberLabel>}
                 {page_index !== 4 && offset + 4 <= last && 
-                    <PageNumber onClick={({target}) => props.GetPage(offset + 4)}>{offset + 4}</PageNumber>}
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 4, props.newestSelect)}>{offset + 4}</PageNumber>}
 
                 {page_index === 5 && <PageNumberLabel>{page}</PageNumberLabel>}
                 {page_index !== 5 && offset + 5 <= last && 
-                    <PageNumber onClick={({target}) => props.GetPage(offset + 5)}>{offset + 5}</PageNumber>}
+                    <PageNumber onClick={({target}) => props.GetPage(offset + 5, props.newestSelect)}>{offset + 5}</PageNumber>}
 
                 {last > index * 5 + 5 && <PageNumber onClick={props.IndexIncrement}>...</PageNumber>}
 
@@ -215,14 +216,10 @@ export const RecentPost = (props) => {
             <Divider/>
 
             <ColumnBottom>
-                {/* <Search>
-                    <SearchIcon><IoMdSearch style={{color: '#718096', fontSize: '20px'}}/></SearchIcon>
-                    <SearchContent />
-                </Search> */}
                 <PageContainer>
-                    {/* <PageNavigatorLabel onClick={({target}) => props.PageIncrement()}>Previous</PageNavigatorLabel> */}
+                    {props.pageload > 0 && props.postload > 0 &&
                         <PageButton />
-                    {/* <PageNavigatorLabel onClick={({target}) => props.PageReduction()}>Next</PageNavigatorLabel> */}
+                    }
                 </PageContainer>
                 {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
             </ColumnBottom>
