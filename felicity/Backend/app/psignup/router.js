@@ -33,7 +33,7 @@ function postCheckPatientEmail(req, res) {
     })
 }
 
-router.post("/signup", postSingUp);
+router.post("/psignup", postSingUp);
 router.post("/checkpatientemail", postCheckPatientEmail);
 
 module.exports = router;

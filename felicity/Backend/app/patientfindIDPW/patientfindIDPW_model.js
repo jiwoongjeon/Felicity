@@ -1,5 +1,6 @@
 const config = require("../config");
 const bcrypt = require('bcrypt');
+const psignup = require('../psignup/signup_model');
 
 const patientFindIDQry = 
     "SELECT patient_login.email FROM patient_login INNER JOIN patient_profile ON patient_login.patient_id = patient_profile.patient_id " +
@@ -80,13 +81,16 @@ async function patientChangePW([email, password], callback ) {
 
         await updatePatientPW(patient_id, hashed);
 
+        // At the end of the process, delete the entry of the patient_email_validation.
+        await psignup.deletePaitentEmailEntry(email);
+
         callback(null, [{
             success: "true",
             msg: "Successfully Changed",
         }])
 
     } catch (err) {
-        callback(error, null);
+        callback(err, null);
     }
 }
 

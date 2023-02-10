@@ -19,7 +19,7 @@ const insertPatient_loginQry =
     " VALUES ((SELECT id FROM patient ORDER BY id DESC LIMIT 1), ?, ?, ?);"
 
 const insertPatient_profileQry = 
-    "INSERT INTO felicity.patient_profile (patient_id, firstname, lastname, birth, sex, preferred_lang) " +
+    "INSERT INTO patient_profile (patient_id, firstname, lastname, birth, sex, preferred_lang) " +
     "VALUES ( (SELECT id FROM patient ORDER BY id DESC LIMIT 1), ?, ?, ?, ?, ?);";
 
 const deletePaitentEmailEntryQry = 
@@ -60,10 +60,7 @@ function insertPatient() {
             if (err) {
                 return reject(err);
             }
-            return resolve({
-                success: "true",
-                msg: "successfully inserting id and socket."
-            })
+            return resolve(result)
         })
     })
 }
@@ -105,7 +102,7 @@ async function patientSingUp([email, password, firstname, lastname, sex, birth, 
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(password, salt);
 
-        await insertPatient();
+        const id = await insertPatient();
         await insertPatient_login(email, hashed, salt);
         await insertPatient_profile(firstname, lastname, birth, sex, lang);
         await deletePaitentEmailEntry(email);
@@ -151,6 +148,7 @@ async function patientCheckEmail(email, callback) {
     }
 }
 
-exports.checkPatientEmail = checkPatientEmail;
+
 exports.patientSingUp = patientSingUp;
 exports.patientCheckEmail = patientCheckEmail;
+exports.deletePaitentEmailEntry = deletePaitentEmailEntry;

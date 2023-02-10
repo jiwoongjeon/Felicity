@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const mail_model = require('./mail_model');
+const emailSender = require('./mail_model')
 
 function postSendEmail(req, res) {
     const email = req.body.email;
+    const userType = req.body.userType;
 
-    mail_model.sendEmail(email, (err, result) => {
+    emailSender.sendEmail([email, userType], (err, result) => {
         if (err) {
             res.json(err);
         }
@@ -14,11 +15,12 @@ function postSendEmail(req, res) {
     })
 }
 
-function postPatientEmailValidation(req, res) {
+function postEamilValidation(req, res) {
     const email = req.body.email;
     const code = req.body.code;
+    const userType = req.body.userType;
 
-    mail_model.patientEmailValidation([email, code], (err, result) => {
+    emailSender.emailValidation([email, code, userType], (err, result) => {
         if (err) {
             res.json(err);
         }
@@ -30,5 +32,5 @@ function postPatientEmailValidation(req, res) {
 
 
 router.post('/sendmail', postSendEmail);
-router.post('/validatepatientemial', postPatientEmailValidation);
+router.post('/emailvalidate', postEamilValidation);
 module.exports = router;

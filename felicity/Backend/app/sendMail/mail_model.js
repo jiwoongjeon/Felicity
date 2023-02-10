@@ -3,16 +3,11 @@ const config = require('../config');
 const crypto = require('crypto');
 const { rejects } = require('assert');
 const { resolve } = require('path');
-const patientSignUp = require('../signup/signup_model')
 require("dotenv").config();
+const emailSender = module.exports;
 
 const insertPatientEmailCodeQry = 
     "INSERT INTO patient_email_validation (email, code) VALUES (?, ?);";
-
-const checkPatientEmailValidationQry = 
-    "SELECT patient_email_validation.email, patient_email_validation.code " +
-    "FROM patient_email_validation " +
-    "WHERE patient_email_validation.email = ? AND patient_email_validation.code = ?;";
 
 const checkPatientEmailEntryQry =
     "SELECT patient_email_validation.email " +
@@ -22,7 +17,31 @@ const checkPatientEmailEntryQry =
 const updatePatientEmailEntryQry = 
     "UPDATE patient_email_validation " +
     "SET patient_email_validation.code = ? " +
-    "WHERE patient_email_validation.email = ?;"
+    "WHERE patient_email_validation.email = ?;";
+
+const insertDoctorEmailCodeQry = 
+    "INSERT INTO doctor_email_validation (email, code) VALUES (?, ?);";
+
+const checkDoctorEmailEntryQry = 
+    "SELECT doctor_email_validation.email " +
+    "FROM doctor_email_validation " +
+    "WHERE doctor_email_validation.email = ?";
+
+const updateDoctorEmailEntryQry = 
+    "UPDATE doctor_email_validation " +
+    "SET doctor_email_validation.code = ? " +
+    "WHERE doctor_email_validation.email = ?;";
+
+const checkPatientEmailValidationQry = 
+    "SELECT patient_email_validation.email, patient_email_validation.code " +
+    "FROM patient_email_validation " +
+    "WHERE patient_email_validation.email = ? AND patient_email_validation.code = ?;";
+
+const checkDoctorEmailValidationQry = 
+    "SELECT doctor_email_validation.email, doctor_email_validation.code " +
+    "FROM doctor_email_validation " +
+    "WHERE doctor_email_validation.email = ? AND doctor_email_validation.code = ?;";
+
 
 function insertPatientEmailCode(email, code) {
     return new Promise((resolve, reject) => {
@@ -38,8 +57,6 @@ function insertPatientEmailCode(email, code) {
     })
 }
 
-
-
 function checkPatientEmailEntry(email) {
     return new Promise((resolve, reject) => {
         config.db.query(checkPatientEmailEntryQry, email, (err, result) => {
@@ -54,6 +71,8 @@ function checkPatientEmailEntry(email) {
     })
 }
 
+
+
 function updatePatientEmailEntry(code, email) {
     return new Promise((resolve, reject) => {
         config.db.query(updatePatientEmailEntryQry, [code, email], (err, result) => {
@@ -65,11 +84,57 @@ function updatePatientEmailEntry(code, email) {
     })
 }
 
-async function sendEmail(email, callback) {
+function insertDoctorEmailCode(email, code) {
+    return new Promise((resolve, reject) => {
+        config.db.query(insertDoctorEmailCodeQry, [email, code], (err, result) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve({
+                success: "true",
+                msg: "successfully inserting email and code into doctor_email_validation"
+            })
+        })
+    })
+}
+
+function checkDoctorEmailEntry(email) {
+    return new Promise((resolve, reject) => {
+        config.db.query(checkDoctorEmailEntryQry, email, (err, result) => {
+            if(err) {
+                return reject(err);
+            }
+            if(result.length ==0){
+                return resolve(-1);
+            }
+            return resolve(1);
+        })
+    })
+}
+
+function updateDoctorEmailEntry(code, email) {
+    return new Promise((resolve, reject) => {
+        config.db.query(updateDoctorEmailEntryQry, [code, email], (err, result) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(result);
+        })
+    })
+}
+
+emailSender.sendEmail = async function sendEmail([email, userType], callback) {
     try{
-        // await patientSignUp.checkPatientEmail(email);
         let code = crypto.randomBytes(3).toString('hex');
-        let update = await checkPatientEmailEntry(email);
+        let update = -1;
+        // If user is Doctor
+        if (userType == 1){
+            update = await checkDoctorEmailEntry(email);
+        }
+        // If user is Patient
+        else if (userType == 2) {
+            update = await checkPatientEmailEntry(email);
+        }
 
         let transporter = nodemailer.createTransport({
             service: 'naver',
@@ -96,10 +161,20 @@ async function sendEmail(email, callback) {
             }
         )
         if (update == 1) {
-            await updatePatientEmailEntry(code, email);
+            if (userType == 1) {
+                await updateDoctorEmailEntry(code, email);
+            }
+            else {
+                await updatePatientEmailEntry(code, email);
+            }
         }
         else {
-            await insertPatientEmailCode(email, code);
+            if (userType == 1) {
+                await insertDoctorEmailCode(email, code);
+            }
+            else {
+                await insertPatientEmailCode(email, code);
+            }
         }
         callback(null, [{
             success: 'true',
@@ -111,22 +186,53 @@ async function sendEmail(email, callback) {
     }
 }
 
-function patientEmailValidation([email, code], callback) {
-    config.db.query(checkPatientEmailValidationQry, [email, code], (err, result) => {
-        if (err) {
-            callback(err, null);
-        }
-        if (result.length == 0) {
-            callback({ errMsg: "Wrong email or code"}, null)
-        }
-        else {
-            callback(null, {
+function patientEmailValidation(email, code){
+    return new Promise((resolve, reject) => { 
+        config.db.query(checkPatientEmailValidationQry, [email, code], (err, result) => {
+            if (err) {
+                reject(err);
+            }
+            if (result.length == 0) {
+                reject({ errMsg: "Wrong email or code"});
+            }
+            resolve({
                 success: 'true',
-                msg: 'The email is validated'
-            });
-        }
+                msg: 'This email is validated'
+            })
+        })
     })
 }
 
-exports.sendEmail = sendEmail;
-exports.patientEmailValidation = patientEmailValidation;
+function doctorEmailValidation(email, code) {
+    return new Promise ((resolve, reject) => {
+        config.db.query(checkDoctorEmailValidationQry, [email, code], (err, result) => {
+            if (err) {
+                reject(err);
+            }
+            if (result.length == 0) {
+                reject({ errMsg: "Wrong email or code"});
+            }
+            resolve({
+                success: 'true',
+                msg: 'This email is validated'
+            })
+        })
+    })
+}
+
+emailSender.emailValidation = async function emailValidation([email, code, userType], callback) {
+    try {
+        let message;
+        // If userType == 1: Doctor | If userType == 2: Patient
+        if (userType == 1) {
+            message = await doctorEmailValidation(email, code);
+        } else {
+            message = await patientEmailValidation(email, code);
+        }
+
+        callback(null, message);
+    }
+    catch (err) {
+        callback(err, null);
+    }
+}   
