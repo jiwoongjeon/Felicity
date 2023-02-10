@@ -79,10 +79,12 @@ function checkDoctorEmail(email, callback){
         if (result.length != 0) {
             callback({ errMsg: "Account is already existed with the email"}, null);
         }
-        callback(null, {
-            success: 'true',
-            msg: 'You can use this email for the Doctor registration.'
-        })
+        else {
+            callback(null, {
+                success: 'true',
+                msg: 'You can use this email for the Doctor registration.'
+            })
+        }
     })
 }
 
