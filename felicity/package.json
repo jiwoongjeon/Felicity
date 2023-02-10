@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-google-recaptcha": "^2.1.0",
     "react-notification-badge": "^1.5.1"
   }
 }

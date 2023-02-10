@@ -17,6 +17,7 @@ export const Mostouter = styled.div`
 
 export const Directory = styled.div`
     grid-area: path;
+    margin-left: 10px;
 `;
 
 export const User = styled.div`

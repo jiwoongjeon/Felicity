@@ -144,6 +144,7 @@ export const Date = styled.p`
   color: #718096;
   white-space: nowrap;
   margin-top:-15px;
+  text-align:left;
 `;
 
 export const DateComment = styled.p`
@@ -160,6 +161,13 @@ width: 70%;
 min-width:500px;
 margin-top:50px;
 margin-bottom:50px;
+text-align:left;
+white-space:pre-wrap;
+`;
+
+export const MHT = styled.p`
+width: 70%;
+min-width:500px;
 text-align:left;
 white-space:pre-wrap;
 `;

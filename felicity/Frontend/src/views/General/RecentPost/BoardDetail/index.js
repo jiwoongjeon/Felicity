@@ -8,7 +8,8 @@ const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, Cont
     State, UnState, Date, Content, ReplyBtn, Blank, BottomBoardContainer, WrittenByBottom, TitleBottom, DateBottom, StateBottom, UnStateBottom, WriteContainer,
     WriteSubContainer, ColumnTitle, SubmitBtn, CancelBtn, SymptomsContainer, SymptomsBubble, SymptomsBubbleUnchecked, OtherBox, BackButtom,
     Comment, 
-    DateComment} = require('./styles')
+    DateComment,
+    MHT} = require('./styles')
 
     function sy(array) {
         var array1 = []
@@ -105,6 +106,15 @@ export const BoardDetail = (props) => {
                         <Content>{props.data.content}</Content>
                     </ContentSubContainer>
                     <ContentSubContainer>
+                        <Divider />
+                        <UnState>Medical Health Form</UnState>
+                        <MHT>
+                            Wounded area: <br />
+                            Expected Department: <br />
+                            Injured time: <br />
+                            Severity: <br />
+                            Expected reason: <br />
+                        </MHT>
                         <Column>
                             {sy([props.data.symptoms.cough, props.data.symptoms.vomit, props.data.symptoms.fever, props.data.symptoms.sore_throat,
                                 props.data.symptoms.phelgm, props.data.symptoms.runny_nose, props.data.symptoms.nauseous, props.data.symptoms.out_of_breath,
@@ -122,8 +132,8 @@ export const BoardDetail = (props) => {
                         {(props.data.state === 1 && props.commentsLoad) ?? comment.map((c) => (
                             <>
                                 <Column>
-                                    {c.role === 1 && <State>Patient's Reply: {c.username? c.username : "unknown user"}</State>}
-                                    {c.role === 0 && <UnState>Doctor's reply: {c.username? c.username : "unknown user"}</UnState>}
+                                    {c.role === 1 && <State>Patient's Reply:</State>}
+                                    {c.role === 0 && <UnState>Doctor's reply: {c.firstname + " " + c.lastname}</UnState>}
                                     <DateComment>{c.time}</DateComment>
                                 </Column>
                                 <Comment>{c.comment}</Comment>
