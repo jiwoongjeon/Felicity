@@ -16,14 +16,8 @@ import LoginRedirect from "../../../Components/UserRedirect/login";
 function LoginPage({ patientL, doctorL }) {
   const { id } = React.useContext(SocketContext);
   const [role, setRole] = useState(true);
-  const [isRole, setIsRole] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  function setInitRole(value) {
-    setRole(value);
-    setIsRole(true);
-  }
 
   return (
     <MainContainer img={BackGround}>
@@ -57,9 +51,9 @@ function LoginPage({ patientL, doctorL }) {
                 <Label><Checkbox></Checkbox>Remember Me</Label>
                 <UrlLink>Forgot Password</UrlLink>
               </Rowbox>
-              
-              {role && <SubmitButton onClick={patientL({ email, password })}> Login </SubmitButton>}
-              {!role && <SubmitButton onClick={doctorL({ email, password })}> Login </SubmitButton>}
+                
+                {role && <SubmitButton onClick={patientL({ email, password })}> Login </SubmitButton>}
+                {!role && <SubmitButton onClick={doctorL({ email, password })}> Login </SubmitButton>}
               
                 <Signup>
                   Don’t have an Account?<SignupLink to='/registeration'> Sign Up </SignupLink>
@@ -75,6 +69,8 @@ function LoginPage({ patientL, doctorL }) {
                 
             </LoginSubContainer>
         {id > 0 && <LoginRedirect isRole={role}/>}
+        {JSON.parse(sessionStorage.getItem("jwt")) && <LoginRedirect isRole={JSON.parse(sessionStorage.getItem("role"))}/>}
+
       </LoginContainer>
   
       <LangButton>English</LangButton>  
