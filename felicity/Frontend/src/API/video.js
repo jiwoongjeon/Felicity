@@ -552,6 +552,25 @@ const ContextProvider = ({ children }) => {
         });
     }
 
+    const DoctorNote = (note, rid, sid) => {
+        const noteData = {
+            reservation_id: rid,
+            symptom_id: sid,
+            diagnosis: "temp note",
+            special_note: note,
+        }
+
+        Axios.post(`${API_URI}/add_docnote`, noteData)
+    };
+
+    const ReadNote = (rid) => {
+        Axios.post(`${API_URI}/readDocNotes`, rid)
+    };
+
+    const PushNote = () => {
+
+    };
+
     useEffect(() => {
         socket.on("result", (result) => {
             console.log(result)
@@ -583,7 +602,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
-                , scheduleCount, setScheduleCount
+                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote
             }}
         >
             {children}

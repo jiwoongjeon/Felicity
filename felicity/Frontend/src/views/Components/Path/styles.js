@@ -7,8 +7,8 @@ export const MainContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     vertical-align: center;
-    margin-left: 20px;
-    margin-top:50px;
+    margin-left: 50px;
+    /* margin-top:50px; */
 `;
 
 export const Directory = styled.div`

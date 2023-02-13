@@ -91,9 +91,11 @@ function Doctor(props) {
             <Cat>
                 <Header isDoctor={true} />
             </Cat>
+
             <Directory>
                 <Path directory={props.past? "Past Patients" : "Home"} />
             </Directory>
+
             <User>
                 <Login />
             </User>
@@ -111,9 +113,11 @@ function Doctor(props) {
                     <CalendarBox>
                         <Calen data = {scheduleData}/>
                     </CalendarBox>
+
                     <PatientBox>
                         <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
                     </PatientBox>
+                    
                     <InfoBox>
                         <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} />
                     </InfoBox>
