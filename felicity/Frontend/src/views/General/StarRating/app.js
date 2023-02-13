@@ -57,7 +57,7 @@ function App() {
       <button
         style={styles.button}
       >
-        <NavLink to='./Home'>Submit</NavLink>
+        <NavLink to='./Prescription'>Submit</NavLink>
       </button>
       
     </div>

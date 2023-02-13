@@ -29,6 +29,8 @@ import ChecklistPage from "./views/Patients/MHTreview/MHTreview";
 import Meeting from "./views/Doctor/Meeting";
 import PatientChat from "./views/Doctor/PatientChat";
 import DoctorChat from "./views/Doctor/DoctorChat";
+import Prescription from "./views/Doctor/Prescription";
+import PrescriptionReview from "./views/Patients/Prescription";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
@@ -62,6 +64,9 @@ const ROUTES = [
   { path: "/MHT5", key: "video", component: () => <MHT5 /> },
   { path: "/MHT6", key: "video", component: () => <MHT6 /> },
   { path: "/MHT7", key: "video", component: () => <MHT7 /> },
+
+  { path: "/Doctor/Prescription", key: "video", component: () => <Prescription /> },
+  { path: "/Patient/PrescriptionRev", key: "video", component: () => <PrescriptionReview /> },
 
   { path: "/MultiLogin", key: "video", component: () => <MultiLogin /> },
 
