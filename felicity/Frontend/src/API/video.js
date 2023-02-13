@@ -561,6 +561,10 @@ const ContextProvider = ({ children }) => {
         Axios.post(`${API_URI}/readDocNotes`, rid)
     };
 
+    const PushNote = () => {
+
+    };
+
     useEffect(() => {
         socket.on("result", (result) => {
             console.log(result)
@@ -590,7 +594,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
-                , scheduleCount, setScheduleCount, DoctorNote, ReadNote
+                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote
             }}
         >
             {children}
