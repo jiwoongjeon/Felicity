@@ -1,18 +1,26 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-	background-color: #F8F9FA;
 	width : 100vw;
 	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+	/* display: grid;
+	grid-template-rows: 0.1fr 1fr;
+	grid-template-areas:
+	"directory"
+	"video"; */
+	background-color: #F8F9FA;
+	/* background-color: red; */
 `;
 
 export const Directory = styled.div`
-	margin: 0px 0px 20px 20px;
+	grid-area: directory;
+	place-self: center start;
+	/* background-color: blue; */
 `;
 
 export const Video = styled.div`
-	margin: 0px 20px 0px 20px;
+	width: 100%;
+	height: 100%;
+	/* grid-area: video; */
+	/* background-color: yellow; */
 `;

@@ -29,4 +29,5 @@ export const Cat = styled.div`
 
 export const Video = styled.div`
     grid-area: video;
+    place-content: stretch stretch;
 `;

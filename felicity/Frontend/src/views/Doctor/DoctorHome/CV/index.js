@@ -1,12 +1,33 @@
 import TextField from '@mui/material/TextField';
 import {useContext, useState, useEffect} from "react";
 import {SocketContext} from '../../../../API/video'
-const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn } = require("./styles");
+const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn, Text } = require("./styles");
 
 
 //props.data[props.index]
 export const CV = (props) => {
-    const { setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea } = useContext(SocketContext);
+    const { setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, DoctorNote, ReadNote } = useContext(SocketContext);
+
+    const [note, setNote] = useState('');
+    const handleNote = (event) => { setNote(event.target.value) }
+
+    let notefield;
+    let rid = props.data.rid;
+    let sid = props.data.symptom_id;
+
+    if (ReadNote(rid) !== '') {
+        notefield = <Text
+            value={ReadNote(rid)}
+            onChange={handleNote}
+        />
+    } else {
+        notefield = <Text 
+            placeholder='Type here ...'
+            value={note}
+            onChange={handleNote}
+        /> 
+    }
+
     const symptoms = props.symptoms([props.data.cough, props.data.vomit, props.data.fever, props.data.sore_throat,
         props.data.phlegm, props.data.runny_nose, props.data.nauseous, props.data.out_of_breath,
         props.data.stomachache, props.data.chills, props.data.muscle_sickness, props.data.other]).join(', ')
@@ -23,7 +44,7 @@ export const CV = (props) => {
         
         props.startCall(props.data.rid);
     }
-    
+
     return (
         <PatientContainer>
             <Column>
@@ -61,9 +82,7 @@ export const CV = (props) => {
                             {props.data.request && <Detail>{props.data.request}</Detail>}
                             {!props.data.request && <Detail>None</Detail>}
                         </Row>
-                        <Row>
-                            
-                        </Row>
+                    
                         <Row>
                             <DetailLabel>Wounded area</DetailLabel>
                             <Detail>{props.data.wounded_area}</Detail>
@@ -86,12 +105,12 @@ export const CV = (props) => {
 
                         <Row>
                             <DetailLabel>Note</DetailLabel>
-                            <SaveBtn>Save</SaveBtn>
+                            <SaveBtn onClick={() => DoctorNote(note, rid, sid)}>Save</SaveBtn>
                         </Row>
 
                         <Row>
                             <Note>
-                                <TextField rows={18} multiline fullWidth variant="standard" placeholder="Type Here ..."/>
+                                {notefield}
                             </Note>
                         </Row>
 
