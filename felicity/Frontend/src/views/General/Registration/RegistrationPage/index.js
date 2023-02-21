@@ -54,7 +54,6 @@ function RegistrationPage({ patientL, doctorL }) {
             <LoginContainer>
             <Logo src={LogoImg} />
             <Title>Registration </Title>
-                {/* 
                 <RadioWrapper>
                     <RadioButton
                         label="I'm a patient."
@@ -73,7 +72,7 @@ function RegistrationPage({ patientL, doctorL }) {
                         checked={!radioValue}
                         onChange={({ target }) => setRadio(!target.value)}
                     />
-                </RadioWrapper> */}
+                </RadioWrapper>
 
                 <Label> Enter Email </Label>
                 <InputBox>
@@ -192,8 +191,6 @@ function RegistrationPage({ patientL, doctorL }) {
                     />
                 </RadioWrapper>
                 
-                {/* {radioValue && <SubmitButton to={`/Patient/Home`} onClick={patientL({ email, password })}>Sign Up</SubmitButton>}
-                {!radioValue && <SubmitButton to={`/Doctor/Home`} onClick={doctorL({ email, password })}>Sign Up</SubmitButton>} */}
                 <reCapWrapper>
                     <ReCAPTCHA 
                             sitekey = {RECAP}
