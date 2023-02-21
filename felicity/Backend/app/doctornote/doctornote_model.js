@@ -6,7 +6,7 @@ const editDocNotesQry =
 "UPDATE felicity.med_record SET special_note = ? WHERE reservation_id = ?";
 
 const readDocNotesQry = 
-"SELECT special_note FROM med_record WHERE reservation_id = ?";
+"SELECT special_note FROM felicity.med_record WHERE reservation_id = ?";
  
  
 docnotes.editDocNotes = function editDocNotes(special_note, reservation_id, callback) {

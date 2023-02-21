@@ -8,25 +8,27 @@ const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divid
 export const CV = (props) => {
     const { setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, DoctorNote, ReadNote } = useContext(SocketContext);
 
-    const [note, setNote] = useState('');
-    const handleNote = (event) => { setNote(event.target.value) }
+    // const [note, setNote] = useState('');
+    // const handleNote = (event) => { setNote(event.target.value) }
 
-    let notefield;
-    let rid = props.data.rid;
-    let sid = props.data.symptom_id;
+    // let notefield;
+    // let rid = props.rid;
+    // let sid = props.data.symptom_id;
 
-    if (ReadNote(rid) !== '') {
-        notefield = <Text
-            value={ReadNote(rid)}
-            onChange={handleNote}
-        />
-    } else {
-        notefield = <Text 
-            placeholder='Type here ...'
-            value={note}
-            onChange={handleNote}
-        /> 
-    }
+    // if (Array.isArray(props.note)) {
+    //     notefield = <Text
+    //         value={props.note[0].special_note}
+    //         onChange={handleNote}
+    //     />
+    // } else {
+    //     notefield = <Text 
+    //         placeholder='Type here ...'
+    //         value={note}
+    //         onChange={handleNote}
+    //     /> 
+    // }
+
+    
 
     const symptoms = props.symptoms([props.data.cough, props.data.vomit, props.data.fever, props.data.sore_throat,
         props.data.phlegm, props.data.runny_nose, props.data.nauseous, props.data.out_of_breath,
@@ -105,12 +107,12 @@ export const CV = (props) => {
 
                         <Row>
                             <DetailLabel>Note</DetailLabel>
-                            <SaveBtn onClick={() => DoctorNote(note, rid, sid)}>Save</SaveBtn>
+                            {/* <SaveBtn onClick={() => DoctorNote(note, rid, sid)}>Save</SaveBtn> */}
                         </Row>
 
                         <Row>
                             <Note>
-                                {notefield}
+                                {/* {notefield} */}
                             </Note>
                         </Row>
 

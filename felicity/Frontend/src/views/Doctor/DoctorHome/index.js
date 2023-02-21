@@ -15,13 +15,16 @@ import { SocketContext } from "../../../API/video";
 
 function Doctor(props) {
 
+    // const {ReadNote} = useContext(SocketContext);
+
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
 
     const [scheduleData, setScheduleData] = useState([])
     const [displayedData, setDisplay] = useState({})
     const [visible, setVisible] = useState(true)
-
+    // const [reserveid, setReserveid] = useState(0);
+    // const [noteContent, setNoteContent] = useState('');
     const { startCall, UTCToLocal } = useContext(SocketContext);
 
     React.useEffect(() => {
@@ -115,11 +118,13 @@ function Doctor(props) {
                     </CalendarBox>
 
                     <PatientBox>
-                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
+                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past}/>
+                        {/* rid={reserveid} ridFunction={setReserveid} noteFunction={setNoteContent} were insidie PatientList component */}
                     </PatientBox>
                     
                     <InfoBox>
-                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} />
+                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past}/>
+                        {/* note={noteContent} was inside CV component */}
                     </InfoBox>
                 </ContentLayout>
             </Video>

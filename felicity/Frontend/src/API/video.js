@@ -9,6 +9,7 @@ import API_URI from "./server-ip";
 import { render } from "react-dom";
 import LoginRedirect from "../views/Components/UserRedirect/login";
 import API_URL from "./server-ip";
+import { da } from "date-fns/locale";
 
 const moment = require("moment");
 const SocketContext = createContext();
@@ -546,6 +547,7 @@ const ContextProvider = ({ children }) => {
         });
     }
 
+    // Posting new doctor note to server
     const DoctorNote = (note, rid, sid) => {
         const noteData = {
             reservation_id: rid,
@@ -557,8 +559,14 @@ const ContextProvider = ({ children }) => {
         Axios.post(`${API_URI}/add_docnote`, noteData)
     };
 
+    // Reading existing doctor note from server
     const ReadNote = (rid) => {
-        Axios.post(`${API_URI}/readDocNotes`, rid)
+        const data = { reservation_id: rid }
+        Axios.post(`${API_URI}/readDocNotes`, data)
+        .then((response) => {
+            console.log(response.data)
+            return response.data
+        })
     };
 
     const PushNote = () => {

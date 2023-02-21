@@ -5,7 +5,6 @@ var docnotes = require("./doctornote_model");
 function editDocNotes (req, res) {
     const rid = req.body.reservation_id
     const special_note = req.body.special_note
-   
  
     docnotes.editDocNotes(special_note, rid, (err, result) => {
         if (err) {
@@ -14,8 +13,7 @@ function editDocNotes (req, res) {
         } else{
            
             res.json({ msg: "Successfully edited the doctor's notes"})
-        }
-       
+        } 
     })
    
 }
@@ -28,8 +26,12 @@ function readDocNotes (req, res) {
             console.log(err);
             res.json({ errMsg : "Error: Failed to display the doctor's notes"})
         } else{
-            console.log("Doctor's notes successfully displayed")
-            res.json(result)
+            if (result.length != 0) {
+                res.json(result)
+            }
+            else {
+                res.json({ msg : "Doctor's note is empty"})
+            }
         }
     })
 }
