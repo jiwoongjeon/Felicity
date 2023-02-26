@@ -464,6 +464,12 @@ const ContextProvider = ({ children }) => {
     }
     const stopAudio = () => {
         setIsClicked(false)
+        setText([
+            {
+                transcription: "Processing...",
+                translation: "Please wait..."
+            }
+        ])
         console.log(recordAudio);
         recordAudio.stopRecording(() => {
             recordAudio.getDataURL((audioDataURL) => {
@@ -576,10 +582,12 @@ const ContextProvider = ({ children }) => {
     useEffect(() => {
         socket.on("result", (result) => {
             console.log(result)
+            console.log("result")
             setText(result[0])
         })
         socket.on("reresult", (result) => {
             console.log(result)
+            console.log("reresult")
             setText(result)
         })
         socket.on("new-login-attempt", (socketId) => {

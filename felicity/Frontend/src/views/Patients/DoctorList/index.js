@@ -37,7 +37,7 @@ function DoctorListPage() {
       <User>
         <Login />
       </User>
-
+      
       <List>
         <DoctorList doctorList={doctorList} />
       </List>

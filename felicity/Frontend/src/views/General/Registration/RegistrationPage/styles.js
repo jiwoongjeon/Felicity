@@ -18,6 +18,12 @@ export const LoginContainer = styled.div`
     margin-top: 10%;
 `;
 
+export const reCapWrapper = styled.div`
+    width: 100%;
+    background-color: gray;
+    
+`;
+
 export const Logo = styled.img`
     height: 38px;
     width: 35.67px;
@@ -41,6 +47,7 @@ export const RadioWrapper = styled.div`
     flex-direction: row;
     margin-top: 24px;
     padding-left: 5px;
+    margin-bottom: 30px;
 `;
 
 export const CheckboxWrapper = styled.div`
@@ -218,7 +225,9 @@ export const SubmitButtonDisabled = styled(Link)`
         color: white;
         background-color: #cccccc;
       }
+      pointer-events: none;
 `;
+
 
 export const Signup = styled.div`
     display: flex;

@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MainContainer, MainVideoContainer, VideoContainer, TextArea, Container, Block, Button, Patient, Name, SubtitleContainer, Record, RecordBox, Group } from "./styles";
+import { IoMdVideocam } from "react-icons/io";
+import { FaPhoneAlt, FaWindows } from "react-icons/fa";
+import { MdKeyboardVoice } from "react-icons/md";
+import { BsFillChatSquareFill } from "react-icons/bs";
+import { Prompt } from 'react-router'
 
-const sessionStore = role => {
-    var timer_end = true;
-    window.sessionStorage.setItem('show', timer_end);
-    // if (role) {
-    //     window.location.replace("/Patient/Home");
-    // }
-    // else {
-    //     window.location.replace("/Doctor/Home");
-    // }
-}
 
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = context;
@@ -18,9 +13,41 @@ const Video = ({ context }) => {
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
     const roleA = JSON.parse(sessionStorage.getItem("role"));
-    const name = JSON.parse(sessionStorage.getItem("name"))
+    const name = JSON.parse(sessionStorage.getItem("name");
+    const [isNavigatingAway, setIsNavigatingAway] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (!isNavigatingAway) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+
+    const handlePopState = () => {
+      setIsNavigatingAway(true);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isNavigatingAway]);
+
+  const handleLeavePage = (location) => {
+    if (!isNavigatingAway) {
+      return "Are you sure you want to leave this page?";
+    }
+  };
 
     return (
+        <>
+        <Prompt when={true} message={handleLeavePage} />
+        
+        
         <MainContainer>
 
             {callAccepted && !callEnded && (
@@ -91,6 +118,7 @@ const Video = ({ context }) => {
             </SubtitleContainer>
 
         </MainContainer>
+        </>
     );
 };
 

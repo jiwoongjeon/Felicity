@@ -75,9 +75,6 @@ export const Header = (props) => {
             </div>
           </SidebarHeader>
 
-          {props.isDoctor && console.log("boardchecked", boardChecked)}
-          {props.isDoctor && console.log("boardCount", boardCount)}
-
           {props.isDoctor &&
             <Stack spacing={4} direction="row">
               <StyledBadge badgeContent={Check()}/>

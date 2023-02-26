@@ -5,8 +5,10 @@ const pScheduleQry =
     "SELECT reservation.id as rid, reservation.doctor_id, reservation.canceled, " +
     "date_format((reserved_date), '%m-%d-%Y') as reserved_date, " +
     "date_format((reserved_date), '%l:%i %p') as reserved_time, " +
-    "doctor_profile.firstname, doctor_profile.lastname, symptom.*, symptom_list.* " +
+    "doctor_profile.firstname, doctor_profile.lastname, symptom.*, symptom_list.*, " +
+    "patient_profile.sex, date_format((patient_profile.birth), '%m-%d-%Y') as birth " +
     "FROM reservation " +
+    "JOIN patient_profile on reservation.patient_id = patient_profile.patient_id " +
     "JOIN doctor_profile on reservation.doctor_id = doctor_profile.doctor_id " +
     "JOIN symptom on symptom.id = reservation.symptom_id " +
     "JOIN symptom_list on symptom_list.symptom_id = reservation.symptom_id " +

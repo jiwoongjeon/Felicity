@@ -17,7 +17,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
+app.use(require("./patientfindIDPW/router"));
+app.use(require("./doctorfindIDPW/router"));
+app.use(require("./psignup/router"));
+app.use(require('./dsignup/router'));
+app.use(require("./sendMail/router"));
 
 app.use(require("./doctorlogin/router"));   // "/dlogin"
 app.use(require("./patientlogin/router"));  // "/plogin"

@@ -29,11 +29,13 @@ export const List = styled.div`
     margin-left: 20px;
     margin-right: 10px;
     margin-bottom: 0.5%;
+    
 `;
 
 export const Directory = styled.div`
     grid-area:path;
     background-color: #F8F9FA;
+    
 `;
 
 export const User = styled.div`
