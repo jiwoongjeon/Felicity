@@ -57,15 +57,14 @@ const TimeCompare = (date, time, past) => {
 
 const PatientsList = (props) => {
 
-    // const {ReadNote} = useContext(SocketContext);
-
+    const {ReadNote} = useContext(SocketContext);
     isEmpty = true;
 
     function DisplayData(data) {
         props.setFunction(data);
-        // props.ridFunction(data.rid);
-        // props.noteFunction(ReadNote(data.rid));
-        // console.log(ReadNote(props.rid))
+        props.setRid(data.rid);
+        props.setSid(data.symptom_id)
+        ReadNote(data.rid, props.setIsNote, props.setNote);
     };
 
     return (
@@ -85,18 +84,8 @@ const PatientsList = (props) => {
                                     
                                     <PatientInfoContainer>
                                         <Patient>{data.firstname} {data.lastname}</Patient>
-                                        {/* <Bio>{data.sex}, {data.birth}</Bio> */}
                                         <Time>{data.reserved_time}</Time>
                                     </PatientInfoContainer>
-                                    
-                                        {/*  */}
-                                        {/* <SymptomsContainer>
-                                            {props.symptoms([data.cough, data.vomit, data.fever, data.sore_throat,
-                                            data.phelgm, data.runny_nose, data.nauseous, data.out_of_breath, data.stomachache,
-                                            data.chills, data.muscle_sickness, data.other]).map((symptom) => (
-                                                <SymptomsBubble>{symptom}</SymptomsBubble>
-                                            ))}
-                                        </SymptomsContainer> */}
                                     
                                 </PatientElement>
                             </Column>

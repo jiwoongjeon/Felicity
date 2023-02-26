@@ -8,7 +8,7 @@ export const MainContainer = styled.div`
     justify-content: center;
     vertical-align: center;
     margin-left: 50px;
-    /* margin-top:50px; */
+    margin-top:50px;
 `;
 
 export const Directory = styled.div`

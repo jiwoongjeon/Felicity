@@ -5,6 +5,12 @@ import { MdKeyboardVoice } from "react-icons/md";
 import { BsFillChatSquareFill } from "react-icons/bs";
 
 const Title = (props) => {
+  const { leaveCall, DoctorNote, rid, sid } = props.context;
+
+  function leave() {
+    DoctorNote(props.note, rid, sid);
+    leaveCall();
+  }
   
   return (
     <Container>
@@ -24,7 +30,7 @@ const Title = (props) => {
           <BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} />
         </IconBox>
         <End>
-          <FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} />
+          <FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} onClick={( target ) => leave() } />
         </End>
       </ButtonContainer>
 

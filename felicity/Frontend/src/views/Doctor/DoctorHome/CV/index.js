@@ -3,32 +3,8 @@ import {useContext, useState, useEffect} from "react";
 import {SocketContext} from '../../../../API/video'
 const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn, Text } = require("./styles");
 
-
-//props.data[props.index]
 export const CV = (props) => {
-    const { setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, DoctorNote, ReadNote } = useContext(SocketContext);
-
-    // const [note, setNote] = useState('');
-    // const handleNote = (event) => { setNote(event.target.value) }
-
-    // let notefield;
-    // let rid = props.rid;
-    // let sid = props.data.symptom_id;
-
-    // if (Array.isArray(props.note)) {
-    //     notefield = <Text
-    //         value={props.note[0].special_note}
-    //         onChange={handleNote}
-    //     />
-    // } else {
-    //     notefield = <Text 
-    //         placeholder='Type here ...'
-    //         value={note}
-    //         onChange={handleNote}
-    //     /> 
-    // }
-
-    
+    const { setdid, setpid, setrid, setsid, setPsex, setPname, setPbirth, setSymptoms, setArea, DoctorNote } = useContext(SocketContext);
 
     const symptoms = props.symptoms([props.data.cough, props.data.vomit, props.data.fever, props.data.sore_throat,
         props.data.phlegm, props.data.runny_nose, props.data.nauseous, props.data.out_of_breath,
@@ -38,12 +14,15 @@ export const CV = (props) => {
         setdid(JSON.parse(sessionStorage.getItem("jwt")));
         window.sessionStorage.setItem("pid", JSON.stringify(props.data.patient_id));
         setpid(props.data.patient_id)
+        setrid(props.rid)
+        setsid(props.sid)
         setPsex(props.data.sex)
         setPname(props.data.firstname + " " + props.data.lastname);
         setPbirth(props.data.birth);
         setSymptoms(symptoms);
         setArea(props.data.wounded_area);
-        
+        DoctorNote(props.note, props.rid, props.sid);
+
         props.startCall(props.data.rid);
     }
 
@@ -107,12 +86,14 @@ export const CV = (props) => {
 
                         <Row>
                             <DetailLabel>Note</DetailLabel>
-                            {/* <SaveBtn onClick={() => DoctorNote(note, rid, sid)}>Save</SaveBtn> */}
+                            <SaveBtn onClick={({ target }) => DoctorNote(props.note, props.rid, props.sid)}>Save Note</SaveBtn>
                         </Row>
+                        
 
                         <Row>
                             <Note>
-                                {/* {notefield} */}
+                                {props.isNote ? <Text placeholder='Type here ...' value={props.note} onChange={({ target }) => props.setNote(target.value)}/>
+                                : <Text disabled={true} placeholder='Loading...'/> }
                             </Note>
                         </Row>
 
