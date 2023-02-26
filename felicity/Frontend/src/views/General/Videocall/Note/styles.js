@@ -18,3 +18,17 @@ export const Label = styled.p`
     font-weight: bold;
     margin: 10px 0px 10px 0px;
 `;
+
+export const Text = styled.textarea`
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  font-size: large;
+
+  ::placeholder {
+    font-size: large;
+    font-weight: bold;
+  }
+`;

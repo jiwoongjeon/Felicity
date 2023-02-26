@@ -13,7 +13,7 @@ const Video = ({ context }) => {
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
     const roleA = JSON.parse(sessionStorage.getItem("role"));
-    const name = JSON.parse(sessionStorage.getItem("name");
+    const name = JSON.parse(sessionStorage.getItem("name"));
     const [isNavigatingAway, setIsNavigatingAway] = useState(false);
 
   useEffect(() => {

@@ -21,11 +21,11 @@ export const InfoBox = () => {
     
     return (
         <InfoBoxContainer>
-            {!role && <Label>Patient Info</Label>}
-            {role && <Label>Doctor Info</Label>}
+            {role && <Label>Patient Info</Label>}
+            {!role && <Label>Doctor Info</Label>}
 
             {/* Past medical records need to be added */}
-            {!role &&
+            {role &&
             <Content>
                 <Name>{pname}</Name>
                 <Line>Date of birth: {pbirth}</Line>
@@ -34,7 +34,7 @@ export const InfoBox = () => {
                 <Line>Wounded Area: {wounded_area}</Line>
                 <Line>Symptom: <SymptomBubble>{symptoms}</SymptomBubble></Line>
             </Content>}
-            {role &&
+            {!role &&
             <Content>
                 <Name>Dr. {doctorData.name}</Name>
                 <Line>Profession: {doctorData.profession}</Line>

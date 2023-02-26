@@ -11,11 +11,8 @@ import UserRedirect from "../../Components/UserRedirect";
 import Calen from "./CalenDoctor";
 import API_URL from "../../../API/server-ip";
 import { SocketContext } from "../../../API/video";
-// import MultiLogin from "../UserRedirect/multilogin";
 
 function Doctor(props) {
-
-    // const {ReadNote} = useContext(SocketContext);
 
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
@@ -23,8 +20,10 @@ function Doctor(props) {
     const [scheduleData, setScheduleData] = useState([])
     const [displayedData, setDisplay] = useState({})
     const [visible, setVisible] = useState(true)
-    // const [reserveid, setReserveid] = useState(0);
-    // const [noteContent, setNoteContent] = useState('');
+    const [isNote, setIsNote] = useState(false)
+    const [note, setNote] = useState('');
+    const [rid, setRid] = useState();
+    const [sid, setSid] = useState();
     const { startCall, UTCToLocal } = useContext(SocketContext);
 
     React.useEffect(() => {
@@ -118,13 +117,11 @@ function Doctor(props) {
                     </CalendarBox>
 
                     <PatientBox>
-                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past}/>
-                        {/* rid={reserveid} ridFunction={setReserveid} noteFunction={setNoteContent} were insidie PatientList component */}
+                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} setRid={setRid} setSid={setSid} setNote={setNote} setIsNote={setIsNote}/>
                     </PatientBox>
                     
                     <InfoBox>
-                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past}/>
-                        {/* note={noteContent} was inside CV component */}
+                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} rid={rid} sid={sid} note={note} isNote={isNote} setNote={setNote}/>
                     </InfoBox>
                 </ContentLayout>
             </Video>

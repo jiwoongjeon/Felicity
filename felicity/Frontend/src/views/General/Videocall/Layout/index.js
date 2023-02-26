@@ -13,9 +13,10 @@ import Note from "../Note";
 // import CallEndButton from '../CallEndButton';
 
 const Layout = ({ context }) => {
-    const { did, pid } = useContext(SocketContext);
+    const { did, pid, role } = useContext(SocketContext);
     const [doctorName, setDoctorName] = useState();
     const [patientName, setPatientName] = useState();
+    const [note, setNote] = useState('');
 
     useEffect(() => {
       Axios.post(`${API_URL}/dstatus`, { "doctorId": did})
@@ -37,7 +38,7 @@ const Layout = ({ context }) => {
             </InfoBox>
 
             <NoteBox>
-                <Note />
+                {role && <Note note={note} setNote={setNote} />}
             </NoteBox>
 
             <TitleBox>
