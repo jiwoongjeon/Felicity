@@ -130,8 +130,8 @@ function addNewDocNotes(req, res) {
     const sid = req.body.symptom_id;
     const diagnosis = req.body.diagnosis;
     const special_note = req.body.special_note;
-    const created_time = req.body.created_time;
-    const new_record = [rid, sid, diagnosis, special_note, created_time]
+    const new_record = [rid, sid, diagnosis, special_note]
+    console.log(req.body);
     schedule.addNewDocNotes(new_record, (err, result) => {
         if (err) {
             console.log(err);

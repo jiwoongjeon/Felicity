@@ -57,8 +57,8 @@ const acceptReservationQry =
 
 //Doctor add notes before the appointment
 const addNewDocNotesQry =
-    "INSERT INTO felicity.med_record (`reservation_id`, `symptom_id`, `trans_id`, `diagnosis`, `special_note`, `created_time`)" +
-    "VALUES (?,?, NULL, ?,?,?)";
+    "INSERT INTO felicity.med_record (`reservation_id`, `symptom_id`, `trans_id`, `diagnosis`, `special_note`)" +
+    "VALUES (?,?, NULL, ?,?)";
 
 const pDateScheduleQry = 
     "SELECT reservation.id as rid, reservation.doctor_id, reservation.canceled, " +
@@ -163,7 +163,7 @@ schedule.acceptReservation = function acceptReservation(did, rid, callback) {
 }
 
 schedule.addNewDocNotes = function addNewDocNotes(record, callback) {
-    config.db.query(addNewDocNotesQry, [record[0], record[1], record[2], record[3], record[4]], (err, result) => {
+    config.db.query(addNewDocNotesQry, [record[0], record[1], record[2], record[3]], (err, result) => {
         if (err) callback(err, null);
         callback(null, result);
     })

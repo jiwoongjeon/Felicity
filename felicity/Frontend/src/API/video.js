@@ -9,6 +9,7 @@ import API_URI from "./server-ip";
 import { render } from "react-dom";
 import LoginRedirect from "../views/Components/UserRedirect/login";
 import API_URL from "./server-ip";
+import { da } from "date-fns/locale";
 
 const moment = require("moment");
 const SocketContext = createContext();
@@ -552,6 +553,32 @@ const ContextProvider = ({ children }) => {
         });
     }
 
+    // Posting new doctor note to server
+    const DoctorNote = (note, rid, sid) => {
+        const noteData = {
+            reservation_id: rid,
+            symptom_id: sid,
+            diagnosis: "temp note",
+            special_note: note,
+        }
+
+        Axios.post(`${API_URI}/add_docnote`, noteData)
+    };
+
+    // Reading existing doctor note from server
+    const ReadNote = (rid) => {
+        const data = { reservation_id: rid }
+        Axios.post(`${API_URI}/readDocNotes`, data)
+        .then((response) => {
+            console.log(response.data)
+            return response.data
+        })
+    };
+
+    const PushNote = () => {
+
+    };
+
     useEffect(() => {
         socket.on("result", (result) => {
             console.log(result)
@@ -583,7 +610,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
-                , scheduleCount, setScheduleCount
+                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote
             }}
         >
             {children}

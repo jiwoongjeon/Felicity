@@ -12,18 +12,16 @@ function Videocall(props) {
   const { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send, userJoined } = useContext(SocketContext);
   const context = { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, chatArr, send, userJoined }
 
-  // useEffect(() => startCall(), []);
-
   return (
     <Background>
       {!jwt && <UserRedirect isRole={!props.isDoctor} />}
 
-      <Directory>
+      {/* <Directory>
         {props.isDoctor &&
           <Path directory="Meeting" title="Meeting with your Patient" meeting={true} />}
         {!props.isDoctor &&
           <Path directory="Meeting" title="Meeting with your Doctor" meeting={true} />}
-      </Directory>
+      </Directory> */}
 
       <Video>
         <Layout context={context} />

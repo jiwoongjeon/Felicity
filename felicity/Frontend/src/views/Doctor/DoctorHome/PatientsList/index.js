@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import moment from "moment";
+import { SocketContext } from "../../../../API/video";
+
 const { PatientContainer, PatientElementContainer, SymptomsContainer, SymptomsBubble, PatientElement, PatientInfoContainer, PatientImage, Column, Patient, Time, Bio, Divider, Title, Btn } = require("./styles");
 let isEmpty = true;
 
@@ -55,7 +57,16 @@ const TimeCompare = (date, time, past) => {
 
 const PatientsList = (props) => {
 
+    // const {ReadNote} = useContext(SocketContext);
+
     isEmpty = true;
+
+    function DisplayData(data) {
+        props.setFunction(data);
+        // props.ridFunction(data.rid);
+        // props.noteFunction(ReadNote(data.rid));
+        // console.log(ReadNote(props.rid))
+    };
 
     return (
         <PatientContainer>
@@ -67,7 +78,7 @@ const PatientsList = (props) => {
                         {TimeCompare(data.reserved_date, data.reserved_time, props.past) && (
                         
                             <Column>
-                                <PatientElement onClick={({ target }) => props.setFunction(props.data[i])}
+                                <PatientElement onClick={({ target }) => DisplayData(props.data[i])}
                                 displayed={props.clicked} clicked={data}>
 
                                     <PatientImage img={data.img} />

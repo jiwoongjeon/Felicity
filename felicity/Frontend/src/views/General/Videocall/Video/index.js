@@ -1,32 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { MainContainer, MainVideoContainer, VideoContainer, TextArea, Container, Block, Button, Patient, Name, SubtitleContainer, Record, RecordBox, Group } from "./styles";
 import { IoMdVideocam } from "react-icons/io";
 import { FaPhoneAlt, FaWindows } from "react-icons/fa";
 import { MdKeyboardVoice } from "react-icons/md";
 import { BsFillChatSquareFill } from "react-icons/bs";
 import { Prompt } from 'react-router'
-
-import {
-    MainContainer,
-    MainVideoContainer,
-    VideoContainer,
-    TextArea,
-    Container,
-    Block,
-    Button,
-    Patient,
-    Name,
-    Setting,
-    Phone,
-    IconBox,
-    IconLeft,
-    IconRight,
-    SubtitleContainer,
-    Record,
-    RecordBox
-} from "./styles";
-
-
-  
 
 
 const Video = ({ context }) => {
@@ -35,12 +13,7 @@ const Video = ({ context }) => {
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
     const roleA = JSON.parse(sessionStorage.getItem("role"));
-    const name = JSON.parse(sessionStorage.getItem("name"))
-    const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
-
-    
-
-
+    const name = JSON.parse(sessionStorage.getItem("name");
     const [isNavigatingAway, setIsNavigatingAway] = useState(false);
 
   useEffect(() => {
@@ -80,7 +53,6 @@ const Video = ({ context }) => {
             {callAccepted && !callEnded && (
                 <MainVideoContainer>
                     <VideoContainer playsInline ref={userVideo} autoPlay />
-
                 </MainVideoContainer>
             )}
 
@@ -106,17 +78,17 @@ const Video = ({ context }) => {
                             Let's start!
                         </Button>}
                     </Block>
-                )}
+                )} </Container>}
 
-            </Container>}
             <Patient>
-                {stream && (
-                    <VideoContainer playsInline muted ref={myVideo} autoPlay />
-                )}
+                <Group>
+                    {stream && (<VideoContainer playsInline muted ref={myVideo} autoPlay mirrored={true}/>)}
+                </Group>
                 <Name>
                     {name}
                 </Name>
             </Patient>
+
             <SubtitleContainer>
                 <RecordBox>
                     <div>
@@ -143,19 +115,7 @@ const Video = ({ context }) => {
                 {!mySpeech && <TextArea color='#ffffff'>
                     {text.transcription}<br />{text.translation}
                 </TextArea>}
-
             </SubtitleContainer>
-
-            <Setting>
-                <IconLeft>
-                    <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                    <IconBox><MdKeyboardVoice style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                    <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                </IconLeft>
-                {/* <IconRight>
-                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="./Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
-                </IconRight> */}
-            </Setting>
 
         </MainContainer>
         </>
