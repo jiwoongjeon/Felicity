@@ -616,7 +616,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
-                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote, rid, setrid, sid, setsid
+                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote, rid, setrid, sid, setsid, stopVideoOnly, stopAudioOnly
             }}
         >
             {children}
