@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { NoteContainer, Label, Text } from "./styles";
+import { NoteContainer, Label, Text, NoteBackground, SaveBtn, Row } from "./styles";
 import { SocketContext } from "../../../../API/video";
 
 export const Note = (props) => {
@@ -12,9 +12,14 @@ export const Note = (props) => {
 
     return (
         <NoteContainer>
-            <Label>Note</Label>
-            {isNote ? <Text placeholder='Type here ...' value={props.note} onChange={({ target }) => props.setNote(target.value)}/>
-            : <Text disabled={true} placeholder='Loading...'/> }
+            <Row>
+                <Label>Note</Label>
+                <SaveBtn>Save Note</SaveBtn>
+            </Row>
+            
+            <NoteBackground>
+                {isNote ? <Text placeholder='Type here ...' value={props.note} onChange={({ target }) => props.setNote(target.value)}/> : <Text disabled={true} placeholder='Loading...'/> }
+            </NoteBackground>            
         </NoteContainer>
     );
 };

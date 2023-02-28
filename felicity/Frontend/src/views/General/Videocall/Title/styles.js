@@ -22,23 +22,29 @@ export const TitleContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-    width: 25%;
+    width: 20%;
     min-height: 75px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    margin-right: 25px;
 `;
 
-export const IconBox = styled.div`
+export const IconBox = styled.button`
     width: 50px;
     height: 50px;
+    border: none;
     border-radius: 50%;
     background: #959595;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    :hover {
+        border: 1px solid;
+        border-color: #FFFFFF;
+    }
 `;
 
 export const End = styled(Link)`
