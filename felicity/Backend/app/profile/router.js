@@ -106,7 +106,7 @@ function updateDoctorPreferredLang(req, res){
 
 function updateProfession(req, res){
     const doctorId = req.body.doctorId;
-    const profession = req.body.prefession;
+    const profession = req.body.profession;
 
     profile.updateProfession(doctorId, profession, (err, result) => {
         if (err){
