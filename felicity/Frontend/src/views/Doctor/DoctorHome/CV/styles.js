@@ -118,7 +118,7 @@ export const Btn = styled(Link)`
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #0075ff;
+  background: #0B0F99;
   border-radius: 10px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -142,7 +142,7 @@ export const SaveBtn = styled(Link)`
   width: 100px;
   height: 40px;
   line-height: 40px;
-  background: #FF800B;
+  background: #DE3E3E;
   border-radius: 10px;
   color: white;
   font-weight: bold;
