@@ -31,6 +31,81 @@ const deletePatientProfileImageQry =
     "SET profile_image = NULL " +
     "WHERE patient_id = (?)";
 
+const updateUnderlyingDiseaseQry = 
+    "UPDATE felicity.patient_profile SET underlying_disease = ? WHERE patient_id = ?"
+
+const updatePatientPreferredLangQry = 
+    "UPDATE felicity.patient_profile SET preferred_lang = ? WHERE patient_id = ?"
+
+const updateDoctorPreferredLangQry = 
+    "UPDATE felicity.doctor_profile SET preferred_lang = ? WHERE doctor_id = ?"
+
+const updateProfessionQry = 
+    "UPDATE felicity.doctor_profile SET profession = ? WHERE doctor_id = ?"
+
+const updateEducationQry = 
+    "UPDATE felicity.doctor_profile SET education = ? WHERE doctor_id = ?"
+
+const updateAvailableTimeQry = 
+    "UPDATE felicity.doctor_profile SET timea = ?, timeb = ? WHERE doctor_id = ?"
+
+
+    
+conv.updateUnderlyingDisease = function updateUnderlyingDisease(patientId, underDisease, callback){
+    const info = [underDisease, patientId];
+    config.db.query(updateUnderlyingDiseaseQry, info, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+conv.updatePatientPreferredLang = function updatePatientPreferredLang(patientId, lang, callback){
+    const info = [lang, patientId];
+    config.db. query(updatePatientPreferredLangQry, info, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+conv.updateDoctorPreferredLang = function updateDoctorPreferredLang(doctorId, lang, callback){
+    const info = [lang, doctorId];
+    config.db. query(updateDoctorPreferredLangQry, info, (err, result) => {
+        if (err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+conv.updateProfession = function updateProfession(doctorId, profession, callback){
+    const info = [profession, doctorId];
+    config.db.query(updateProfessionQry, info, (err, result) => {
+        if(err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+conv.updateEducation = function updateEducation(doctorId, education, callback){
+    const info = [education, doctorId];
+    config.db.query(updateEducationQry, info, (err, result) => {
+        if(err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+conv.updateAvailableTime = function updateAvailableTime(doctorId, timeA, timeB, callback){
+    const info = [timeA, timeB, doctorId];
+    config.db.query(updateAvailableTimeQry, info, (err, result) => {
+        if(err) callback(err, null);
+
+        callback(null, result);
+    });
+}
+
+
 conv.findDoctorProfileImagePath = function findDoctorProfileImagePath(id, callback) {
     config.db.query(readDoctorProfileImageQry, id, (err, result) => {
         if (err) callback(err, null);
