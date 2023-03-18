@@ -51,7 +51,7 @@ export const End = styled(Link)`
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #DE3E3E;
+    background-color: #CF4942;
     display: flex;
     justify-content: center;
     align-items: center;

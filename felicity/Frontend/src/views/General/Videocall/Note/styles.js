@@ -31,7 +31,7 @@ export const SaveBtn = styled.button`
   width: 85px;
   height: 30px;
   line-height: 30px;
-  background: #DE3E3E;
+  background: #FF800B;
   border: none;
   border-radius: 10px;
   color: white;

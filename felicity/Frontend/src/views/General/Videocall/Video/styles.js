@@ -55,7 +55,7 @@ export const Record = styled.button`
     border: none;
     border-radius: 10%;
     color : white;
-    background-color: #DE3E3E;
+    background-color: #CF4942;
     line-height: 25px;
 
     &:disabled {
@@ -109,7 +109,7 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${props => props.color? props.color : '#0B0F99'};
+    background-color: ${props => props.color? props.color : '#0075FF'};
     border-radius: 15px;
     margin: 30px 25px 25px 25px;
     border: 0;

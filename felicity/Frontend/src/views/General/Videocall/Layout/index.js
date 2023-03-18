@@ -5,10 +5,12 @@ import { SocketContext } from "../../../../API/video";
 import { ContentLayout, TimerBox, TitleBox, NoteBox, VideoBox, ChatBox, InfoBox } from "./styles";
 import Video from '../Video';
 import Title from '../Title';
+// import Infos from '../Infos';
 import Infos from "../tempInfo";
 import Timer from '../Timer';
 import Chat from '../Chat_Video';
 import Note from "../Note";
+// import CallEndButton from '../CallEndButton';
 
 const Layout = ({ context }) => {
     const { did, pid, role } = useContext(SocketContext);
