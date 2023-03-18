@@ -116,7 +116,7 @@ export const Time = styled.p`
   word-break: keep-all;
   color: white;
   align-self: center;
-  background-color: #0B0F99;
+  background-color: #6CBEDC;
   border-radius: 10px;
   padding: 10px;
   flex: 1;
