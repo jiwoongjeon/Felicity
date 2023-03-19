@@ -1,7 +1,10 @@
 import { useState } from "react";
 import './app.css';
+import axios from 'axios'
+import API_URL from "../../../API/server-ip";
 import { FaStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { SocketContext } from "../../../API/video";
 const colors = {
     orange: "#FFBA5A",
     grey: "#a9a9a9"
@@ -13,6 +16,7 @@ const colors = {
 function App() {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
+  const [rate, setRate] = useState("");
   const stars = Array(5).fill(0)
 
   const handleClick = value => {
@@ -26,6 +30,8 @@ function App() {
   const handleMouseLeave = () => {
     setHoverValue(undefined)
   }
+
+  
 
 
   return (

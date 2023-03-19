@@ -2,21 +2,27 @@ import { Container, TitleContainer, ButtonContainer, IconBox, End } from "./styl
 import { IoMdVideocam } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardVoice } from "react-icons/md";
-
+import { SocketContext } from "../../../../API/video.js";
+import {useContext} from "react";
 const Title = (props) => {
-  const { leaveCall, DoctorNote, rid, sid, stopVideoOnly, stopAudioOnly } = props.context;
+  const { leaveCall, DoctorNote, rid, sid, stopVideoOnly, stopAudioOnly } = useContext(SocketContext);
 
-  function leave() {
-    DoctorNote(props.note, rid, sid);
-    leaveCall();
+  function leave(note, rid, sid, role) {
+    console.log('leave');
+    DoctorNote(note, rid, sid);
+    leaveCall(rid, role);
+
   }
 
-  function stopVideo() {
-    stopVideoOnly();
+  function stopVideo(stream) {
+    console.log('video');
+    stopVideoOnly(stream);
+    
   }
 
-  function stopAudio() {
-    stopAudioOnly();
+  function stopAudio(stream) {
+    console.log('audio');
+    stopAudioOnly(stream);
   }
   
   return (
@@ -28,13 +34,13 @@ const Title = (props) => {
 
       <ButtonContainer>
         <IconBox>
-          <IoMdVideocam style={{ color: 'white', fontSize: '40px' }} onClick={() => stopVideo()} />
+          <IoMdVideocam style={{ color: 'white', fontSize: '40px' }} onClick={() => stopVideo(props.stream)}>./rating</IoMdVideocam>
         </IconBox>
         <IconBox>
-          <MdKeyboardVoice style={{ color: 'white', fontSize: '40px' }} onClick={() => stopAudio()}/>
+          <MdKeyboardVoice style={{ color: 'white', fontSize: '40px' }} onClick={() => stopAudio(props.stream)}/>
         </IconBox>
         <End>
-          <FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} onClick={( target ) => leave() } />
+          <FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} onClick={() => leave(props.note, rid, sid, props.role) } />
         </End>
       </ButtonContainer>
 

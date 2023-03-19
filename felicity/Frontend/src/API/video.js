@@ -66,6 +66,7 @@ const ContextProvider = ({ children }) => {
     const [pbirth, setPbirth] = useState("");
     const [symptoms, setSymptoms] = useState("");
     const [wounded_area, setArea] = useState("");
+    const [rate, setRate] = useState("");
     const [scheduleCount, setScheduleCount] = useState(false);
 
 
@@ -500,6 +501,7 @@ const ContextProvider = ({ children }) => {
         });
     }
     const stopVideoOnly = (stream) => {
+        console.log('Video Off')
         stream.getTracks().forEach((track) => {
             if (track.readyState == 'live' && track.kind === 'video') {
                 track.stop();
@@ -507,6 +509,7 @@ const ContextProvider = ({ children }) => {
         });
     }
     const stopAudioOnly = (stream) => {
+        console.log('Audio Off')
         stream.getTracks().forEach((track) => {
             if (track.readyState == 'live' && track.kind === 'audio') {
                 track.stop();
@@ -616,7 +619,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
-                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote, rid, setrid, sid, setsid, stopVideoOnly, stopAudioOnly
+                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote, rid, setrid, sid, setsid, stopVideoOnly, stopAudioOnly, rate, setRate
             }}
         >
             {children}
