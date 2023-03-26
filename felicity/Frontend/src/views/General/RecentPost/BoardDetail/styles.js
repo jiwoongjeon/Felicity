@@ -97,7 +97,7 @@ export const SearchContent = styled.input.attrs({
 
 export const Title = styled.p`
   text-align: left;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color:black;
 `;   
@@ -127,29 +127,32 @@ color:black;
 `;   
 
 export const State = styled.p`
-  color: #718096;
+  color: #A0AEC0;
   font-weight: bold;
-  margin-top: 10px;
+  font-size:18px;
+  margin-bottom:18px;
   white-space: nowrap;
 `;
 
 export const UnState = styled.p`
   color: #FF800B;
   font-weight: bold;
-  margin-top: 10px;
+  font-size:18px;
+  margin-bottom:18px;
   white-space: nowrap;
 `;
 
 export const Date = styled.p`
-  color: #718096;
+  color: #A0AEC0;
+  font-size:18px;
   white-space: nowrap;
-  margin-top:-15px;
+  margin-bottom:18px;
   text-align:left;
 `;
 
 export const DateComment = styled.p`
   flex:1;
-  color: #718096;
+  color: #A0AEC0;
   white-space: nowrap;
   text-align:right;
   margin-top: 10px;
@@ -170,6 +173,7 @@ width: 70%;
 min-width:500px;
 text-align:left;
 white-space:pre-wrap;
+margin-bottom:16px;
 `;
 
 export const Comment = styled.p`
@@ -222,13 +226,13 @@ flex:1;
 margin-top:5px;
 margin-bottom:5px;
 margin-left:2%;
-color: #718096;
+color: #A0AEC0;
 white-space: nowrap;
 `;
 
 export const StateBottom = styled.p`
 flex:4;
-color: #718096;
+color: #A0AEC0;
 font-weight: bold;
 margin-top:5px;
 margin-left:2%;
@@ -334,17 +338,14 @@ overflow:hidden;
 `;
 
 export const SymptomsBubble = styled.div`
-height:100%;
-display: flex;
-border: 2px solid #CBD5E0;
-border-radius: 8px;
-padding-top: 1px;
-padding-bottom: 1px;
-padding-left: 15px;
-padding-right: 15px;
+border-radius: 12px;
+background-color: #FF800B;
+color:white;
+padding: 10px 20px 10px 20px;
 margin-right: 10px;
 font-weight: bold;
-color: #0047D2;
+text-align:center;
+height:36px;
 `;
 
 export const OtherBox = styled.div`
