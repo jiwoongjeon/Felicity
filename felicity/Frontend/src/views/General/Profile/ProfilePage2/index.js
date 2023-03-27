@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Divider, Language, LangLabel, InfoContainer, DoctorLabel, PatientLabel, Header, Button, DoctorLabel2, ProfileContainer, Row, DeleteButton, EducationBox } from "./styles";
+import { TimeButton, Content, Divider, Profession, Education, LanguageContainer, Language, LangLabel, InfoContainer, DoctorLabel, PatientLabel, Header, Button, DoctorLabel2, ProfileContainer, Row, DeleteButton, EducationBox } from "./styles";
 import moment from "moment";
 import {LocalToUTC} from "../../../../API/video"
 export const ProfilePage2 = (props) => {
@@ -31,8 +31,11 @@ export const ProfilePage2 = (props) => {
                 {!props.isDoctor && <PatientLabel>Underlying Disease </PatientLabel>}
                 {props.isDoctor && <DoctorLabel>Profession</DoctorLabel>}
                 <Divider></Divider>
-                {props.isDoctor &&<DoctorLabel2>Education</DoctorLabel2>}
+                {!props.isDoctor &&<Profession>{props.underlying_disease}</Profession>}
+                {props.isDoctor &&<Profession>{props.profession}</Profession>}
+                {props.isDoctor && <DoctorLabel2>Education</DoctorLabel2>}
                 {props.isDoctor &&<Divider></Divider>}
+                {props.isDoctor &&<Education>{props.education}</Education>}
                 {props.isDoctor &&<DoctorLabel2>Available Time</DoctorLabel2>}
                 {props.isDoctor &&<Divider></Divider>}
                 {/* {props.isDoctor && <Content>{props.time}</Content>} */}
@@ -63,14 +66,15 @@ export const ProfilePage2 = (props) => {
                 {props.isDoctor && isTime && start_time && end_time && <TimeButton onClick={setTime}>Confirm</TimeButton>}
                 {props.isDoctor && isTime && (!start_time || !end_time) && <TimeButton onClick={(e) => {changeTime(!isTime)}}>Cancel</TimeButton>}
             </InfoContainer> 
-            <LangLabel>Language</LangLabel>
-            <Language>
-                <select id="time" onClick={e => setNext(e.target.value)}>
-                    <option key="hours" value={0}>English</option>
-                    <option key="days" value={1}>ພາສາລາວ</option>
-                </select>
-            </Language>
-            
+            <LanguageContainer>
+                <LangLabel>Language</LangLabel>
+                <Language>
+                    <select id="time" onClick={e => setNext(e.target.value)}>
+                        <option key="hours" value={0}>English</option>
+                        <option key="days" value={1}>ພາສາລາວ</option>
+                    </select>
+                </Language>
+            </LanguageContainer>
             
         </ProfileContainer>
 

@@ -96,9 +96,9 @@ export const ProfilePage = (props) => {
             <InfoContainer>
                 <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
                 <Divider></Divider>
-                <Bar><Label>D.O.B:</Label><Label>N/A</Label></Bar>
+                <Bar><Label>D.O.B:</Label><Label>{props.birth}</Label></Bar>
                 <Divider></Divider>
-                <Bar><Label>Sex:</Label><Label>N/A</Label></Bar>
+                <Bar><Label>Sex:</Label><Label>{props.sex}</Label></Bar>
             </InfoContainer>
             
         </ProfileContainer>
