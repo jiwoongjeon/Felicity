@@ -4,6 +4,8 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardVoice } from "react-icons/md";
 import { SocketContext } from "../../../../API/video.js";
 import {useContext} from "react";
+import {NavLink} from "react-router-dom"
+import {MainContainer} from "./styles"
 const Title = (props) => {
   const { leaveCall, DoctorNote, rid, sid, stopVideoOnly, stopAudioOnly } = useContext(SocketContext);
 
@@ -11,7 +13,7 @@ const Title = (props) => {
     console.log('leave');
     DoctorNote(note, rid, sid);
     leaveCall(rid, role);
-
+    
   }
 
   function stopVideo(stream) {
@@ -34,13 +36,16 @@ const Title = (props) => {
 
       <ButtonContainer>
         <IconBox>
-          <IoMdVideocam style={{ color: 'white', fontSize: '40px' }} onClick={() => stopVideo(props.stream)}>./rating</IoMdVideocam>
+          <IoMdVideocam style={{ color: 'white', fontSize: '40px' }} onClick={() => stopVideo(props.stream)} />
         </IconBox>
         <IconBox>
           <MdKeyboardVoice style={{ color: 'white', fontSize: '40px' }} onClick={() => stopAudio(props.stream)}/>
         </IconBox>
         <End>
-          <FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} onClick={() => leave(props.note, rid, sid, props.role) } />
+          <NavLink to = "./rating">
+          <FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} onClick={() => leaveCall(props.note, props.rid, props.sid, props.role)} >
+          </FaPhoneAlt>
+          </NavLink>
         </End>
       </ButtonContainer>
 
