@@ -5,6 +5,8 @@ import API_URL from "../../../API/server-ip";
 import { FaStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { SocketContext } from "../../../API/video";
+import styled from "styled-components"
+import {MainContainer, Button, styles } from "./styles.js"
 const colors = {
     orange: "#FFBA5A",
     grey: "#a9a9a9"
@@ -31,12 +33,14 @@ function App() {
     setHoverValue(undefined)
   }
 
-  
+ 
 
 
   return (
+    <MainContainer>
     <div style={styles.container}>
-      <h2> React Ratings </h2>
+      <h2>Tell us about your experience!</h2>
+      <br></br>
       <div style={styles.stars}>
         {stars.map((_, index) => {
           return (
@@ -56,47 +60,25 @@ function App() {
         })}
       </div>
       <textarea
-        placeholder="What's your experience?"
+        placeholder="How was your experience?"
         style={styles.textarea}
       />
-
-      <button
-        style={styles.button}
-      >
-        <NavLink to='./Home'>Submit</NavLink>
-      </button>
+      <textarea
+        placeholder="Please leave a message to your doctor."
+        style={styles.textarea}
+      />
+      <NavLink to='./Home'>
+      <Button>
+        Submit
+      </Button>
+      </NavLink>
       
     </div>
+    </MainContainer>
   );
 };
 
 
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  stars: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  textarea: {
-    border: "1px solid #a9a9a9",
-    borderRadius: 5,
-    padding: 10,
-    margin: "20px 0",
-    minHeight: 100,
-    width: 300
-  },
-  button: {
-    border: "1px solid #a9a9a9",
-    borderRadius: 5,
-    width: 300,
-    padding: 10,
-  }
-
-};
 
 
 

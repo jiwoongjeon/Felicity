@@ -5,6 +5,7 @@ import { MdKeyboardVoice } from "react-icons/md";
 import { SocketContext } from "../../../../API/video.js";
 import {useContext} from "react";
 import {NavLink} from "react-router-dom"
+import {MainContainer} from "./styles"
 const Title = (props) => {
   const { leaveCall, DoctorNote, rid, sid, stopVideoOnly, stopAudioOnly } = useContext(SocketContext);
 
