@@ -1,10 +1,10 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
-import { connect, io } from "socket.io-client";
+import { connect } from "socket.io-client";
 import { BrowserRouter, Redirect } from "react-router-dom";
 import Peer from "simple-peer";
 import Axios from "axios";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
-
+import socket from "./socket";
 import API_URI from "./server-ip";
 import { render } from "react-dom";
 import LoginRedirect from "../views/Components/UserRedirect/login";
@@ -14,7 +14,6 @@ import { da } from "date-fns/locale";
 const moment = require("moment");
 const SocketContext = createContext();
 
-const socket = io(`${API_URL}`);
 
 let tmpId = sessionStorage.getItem("jwt")
 let tmpRole = sessionStorage.getItem("role")
