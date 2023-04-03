@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { React, useState } from "react";
 import './app.css';
 import axios from 'axios'
 import API_URL from "../../../API/server-ip";
@@ -15,9 +15,10 @@ const colors = {
 
 
 
-function App() {
+function App(props) {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
+
   const [rate, setRate] = useState("");
   const stars = Array(5).fill(0)
 
@@ -63,10 +64,12 @@ function App() {
         placeholder="How was your experience?"
         style={styles.textarea}
       />
+    {!props.isDoctor &&
       <textarea
         placeholder="Please leave a message to your doctor."
         style={styles.textarea}
       />
+    }
       <NavLink to='./Home'>
       <Button>
         Submit
@@ -76,7 +79,8 @@ function App() {
     </div>
     </MainContainer>
   );
-};
+}
+;
 
 
 
