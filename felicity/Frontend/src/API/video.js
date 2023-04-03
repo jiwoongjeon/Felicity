@@ -558,7 +558,7 @@ const ContextProvider = ({ children }) => {
             reservation_id: rid,
             symptom_id: sid,
             diagnosis: "temp note",
-            special_note: note,
+            special_note: moment().format('YYYY-MM-DD') + '\n' + note,
         }
         console.log(noteData)
         Axios.post(`${API_URI}/add_docnote`, noteData)
