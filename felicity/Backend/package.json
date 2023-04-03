@@ -12,7 +12,7 @@
     "dependencies": {
         "@google-cloud/speech": "^4.10.0",
         "@google-cloud/translate": "^6.3.1",
-        "aws-sdk": "^2.1338.0",
+        "aws-sdk": "^2.1348.0",
         "bcrypt": "^5.1.0",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
