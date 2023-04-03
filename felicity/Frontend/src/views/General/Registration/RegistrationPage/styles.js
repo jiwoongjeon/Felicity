@@ -18,6 +18,13 @@ export const LoginContainer = styled.div`
     margin-top: 10%;
 `;
 
+export const DoctorOnly = styled.div`
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`
+
 export const reCapWrapper = styled.div`
     width: 100%;
     background-color: gray;
@@ -45,9 +52,17 @@ export const RadioWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-top: 24px;
+    margin-top: 10px;
     padding-left: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+`;
+
+export const RadioWrapper2 = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0px;
+    padding-left: 5px;
 `;
 
 export const CheckboxWrapper = styled.div`
@@ -70,7 +85,8 @@ export const Label = styled.div`
     font-weight: 600;
     font-size: 12px;
     margin-top: 12px;
-    margin-bottom:12px;
+    margin-bottom: 12px;
+    
 `;
 
 export const Label1 = styled.div`
@@ -287,3 +303,86 @@ export const ConsentBox = styled.div`
 `;
 
 
+export const EducationInput =  styled.input.attrs(({ type }) => ({
+    type:  type || "text",
+    placeholder: " A University"
+  }))`
+      width: 95%;
+      height: 80%;
+      border: none;
+      outline: none;
+      font-size: 12px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      color: black;
+  `;
+
+  export const ProfessionInput =  styled.input.attrs(({ type }) => ({
+    type:  type || "text",
+    placeholder: " Pediatrician"
+  }))`
+      width: 95%;
+      height: 80%;
+      border: none;
+      outline: none;
+      font-size: 12px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      color: black;
+  `;
+
+  export const NameInput = styled.input.attrs(({type}) => ({type:  type || "text",
+  placeholder: "Enter your name."}))`
+  width: 95%;
+  height: 80%;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  color: black;
+`;
+
+export const BirthdayInput = styled.input.attrs(({type}) => ({type:  type || "text",
+placeholder: "Enter your birthday in the format of YYYY/MM/DD. 1970/01/30"}))`
+width: 95%;
+height: 80%;
+border: none;
+outline: none;
+font-size: 12px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+color: black;
+`;
+
+export const PreferredLangInput = styled.input.attrs(({type}) => ({type:  type || "text",
+placeholder: "Lao, English, or Korean"}))`
+width: 95%;
+height: 80%;
+border: none;
+outline: none;
+font-size: 12px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+color: black;
+`;
+export const PatientInfo = styled.div`
+width: 500px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+`;
+
+export const Rowbox3 = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+`;
