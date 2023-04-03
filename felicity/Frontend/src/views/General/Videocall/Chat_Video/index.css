@@ -3,16 +3,16 @@
     padding: 0;
 }
 
-html, body {
+/* html, body {
     height: 100%;
-}
+} */
 
 .wrapper {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    max-height: 100%;
 }
 
 .user-container {
@@ -38,10 +38,9 @@ html, body {
 
 .display-container {
     display: flex;
-    height: 93%;
     flex-direction: column;
     background: #ffffff;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .input-container {

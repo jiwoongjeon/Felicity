@@ -40,28 +40,33 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
+export const LanguageContainer = styled.div`
+width: 100px;
+height: 65px;
+position: absolute;
+margin-top: 720px;
+margin-left: 220px;
+`
 
 export const LangLabel = styled.div`
+margin-bottom: 5px;
 display: flex;
 width: 100px;
 height: 30px;
 align-self: center;
-background: blue;
+background: #0175ff;
 border-radius: 20px;
-margin-top: 100%;
 border: 0;
 outline: 0;
 color: white;
 font-style: normal;
 font-weight: bold;
-font-size: 100%;
+font-size: 90%;
 font-family: Roboto;
 text-decoration:none;
-
-
 align-items: center;
 justify-content: center;
-margin-bottom: 1%;
+font-size: 18px;
 `
 
 
@@ -107,7 +112,7 @@ font-weight: bold;
 text-align: left;
 color: black;
 font-size: 20px;
-margin-top: 20%;
+margin-top: 5%;
 `;
 
 export const Content = styled.p`
@@ -197,3 +202,20 @@ export const Button = styled.div`
 
 export const Row = styled.div`
 `
+
+
+export const Profession = styled.p`
+text-align: left;
+color: black;
+font-size: 20px;
+margin-top: 5%;
+margin-bottom: 5%;
+`;
+
+export const Education = styled.p`
+text-align: left;
+color: black;
+font-size: 20px;
+margin-top: 5%;
+margin-bottom: 5%;
+`;

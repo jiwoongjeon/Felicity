@@ -11,7 +11,6 @@ import UserRedirect from "../../Components/UserRedirect";
 import Calen from "./CalenDoctor";
 import API_URL from "../../../API/server-ip";
 import { SocketContext } from "../../../API/video";
-// import MultiLogin from "../UserRedirect/multilogin";
 
 function Doctor(props) {
 
@@ -21,7 +20,10 @@ function Doctor(props) {
     const [scheduleData, setScheduleData] = useState([])
     const [displayedData, setDisplay] = useState({})
     const [visible, setVisible] = useState(true)
-
+    const [isNote, setIsNote] = useState(false)
+    const [note, setNote] = useState('');
+    const [rid, setRid] = useState();
+    const [sid, setSid] = useState();
     const { startCall, UTCToLocal } = useContext(SocketContext);
 
     React.useEffect(() => {
@@ -91,9 +93,11 @@ function Doctor(props) {
             <Cat>
                 <Header isDoctor={true} />
             </Cat>
+
             <Directory>
                 <Path directory={props.past? "Past Patients" : "Home"} />
             </Directory>
+
             <User>
                 <Login />
             </User>
@@ -111,11 +115,13 @@ function Doctor(props) {
                     <CalendarBox>
                         <Calen data = {scheduleData}/>
                     </CalendarBox>
+
                     <PatientBox>
-                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} />
+                        <PatientList data={scheduleData} clicked={displayedData} setFunction={setDisplay} symptoms={sy} past={props.past} setRid={setRid} setSid={setSid} setNote={setNote} setIsNote={setIsNote}/>
                     </PatientBox>
+                    
                     <InfoBox>
-                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} />
+                        <CV startCall={startCall} data={displayedData} scheduleData={scheduleData} symptoms={sy} past={props.past} rid={rid} sid={sid} note={note} isNote={isNote} setNote={setNote}/>
                     </InfoBox>
                 </ContentLayout>
             </Video>

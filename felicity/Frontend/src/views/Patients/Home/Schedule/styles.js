@@ -10,25 +10,23 @@ export const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
+  padding: 30px;
   background: white;
   border-radius: 20px;
   box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const Header = styled.p`
-  margin: 20px;
+  margin-bottom: 20px;
   font-weight: bold;
   font-size: 20px;
 `;
 
 export const AppointmentContainer = styled(Link)`
-  width: 90%;
-  height: 65px;
+  width: 100%;
   min-width:300px;
-  margin-left: 40px;
   margin-bottom: 10px;
-  padding: 20px;
+  padding: 30px;
   border: 3px;
   flex-direction: row;
   background-color: #F8F9FA;

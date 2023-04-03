@@ -23,6 +23,7 @@ export const Chat_Video = () => {
     }
 
     return (
+
     <div className="wrapper">
         <div ref={displayContainer} className="display-container">
             <ul ref={chatList} className="chatting-list">
@@ -43,6 +44,7 @@ export const Chat_Video = () => {
                 }           
             </ul>
         </div>
+
         <div className="input-container">
             <span>
                 <input ref={message} type="text" className="chatting-input" onKeyDown={handleKeyDown} placeholder='enter your message'></input>
@@ -52,7 +54,8 @@ export const Chat_Video = () => {
             </span>
         </div>
     </div>
-    )
-}
+
+    );
+};
 
 export default Chat_Video

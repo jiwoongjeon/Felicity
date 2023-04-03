@@ -8,14 +8,19 @@ export const MainContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     background-color : #F8F9FA;
+    min-height: 800px;
 `;
 
 export const QuestionContainer = styled.div`
-    width: 500px;
+    width: 600px;
+    padding: 30px;
+    border-radius:20px;
     display: flex;
     flex-direction: column;
+    background-color:white;
     justify-content: flex-start;
     margin-top: 5%;
+    margin-bottom: 5%;
 `;
 
 export const Row2 = styled.div`
@@ -31,22 +36,17 @@ export const Logo = styled.img`
 
 export const Title = styled.div`
     text-align: left;
-    // font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
-    font-size: 30px;
-    margin-top: 40px;
-    color: #002D84;
+    font-size: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 `;
 
 export const SubTitle = styled.div`
     text-align: left;
-    // font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
     font-size: 20px;
-    margin-top: 10px;
-    color: #002D84;
+    margin-bottom:20px;
     display:flex;
     flex-direction:row;
     width:100%;
@@ -61,19 +61,13 @@ export const Label = styled.div`
 `;
 
 export const SubmitButton = styled(Link)`
-    width: 500px;   
-    height: 40px;
+    width: 275px;
+    padding: 10px 20px 10px 20px;
     background-color: #0075FF;
     border-radius: 20px;
-    margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding-top: 5px;
-    border: 0;
-    outline: 0;
-    color: white;
-    // font-family: Roboto;
-    font-style: normal;
+    margin-left:5px;
+    margin-right:5px;
+    color:white;
     font-weight: bold;
     font-size: 18px;
     text-decoration:none;
@@ -89,23 +83,17 @@ export const SubmitButton = styled(Link)`
 `;
 
 export const SubmitButtonDisabled = styled.div`
-    width: 500px;
-    height: 40px;
-    background-color: #cccccc;
+    width: 275px;
+    padding: 10px 20px 10px 20px;
+    background-color: #A0AEC0;
     border-radius: 20px;
-    margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding-top: 5px;
-    border: 0;
-    outline: 0;
-    color: white;
-    // font-family: Roboto;
-    font-style: normal;
+    margin-left:5px;
+    margin-right:5px;
+    color:white;
     font-weight: bold;
     font-size: 18px;
     text-decoration:none;
-    text-align:center;
+    text-align:center; 
     cursor: not-allowed; 
     &:hover {
         color: white;
@@ -140,7 +128,7 @@ export const MoveButton = styled(Link)`
     }
     &:active {
       color: white;
-      background-color: #004FEB;
+      background-color: #004EFB;
     }
 `;
 
@@ -218,8 +206,6 @@ export const BodyInput =  styled.input.attrs(({ type }) => ({
       outline: none;
       font-size: 12px;
       // font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       color: black;
   `;
 
@@ -234,8 +220,6 @@ export const ReasonInput =  styled.input.attrs(({ type }) => ({
       outline: none;
       font-size: 12px;
       // font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       color: black;
   `;
 
@@ -249,8 +233,6 @@ export const ReasonInput =  styled.input.attrs(({ type }) => ({
       outline: none;
       font-size: 12px;
       // font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       color: black;
   `;
 
@@ -264,8 +246,6 @@ export const ReasonInput =  styled.input.attrs(({ type }) => ({
       outline: none;
       font-size: 12px;
       // font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       color: black;
   `;
   

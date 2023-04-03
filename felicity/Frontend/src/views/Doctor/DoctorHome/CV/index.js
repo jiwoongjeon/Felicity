@@ -1,12 +1,11 @@
 import TextField from '@mui/material/TextField';
 import {useContext, useState, useEffect} from "react";
 import {SocketContext} from '../../../../API/video'
-const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn } = require("./styles");
+const { PatientContainer, DetailLabel, PatientImage, Column, Patient, Bio, Divider, Btn, Row, Detail, DefaultLabel, Title, Note, Box, SaveBtn, Text } = require("./styles");
 
-
-//props.data[props.index]
 export const CV = (props) => {
-    const { setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea } = useContext(SocketContext);
+    const { setdid, setpid, setrid, setsid, setPsex, setPname, setPbirth, setSymptoms, setArea, DoctorNote } = useContext(SocketContext);
+
     const symptoms = props.symptoms([props.data.cough, props.data.vomit, props.data.fever, props.data.sore_throat,
         props.data.phlegm, props.data.runny_nose, props.data.nauseous, props.data.out_of_breath,
         props.data.stomachache, props.data.chills, props.data.muscle_sickness, props.data.other]).join(', ')
@@ -15,15 +14,18 @@ export const CV = (props) => {
         setdid(JSON.parse(sessionStorage.getItem("jwt")));
         window.sessionStorage.setItem("pid", JSON.stringify(props.data.patient_id));
         setpid(props.data.patient_id)
+        setrid(props.rid)
+        setsid(props.sid)
         setPsex(props.data.sex)
         setPname(props.data.firstname + " " + props.data.lastname);
         setPbirth(props.data.birth);
         setSymptoms(symptoms);
         setArea(props.data.wounded_area);
-        
+        DoctorNote(props.note, props.rid, props.sid);
+
         props.startCall(props.data.rid);
     }
-    
+
     return (
         <PatientContainer>
             <Column>
@@ -61,9 +63,7 @@ export const CV = (props) => {
                             {props.data.request && <Detail>{props.data.request}</Detail>}
                             {!props.data.request && <Detail>None</Detail>}
                         </Row>
-                        <Row>
-                            
-                        </Row>
+                    
                         <Row>
                             <DetailLabel>Wounded area</DetailLabel>
                             <Detail>{props.data.wounded_area}</Detail>
@@ -86,12 +86,14 @@ export const CV = (props) => {
 
                         <Row>
                             <DetailLabel>Note</DetailLabel>
-                            <SaveBtn>Save</SaveBtn>
+                            <SaveBtn onClick={({ target }) => DoctorNote(props.note, props.rid, props.sid)}>Save Note</SaveBtn>
                         </Row>
+                        
 
                         <Row>
                             <Note>
-                                <TextField rows={18} multiline fullWidth variant="standard" placeholder="Type Here ..."/>
+                                {props.isNote ? <Text placeholder='Type here ...' value={props.note} onChange={({ target }) => props.setNote(target.value)}/>
+                                : <Text disabled={true} placeholder='Loading...'/> }
                             </Note>
                         </Row>
 

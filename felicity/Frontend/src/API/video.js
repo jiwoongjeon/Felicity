@@ -1,19 +1,19 @@
 import React, { createContext, useState, useRef, useEffect } from "react";
-import { connect, io } from "socket.io-client";
+import { connect } from "socket.io-client";
 import { BrowserRouter, Redirect } from "react-router-dom";
 import Peer from "simple-peer";
 import Axios from "axios";
 import RecordRTC, { StereoAudioRecorder } from "recordrtc";
-
+import socket from "./socket";
 import API_URI from "./server-ip";
 import { render } from "react-dom";
 import LoginRedirect from "../views/Components/UserRedirect/login";
 import API_URL from "./server-ip";
+import { da } from "date-fns/locale";
 
 const moment = require("moment");
 const SocketContext = createContext();
 
-const socket = io(`${API_URL}`);
 
 let tmpId = sessionStorage.getItem("jwt")
 let tmpRole = sessionStorage.getItem("role")
@@ -37,7 +37,6 @@ const ContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [someName, setSomeName] = useState("");
-    const [rid, setRid] = useState(0);
 
     const [isClicked, setIsClicked] = useState(false);
     const [text, setText] = useState([
@@ -49,23 +48,24 @@ const ContextProvider = ({ children }) => {
 
     const [userJoined, setUserJoined] = useState(false);
     const [reserved, setReserved] = useState(false);
-    const [posted, setPosted] = useState(false);
     const [count, setCount] = useState(0);
     const [boardCount, setboardCount] = useState(0);
     const [boardChecked, setboardChecked] = useState(0);
     const [commentsLoad, setCommentsLoad] = useState(false);
-    const [rid2, setRid2] = useState(0);
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
 
     const [did, setdid] = useState(0);
     const [pid, setpid] = useState(0);
+    const [rid, setrid] = useState(0);
+    const [sid, setsid] = useState(0);
     const [psex, setPsex] = useState(0);
     const [pname, setPname] = useState("");
     const [pbirth, setPbirth] = useState("");
     const [symptoms, setSymptoms] = useState("");
     const [wounded_area, setArea] = useState("");
+    const [rate, setRate] = useState("");
     const [scheduleCount, setScheduleCount] = useState(false);
 
 
@@ -335,7 +335,7 @@ const ContextProvider = ({ children }) => {
     })
 
     const startCall = (reservation_id) => {
-        setRid(reservation_id);
+        setrid(reservation_id);
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then((currentStream) => {
                 setStream(currentStream);
@@ -500,6 +500,7 @@ const ContextProvider = ({ children }) => {
         });
     }
     const stopVideoOnly = (stream) => {
+        console.log('Video Off')
         stream.getTracks().forEach((track) => {
             if (track.readyState == 'live' && track.kind === 'video') {
                 track.stop();
@@ -507,6 +508,7 @@ const ContextProvider = ({ children }) => {
         });
     }
     const stopAudioOnly = (stream) => {
+        console.log('Audio Off')
         stream.getTracks().forEach((track) => {
             if (track.readyState == 'live' && track.kind === 'audio') {
                 track.stop();
@@ -552,6 +554,39 @@ const ContextProvider = ({ children }) => {
         });
     }
 
+    // Posting new doctor note to server
+    const DoctorNote = (note, rid, sid) => {
+        const noteData = {
+            reservation_id: rid,
+            symptom_id: sid,
+            diagnosis: "temp note",
+            special_note: moment().format('YYYY-MM-DD') + '\n' + note,
+        }
+        console.log(noteData)
+        Axios.post(`${API_URI}/add_docnote`, noteData)
+    };
+
+    // Reading existing doctor note from server
+    const ReadNote = (rid, setIsNote, setNote) => {
+        const data = { reservation_id: rid }
+        Axios.post(`${API_URI}/readDocNotes`, data)
+        .then((response) => {
+            console.log(response.data)
+            if (response.data.msg == "Doctor's note is empty") {
+                setNote(null)
+            }
+            else {
+                setNote(response.data[Object.keys(response.data).length - 1].special_note)
+            }
+            setIsNote(true)
+            return
+        })
+    };
+
+    const PushNote = () => {
+
+    };
+
     useEffect(() => {
         socket.on("result", (result) => {
             console.log(result)
@@ -583,7 +618,7 @@ const ContextProvider = ({ children }) => {
                 sendComment, UTCToLocal, changeDoctorAvailableTime, readComment, count, setCount, boardCount, setboardCount
                 , boardChecked, setboardChecked, updateProfileImage, deleteProfileImage
                 , setdid, setpid, setPsex, setPname, setPbirth, setSymptoms, setArea, did, pid, psex, pname, pbirth, symptoms, wounded_area
-                , scheduleCount, setScheduleCount
+                , scheduleCount, setScheduleCount, DoctorNote, ReadNote, PushNote, rid, setrid, sid, setsid, stopVideoOnly, stopAudioOnly, rate, setRate
             }}
         >
             {children}

@@ -32,7 +32,8 @@ app.use(require("./conv/router"));
 app.use(require("./videocall/router"));
 app.use(require("./availabledoctor/router"));      // "/available-doctor"
 app.use(require("./profile/router"));
-app.use("/uploads", express.static("uploads"));
+app.use(require("./upload/router"));
+//app.use("/upload", express.static("upload"));
 app.use(require("./doctornote/router"));
 app.use("/profile_images", express.static("profile_images"));
 
@@ -41,6 +42,42 @@ app.use("/profile_images", express.static("profile_images"));
 app.get("/", (req, res) => {
     res.send('Health Check');
 });
+
+//express-session for storing translation
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+app.use(session({
+    secure: true,	// https 환경에서만 session 정보를 주고받도록처리
+    secret: "12345", // 암호화하는 데 쓰일 키
+    resave: false, // 세션을 언제나 저장할지 설정함
+    saveUninitialized: true, // 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 설정
+    cookie: {	//세션 쿠키 설정 (세션 관리 시 클라이언트에 보내는 쿠키)
+    httpOnly: true, // 자바스크립트를 통해 세션 쿠키를 사용할 수 없도록 함
+    Secure: true
+    }
+}))
+
+
+
+app.get('/saveTranslation', function(req, res) {
+    const file = req.file
+
+    const dataURL = file.audio.dataURL.split(",").pop()
+    let fileBuffer = Buffer.from(dataURL, "base64")
+    const result = transcribe(fileBuffer)
+    if(result[0]!==undefined){
+        req.session.transcription = result[0].transcription;
+        req.session.translation = result[0].translation;
+        //세션 스토어가 이루어진 후 redirect를 해야함.
+        req.session.save(function(){                              
+            res.redirect('/');
+        });
+    }
+    
+})
+
+
 
 // const port = 3001;
 const server = app.listen(config.express.port, () => {
@@ -78,14 +115,16 @@ const io = socket(server, {
     },
 });
 
-
+let resultObj = []
 io.on("connection", async socket => {
     socket.on("message-transcribe", async (file) => {
         const dataURL = file.audio.dataURL.split(",").pop()
         let fileBuffer = Buffer.from(dataURL, "base64")
         const result = await transcribe(fileBuffer)
+        resultObj.push(result)
         console.log(result)
         socket.emit("result", result)
+        socket.emit("storage", resultObj)
     })
 
     socket.on("send-transcription", ({ userToCall, text }) => {

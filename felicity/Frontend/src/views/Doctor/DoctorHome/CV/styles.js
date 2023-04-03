@@ -24,6 +24,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   overflow:auto;
+  row-gap: 10px;
   
   &::-webkit-scrollbar {
     width: 10px;
@@ -33,17 +34,16 @@ export const Column = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   `;
 
 export const Note = styled.div`
   width: 100%;
-  height: 300px;
+  height: 500px;
   border-radius: 20px;
-  padding-top: 20px;
-  padding-left: 20px;
   background-color: #F9F9F9;
-  margin: 10px 0px 10px 0px;
-  overflow: hidden;
+  margin-bottom: 10px;
+  padding: 4%;
 `;
 
 export const Divider = styled.div`
@@ -98,7 +98,7 @@ export const Box = styled.p`
 `;
 
 export const DetailLabel = styled.p`
-  flex: 1;
+  flex: 2;
   font-size: 18px;
   font-weight: bold;
   text-align: left;
@@ -107,7 +107,7 @@ export const DetailLabel = styled.p`
 `;
 
 export const Detail = styled.p`
-  flex: 4;
+  flex: 6;
   text-align: left;
   margin-left: 7px;
   padding-left: 10px;
@@ -117,21 +117,22 @@ export const Detail = styled.p`
 export const Btn = styled(Link)`
   width: 100%;
   height: 50px;
+  line-height: 50px;
   background: #0075ff;
   border-radius: 10px;
   font-weight: bold;
   margin-bottom: 10px;
   color: white;
-  padding-top: 10px;
   text-decoration:none;
-   &:hover {
-      color: white;
-    }
+  :hover {
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+  }
 `;
 
 export const DefaultLabel = styled.p`
   text-align: center;
-  font-weight: regular;
+  font-weight: 500;
   color: #aaaaaa;
   margin-top: 20%;
   font-size: 20px;
@@ -140,13 +141,29 @@ export const DefaultLabel = styled.p`
 export const SaveBtn = styled(Link)`
   width: 100px;
   height: 40px;
+  line-height: 40px;
   background: #FF800B;
   border-radius: 10px;
   color: white;
   font-weight: bold;
   text-decoration: none;
-  padding-top: 0.5em;
-  &:hover {
-    color: white
+
+  :hover {
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+  }
+`;
+
+export const Text = styled.textarea`
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  font-size: large;
+
+  ::placeholder {
+    font-size: large;
+    font-weight: bold;
   }
 `;

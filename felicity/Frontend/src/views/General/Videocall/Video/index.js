@@ -1,54 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { MainContainer, MainVideoContainer, VideoContainer, TextArea, Container, Block, Button, Patient, Name, SubtitleContainer, Record, RecordBox, Group } from "./styles";
 import { IoMdVideocam } from "react-icons/io";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaWindows } from "react-icons/fa";
 import { MdKeyboardVoice } from "react-icons/md";
 import { BsFillChatSquareFill } from "react-icons/bs";
-import {
-    MainContainer,
-    MainVideoContainer,
-    VideoContainer,
-    TextArea,
-    Container,
-    Block,
-    Button,
-    Patient,
-    Name,
-    Setting,
-    Phone,
-    IconBox,
-    IconLeft,
-    IconRight,
-    SubtitleContainer,
-    Record,
-    RecordBox
-} from "./styles";
+import { Prompt } from 'react-router'
 
-const sessionStore = role => {
-    var timer_end = true;
-    window.sessionStorage.setItem('show', timer_end);
-    // if (role) {
-    //     window.location.replace("/Patient/Home");
-    // }
-    // else {
-    //     window.location.replace("/Doctor/Home");
-    // }
-}
+
 const Video = ({ context }) => {
     const { myVideo, role, startCall, callUser, answerCall, leaveCall, userVideo, callAccepted, callEnded, stream, call, isClicked, text, getAudio, stopAudio, sendAudio, userJoined } = context;
     const [visible, setVisible] = React.useState(true);
     const [record, setRecord] = useState(false);
     const [mySpeech, setMySpeech] = useState(false);
     const roleA = JSON.parse(sessionStorage.getItem("role"));
-    const name = JSON.parse(sessionStorage.getItem("name"))
-    const temptxt = [{ transcription: "안녕하세요", translation: "Helloo" }]
+    const name = JSON.parse(sessionStorage.getItem("name"));
+    const [isNavigatingAway, setIsNavigatingAway] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (!isNavigatingAway) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+
+    const handlePopState = () => {
+      setIsNavigatingAway(true);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isNavigatingAway]);
+
+  const handleLeavePage = (location) => {
+    if (!isNavigatingAway) {
+      return "Are you sure you want to leave this page?";
+    }
+  };
 
     return (
+        <>
+        <Prompt when={true} message={handleLeavePage} />
+        
+        
         <MainContainer>
 
             {callAccepted && !callEnded && (
                 <MainVideoContainer>
                     <VideoContainer playsInline ref={userVideo} autoPlay />
-
                 </MainVideoContainer>
             )}
 
@@ -74,17 +78,17 @@ const Video = ({ context }) => {
                             Let's start!
                         </Button>}
                     </Block>
-                )}
+                )} </Container>}
 
-            </Container>}
             <Patient>
-                {stream && (
-                    <VideoContainer playsInline muted ref={myVideo} autoPlay />
-                )}
+                <Group>
+                    {stream && (<VideoContainer playsInline muted ref={myVideo} autoPlay mirrored={true}/>)}
+                </Group>
                 <Name>
                     {name}
                 </Name>
             </Patient>
+
             <SubtitleContainer>
                 <RecordBox>
                     <div>
@@ -111,21 +115,10 @@ const Video = ({ context }) => {
                 {!mySpeech && <TextArea color='#ffffff'>
                     {text.transcription}<br />{text.translation}
                 </TextArea>}
-
             </SubtitleContainer>
 
-            <Setting>
-                <IconLeft>
-                    <IconBox><IoMdVideocam style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                    <IconBox><MdKeyboardVoice style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                    <IconBox><BsFillChatSquareFill style={{ color: 'white', fontSize: '30px' }} /></IconBox>
-                </IconLeft>
-                {/* <IconRight>
-                    <Phone onClick={() => { sessionStore(role); leaveCall(); }} to="./Home"><FaPhoneAlt style={{ color: 'white', fontSize: '30px' }} /></Phone>
-                </IconRight> */}
-            </Setting>
-
         </MainContainer>
+        </>
     );
 };
 

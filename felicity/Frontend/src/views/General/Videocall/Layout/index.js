@@ -1,19 +1,22 @@
-import { React, useContext } from 'react';
-import Video from '../Video';
-import Title from '../Title';
-import Infos from '../Infos';
-import Timer from '../Timer';
-import CallEndButton from '../CallEndButton';
-import {ContentLayout, Empty, TitleBox, VideoBox, InfoBox, CallEnd} from "./styles";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import Axios from "axios";
 import API_URL from "../../../../API/server-ip";
-import { SocketContext } from '../../../../API/video'
+import { SocketContext } from "../../../../API/video";
+import { ContentLayout, TimerBox, TitleBox, NoteBox, VideoBox, ChatBox, InfoBox } from "./styles";
+import Video from '../Video';
+import Title from '../Title';
+// import Infos from '../Infos';
+import Infos from "../tempInfo";
+import Timer from '../Timer';
+import Chat from '../Chat_Video';
+import Note from "../Note";
+// import CallEndButton from '../CallEndButton';
 
 const Layout = ({ context }) => {
-    const { did, pid } = useContext(SocketContext);
+    const { did, pid, role } = useContext(SocketContext);
     const [doctorName, setDoctorName] = useState();
     const [patientName, setPatientName] = useState();
+    const [note, setNote] = useState('');
 
     useEffect(() => {
       Axios.post(`${API_URL}/dstatus`, { "doctorId": did})
@@ -27,31 +30,61 @@ const Layout = ({ context }) => {
     }, [])
 
     return (
-        <div className="Layout">
-            <ContentLayout>
 
-                <VideoBox>
+        <ContentLayout>
+
+            <InfoBox>
+                <Infos doctorName={doctorName} patientName={patientName}/>
+            </InfoBox>
+
+            <NoteBox>
+                {role && <Note note={note} setNote={setNote} />}
+            </NoteBox>
+
+            <TitleBox>
+                <Title doctorName={doctorName} patientName={patientName} context={context}/>
+            </TitleBox>
+
+            <VideoBox>
+                <Video context={context}/>
+            </VideoBox>
+
+            <TimerBox>
+                <Timer role={context.role}/>
+            </TimerBox>
+
+            <ChatBox>
+                <Chat context={context}/>
+            </ChatBox>
+
+            
+            {/* // old version
+
+            <VideoBox>
+                <Video context={context}/> 
                     <Video context={context}/>
-                </VideoBox>
+                <Video context={context}/> 
+            </VideoBox>
 
-                <TitleBox>
-                    <Title doctorName={doctorName} patientName={patientName}/>
-                </TitleBox>
+            <TitleBox>
+                <Title doctorName={doctorName} patientName={patientName}/>
+            </TitleBox>
 
-                <Empty>
-                    <Timer role={context.role}/>
-                </Empty>
+            <Empty>
+                <Timer role={context.role}/>
+            </Empty>
 
-                <CallEnd>
-                    <CallEndButton context={context}/>
+            <CallEnd>
+                <CallEndButton context={context}/>
+            </CallEnd>                
                 </CallEnd>                
+            </CallEnd>                
 
-                <InfoBox>
-                    <Infos/>
-                </InfoBox>
+            <InfoBox>
+                <Infos/>
+            </InfoBox> */}
 
-            </ContentLayout>
-        </div>
+        </ContentLayout>
     );
 };
 

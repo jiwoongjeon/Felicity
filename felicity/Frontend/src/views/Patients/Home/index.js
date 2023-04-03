@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useEffect, useContext, useState } from "react"
 import Header from '../../Components/Header/Header';
 import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
@@ -27,6 +27,7 @@ import API_URL from "../../../API/server-ip";
 import { SocketContext } from '../../../API/video'
 
 function Patient() {
+    
     const jwt = JSON.parse(sessionStorage.getItem("jwt"))
     const show = JSON.parse(sessionStorage.getItem("show"))
     const [scheduleData, setScheduleData] = React.useState([])
@@ -107,19 +108,21 @@ function Patient() {
 
             <User>
                 <Login />
+                
             </User>
 
 
             <Video>
                 {visible && show && <Container>
                     <Block>Video call Ended
-                        <Button onClick={() => { CloseSession(); setVisible(false); }}>
+                             <Button onClick={() => { CloseSession(); setVisible(false); }}>
                             Okay
                         </Button>
                     </Block>
                 </Container>}
                 <ContentLayout>
                     <EmergencyBox>
+                        <div id="google_translate_element"></div>
                         <Emergency />
                     </EmergencyBox>
 

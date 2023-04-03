@@ -33,6 +33,8 @@ export const InfoBox = styled.div`
 
 export const PatientBox = styled.div`
     grid-area: plist;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;

@@ -1,11 +1,10 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import { SocketContext } from '../../../../API/video'
-import { io } from "socket.io-client";
+import socket from "../../../../API/socket";
 import API_URL from "../../../../API/server-ip";
 import { TextField } from '@mui/material';
 import { TimeButton, Content, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
 
-const socket = io(`${API_URL}`);
 
 export const ProfilePage = (props) => {
     const { updateProfileImage, deleteProfileImage } = useContext(SocketContext);
@@ -96,9 +95,9 @@ export const ProfilePage = (props) => {
             <InfoContainer>
                 <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
                 <Divider></Divider>
-                <Bar><Label>D.O.B:</Label><Label>N/A</Label></Bar>
+                <Bar><Label>D.O.B:</Label><Label>{props.birth}</Label></Bar>
                 <Divider></Divider>
-                <Bar><Label>Sex:</Label><Label>N/A</Label></Bar>
+                <Bar><Label>Sex:</Label><Label>{props.sex}</Label></Bar>
             </InfoContainer>
             
         </ProfileContainer>

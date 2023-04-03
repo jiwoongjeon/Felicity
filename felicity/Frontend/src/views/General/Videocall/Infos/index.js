@@ -9,8 +9,6 @@ import { SocketContext } from '../../../../API/video'
 import { TextField } from "@mui/material";
 
 export const Infos = ({ context }) => {
-
-    
     const { did, psex, pname, pbirth, symptoms, wounded_area } = useContext(SocketContext);
     const [doctorData, setDoctorData] = useState({ name: "loading data from server", profession: "loading data from server", email: "loading data from server" }); 
     
@@ -20,11 +18,12 @@ export const Infos = ({ context }) => {
                 let name = response.data[0].firstname + " " + response.data[0].lastname
                 setDoctorData({ name: name, profession: response.data[0].profession, email: response.data[0].email });
             })
-    }, [])
+    }, []);
 
     return (
         <Accordion defaultActiveKey="0">
             <div className="acc">
+
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Patient Info</Accordion.Header>
                     <Accordion.Body>
@@ -36,7 +35,6 @@ export const Infos = ({ context }) => {
                                 Underlying Disease: *** working ***<br></br>
                                 Wounded Area: {wounded_area}<br></br>
                                 Symptoms: {symptoms}<br></br>
-
                             </div>
                             <div className="past-medical-records">
                                 <br></br>
@@ -55,7 +53,8 @@ export const Infos = ({ context }) => {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="1">
+
+                <Accordion.Item eventKey="2">
                     <Accordion.Header>Doctor Info</Accordion.Header>
                     <Accordion.Body>
                         <div className="doctor-info">
@@ -76,22 +75,26 @@ export const Infos = ({ context }) => {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="2">
+                
+
+                {/* <Accordion.Item eventKey="2">
                     <Accordion.Header>Chat</Accordion.Header>
                     <Accordion.Body>
                         <div className="chat">
                             <Chat context={context}/>
                         </div>
                     </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="3">
+                </Accordion.Item> */}
+
+                {/* <Accordion.Item eventKey="3">
                     <Accordion.Header>Note</Accordion.Header>
                     <Accordion.Body>
                         <div className="note">
                             <TextField rows={15} multiline fullWidth variant="standard" placeholder="Type Here ..."/>
                         </div>
                     </Accordion.Body>
-                </Accordion.Item>
+                </Accordion.Item> */}
+                
             </div>
         </Accordion>        
     );

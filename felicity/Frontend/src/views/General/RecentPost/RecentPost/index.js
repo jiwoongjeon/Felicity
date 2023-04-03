@@ -6,7 +6,7 @@ import {SocketContext} from "../../../../API/video";
 const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider, SymptomsBubble, CategoryContainer, CategoryBubble,
     PostElement, Column, Date, NewestLabel, DateLabel, StateLabel, OldestLabel, Title, Content, ContentElement, State, UnState,
     Search, SearchIcon, SearchContent, WriteButton, ColumnBottom, PageContainer, PageNavigatorLabel, PageNumberLabel, PageNumber, PageNumberContainer,
-    CategoryBubbleSelected, NewestLabelSelected, OldestLabelSelected, Column_alert, Id} = require("./styles");
+    CategoryBubbleSelected, NewestLabelSelected, OldestLabelSelected, Column_alert, Id, Column_newest, NoneBubble} = require("./styles");
 
     function sy(array) {
         var array1 = []
@@ -46,6 +46,10 @@ const { PostContainer, Header, PostElementContainer, SymptomsContainer, Divider,
         if (array[11] !== "") {
             array1.push(array[11])
         }
+
+        if (array1.length == 0) {
+            array1.push("None")
+        }
         return array1
     };
 
@@ -70,8 +74,8 @@ export function updateCount (boardChecked, setboardChecked){
 
 export const RecentPost = (props) => {
 
-    const{boardCount, setboardCount} = useContext(SocketContext);
-    const{boardChecked, setboardChecked} = useContext(SocketContext);
+    const{setboardCount} = useContext(SocketContext);
+    const{setboardChecked} = useContext(SocketContext);
     
 
     function board(i) {
@@ -156,7 +160,7 @@ export const RecentPost = (props) => {
             </CategoryContainer>
 
             <Column>
-                <ContentElement>
+                <ContentElement content={false}>
                     <Column>
                         {props.newestSelect && <NewestLabelSelected>Newest</NewestLabelSelected>}
                         {!props.newestSelect && <NewestLabel onClick={({target}) => props.setToNewest()}>
@@ -172,24 +176,26 @@ export const RecentPost = (props) => {
                 <DateLabel>DATE</DateLabel>
                 <StateLabel>STATE</StateLabel>
             </Column>
+            <Divider />
 
             <PostElementContainer>
-                <Divider />
                 {props.pageload > 0 && props.postload > 0 ? props.postData.map((data, i) => (
                     <PostElement onClick={({ target }) => board(i)}>
                         <Column>
                         {SaveID(data.id, setboardCount)}
                         {updateCount(data.id, setboardChecked)}
                             <Id>{data.id}</Id>       
-                            <ContentElement>
+                            <ContentElement content={true}>
                                 <Title>{data.title}</Title>
                                 <Content>{data.content}</Content>
                                 <SymptomsContainer>
                                     {sy([data.symptoms.cough, data.symptoms.vomit, data.symptoms.fever, data.symptoms.sore_throat,
                                         data.symptoms.phelgm, data.symptoms.runny_nose, data.symptoms.nauseous, data.symptoms.out_of_breath,
                                         data.symptoms.stomachache, data.symptoms.chills, data.symptoms.muscle_sickness,
-                                        data.symptoms.other]).map((symptom) => (
-                                        <SymptomsBubble>{symptom}</SymptomsBubble>
+                                        data.symptoms.other]).map((symptom) => ( <>
+                                            { symptom === 'None' && <NoneBubble>{symptom}</NoneBubble> }
+                                            { symptom !== 'None' && <SymptomsBubble>{symptom}</SymptomsBubble> }
+                                        </>
                                     ))}
                                 </SymptomsContainer>
                             </ContentElement>
@@ -210,10 +216,9 @@ export const RecentPost = (props) => {
                     "Loading..."
                     }
 
-                {!props.postData[0] && <Column_alert>There is no post to show</Column_alert>}
+                {!props.postData[0] && <Column_alert>There are no posts to show</Column_alert>}
 
             </PostElementContainer>
-            <Divider/>
 
             <ColumnBottom>
                 <PageContainer>
@@ -221,9 +226,8 @@ export const RecentPost = (props) => {
                         <PageButton />
                     }
                 </PageContainer>
-                {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
             </ColumnBottom>
-                    
+            {!props.isDoctor && <WriteButton to={'./Newpost'}>Write A New Post</WriteButton>}
         </PostContainer>
     );
 }

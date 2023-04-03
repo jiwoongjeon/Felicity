@@ -1,15 +1,13 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { SocketContext } from '../../../../API/video'
 import './index.css';
-import { io } from "socket.io-client";
+import socket from "../../../../API/socket";
 import API_URL from "../../../../API/server-ip";
 import Axios from "axios";
 import { ServerStyleSheet } from 'styled-components';
 import { render } from 'react-dom';
 
 const moment = require("moment");
-
-const socket = io(`${API_URL}`);
 
 export const Chat_Conv = (props) => {
     const { convSend } = useContext(SocketContext);

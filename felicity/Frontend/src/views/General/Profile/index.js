@@ -23,6 +23,13 @@ function Profile(props) {
   const [email, setEmail] = useState("")
   const [profileImage, setProfileImage] = useState("")
   const [time, setTime] = useState("")
+  const [education, setEducation] = useState("")
+  const [sex, setSex] = useState("")
+  const [profession, setProfession] = useState("")
+  const [birth, setBirth] = useState("")
+  const [underlying_disease, setUnderlying_disease] = useState("")
+
+
 
   const { changeDoctorAvailableTime, UTCToLocal } = useContext(SocketContext);
 
@@ -36,6 +43,10 @@ function Profile(props) {
           const time = LocalTimeA + " ~ " + LocalTimeB
           setName(response.data[0].fullname)
           setEmail(response.data[0].email)
+          setSex(response.data[0].sex)
+          setEducation(response.data[0].education)
+          setProfession(response.data[0].profession)
+          setBirth(response.data[0].birth)
           setProfileImage(response.data[0].profile_image)
           setTime(time)
         }
@@ -48,6 +59,9 @@ function Profile(props) {
           setName(response.data[0].fullname)
           setEmail(response.data[0].email)
           setProfileImage(response.data[0].profile_image)
+          setSex(response.data[0].sex)
+          setBirth(response.data[0].birth)
+          setUnderlying_disease(response.data[0].underlying_disease)
         }
       })
     }
@@ -74,10 +88,10 @@ function Profile(props) {
     <Video>
       <ContentLayout>
         <UserInfo>
-          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email} profileImage = {profileImage}></ProfilePage>
+          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email} sex = {sex} birth = {birth}profileImage = {profileImage} ></ProfilePage>
         </UserInfo>
         <UserInfo2>
-          <ProfilePage2 isDoctor={props.isDoctor} time = {time} changeTime={changeDoctorAvailableTime}></ProfilePage2>
+          <ProfilePage2 isDoctor={props.isDoctor} time = {time} education = {education} profession = {profession} underlying_disease = {underlying_disease} changeTime={changeDoctorAvailableTime}></ProfilePage2>
         </UserInfo2>
       </ContentLayout>
     </Video>
