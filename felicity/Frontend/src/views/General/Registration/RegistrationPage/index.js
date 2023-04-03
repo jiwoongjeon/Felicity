@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import { InputLabel, MenuItem, FormControl, Select, TextField } from "@mui/material";
 import ReCAPTCHA from "react-google-recaptcha";
 import RECAP from "../../../../API/recap.js";
 import {
@@ -8,6 +9,7 @@ import {
   Logo,
   Title,
   RadioWrapper,
+  RadioWrapper2,
   Label,
   LoginInput,
   PwInput,
@@ -27,6 +29,15 @@ import {
   Label1,
   reCapWrapper,
   SubmitButtonDisabled,
+  DoctorOnly,
+  EducationInput,
+  ProfessionInput,
+  NameInput,
+  PatientInfo,
+  BirthdayInput,
+  PreferredLangInput,
+  Rowbox3
+
   
 } from "./styles";
 
@@ -45,10 +56,16 @@ function RegistrationPage({ patientL, doctorL }) {
     const [consent,setConsent] = useState(false);
     const [captcha,setCaptcha] = useState(false);
 
+    const [sex, setSex] = useState(true);
+    const [preferredLang, setPreferredLanguage] = React.useState(0);
+    const [reserved_date, setDate] = React.useState('');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmedPassword, setConfirmedPassword] = useState("");
+    const emailData = window.sessionStorage.getItem("email");
 
+    const handleDateChange = (event) => { setDate(event.target.value); };
+    const handleLanguageChange = (event) => { setPreferredLanguage(event.target.value); };
     return (
         <MainContainer>
             <LoginContainer>
@@ -78,7 +95,7 @@ function RegistrationPage({ patientL, doctorL }) {
                 <InputBox>
                     <Icon> <BsFillPersonFill /> </Icon>
                     <LoginInput
-                        value={email}
+                        value={emailData}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </InputBox>
@@ -108,6 +125,49 @@ function RegistrationPage({ patientL, doctorL }) {
                 />
                 </InputBox>
                 
+                
+                {!radioValue && <DoctorOnly><Label> Name </Label> <InputBox><NameInput/></InputBox> <Label> Sex </Label> <RadioWrapper2><RadioButton label="Male" name="Male" value={sex} checked={sex} onChange={({ target }) => {setSex(Boolean(target.value));}}/>  <RadioButton label="Female" name="Female" value={!sex} checked={!sex} onChange={({ target }) => {setSex(!target.value);}}/> </RadioWrapper2><Label> Birthday </Label> <TextField
+                        value={reserved_date}
+                        id="date"
+                        label="Appointment Date"
+                        type="date"
+                        sx={{ width: 200 }}
+                        InputLabelProps={{ shrink: true }}
+                        onChange={handleDateChange}
+                    /> <Label> Preferred Language</Label><FormControl sx={{ minWidth: 425, textAlign: "left" }}>
+                    <InputLabel> Perferred Language </InputLabel>
+                    <Select
+                        value={preferredLang}
+                        label="Preferred Language"
+                        onChange={handleLanguageChange}
+                        autoWidth>
+                        <MenuItem value={1}>English</MenuItem>
+                        <MenuItem value={2}>Laos</MenuItem>
+                        <MenuItem value={3}>Korean</MenuItem>
+                    </Select>
+                </FormControl><Label> Education </Label><InputBox><EducationInput/> </InputBox> <Label>Profession</Label><InputBox> <ProfessionInput/> </InputBox> </DoctorOnly>} 
+                
+                {radioValue && <PatientInfo><Label> Name </Label> <InputBox><NameInput/></InputBox> <Label> Sex </Label> <RadioWrapper2><RadioButton label="Male" name="Male" value={sex} checked={sex} onChange={({ target }) => {setSex(Boolean(target.value));}}/>  <RadioButton label="Female" name="Female" value={!sex} checked={!sex} onChange={({ target }) => {setSex(!target.value);}}/> </RadioWrapper2><Label> Birthday </Label> <TextField
+                        value={reserved_date}
+                        id="date"
+                        label="Appointment Date"
+                        type="date"
+                        sx={{ width: 200 }}
+                        InputLabelProps={{ shrink: true }}
+                        onChange={handleDateChange}
+                    /><Label> Perferred Language </Label> <FormControl sx={{ minWidth: 200, textAlign: "left" }}>
+                    <InputLabel> Perferred Language </InputLabel>
+                    <Select
+                        value={preferredLang}
+                        label="Preferred Language"
+                        onChange={handleLanguageChange}
+                        autoWidth>
+                        <MenuItem value={1}>English</MenuItem>
+                        <MenuItem value={2}>Laos</MenuItem>
+                        <MenuItem value={3}>Korean</MenuItem>
+                    </Select>
+                </FormControl></PatientInfo>}
+                <Rowbox3></Rowbox3>
                 <RadioWrapper>
                     <RadioButton
                         label="English"

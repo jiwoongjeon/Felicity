@@ -27,7 +27,7 @@ async function transcribe(audioFile) {
     const [response] = await client.recognize(request);
     const transcription = response.results.map(result =>
         result.alternatives[0].transcript).join('\n');
-
+      
     const result = await translateText(transcription);
 
     return result
