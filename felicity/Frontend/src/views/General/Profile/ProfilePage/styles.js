@@ -126,7 +126,7 @@ export const Button = styled.div`
   width: 60px;
   height: 30px;
   align-self: flex-end;
-  background: blue;
+  background: #0175ff;
   border-radius: 20px;
   margin-top: 5%;
   border: 0;
@@ -154,7 +154,7 @@ export const Button = styled.div`
   width: 90px;
   height: 35px;
   align-self: flex-end;
-  background: blue;
+  background: #6CBEDC;
   border-radius: 20px;
   border: 0;
   outline: 0;

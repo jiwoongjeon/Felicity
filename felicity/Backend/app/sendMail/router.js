@@ -10,6 +10,7 @@ function postSendEmail(req, res) {
             res.json(err);
         }
         else {
+            console.log(result);
             res.json(result);
         }
     })

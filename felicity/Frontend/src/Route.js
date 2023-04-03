@@ -30,6 +30,8 @@ import Meeting from "./views/Doctor/Meeting";
 import PatientChat from "./views/Doctor/PatientChat";
 import DoctorChat from "./views/Doctor/DoctorChat";
 
+import EmailVerification from "./views/General/Registration/EmailVerification/EmailVerification";
+
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   { path: "/registeration", key: "ROOT", component: () => <Registration /> },
@@ -64,7 +66,7 @@ const ROUTES = [
   { path: "/MHT7", key: "video", component: () => <MHT7 /> },
 
   { path: "/MultiLogin", key: "video", component: () => <MultiLogin /> },
-
+  { path: "/EmailVerification", key: "video", component: () => <EmailVerification/>}
 
 ];
 
