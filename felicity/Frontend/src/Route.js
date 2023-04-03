@@ -45,7 +45,7 @@ const ROUTES = [
   { path: "/Doctor/Profile", key: "video", component: () => <Profile isDoctor={true}/> },
   { path: "/Doctor/RecentPost", key: "video", component: () => <RecentPostPage isDoctor={true}/> },
   { path: "/Doctor/videocall", key: "video", component: () => <Videocall isDoctor={true}/> },
-  { path: "/Doctor/rating", key: "video", component: () => <Starrating />},
+  { path: "/Doctor/rating", key: "video", component: () => <Starrating isDoctor = {true}/>},
   
   { path: "/Patient/Appointment", key: "video", component: () => <Appointment/> },
   { path: "/Patient/Checklist", key: "video", component: () => <ChecklistPage isDoctor={false}/> },
@@ -55,7 +55,7 @@ const ROUTES = [
   { path: "/Patient/RecentPost", key: "PS", component: () => <RecentPostPage isDoctor={false}/> },
   { path: "/Patient/DoctorList", key: "PS", component: () => <DoctorListPage /> },
   { path: "/Patient/videocall", key: "video", component: () => <Videocall isDoctor={false}/> },
-  { path: "/Patient/rating", key: "video", component: () => <Starrating />},
+  { path: "/Patient/rating", key: "video", component: () => <Starrating isDoctor = {false}/>},
 
   { path: "/MHT1", key: "video", component: () => <MHT1 /> },
   { path: "/MHT2", key: "video", component: () => <MHT2 /> },
