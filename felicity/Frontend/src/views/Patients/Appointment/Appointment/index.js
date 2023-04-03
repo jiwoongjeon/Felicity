@@ -26,6 +26,7 @@ export const AppointmentHolder = (props) => {
     const handleDateChange = (event) => { setDate(event.target.value); };
     const handleTimeChange = (event) => { setTime(event.target.value); };
 
+    
     return (
         <NewAppContainer>
             <Header>New Appointment</Header>
