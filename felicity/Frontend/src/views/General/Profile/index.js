@@ -16,23 +16,45 @@ import {
   UserInfo2
 } from "./layout"
 
+
+
 function Profile(props) {
 
-  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [profileImage, setProfileImage] = useState("")
-  const [time, setTime] = useState("")
-  const [education, setEducation] = useState("")
-  const [sex, setSex] = useState("")
-  const [profession, setProfession] = useState("")
-  const [birth, setBirth] = useState("")
-  const [underlying_disease, setUnderlying_disease] = useState("")
+  const jwt = JSON.parse(sessionStorage.getItem("jwt"));
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+  const [time, setTime] = useState("");
+  const [education, setEducation] = useState("");
+  const [sex, setSex] = useState("");
+  const [profession, setProfession] = useState("");
+  const [birth, setBirth] = useState("");
+  const [underlying_disease, setUnderlying_disease] = useState("");
+  
+  const [isEdit, setIsEdit] = useState(false);
+  
+  const handleSetIsEdit = (value) => {
+    setIsEdit(value);
+  };
 
-
-
+  
+  
   const { changeDoctorAvailableTime, UTCToLocal } = useContext(SocketContext);
+/*const handleSave = () => {
+    setIsEdit(false);
+    // send data to server using Axios
+    Axios.post(`${API_URL}/pstatus`, {patientId: jwt})
+  .then((response) => {
+    if (response.data) {
+      /*setEmail(response.data[0].email)
+      setName(response.data[0].fullname)
+      setBirth(response.data[0].birth)
+      setSex(response.data[0].sex)
 
+    }
+  }) 
+
+} */
   useEffect(() => {
     if (props.isDoctor) {
       Axios.post(`${API_URL}/dstatus`, {doctorId: jwt})
@@ -67,6 +89,18 @@ function Profile(props) {
     }
   }, [])
 
+  const handleSetUD = (value) => {
+    setUnderlying_disease(value);
+
+  };
+  const handleSetProf = (value) => {
+    setProfession(value);
+
+  };
+  const handleSetEdu = (value) => {
+    setEducation(value);
+
+  };
   return (
 
     <Mostouter>
@@ -88,11 +122,11 @@ function Profile(props) {
     <Video>
       <ContentLayout>
         <UserInfo>
-          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email} sex = {sex} birth = {birth}profileImage = {profileImage} ></ProfilePage>
+          <ProfilePage isDoctor={props.isDoctor} name = {name} email = {email} sex = {sex} birth = {birth} profileImage = {profileImage} underlying_disease = {underlying_disease} isEdit={isEdit} handleSetIsEdit={handleSetIsEdit}></ProfilePage>
         </UserInfo>
         <UserInfo2>
-          <ProfilePage2 isDoctor={props.isDoctor} time = {time} education = {education} profession = {profession} underlying_disease = {underlying_disease} changeTime={changeDoctorAvailableTime}></ProfilePage2>
-        </UserInfo2>
+          <ProfilePage2 isDoctor={props.isDoctor} time = {time} education = {education} profession = {profession} underlying_disease = {underlying_disease} isEdit={isEdit} changeTime={changeDoctorAvailableTime} handleSetUD = {handleSetUD} handleSetEdu = {handleSetEdu} handleSetProf = {handleSetProf}> </ProfilePage2>
+        </UserInfo2> 
       </ContentLayout>
     </Video>
 
@@ -102,6 +136,7 @@ function Profile(props) {
 
 
   );
+  
 }
 
 export default Profile;

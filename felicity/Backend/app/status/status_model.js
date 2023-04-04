@@ -33,6 +33,7 @@ status.getPatientStatus = function getPatientStatus(patientId, callback) {
         if (err) callback(err, null);
 
         if (result.length != 0) {
+            
             const fullname = result[0].firstname + " " + result[0].lastname
             result[0].fullname = fullname
         }

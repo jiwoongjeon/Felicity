@@ -84,7 +84,7 @@ export const EducationBox = styled.div`
   color: blue;
 `
 export const Divider = styled.div`
-  
+  margin-bottom: 5%;
   width: 130%;
   height: 0px;
   border: 0.5px solid rgba(0, 0, 0, 0.15);
@@ -218,4 +218,9 @@ color: black;
 font-size: 20px;
 margin-top: 5%;
 margin-bottom: 5%;
+`;
+
+export const Label = styled.p`
+color: black;
+text-size 20px;
 `;
