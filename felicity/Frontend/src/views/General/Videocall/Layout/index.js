@@ -49,40 +49,13 @@ const Layout = ({ context }) => {
                 <Video context={context}/>
             </VideoBox>
 
-            <TimerBox>
-                <Timer role={context.role}/>
-            </TimerBox>
+            {/* <TimerBox>
+                <Timer role={context.role}/> 
+            </TimerBox> */}
 
             <ChatBox>
                 <Chat context={context}/>
             </ChatBox>
-
-            
-            {/* // old version
-
-            <VideoBox>
-                <Video context={context}/> 
-                    <Video context={context}/>
-                <Video context={context}/> 
-            </VideoBox>
-
-            <TitleBox>
-                <Title doctorName={doctorName} patientName={patientName}/>
-            </TitleBox>
-
-            <Empty>
-                <Timer role={context.role}/>
-            </Empty>
-
-            <CallEnd>
-                <CallEndButton context={context}/>
-            </CallEnd>                
-                </CallEnd>                
-            </CallEnd>                
-
-            <InfoBox>
-                <Infos/>
-            </InfoBox> */}
 
         </ContentLayout>
     );
