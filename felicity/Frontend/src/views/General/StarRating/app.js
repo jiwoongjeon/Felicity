@@ -70,7 +70,7 @@ function App(props) {
         style={styles.textarea}
       />
     }
-      <NavLink to='./Home'>
+      <NavLink to='./Prescription'>
       <Button>
         Submit
       </Button>
