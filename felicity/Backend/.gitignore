@@ -26,3 +26,7 @@ igneous-equinox-329304-228453fa1d50.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+app/upload/awsconfig.json
+app/upload/awsKeys.js
+

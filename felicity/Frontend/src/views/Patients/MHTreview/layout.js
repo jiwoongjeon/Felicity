@@ -9,7 +9,5 @@ export const ContentLayout = styled.div`
     padding-bottom: 20px;
     margin-left: 30px;
 
+
 `;
-
-
-

@@ -2,38 +2,38 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const PostContainer = styled.div`
-width: 100%;
-height: 100%;
-min-width:1000px;
+width:100%;
+height:100%;
+min-width: 850px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-padding: 10px;
-padding-left: 20px;
-padding-right: 30px;
+padding: 30px;
 background: white;
 border-radius: 20px;
 box-shadow: 0px 4px 5px 0px #EDEEEF;
 `;
 
 export const Header = styled.p`
-  padding-left: 20px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   text-align: left;
-  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const PostElementContainer = styled.div`
-width: 100%;
-height: 80%;
-display: flex;
+width:100%;
+height:70%;
+margin-bottom:10px;
 flex-direction: column;
 overflow-y: auto;
+&::-webkit-scrollbar {
+  width: 0px;
+}
 `;
 
 export const PostElement = styled.div`
-  max-height:300px;
+  width:100%;
   display: flex;
   flex-direction: column;
   text-decoration:none;
@@ -42,7 +42,7 @@ export const PostElement = styled.div`
 `;
 
 export const ContentElement = styled.div`
-  flex: 9;
+  flex: ${props => props.content? 8 : 9 };
   display: flex;
   flex-direction: column;
 `;
@@ -51,9 +51,7 @@ export const Column = styled.div`
   width:100%;
   display: flex;
   flex-direction: row;
-  padding: 5px;
   text-align: center;
-  color: #aaaaaa;
 `;
 
 export const Column_alert = styled.div`
@@ -67,12 +65,10 @@ export const Column_alert = styled.div`
 
 export const ColumnBottom = styled.div`
   width:100%;
-  display: flex;
+  display:flex;
   flex-direction: row;
   padding: 5px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const Divider = styled.div`
@@ -86,131 +82,142 @@ export const Divider = styled.div`
 
 export const CategoryContainer = styled.div`
   display: flex;
-  height: 70px;
+  height: 50px;
   width: 100%;
-  background: #F7F9FC;
   flex-direction: row;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  justifyContent: center;
-  alignItems: center;
   overflow-x: auto;
   `;
 
 export const CategoryBubble = styled.div`
 display: flex;
-border-radius: 20px;
-margin-top: 1.3%;
-margin-left: 25px;
-margin-right: 25px;
-font-weight: 1000;
-color: #4A5568;
+margin-right: 20px;
+font-size:18px;
+font-weight: bold;
+color: #A0AEC0;
 white-space: nowrap;
 cursor:pointer;
-&:hover { color: #0457f9; }
+&:hover { color: #3D7EFF; }
 &:active { color: #004FEB; }
 `;
 
 export const CategoryBubbleSelected = styled.div`
 display: flex;
-border-radius: 20px;
-margin-top: 1.3%;
-margin-left: 25px;
-margin-right: 25px;
-font-weight: 1000;
-color: #0457f9;
+margin-right:20px;
+font-size:18px;
+font-weight: bold;
+color: #0075FF;
 white-space: nowrap;
 cursor:pointer;
-&:hover { color: #0457f9; }
+&:hover { color: #3D7EFF; }
 &:active { color: #004FEB; }
 `;
 
 export const NewestLabel = styled.p`
   font-weight: bold;
-  color: #a0aec0;
-  margin-right: 10px;
+  font-size:18px;
+  margin-bottom:18px;
+  color: #A0AEC0;
+  margin-right: 20px;
   cursor:pointer;
+  &:hover { color: #3D7EFF; }
+  &:active { color: #004FEB; }
 `;
 
 export const OldestLabel = styled.p`
 font-weight: bold;
-color: #a0aec0;
+font-size:18px;
+margin-bottom:18px;
+color: #A0AEC0;
 cursor:pointer;
-&:hover { color: #0457f9; }
+&:hover { color: #3D7EFF; }
 &:active { color: #004FEB; }
 `;
 
 export const NewestLabelSelected = styled.p`
   font-weight: bold;
-  color: #0457f9;
-  margin-right: 10px;
+  color: #0075FF;
+  font-size:18px;
+  margin-bottom:18px;
+  margin-right: 20px;
   cursor:pointer;
-  &:hover { color: #0457f9; }
+  &:hover { color: #3D7EFF; }
   &:active { color: #004FEB; }
 `;
 
 export const OldestLabelSelected = styled.p`
   font-weight: bold;
-  color: #0457f9;
+  font-size:18px;
+  margin-bottom:18px;
+  color: #0075FF;
   cursor:pointer;
-  &:hover { color: #0457f9; }
+  &:hover { color: #3D7EFF; }
   &:active { color: #004FEB; }
 `;
 
 export const DateLabel = styled.p`
   flex:2;
-  margin-top: 4px;
+  margin-bottom:18px;
   font-weight: bold;
-  color: #a0aec0;
+  color: #A0AEC0;
   `;
 export const StateLabel = styled.p`
   flex: 1.5;
-  margin-top: 4px;
-  margin-right: 2%;
+  margin-bottom:18px;
+  margin-right: 17px;
   font-weight: bold;
-  color: #a0aec0;
+  color: #A0AEC0;
 `;
   
 export const SymptomsContainer = styled.div`
-flex: 7;
+width:100%;
 display: flex;
+align-items:center;
 flex-direction: row;
 margin-bottom: 10px;
 `;
 
 export const SymptomsBubble = styled.div`
-display: flex;
-border: 2px solid #CBD5E0;
-border-radius: 8px;
-padding-top: 1px;
-padding-bottom: 1px;
-padding-left: 15px;
-padding-right: 15px;
+border-radius: 12px;
+background-color: #FF800B;
+color:white;
+padding: 10px 20px 10px 20px;
 margin-right: 10px;
 font-weight: bold;
-color: #0047D2;
-height:35px;
+text-align:center;
+height:36px;
 `;
+
+export const NoneBubble = styled.div`
+width:100px;
+border-radius: 12px;
+background-color: #A0AEC0;
+color:white;
+padding: 10px;
+margin-right: 10px;
+font-weight: bold;
+text-align:center;
+height:36px;
+`;
+
 export const Title = styled.p`
-  max-height: 25px;
-  margin-top: 10px;
+  margin-top: 18px;
   text-align: left;
+  margin-bottom:16px;
   font-weight: bold;
   overflow-y: hidden;
   color:black;
 `;
 
 export const Content = styled.p`
-  max-height: 50px;
-  color: #a0aec0;
+  height: 50px;
+  color: #A0AEC0;
+  margin-bottom:16px;
   text-align: left;
   overflow-y: hidden;
 `;
 export const Date = styled.p`
   display:flex;
   flex: 2;
-  color: #718096;
   font-weight: bold;
   white-space: wrap;
   justify-content: center;
@@ -219,7 +226,7 @@ export const Date = styled.p`
 export const Id = styled.p`
   display:flex;
   flex: 1;
-  color: #718096;
+  color: #A0AEC0;
   font-weight: bold;
   white-space: wrap;
   justify-content: center;
@@ -230,7 +237,7 @@ export const Id = styled.p`
 export const State = styled.p`
   display:flex;
   flex: 1.5;
-  color: #718096;
+  color: #A0AEC0;
   margin-right: 2%;
   font-weight: bold;
   white-space: nowrap;
@@ -261,57 +268,28 @@ export const Search = styled.div`
   border-radius: 15px;
 `;
 
-export const SearchIcon = styled.div`
-    width: 20px;
-    height: 20px;
-    border: none;
-    outline: none;
-    margin: 9px 9px 0 0;
-    padding-left: 10px;
-`;
-
-export const SearchContent = styled.input.attrs({
-    type: "text",
-    placeholder: "Search Anything",
-
-})`
-    width: 100%;
-    margin-top: 9px;
-    font-size: 14px;
-    border: none;
-    outline: none;
-`;
-
 export const WriteButton = styled(Link)`
-    flex:1;
-    height: 40px;
-    background-color: #0075FF;
-    border-radius: 15px;
-    padding: 7px 30px 0px 30px;
-    color: white;
-    font-style: normal;
-    font-weight: bold;
-    text-decoration:none;
-    white-space: nowrap;
-    &:hover {
-      color: white;
-      background-color: #3D7EFF;
-    }
-    &:active {
-      color: white;
-      background-color: #004FEB;
-    }
+  border-radius: 12px;
+  background-color: #0075FF;
+  color:white;
+  padding: 10px 40px 10px 40px;
+  margin-right: 10px;
+  font-weight: bold;
+  text-align:center;
+  height:36px;
+  text-decoration:none;
+  justify-self:right;
+  align-self:right;
+  &:hover { background-color: #3D7EFF; }
+  &:active { background-color: #004FEB; }
 `;
 
 export const PageContainer = styled.div`
-  flex:4;
   min-width:300px;
-  height: 50px;
-  display: flex;
   flex-direction: row;
-  background-color: white;
   box-sizing: border-box;
   border-radius: 15px;
+  align-items:center;
   justify-content:center;
 `;
 
@@ -324,26 +302,17 @@ export const PageNavigatorLabel = styled.p`
   margin-left:30px;
   margin-right:30px;
   cursor:pointer;
-  &:hover {
-    color: white;
-    background-color: #3D7EFF;
-  }
-  &:active {
-    color: white;
-    background-color: #004FEB;
-  }
+  &:hover { background-color: #3D7EFF; }
+  &:active { background-color: #004FEB; }
 `;
 
 export const PageNumberContainer = styled.div`
+  width:100%;
   min-width:50px;
-  height: 40px;
-  display: flex;
+  display:flex;
   flex-direction: row;
-  align-items: flex-start;
+  justify-self:center;
   background-color: white;
-  box-sizing: border-box;
-  border-radius: 15px;
-  justify-content:flex-start;
   overflow-x:hidden;
   overflow-y:hidden;
 `;
@@ -356,31 +325,21 @@ export const PageNumberLabel = styled.p`
   padding:5px 13px 5px 13px;
   margin-left:10px;
   margin-right:10px;
+  font-size:18px;
   cursor:pointer;
-  &:hover {
-    color: white;
-    background-color: #3D7EFF;
-  }
-  &:active {
-    color: white;
-    background-color: #004FEB;
-  }
+  &:hover { background-color: #3D7EFF; }
+  &:active { background-color: #004FEB; }
 `;
 
 export const PageNumber = styled.p`
   font-weight: bold;
-  border-radius: 10px;
-  color:#718096;
+  border-radius: 9px;
+  color:#A0AEC0;
   padding:5px 13px 5px 13px;
   margin-left:10px;
   margin-right:10px;
   cursor:pointer;
-  &:hover {
-    color: white;
-    background-color: #3D7EFF;
-  }
-  &:active {
-    color: white;
-    background-color: #004FEB;
-  }
+  font-size:18px;
+  &:hover { color: white; background-color: #3D7EFF; }
+  &:active { color: white; background-color: #004FEB; }
 `;

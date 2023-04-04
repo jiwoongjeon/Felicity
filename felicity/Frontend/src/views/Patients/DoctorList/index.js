@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Header from '../../Components/Header/Header';
-import { Mostouter, Cat, List, Directory, User } from '../../General/RecentPost/layout';
+import { Mostouter, Directory, User, Cat, Video } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 
@@ -38,9 +38,9 @@ function DoctorListPage() {
         <Login />
       </User>
       
-      <List>
+      <Video>
         <DoctorList doctorList={doctorList} />
-      </List>
+      </Video>
 
     </Mostouter>
 

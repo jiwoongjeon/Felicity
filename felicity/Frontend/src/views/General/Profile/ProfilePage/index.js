@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import { SocketContext } from '../../../../API/video'
-import { io } from "socket.io-client";
+import socket from "../../../../API/socket";
 import API_URL from "../../../../API/server-ip";
 import { TextField } from '@mui/material';
 import { TimeButton, Content, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import { useState } from "react";
 import Header from '../../Components/Header/Header';
-import {Mostouter,Cat,List,Directory,User} from './layout';
+import { Mostouter, Directory, User, Cat, List } from '../../Components/mostouter';
 import Path from '../../Components/Path';
 import Login from '../../Components/Login';
 

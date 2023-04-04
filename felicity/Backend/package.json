@@ -12,6 +12,7 @@
     "dependencies": {
         "@google-cloud/speech": "^4.10.0",
         "@google-cloud/translate": "^6.3.1",
+        "aws-sdk": "^2.1348.0",
         "bcrypt": "^5.1.0",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
@@ -19,12 +20,16 @@
         "dotenv": "^16.0.0",
         "express": "^4.18.2",
         "express-session": "^1.17.3",
+        "glob": "^8.1.0",
+        "google-translate-api": "^2.3.0",
+        "i18next": "^22.4.9",
         "json-web-token": "^3.2.0",
         "jsonwebtoken": "^9.0.0",
         "multer": "^1.4.5-lts.1",
         "mysql2": "^2.3.0",
         "nodemailer": "^6.9.1",
         "socket.io": "^4.4.1",
+        "socket.io-client": "^4.6.1",
         "sox": "^0.1.0"
     },
     "devDependencies": {
