@@ -5,7 +5,6 @@ import API_URL from "../../../../API/server-ip";
 import { TextField } from '@mui/material';
 import { TimeButton, Content, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
 import Axios from "axios";
-const socket = io(`${API_URL}`);
 
 
 export const ProfilePage = (props) => {
