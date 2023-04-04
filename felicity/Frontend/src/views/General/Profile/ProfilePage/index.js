@@ -4,6 +4,8 @@ import socket from "../../../../API/socket";
 import API_URL from "../../../../API/server-ip";
 import { TextField } from '@mui/material';
 import { TimeButton, Content, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
+import Axios from "axios";
+const socket = io(`${API_URL}`);
 
 
 export const ProfilePage = (props) => {
@@ -19,13 +21,41 @@ export const ProfilePage = (props) => {
     const [profileImage, setProfileImage] = useState("");
     const [username, setUserName] = useState('');
 
+    const jwt = JSON.parse(sessionStorage.getItem("jwt"))
+    console.log(props.isEdit);
+    const handleEditClick = () => {
+        props.handleSetIsEdit(true);
+        console.log("Pressed Button");
+    };
+
+    const handleSaveClick = () => {
+        props.handleSetIsEdit(false)
+        Axios.post(`${API_URL}/updateUnderlyingDisease`, {underlyingDisease: props.underlying_disease, patientId: jwt})
+        Axios.post(`${API_URL}/updateEducation`, {education: props.education, patientId: jwt})
+        Axios.post(`${API_URL}/updateProfession`, {profession: props.profession, patientId: jwt})
+
+        
+    }
+      /*setEmail(response.data[0].email)
+      setName(response.data[0].fullname)
+      setBirth(response.data[0].birth)
+      setSex(response.data[0].sex)
+    };
+    /*
+    const [name, setName] = useState(props.name);
+    const [birth, setBirth] = useState(props.birth);
+    const [email, setEmail] = useState(props.email);
+    const [sex, setSex] = useState(props.sex);
+    */
+    
+    
     const imageBox = useRef(null);
 
     function setTime() {
         props.changeTime(props.jwt, start_time, end_time)
         changeTime(!isTime)
     }
-
+ 
     useEffect(() => {
         socket.once("changeProfileImage2", (data) => {
             const { file } = data;
@@ -75,12 +105,13 @@ export const ProfilePage = (props) => {
             setProfileImage("");
         }
     }
-
-    
-    
     return(
         <ProfileContainer>
-            <Button>Edit</Button>
+            {props.isEdit ? (
+                <Button onClick={handleSaveClick}>Save</Button>
+            ) : (
+                <Button onClick={handleEditClick}>Edit</Button>
+            )}
             <PictureContainer>
                 <PhotoArea img={profileImage}/>
                 <Settings>
@@ -91,15 +122,53 @@ export const ProfilePage = (props) => {
                 </Settings>
             </PictureContainer>
             <Divider></Divider>
-            <UserName>{props.name}</UserName>
+            <UserName>{props.isEdit ? (
+                <TextField helperText="Enter your name" value={props.name} /*onChange={(e) => setName(e.target.value)}*/ />
+            ) : (
+                <Label>{props.name}</Label>
+            )}</UserName>
             <InfoContainer>
-                <Bar><Label>E-mail:</Label><Label>{props.email}</Label></Bar>
+                <Bar><Label>E-mail:</Label>
+                {props.isEdit ? (
+                <TextField helperText="Enter your email" value={props.email} /*onChange={(e) => setEmail(e.target.value)} */size="small" 
+                inputProps={{
+                    style: {
+                      height: "10px",
+                    },
+                  }}/>
+            ) : (
+                <Label>{props.email}</Label>
+            )}
+                </Bar>
                 <Divider></Divider>
-                <Bar><Label>D.O.B:</Label><Label>{props.birth}</Label></Bar>
+                <Bar><Label>D.O.B:</Label>
+                {props.isEdit ? (
+                <TextField helperText="Enter your D.O.B." value={props.birth} /*onChange={(e) => setBirth(e.target.value)}*/ size="small" inputProps={{
+                    style: {
+                      height: "10px",
+                    },
+                  }}/>
+            ) : (
+                <Label>{props.birth}</Label>
+            )}
+                </Bar>
                 <Divider></Divider>
-                <Bar><Label>Sex:</Label><Label>{props.sex}</Label></Bar>
+                <Bar><Label>Sex:</Label>
+                
+                {props.isEdit ? (
+                <TextField helperText="Enter your Sex" value={props.sex} /*onChange={(e) => setSex(e.target.value)}*/ size="small" inputProps={{
+                    style: {
+                      height: "10px",
+                    },
+                  }}/>
+            ) : (
+                <Label>{props.sex}</Label>
+            )}
+                </Bar>
             </InfoContainer>
             
         </ProfileContainer>
-    );
-}
+    );}
+
+
+export default ProfilePage;
