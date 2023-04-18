@@ -23,7 +23,7 @@ const Label = styled.label`
 `;
 
 const rotate = keyframes`
- from {
+  from {
     opacity: 0;
     transform: rotate(45deg);
   }
@@ -36,7 +36,7 @@ const rotate = keyframes`
 const Indicator = styled.div`
   width: 1.2em;
   height: 1.2em;
-  position: absolute;
+  /* position: absolute; */
   top: 2px;
   left: -1.6em;
   border: 2px solid #0075FF;

@@ -31,7 +31,7 @@ export const SaveBtn = styled.button`
   width: 85px;
   height: 30px;
   line-height: 30px;
-  background: #FF800B;
+  background: #0075FF;
   border: none;
   border-radius: 10px;
   color: white;
@@ -41,6 +41,7 @@ export const SaveBtn = styled.button`
   :hover {
     border: 2px solid #FFFFFF;
     border-radius: 10px;
+    background-color: #3D7EFF;
   }
 `;
 
@@ -59,7 +60,7 @@ export const Text = styled.textarea`
   border: none;
   background-color: transparent;
   resize: none;
-  font-size: large;
+  font-size: medium;
 
   ::placeholder {
     font-size: large;

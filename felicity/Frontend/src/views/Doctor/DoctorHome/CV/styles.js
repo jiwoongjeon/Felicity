@@ -127,6 +127,7 @@ export const Btn = styled(Link)`
   :hover {
     border: 2px solid #FFFFFF;
     border-radius: 10px;
+    background-color: #3D7EFF;
   }
 `;
 
@@ -142,7 +143,7 @@ export const SaveBtn = styled(Link)`
   width: 100px;
   height: 40px;
   line-height: 40px;
-  background: #FF800B;
+  background: #0075FF;
   border-radius: 10px;
   color: white;
   font-weight: bold;
@@ -151,6 +152,7 @@ export const SaveBtn = styled(Link)`
   :hover {
     border: 2px solid #FFFFFF;
     border-radius: 10px;
+    background-color: #3D7EFF;
   }
 `;
 
@@ -160,7 +162,7 @@ export const Text = styled.textarea`
   border: none;
   background-color: transparent;
   resize: none;
-  font-size: large;
+  font-size: medium;
 
   ::placeholder {
     font-size: large;

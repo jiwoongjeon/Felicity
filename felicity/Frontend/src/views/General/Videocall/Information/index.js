@@ -15,8 +15,7 @@ export const InfoBox = () => {
         .then((response) => {
             let name = response.data[0].firstname + " " + response.data[0].lastname;
             setDoctorData({ name: name, profession: response.data[0].profession, email: response.data[0].email });
-          })
-    }, []);
+        })}, []);
 
     
     return (

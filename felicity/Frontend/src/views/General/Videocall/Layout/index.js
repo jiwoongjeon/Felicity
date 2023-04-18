@@ -5,12 +5,10 @@ import { SocketContext } from "../../../../API/video";
 import { ContentLayout, TimerBox, TitleBox, NoteBox, VideoBox, ChatBox, InfoBox } from "./styles";
 import Video from '../Video';
 import Title from '../Title';
-// import Infos from '../Infos';
-import Infos from "../tempInfo";
+import Infos from "../Information";
 import Timer from '../Timer';
 import Chat from '../Chat_Video';
 import Note from "../Note";
-// import CallEndButton from '../CallEndButton';
 
 const Layout = ({ context }) => {
     const { did, pid, role } = useContext(SocketContext);
@@ -19,13 +17,13 @@ const Layout = ({ context }) => {
     const [note, setNote] = useState('');
 
     useEffect(() => {
-      Axios.post(`${API_URL}/dstatus`, { "doctorId": did})
+        Axios.post(`${API_URL}/dstatus`, { "doctorId": did})
             .then((response) => {
-              setDoctorName(response.data[0].lastname)
+                setDoctorName(response.data[0].lastname)
             })
-      Axios.post(`${API_URL}/pstatus`, { "patientId": pid})
+        Axios.post(`${API_URL}/pstatus`, { "patientId": pid})
             .then((response) => {
-              setPatientName(response.data[0].firstname + " " + response.data[0].lastname)
+                setPatientName(response.data[0].firstname + " " + response.data[0].lastname)
             })
     }, [])
 
