@@ -324,3 +324,16 @@ export const SentLabel = styled.div`
     color: black;
     margin-bottom: 10px;
 `
+
+export const Step1 = styled.div`
+      width: 100%;
+      height: 30%;
+`
+export const Step2 = styled.div`
+    width: 100%;
+    height: 40%;
+`
+export const Step3 = styled.div`
+    width: 100%;
+      height: 30%;
+`
