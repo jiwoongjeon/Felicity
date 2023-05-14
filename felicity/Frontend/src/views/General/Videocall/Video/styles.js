@@ -109,7 +109,7 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${props => props.color? props.color : '#0075FF'};
+    background-color: #0075FF;
     border-radius: 15px;
     margin: 30px 25px 25px 25px;
     border: 0;
@@ -118,6 +118,10 @@ export const Button = styled.button`
     font-size: 15px;
     font-weight: 550;
     line-height: 10px;
+
+    :hover {
+        background-color: #3D7EFF;
+    }
 `;
 
 

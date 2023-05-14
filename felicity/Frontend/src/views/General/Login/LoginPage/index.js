@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Switch, Route, Link } from "react-router-dom";
-import { MainContainer, LoginContainer, Logo, Title, RadioWrapper, Label, LoginInput, PwInput, Icon, InputBox, UrlLink, Rowbox, PwLabel, TextLink, Rowbox2,SubmitButton, Signup, SignupLink, CheckboxWrapper, LabelRecursive, SubTitle, LoginSubContainer, RoleSubmitButton, Row, Divider, RoleButton, LangButton, LangButton2, GrayContainer} from "./styles";
+import { MainContainer, LoginContainer, Logo, Title, RadioWrapper, Label, LoginInput, PwInput, Icon, InputBox, UrlLink, Rowbox, PwLabel, TextLink, Rowbox2,SubmitButton, Signup, SignupLink, CheckboxWrapper, LabelRecursive, SubTitle, LoginSubContainer, RoleSubmitButton, Row, Divider, RoleButton, LangButton, LangButton2, GrayContainer, Box} from "./styles";
 
 //https://codesandbox.io/s/custom-checkbox-and-radiobutton-with-react-and-styled-components-6h3st?from-embed=&file=/src/index.js:236-283
 import RadioButton from "./Radiobox.js";
@@ -48,7 +47,7 @@ function LoginPage({ patientL, doctorL }) {
                 <PwInput value={password} onChange={(e) => setPassword(e.target.value)}/>
               </InputBox>
               <Rowbox>
-                <Label><Checkbox></Checkbox>Remember Me</Label>
+                <Box><Checkbox></Checkbox>Remember Me</Box>
                 <UrlLink>Forgot Password</UrlLink>
               </Rowbox>
                 

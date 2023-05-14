@@ -48,5 +48,5 @@ export const SymptomBubble = styled.div`
     width: 60%;
     border-radius: 5px;
     color: white;
-    background-color: #48BB78;
+    background-color: #FF800B;
 `;

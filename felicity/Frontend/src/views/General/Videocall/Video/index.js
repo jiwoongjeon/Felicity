@@ -16,32 +16,32 @@ const Video = ({ context }) => {
     const name = JSON.parse(sessionStorage.getItem("name"));
     const [isNavigatingAway, setIsNavigatingAway] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     const handleBeforeUnload = (event) => {
-      if (!isNavigatingAway) {
+    if (!isNavigatingAway) {
         event.preventDefault();
         event.returnValue = "";
-      }
+    }
     };
 
     const handlePopState = () => {
-      setIsNavigatingAway(true);
+        setIsNavigatingAway(true);
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     window.addEventListener("popstate", handlePopState);
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-      window.removeEventListener("popstate", handlePopState);
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+        window.removeEventListener("popstate", handlePopState);
     };
-  }, [isNavigatingAway]);
+}, [isNavigatingAway]);
 
-  const handleLeavePage = (location) => {
+const handleLeavePage = (location) => {
     if (!isNavigatingAway) {
-      return "Are you sure you want to leave this page?";
+        return "Are you sure you want to leave this page?";
     }
-  };
+};
 
     return (
         <>

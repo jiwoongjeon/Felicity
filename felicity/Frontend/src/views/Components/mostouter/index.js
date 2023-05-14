@@ -6,12 +6,11 @@ export const Mostouter = styled.div`
     display: grid;
     overflow: auto;
     background-color : #F8F9FA;
-
-    grid-template-columns: 0.5fr 2fr 1fr;
+    grid-template-columns: 0.02fr 0.5fr 2fr 1fr 0.02fr;
     grid-template-rows: 0.1fr 1fr;
     grid-template-areas:
-        "cat path login"
-        "cat video video"
+        ". cat path login ."
+        ". cat video video ."
 `;
 
 export const Directory = styled.div`

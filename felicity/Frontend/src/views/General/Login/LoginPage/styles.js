@@ -7,11 +7,11 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    allign-items: center;
+    align-items: center;
     background-image: url(${props => props.img});
     background-size: cover;
     background-repeat: no-repeat;
-    background-attatchment: fixed;
+    background-attachment: fixed;
     background-position: center;
     min-height: 800px;
 `;
@@ -105,10 +105,10 @@ export const LabelRecursive = styled.div`
 `;
 
 export const LoginInput =  styled.input.attrs(({ type }) => ({
-  type:  type || "text",
-  placeholder: ''
+    type:  type || "text",
+    placeholder: 'Type your username'
 }))`
-    width: 95%;
+    width: auto;
     height: 80%;
     border: none;
     outline: none;
@@ -117,15 +117,16 @@ export const LoginInput =  styled.input.attrs(({ type }) => ({
     font-weight: normal;
     color: black;
     background-color: #F0F0F0;
+    padding-left: 5px;
 `;
 
 
 
 export const PwInput = styled.input.attrs(({ type }) => ({
-  type:  type || "password",
-  placeholder: ""
+    type:  type || "password",
+    placeholder: "Type your password"
 }))`
-    width: 95%;
+    width: auto;
     height: 80%;
     border: none;
     outline: none;
@@ -134,6 +135,7 @@ export const PwInput = styled.input.attrs(({ type }) => ({
     font-weight: normal;
     color: black;
     background-color: #F0F0F0;
+    padding-left: 5px;
 `;
 
 export const Rowbox = styled.div`
@@ -141,6 +143,7 @@ export const Rowbox = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin-top: 24px;
     margin-bottom: 4px;
     text-align: left;
@@ -172,13 +175,12 @@ export const TextLink = styled.a`
 `;
 
 export const Checkbox =  styled.input.attrs(({ type }) => ({
-  type:  type || "checkbox"
+    type:  type || "checkbox"
 }))`
-
-  border:1px solid #0075FF;
-  &:active {
-    border-color: #0075FF;
-  }
+    border: 1px solid #0075FF;
+    &:active {
+        border-color: #0075FF;
+    }
 `;
 
 export const Rowbox2 = styled.div`
@@ -206,12 +208,12 @@ export const SubmitButton = styled.button`
     font-size: 15px;
     text-decoration:none;
     &:hover {
-      color: white;
-      background-color: #3D7EFF;
+        color: white;
+        background-color: #3D7EFF;
     }
     &:active {
-      color: white;
-      background-color: #004FEB;
+        color: white;
+        background-color: #004FEB;
     }
 `;
 
@@ -267,10 +269,10 @@ export const GrayContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    allign-items: center;
+    align-items: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attatchment: fixed;
+    background-attachment: fixed;
     background-position: center;
     min-height: 800px;
 
@@ -323,19 +325,19 @@ export const RoleSubmitButton = styled(Link)`
     font-size: 18px;
     text-decoration:none;
     &:hover {
-      color: white;
-      background-color: #3D7EFF;
+        color: white;
+        background-color: #3D7EFF;
     }
     &:active {
-      color: white;
-      background-color: #004FEB;
+        color: white;
+        background-color: #004FEB;
     }
 `;
 
 export const Row = styled.div`
-    display:flex;
-    width:100%
-    flex-align:row;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 `;
 
 export const Signup = styled.div`
@@ -368,12 +370,23 @@ export const Icon = styled.div`
 export const InputBox = styled.div`
     width: 100%;
     height: 40px;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     box-sizing: border-box;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: start;
+    align-items: center;
     background-color: #F0F0F0;
 `;
 
+export const Box = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-align: left;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+`;

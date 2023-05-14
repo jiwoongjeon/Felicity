@@ -1,6 +1,5 @@
 import LoginPage from "./LoginPage"
 import React, { useContext } from "react";
-import ReactDOM from "react-dom";
 import { SocketContext } from "../../../API/video"
 
 function Login() {
