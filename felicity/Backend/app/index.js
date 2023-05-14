@@ -36,6 +36,7 @@ app.use(require("./upload/router"));
 //app.use("/upload", express.static("upload"));
 app.use(require("./doctornote/router"));
 app.use("/profile_images", express.static("profile_images"));
+app.use(require("./prescription/router"));
 
 // const login = require("./login.js")
 
