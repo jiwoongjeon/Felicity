@@ -39,7 +39,9 @@ export const Noti = styled.button`
     cursor: pointer;
 `;
 
-
+export const TranslateContainer = styled.div`
+  margin-bottom: -20px;
+`;
 
 
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContentLayout = styled.div`
     width : 100%;
-    min-width: 900px;
+    min-width: 500px;
     height: 100%;
     min-height: 700px;
     display: grid;

@@ -3,7 +3,7 @@ import { IoMdSettings, IoIosNotifications, IoMdSearch } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { SocketContext } from "../../../API/video"
 import {IconContext} from "react-icons"
-import { MainContainer, Account, AccountIcon, Setting, Noti } from "./styles";
+import { MainContainer, Account, AccountIcon, Setting, Noti, TranslateContainer } from "./styles";
 
 const Login = () => {
   const googleTranslateElementInit = () => {
@@ -32,7 +32,7 @@ const Login = () => {
 
   return (
   <MainContainer>
-    <div id="google_translate_element"></div>
+    <TranslateContainer id="google_translate_element" />
     <Account onClick={sessionClose}>
       
         <AccountIcon> <IoPerson style={{color: '#0075FF', fontSize: '15px', marginRight: '5px'}} />Log Out</AccountIcon>

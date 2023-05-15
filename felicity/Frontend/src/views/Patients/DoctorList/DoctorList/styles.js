@@ -124,20 +124,16 @@ border: none;
     }
 `;
 export const UnavailableBubble = styled.div`
-
 height:70%;
 min-width:150px;
 text-align:center;
 background-color: #a0aec0;
 border-radius: 8px;
-padding-top: 2px;
-padding-bottom: 2px;
-padding-left: 15px;
-padding-right: 15px;
 margin-right: 10px;
 font-weight: bold;
 color: white;
 line-height: 45px;
+padding-top: 5px;
 
 `;
 

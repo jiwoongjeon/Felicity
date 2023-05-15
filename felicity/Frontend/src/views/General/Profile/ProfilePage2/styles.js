@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ProfileContainer = styled.div`
-width: 600px;
-height: 800px;
+width: 550px;
+height: 750px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -44,8 +44,8 @@ export const LanguageContainer = styled.div`
 width: 100px;
 height: 65px;
 position: absolute;
-margin-top: 720px;
-margin-left: 220px;
+margin-top: 680px;
+margin-left: 200px;
 `
 
 export const LangLabel = styled.div`

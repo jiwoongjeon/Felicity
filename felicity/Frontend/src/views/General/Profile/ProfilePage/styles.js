@@ -2,8 +2,8 @@ import styled from "styled-components";
 import default_profile from '../../../Components/assets/default_profile.png'
 
 export const ProfileContainer = styled.div`
-width: 600px;
-height: 800px;
+width: 550px;
+height: 750px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -154,7 +154,7 @@ export const Button = styled.div`
   width: 90px;
   height: 35px;
   align-self: flex-end;
-  background: #6CBEDC;
+  background: #3D7EFF;
   border-radius: 20px;
   border: 0;
   outline: 0;
@@ -166,7 +166,7 @@ export const Button = styled.div`
   text-decoration:none;
   &:hover {
     color: white;
-    background-color: #3D7EFF;
+    background-color: #6CBEDC;
   }
   &:active {
     color: white;
@@ -185,7 +185,7 @@ export const Bar = styled.div`
 `
 
 export const UserName = styled.div`
-    font-size: 300%;
+    font-size: 200%;
     color: black;
     
     align-self: center;
