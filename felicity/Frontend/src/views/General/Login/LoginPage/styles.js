@@ -197,7 +197,7 @@ export const SubmitButton = styled.button`
     align-self: center;
     background: linear-gradient(99.09deg, #010F98 0%, #6CBEDC 100%);
     border-radius: 20px;
-    padding-top: 5px;
+
     border: 0;
     outline: 0;
     color: white;
@@ -221,7 +221,6 @@ export const RoleButton = styled.button`
     align-self: center;
     background: #F0F0F0;
     border-radius: 10px;
-    padding-top: 5px;
     border: 0;
     outline: 0;
     color: black;
@@ -239,12 +238,9 @@ export const LangButton = styled.button`
     height: 50px;
     bottom: 7.5%;
     right: 170px;
-
-
     align-self: right;
     background: #F0F0F0;
     border-radius: 10px;
-    padding-top: 5px;
     border: 0;
     outline: 0;
     color: white;
@@ -282,12 +278,9 @@ export const LangButton2 = styled.button`
     height: 50px;
     bottom: 7.5%;
     right: 50px;
-
-
     align-self: right;
     background: #F0F0F0;
     border-radius: 10px;
-    padding-top: 5px;
     border: 0;
     outline: 0;
     color: black;
