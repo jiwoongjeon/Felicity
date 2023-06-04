@@ -64,7 +64,15 @@ export const Label = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 120%;
+font-size: 17px;
+margin-bottom: 2%;
+`;
+
+export const NameLabel = styled.p`
+font-weight: bold;
+text-align: left;
+color: black;
+font-size: 35px;
 margin-bottom: 2%;
 `;
 
@@ -134,7 +142,7 @@ export const Button = styled.div`
   color: white;
   font-style: normal;
   font-weight: bold;
-  font-size: 100%;
+  font-size: 15px;
   font-family: Roboto;
   text-decoration:none;
   &:hover {
@@ -154,19 +162,19 @@ export const Button = styled.div`
   width: 90px;
   height: 35px;
   align-self: flex-end;
-  background: #3D7EFF;
+  background: #0175ff;
   border-radius: 20px;
   border: 0;
   outline: 0;
-  color: white;
+  color:  white;
   font-style: normal;
   font-weight: bold;
-  font-size: 90%;
+  font-size: 15px;
   font-family: Roboto;
   text-decoration:none;
   &:hover {
     color: white;
-    background-color: #6CBEDC;
+    background-color: #3D7EFF;
   }
   &:active {
     color: white;
