@@ -61,7 +61,6 @@ outline: 0;
 color: white;
 font-style: normal;
 font-weight: bold;
-font-size: 90%;
 font-family: Roboto;
 text-decoration:none;
 align-items: center;
@@ -94,7 +93,7 @@ export const PatientLabel = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 200%;
+font-size: 28px;
 margin-top 5%;
 white-space: nowrap;
 `;
@@ -103,7 +102,7 @@ export const DoctorLabel = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 20px;
+font-size: 28px;
 margin-top: 10%;
 `;
 
@@ -111,7 +110,7 @@ export const DoctorLabel2 = styled.p`
 font-weight: bold;
 text-align: left;
 color: black;
-font-size: 20px;
+font-size: 28px;
 margin-top: 5%;
 `;
 

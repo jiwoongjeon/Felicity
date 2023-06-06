@@ -3,7 +3,7 @@ import { SocketContext } from '../../../../API/video'
 import socket from "../../../../API/socket";
 import API_URL from "../../../../API/server-ip";
 import { TextField } from '@mui/material';
-import { TimeButton, Content, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
+import { TimeButton, Content, NameLabel, Settings, Divider, InfoContainer, Button, Button2, Label, PhotoArea, PictureContainer, ProfileContainer, Row, DeleteButton, UserName, Bar } from "./styles";
 import Axios from "axios";
 
 
@@ -122,14 +122,14 @@ export const ProfilePage = (props) => {
             </PictureContainer>
             <Divider></Divider>
             <UserName>{props.isEdit ? (
-                <TextField helperText="Enter your name" value={props.name} /*onChange={(e) => setName(e.target.value)}*/ />
+                <TextField helperText="Enter your name" value={/*props.name*/""} /*onChange={(e) => setName(e.target.value)}*/ />
             ) : (
-                <Label>{props.name}</Label>
+                <NameLabel>{props.name}</NameLabel>
             )}</UserName>
             <InfoContainer>
                 <Bar><Label>E-mail:</Label>
                 {props.isEdit ? (
-                <TextField helperText="Enter your email" value={props.email} /*onChange={(e) => setEmail(e.target.value)} */size="small" 
+                <TextField helperText="Enter your email" value={/*props.email*/""} /*onChange={(e) => setEmail(e.target.value)} */size="small" 
                 inputProps={{
                     style: {
                       height: "10px",
@@ -142,20 +142,20 @@ export const ProfilePage = (props) => {
                 <Divider></Divider>
                 <Bar><Label>D.O.B:</Label>
                 {props.isEdit ? (
-                <TextField helperText="Enter your D.O.B." value={props.birth} /*onChange={(e) => setBirth(e.target.value)}*/ size="small" inputProps={{
+                <TextField helperText="Enter your D.O.B." value={/*props.birth*/""} /*onChange={(e) => setBirth(e.target.value)}*/ size="small" inputProps={{
                     style: {
                       height: "10px",
                     },
                   }}/>
             ) : (
-                <Label>{props.birth}</Label>
+                <Label>{props.birth.slice(0,10)}</Label>
             )}
                 </Bar>
                 <Divider></Divider>
                 <Bar><Label>Sex:</Label>
                 
                 {props.isEdit ? (
-                <TextField helperText="Enter your Sex" value={props.sex} /*onChange={(e) => setSex(e.target.value)}*/ size="small" inputProps={{
+                <TextField helperText="Enter your Sex" value={/*props.sex*/""} /*onChange={(e) => setSex(e.target.value)}*/ size="small" inputProps={{
                     style: {
                       height: "10px",
                     },
