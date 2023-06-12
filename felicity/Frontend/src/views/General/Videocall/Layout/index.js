@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import Axios from "axios";
+import { Prompt, browserHistory } from 'react-router'
 import API_URL from "../../../../API/server-ip";
 import { SocketContext } from "../../../../API/video";
 import { ContentLayout, TimerBox, TitleBox, NoteBox, VideoBox, ChatBox, InfoBox } from "./styles";
@@ -17,26 +18,72 @@ const Layout = ({ context }) => {
     const [note, setNote] = useState('');
 
     useEffect(() => {
-        Axios.post(`${API_URL}/dstatus`, { "doctorId": did})
+        Axios.post(`${API_URL}/dstatus`, {"doctorId": did})
             .then((response) => {
                 setDoctorName(response.data[0].lastname)
             })
-        Axios.post(`${API_URL}/pstatus`, { "patientId": pid})
+        Axios.post(`${API_URL}/pstatus`, {"patientId": pid})
             .then((response) => {
                 setPatientName(response.data[0].firstname + " " + response.data[0].lastname)
             })
     }, [])
 
-    return (
+    // Handle using back button --> !! this disable the use of back button, however it also make user disconnected when page is reloaded !!
+    // const preventGoBack = () => {
+    //     window.history.pushState(null, "", window.location.href);
+    // };
+    
+    // useEffect(() => {
+    //     window.history.pushState(null, "", window.location.href);
+    //     window.addEventListener("popstate", preventGoBack);
+    
+    //     return () => {
+    //     window.removeEventListener("popstate", preventGoBack);
+    //     };
+    // }, []);
 
+    // Handle closing the tab or reload
+    const [isNavigatingAway, setIsNavigatingAway] = useState(false);
+
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+        if (!isNavigatingAway) {
+            event.preventDefault();
+            event.returnValue = "";
+        }
+        };
+    
+        const handlePopState = () => {
+            setIsNavigatingAway(true);
+        };
+    
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        window.addEventListener("popstate", handlePopState);
+    
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+            window.removeEventListener("popstate", handlePopState);
+        };
+    }, [isNavigatingAway]);
+    
+    const handleLeavePage = (location) => {
+        if (!isNavigatingAway) {
+            return "Are you sure you want to leave this page?";
+        }
+    };
+
+    
+
+    return (
         <ContentLayout>
+            <Prompt when={true} message={handleLeavePage} />
 
             <InfoBox>
                 <Infos doctorName={doctorName} patientName={patientName}/>
             </InfoBox>
 
             <NoteBox>
-                {role && <Note note={note} setNote={setNote} />}
+                {!role && <Note note={note} setNote={setNote} />}
             </NoteBox>
 
             <TitleBox>
