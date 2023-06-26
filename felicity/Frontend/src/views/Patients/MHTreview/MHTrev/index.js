@@ -92,7 +92,7 @@ export const Checklists = (props) => {
                     {Checklist[11] && <OtherBox>{Checklist[12]}</OtherBox>}
                 </SymptomsContainer>
                 
-            <Undo to='./Appointment'>View</Undo>
+            <Undo to='./Appointment'>Request Appointment</Undo>
             </ChecklistsElementContainer>}
             {!sessionStorage.getItem('checklist') && 
                 <ChecklistsElementContainer>
