@@ -18,6 +18,9 @@ const getSaltQry =
 const updateDoctorPWQry = 
     "UPDATE doctor_login SET password=? WHERE doctor_id=?;";
 
+const updateDoctorSaltQry = 
+    "UPDATE doctor_login SET salt=? WHERE doctor_id=?;";
+
 function doctorFindID([firstname, lastname, birth], callback) {
     config.db.query(doctorFindIDQry, [firstname, lastname, birth], (err, result) => {
         if (err) callback(err, null);
@@ -72,14 +75,38 @@ function updateDoctorPW(doctor_id, password) {
     })
 }
 
+function updateDoctorSalt(doctor_id, newSalt) {
+    return new Promise((resolve, reject) => {
+        config.db.query(updateDoctorSaltQry, [newSalt, doctor_id], (err, result) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve();
+        })
+    })
+}
+
 async function doctorChangePW([email, password], callback ) {
     try {
         const result = await getSalt_DoctorId(email);
         const doctor_id = result[0].doctor_id;
         const salt = result[0].salt;
-        const hashed = await bcrypt.hash(password, salt);
+        if (salt == null) {
+            const saltRounds = 10;
 
-        await updateDoctorPW(doctor_id, hashed);
+            bcrypt.genSalt(saltRounds, (err, newSalt) => {
+            bcrypt.hash(password, newSalt, (err, hash) => {
+                // Store hash in database
+                if(err) throw (err);
+                updateDoctorPW(doctor_id, hash);
+                updateDoctorSalt(doctor_id, newSalt);
+            });
+            if(err) throw (err);
+            });
+        }
+        else
+        {var hashed = await bcrypt.hash(password, salt);
+        await updateDoctorPW(doctor_id, hashed);}
 
         // At the end of the process, delete the entry of the doctor_email_validation.
         await dsignup.deleteDoctorEmailEntry(email);

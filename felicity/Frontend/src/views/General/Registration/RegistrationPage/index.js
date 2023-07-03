@@ -126,7 +126,9 @@ function RegistrationPage({ patientL, doctorL }) {
                 </InputBox>
                 
                 
-                {!radioValue && <DoctorOnly><Label> Name </Label> <InputBox><NameInput/></InputBox> <Label> Sex </Label> <RadioWrapper2><RadioButton label="Male" name="Male" value={sex} checked={sex} onChange={({ target }) => {setSex(Boolean(target.value));}}/>  <RadioButton label="Female" name="Female" value={!sex} checked={!sex} onChange={({ target }) => {setSex(!target.value);}}/> </RadioWrapper2><Label> Birthday </Label> <TextField
+                {!radioValue && <DoctorOnly><Label> Name </Label> <InputBox><NameInput/></InputBox> <Label> Sex </Label> <RadioWrapper2><RadioButton label="Male" name="Male" value={sex} checked={sex} onChange={({ target }) => {setSex(Boolean(target.value));}}/>  <RadioButton label="Female" name="Female" value={!sex} checked={!sex} onChange={({ target }) => {setSex(!target.value);}}/> </RadioWrapper2>
+                <Label> Birthday </Label> 
+                <TextField
                         value={reserved_date}
                         id="date"
                         label="Appointment Date"
@@ -145,7 +147,9 @@ function RegistrationPage({ patientL, doctorL }) {
                         <MenuItem value={2}>Laos</MenuItem>
                         <MenuItem value={3}>Korean</MenuItem>
                     </Select>
-                </FormControl><Label> Education </Label><InputBox><EducationInput/> </InputBox> <Label>Profession</Label><InputBox> <ProfessionInput/> </InputBox> </DoctorOnly>} 
+                </FormControl><Label> Education </Label><InputBox><EducationInput/> </InputBox> 
+                <Label>Profession</Label>
+                <InputBox><ProfessionInput/> </InputBox> </DoctorOnly>} 
                 
                 {radioValue && <PatientInfo><Label> Name </Label> <InputBox><NameInput/></InputBox> <Label> Sex </Label> <RadioWrapper2><RadioButton label="Male" name="Male" value={sex} checked={sex} onChange={({ target }) => {setSex(Boolean(target.value));}}/>  <RadioButton label="Female" name="Female" value={!sex} checked={!sex} onChange={({ target }) => {setSex(!target.value);}}/> </RadioWrapper2><Label> Birthday </Label> <TextField
                         value={reserved_date}

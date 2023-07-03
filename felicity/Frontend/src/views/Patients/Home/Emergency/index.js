@@ -4,7 +4,7 @@ export const Emergency = () => {
     return (
         <HelpContainer>
             <Header>Need a doctor NOW?</Header>
-            <NowButton to='./Status'>See available doctors</NowButton>
+            <NowButton to='./DoctorList'>See available doctors</NowButton>
         </HelpContainer>
     );
 }
