@@ -159,7 +159,7 @@ export const PwLabel = styled.div`
     
 `;
 
-export const UrlLink = styled.a`
+export const UrlLink = styled(Link)`
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -217,15 +217,15 @@ export const SubmitButton = styled.button`
     }
 `;
 
-export const RoleButton = styled.button`
+export const RoleButton1 = styled.button`
     width: 300px;
     height: 50px;
     align-self: center;
-    background: #F0F0F0;
+    background: #0075FF;
     border-radius: 10px;
     border: 0;
     outline: 0;
-    color: black;
+    color: white;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -233,7 +233,24 @@ export const RoleButton = styled.button`
     margin-top: 20px;
 
 `;
-
+export const RoleButton2 = styled.button`
+    width: 300px;
+    height: 50px;
+    align-self: center;
+    background: #FF800B;
+    border-radius: 10px;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration:none;
+    margin-top: 20px;
+   
+`;
+/*
 export const LangButton = styled.button`
     position: absolute;
     width: 100px;
@@ -254,7 +271,7 @@ export const LangButton = styled.button`
 
 
 `;
-
+*/
 export const GrayContainer = styled.div`
 
     height: 100vh;
@@ -274,6 +291,7 @@ export const GrayContainer = styled.div`
 
 `;
 
+/*
 export const LangButton2 = styled.button`
     position: absolute;
     width: 100px;
@@ -292,6 +310,7 @@ export const LangButton2 = styled.button`
     text-decoration:none;
 
 `;
+*/
 
 export const Divider = styled.div`
     align-self: center;

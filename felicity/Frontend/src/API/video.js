@@ -102,7 +102,7 @@ const ContextProvider = ({ children }) => {
         try {
             setRole(true);
             console.log(email, password);
-            await Axios.post(`${API_URL}/plogin`, {
+            await Axios.post(`${API_URL}/plogin_with_hash`, {
                 email: email,
                 password: password
             }).then((response) => {
@@ -128,7 +128,7 @@ const ContextProvider = ({ children }) => {
         try {
             setRole(false);
             console.log(email, password);
-            await Axios.post(`${API_URL}/dlogin`, {
+            await Axios.post(`${API_URL}/dlogin_with_hash`, {
                 email: email,
                 password: password
             }).then((response) => {

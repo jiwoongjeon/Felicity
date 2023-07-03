@@ -33,6 +33,7 @@ import Prescription from "./views/Doctor/Prescription";
 import PrescriptionReview from "./views/Patients/Prescription";
 
 import EmailVerification from "./views/General/Registration/EmailVerification/EmailVerification";
+import FindIDPW from "./views/General/FindIDPW/FindIDPW";
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
@@ -71,8 +72,8 @@ const ROUTES = [
   { path: "/Patient/PrescriptionRev", key: "video", component: () => <PrescriptionReview /> },
 
   { path: "/MultiLogin", key: "video", component: () => <MultiLogin /> },
-  { path: "/EmailVerification", key: "video", component: () => <EmailVerification/>}
-
+  { path: "/EmailVerification", key: "video", component: () => <EmailVerification/>},
+  { path: "/FindIDPW", key: "video", component: () => <FindIDPW/>}
 ];
 
 export default ROUTES;
