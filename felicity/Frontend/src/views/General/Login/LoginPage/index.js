@@ -56,7 +56,7 @@ function LoginPage({ patientL, doctorL }) {
                 {!role && <SubmitButton onClick={doctorL({ email, password })}> Login </SubmitButton>}
               
                 <Signup>
-                  Don’t have an Account?<SignupLink to='/EmailVerification'> Sign Up </SignupLink>
+                  Don’t have an Account? &nbsp;<SignupLink to='/EmailVerification'> Sign Up </SignupLink>
                 </Signup>
 
                 <Divider/>

@@ -148,7 +148,7 @@ export const ProfilePage = (props) => {
                     },
                   }}/>
             ) : (
-                <Label>{props.birth.slice(0,10)}</Label>
+                <Label>{/*props.birth.slice(0,10)*/}</Label>
             )}
                 </Bar>
                 <Divider></Divider>

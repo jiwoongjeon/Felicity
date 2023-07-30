@@ -108,7 +108,7 @@ export const LoginInput =  styled.input.attrs(({ type }) => ({
     type:  type || "text",
     placeholder: 'Type your username'
 }))`
-    width: auto;
+    width: 90%;
     height: 80%;
     border: none;
     outline: none;
@@ -126,7 +126,7 @@ export const PwInput = styled.input.attrs(({ type }) => ({
     type:  type || "password",
     placeholder: "Type your password"
 }))`
-    width: auto;
+    width: 90%;
     height: 80%;
     border: none;
     outline: none;
@@ -239,7 +239,6 @@ export const RoleButton2 = styled.button`
     align-self: center;
     background: #FF800B;
     border-radius: 10px;
-    padding-top: 5px;
     border: 0;
     outline: 0;
     color: white;

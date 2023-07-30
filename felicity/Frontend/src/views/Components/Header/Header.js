@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Badge, Stack} from "@mui/material";
 import { responsiveFontSizes, styled } from '@mui/material/styles';
 import { NavLink } from "react-router-dom";
@@ -23,50 +23,38 @@ import { MdFormatListBulleted } from "react-icons/md";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 import { SocketContext } from "../../../API/video";
-import { StyledBadge, StyledBadge2, Divider } from "./styles.js"
+import { StyledBadge } from "./styles.js"
 
-const { HelpContainer, MenuButton, ActiveButton } = require("./styles");
+const { MenuButton} = require("./styles");
 
 export const Header = (props) => {
 
-  const { boardChecked, setboardChecked } = useContext(SocketContext);
-  const { boardCount, setboardCount } = useContext(SocketContext);
   const { scheduleCount, setScheduleCount } = useContext(SocketContext);
-
-  const jwt = JSON.parse(sessionStorage.getItem("jwt"))
-  const show = JSON.parse(sessionStorage.getItem("show"))
-
-  const [scheduleData, setScheduleData] = React.useState([])
-  const [visible, setVisible] = useState(true)
 
   function Check() {
     const [Count, setCount] = React.useState(0);
-    if (!scheduleCount) {
+    useEffect(() => {
+      if (!scheduleCount) {
         setScheduleCount(true)
         Axios.get(`${API_URL}/read_schedule`)
             .then((response) => {
-               setCount(response.data.length)
+                setCount(response.data.length)
             })
         setScheduleCount(false)
-        }
+      }
+    })
+    if (Count == 0) {
+      return "0"
+    }
+    else {
       return Count
+    }
   }
-
- 
-  //create initial menuCollapse state using useState hook
-  const [menuCollapse, setMenuCollapse] = useState(false)
-
-  //create a custom function that will change menucollapse state from false to true and true to false
-  const menuIconClick = () => {
-    //condition checking to change state from true to false and vice versa
-    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  };
 
   return (
     <>
       <div id="header">
-        {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar collapsed={menuCollapse}>
+        <ProSidebar collapsed={false}>
           <SidebarHeader>
             <div className="logotext">
               <MenuButton to='./Home'>
@@ -85,7 +73,7 @@ export const Header = (props) => {
             <Menu iconShape="square">
 
               {props.isDoctor &&
-                <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients  <MenuButton to={`./Meeting`}></MenuButton></MenuItem>}
+                <MenuItem active={true} icon={<AiOutlinePlus />}>Meet new patients<MenuButton to={`./Meeting`}></MenuButton></MenuItem>}
                   
               {!props.isDoctor &&
                 <MenuItem active={true} icon={<AiOutlinePlus />} >See your doctor<MenuButton to={`/MHT1`}></MenuButton></MenuItem>   }

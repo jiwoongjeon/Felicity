@@ -7,7 +7,6 @@ import { ContentLayout, TimerBox, TitleBox, NoteBox, VideoBox, ChatBox, InfoBox 
 import Video from '../Video';
 import Title from '../Title';
 import Infos from "../Information";
-import Timer from '../Timer';
 import Chat from '../Chat_Video';
 import Note from "../Note";
 
@@ -28,48 +27,22 @@ const Layout = ({ context }) => {
             })
     }, [])
 
-    // Handle using back button --> !! this disable the use of back button, however it also make user disconnected when page is reloaded !!
-    // const preventGoBack = () => {
-    //     window.history.pushState(null, "", window.location.href);
-    // };
-    
-    // useEffect(() => {
-    //     window.history.pushState(null, "", window.location.href);
-    //     window.addEventListener("popstate", preventGoBack);
-    
-    //     return () => {
-    //     window.removeEventListener("popstate", preventGoBack);
-    //     };
-    // }, []);
-
-    // Handle closing the tab or reload
-    const [isNavigatingAway, setIsNavigatingAway] = useState(false);
-
     useEffect(() => {
         const handleBeforeUnload = (event) => {
-        if (!isNavigatingAway) {
             event.preventDefault();
             event.returnValue = "";
-        }
         };
-    
-        const handlePopState = () => {
-            setIsNavigatingAway(true);
-        };
-    
+        
+        window.history.pushState(null, "", window.location.href);
         window.addEventListener("beforeunload", handleBeforeUnload);
-        window.addEventListener("popstate", handlePopState);
-    
+        
         return () => {
             window.removeEventListener("beforeunload", handleBeforeUnload);
-            window.removeEventListener("popstate", handlePopState);
         };
-    }, [isNavigatingAway]);
+    }, []);
     
     const handleLeavePage = (location) => {
-        if (!isNavigatingAway) {
-            return "Are you sure you want to leave this page?";
-        }
+        return "Are you sure you want to end the meeting?";
     };
 
     
