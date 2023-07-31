@@ -143,6 +143,21 @@ function addNewDocNotes(req, res) {
     })
 }
 
+function readPatientPastSchedule(req, res) {
+    const patientId = req.body.patient_id;
+    schedule.patientPastSchedule(patientId, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.json({errMsg: "Error: Failed on reading the patient's past schedules"})
+
+        }
+        else {
+            res.json(result);
+        }
+        
+    })
+}
+
 router.post("/patient_schedule", readPatientSchedule);
 router.post("/doctor_schedule", readDoctorSchedule);
 router.post("/create_schedule", postSchedule);
@@ -151,5 +166,6 @@ router.post("/accept_request", acceptRequest);
 router.post("/add_docnote", addNewDocNotes);
 router.post("/patient_schedule_with_date", readPatientScheduleWithDate);
 router.post("/doctor_schedule_with_date", readDoctorScheduleWithDate);
+router.post("/patient_past_schedule", readPatientPastSchedule);
 
 module.exports = router;

@@ -35,9 +35,12 @@ function Patient() {
 
     const { startCall, UTCToLocal } = useContext(SocketContext);
 
+    const [pastScheduleData, setPastScheduleData] = React.useState([])
+    
     React.useEffect(() => {
         Axios.post(`${API_URL}/patient_schedule`, { "patient_id": jwt })
             .then((response) => {
+                console.log(response);
                 for (var i = 0; i < response.data.length; i++) {
                     var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
                     response.data[i].reserved_date = date
@@ -45,8 +48,20 @@ function Patient() {
                 }
                 setScheduleData(response.data)
             })
+
+        Axios.post(`${API_URL}/patient_past_schedule`, { "patient_id": jwt })
+        .then((response) => {
+            console.log(response);
+            for (var i = 0; i < response.data.length; i++) {
+                var [date, time] = UTCToLocal(response.data[i].reserved_date, response.data[i].reserved_time)
+                response.data[i].reserved_date = date
+                response.data[i].reserved_time = time
+            }
+            setPastScheduleData(response.data)
+        })
     }, [])
     console.log(scheduleData)
+    console.log(pastScheduleData)
 
     function CloseSession() {
         window.sessionStorage.removeItem('show');
@@ -135,7 +150,7 @@ function Patient() {
                     </RecordBox>
 
                     <PrescriptionBox>
-                        <RecentPrescription />
+                        <RecentPrescription schedule_data = {pastScheduleData}/>
                     </PrescriptionBox>
 
                     <ConversationBox>
