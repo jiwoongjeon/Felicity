@@ -48,7 +48,7 @@ function LoginPage({ patientL, doctorL }) {
                 <PwInput value={password} onChange={(e) => setPassword(e.target.value)}/>
               </InputBox>
               <Rowbox>
-                <Box><Checkbox></Checkbox>Remember Me</Box>
+                <Checkbox label={"Remember Me"}></Checkbox>
                 <UrlLink to = '/FindIDPW'>Forgot Username / Password</UrlLink>
               </Rowbox>
                 
@@ -72,7 +72,6 @@ function LoginPage({ patientL, doctorL }) {
         {JSON.parse(sessionStorage.getItem("jwt")) && <LoginRedirect isRole={JSON.parse(sessionStorage.getItem("role"))}/>}
 
       </LoginContainer>
-   
 
       </GrayContainer>
     </MainContainer>
