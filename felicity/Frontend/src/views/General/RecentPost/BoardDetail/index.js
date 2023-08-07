@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import moment from "moment";
 import { CacheProvider } from "@emotion/react";
+import { SocketContext } from "../../../../API/video";
 
 
 const { BoardContainer, Column, Search, SearchContent, SearchIcon, Divider, ContentContainer, Title, ContentSubContainer, PhotoArea, WrittenBy, WrittenByLabel,
@@ -59,6 +60,20 @@ export const BoardDetail = (props) => {
     const [isReply, setReplyState] = React.useState(false)
     const [content, setContent] = React.useState('');
     const [comment, setComment] = React.useState([]);
+    var MHTData;
+    var wounded_area, depart, time, severity, reason = '';
+
+    if (props.data.content.includes("Wounded area")) {
+        MHTData = props.data.content.split("\n",5);
+        wounded_area = MHTData[0].split(": ")[1];
+        depart = MHTData[1].split(": ")[1];
+        time = MHTData[2].split(": ")[1];
+        severity = MHTData[3].split(": ")[1];
+        reason = MHTData[4].split(": ")[1];
+    }
+    else {wounded_area = props.data.content}
+
+
 
     useEffect(() => {
         if (props.data.state) {
@@ -109,11 +124,11 @@ export const BoardDetail = (props) => {
                         <Divider />
                         <UnState>Medical Health Form</UnState>
                         <MHT>
-                            Wounded area: <br />
-                            Expected Department: <br />
-                            Injured time: <br />
-                            Severity: <br />
-                            Expected reason: <br />
+                            Wounded area: {wounded_area}<br />
+                            Expected Department: {depart}<br />
+                            Injured time: {time}<br />
+                            Severity: {severity}<br />
+                            Expected reason: {reason}<br />
                         </MHT>
                         <Column>
                             {sy([props.data.symptoms.cough, props.data.symptoms.vomit, props.data.symptoms.fever, props.data.symptoms.sore_throat,
