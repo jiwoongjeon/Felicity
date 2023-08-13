@@ -208,7 +208,7 @@ const ContextProvider = ({ children }) => {
     }
 
     const sendPost = (title, context, category) => {
-        // console.log(title, context, category)
+        console.log(title, context, category)
         const mhtData = getMHTData();
         const postData = {
             title: title,

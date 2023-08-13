@@ -203,7 +203,9 @@ function RecentPostPage(props) {
     axios.post(`${API_URL}/read-post`, { targetPage: page, department: department})
       .then((response) => { 
         if (order) {
-          setPosts(response.data)
+          setPosts(response.data.sort((a,b) => {
+            return a.id < b.id ? 1 : -1
+          }))
         }
         else {
           setPosts(response.data.sort((a,b) => {
