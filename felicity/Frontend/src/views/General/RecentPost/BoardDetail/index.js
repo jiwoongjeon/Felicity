@@ -61,6 +61,7 @@ export const BoardDetail = (props) => {
     const [content, setContent] = React.useState('');
     const [comment, setComment] = React.useState([]);
     var MHTData;
+    var post_content = '';
     var wounded_area, depart, time, severity, reason = '';
 
     if (props.data.content.includes("Wounded area")) {
@@ -70,10 +71,14 @@ export const BoardDetail = (props) => {
         time = MHTData[2].split(": ")[1];
         severity = MHTData[3].split(": ")[1];
         reason = MHTData[4].split(": ")[1];
+        post_content = props.data.content.split("Expected reason: ")[1].split(reason)[1]
+        if (post_content == '' || post_content == '\n') {
+            post_content = 'This post does not have a content.'
+        }
     }
-    else {wounded_area = props.data.content}
-
-
+    else {
+        post_content = props.data.content;
+    }
 
     useEffect(() => {
         if (props.data.state) {
@@ -93,7 +98,7 @@ export const BoardDetail = (props) => {
 
     function back() {
         props.setIsBoard(false)
-        props.GetPage(props.page)
+        props.GetPage(props.page, true)
     }
 
     if (content == '') { button = <CancelBtn onClick={({ target }) => setReplyState(!isReply)}>Cancel</CancelBtn> }
@@ -118,7 +123,7 @@ export const BoardDetail = (props) => {
                     <Divider />
 
                     <ContentSubContainer>
-                        <Content>{props.data.content}</Content>
+                        <Content>{post_content}</Content>
                     </ContentSubContainer>
                     <ContentSubContainer>
                         <Divider />

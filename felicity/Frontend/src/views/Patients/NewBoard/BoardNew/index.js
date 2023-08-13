@@ -24,21 +24,20 @@ export const BoardNew = ({ sendPost }) => {
     if (!depart) depart = 'None'
     if (!why) why = 'None'
 
-    const [content, setContent] = React.useState(
-        'Wounded area: ' + sessionStorage.getItem("where") + '\n' +
-        'Expected Department: ' + depart + '\n' +
-        'Injured time: ' + time + '\n' +
-        'Severity: ' + sessionStorage.getItem("level") + ' out of 10' + '\n' +
-        'Expected reason: ' + why + '\n'
-    );
+    const [content, setContent] = React.useState('');
 
     let button;
+    let MHT = ('Wounded area: ' + sessionStorage.getItem("where") + '\n' +
+                'Expected Department: ' + depart + '\n' +
+                'Injured time: ' + time + '\n' +
+                'Severity: ' + sessionStorage.getItem("level") + ' out of 10' + '\n' +
+                'Expected reason: ' + why + '\n')
     const handleTitle = (event) => { setTitle(event.target.value); };
     const handleContent = (event) => { setContent(event.target.value); };
     const handleCategoryChange = (event) => { setCategory(event.target.value); };
 
-    if (title == '' || category == '') button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
-    else button = <SubmitBtn onClick={() => sendPost(title, content, category)}>Submit</SubmitBtn >
+    if (title == '' || category == '' || content =='') button = <SubmitBtnDisabled>Submit</SubmitBtnDisabled>
+    else button = <SubmitBtn onClick={() => sendPost(title, MHT.concat(content), category)}>Submit</SubmitBtn >
 
     return (
         <NewBoardContainer>
